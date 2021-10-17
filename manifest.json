@@ -1,0 +1,24 @@
+{
+  "short_name": "NBBA",
+  "name": "NBBA App",
+  "icons": [
+    {
+      "src": "hLogo_192_black_transparent.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "hLogo_512_black_transparent.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/NBBA",
+  "background_color": "#000000",
+  "display": "minimal-ui",
+  "scope": "/",
+  "theme_color": "#000000",
+  "shortcuts": [],
+  "description": "The official NBBA App",
+  "screenshots": []
+}
