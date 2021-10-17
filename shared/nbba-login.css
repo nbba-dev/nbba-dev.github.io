@@ -1,0 +1,10 @@
+.nbba-login {
+  position: absolute;
+  margin: 1rem;
+  top: 0;
+  right: 0;
+}
+
+button[hidden] {
+  display: none;
+}
