@@ -1,3 +1,11 @@
+let resolveDeferred = () => {}
+let rejectDeferred = () => {}
+
+const loadedGapiPromise = new Promise((resolve, reject) => {
+  resolveDeferred = resolve
+  rejectDeferred = reject
+})
+
 fetch("/shared/nbba-login.html")
 .then(stream => stream.text())
 .then(text => define(text));
@@ -57,9 +65,11 @@ function define(html) {
 
         this.loginButton.addEventListener('click', this.login)
         this.logoutButton.addEventListener('click', this.logout)
+
+        resolveDeferred()
       }, function(error) {
         alert(JSON.stringify(error, null, 2))
-        // appendPre(JSON.stringify(error, null, 2));
+        rejectDeferred()
       });
     }
 
@@ -76,3 +86,6 @@ function define(html) {
 
   customElements.define('nbba-login', NbbaLogin);
 }
+
+
+export default loadedGapiPromise;
