@@ -13,8 +13,12 @@
       "sizes": "512x512"
     }
   ],
+  "start_url": "/",
   "background_color": "#000000",
   "display": "minimal-ui",
+  "scope": "/",
   "theme_color": "#000000",
-  "description": "The official NBBA App"
+  "shortcuts": [],
+  "description": "The official NBBA App",
+  "screenshots": []
 }
