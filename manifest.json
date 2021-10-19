@@ -13,7 +13,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/NBBA",
+  "start_url": "/",
   "background_color": "#000000",
   "display": "minimal-ui",
   "scope": "/",
