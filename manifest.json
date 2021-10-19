@@ -3,12 +3,12 @@
   "name": "NBBA App",
   "icons": [
     {
-      "src": "hLogo_192_black_transparent.png",
+      "src": "NBBA-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "hLogo_512_black_transparent.png",
+      "src": "NBBA-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
