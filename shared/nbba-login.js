@@ -1,91 +1,97 @@
-let resolveDeferred = () => {}
-let rejectDeferred = () => {}
+function init(loggedInCallback) {
 
-const loadedGapiPromise = new Promise((resolve, reject) => {
-  resolveDeferred = resolve
-  rejectDeferred = reject
-})
+  let resolveDeferred = () => {}
+  let rejectDeferred = () => {}
 
-fetch("/shared/nbba-login.html")
-.then(stream => stream.text())
-.then(text => define(text));
+  const loadedGapiPromise = new Promise((resolve, reject) => {
+    resolveDeferred = resolve
+    rejectDeferred = reject
+  })
 
-// Client ID and API key from the Developer Console
-var CLIENT_ID = '673474108161-nr43igs2gi8j9nbu6pjnuuc620j45ana.apps.googleusercontent.com';
-var API_KEY = 'AIzaSyCJYgfijMbwroLQX1qBd51rx9UHDgnVrh8';
+  fetch("/shared/nbba-login.html")
+  .then(stream => stream.text())
+  .then(text => define(text));
 
-// Array of API discovery doc URLs for APIs used by the quickstart
-var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
+  // Client ID and API key from the Developer Console
+  var CLIENT_ID = '673474108161-nr43igs2gi8j9nbu6pjnuuc620j45ana.apps.googleusercontent.com';
+  var API_KEY = 'AIzaSyCJYgfijMbwroLQX1qBd51rx9UHDgnVrh8';
 
-// Authorization scopes required by the API; multiple scopes can be
-// included, separated by spaces.
-var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
+  // Array of API discovery doc URLs for APIs used by the quickstart
+  var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
 
-function define(html) {
-  class NbbaLogin extends HTMLElement {
-    constructor() {
-      super();
+  // Authorization scopes required by the API; multiple scopes can be
+  // included, separated by spaces.
+  var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
 
-      var shadow = this.attachShadow({mode: 'open'});
-      shadow.innerHTML = html;
+  function define(html) {
+    class NbbaLogin extends HTMLElement {
+      constructor() {
+        super();
 
-      this.loginButton = shadow.querySelector('#nbba-login-btn');
-      this.logoutButton = shadow.querySelector('#nbba-logout-btn');
-      this.text = shadow.querySelector('#nbba-login-status');
+        var shadow = this.attachShadow({mode: 'open'});
+        shadow.innerHTML = html;
 
-      var script = document.createElement('script');
-      script.setAttribute('async', true)
-      script.setAttribute('defer', true)
-      script.onload = () => { gapi.load('client:auth2', () => { this.initClient() }); }
-      script.onreadystatechange = () => { debugger; if (this.readyState === 'complete') this.onload() }
-      script.src = "https://apis.google.com/js/api.js";
-      document.getElementsByTagName('head')[0].appendChild(script);
-    }
+        this.loginButton = shadow.querySelector('#nbba-login-btn');
+        this.logoutButton = shadow.querySelector('#nbba-logout-btn');
+        this.text = shadow.querySelector('#nbba-login-status');
 
-    login() {
-      gapi.auth2.getAuthInstance().signIn();
-    }
+        var script = document.createElement('script');
+        script.setAttribute('async', true)
+        script.setAttribute('defer', true)
+        script.onload = () => { gapi.load('client:auth2', () => { this.initClient() }); }
+        script.onreadystatechange = () => { debugger; if (this.readyState === 'complete') this.onload() }
+        script.src = "https://apis.google.com/js/api.js";
+        document.getElementsByTagName('head')[0].appendChild(script);
+      }
 
-    logout() {
-      gapi.auth2.getAuthInstance().signOut();
-    }
+      login() {
+        gapi.auth2.getAuthInstance().signIn();
+      }
 
-    initClient() {
-      gapi.client.init({
-        apiKey: API_KEY,
-        clientId: CLIENT_ID,
-        discoveryDocs: DISCOVERY_DOCS,
-        scope: SCOPES
-      }).then(() => {
-        // Listen for sign-in state changes.
-        gapi.auth2.getAuthInstance().isSignedIn.listen((a) => { this.updateSigninStatus(a) });
+      logout() {
+        gapi.auth2.getAuthInstance().signOut();
+      }
 
-        // Handle the initial sign-in state.
-        this.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+      initClient() {
+        gapi.client.init({
+          apiKey: API_KEY,
+          clientId: CLIENT_ID,
+          discoveryDocs: DISCOVERY_DOCS,
+          scope: SCOPES
+        }).then(() => {
+          // Listen for sign-in state changes.
+          gapi.auth2.getAuthInstance().isSignedIn.listen((a) => { this.updateSigninStatus(a) });
 
-        this.loginButton.addEventListener('click', this.login)
-        this.logoutButton.addEventListener('click', this.logout)
+          // Handle the initial sign-in state.
+          this.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
 
-        resolveDeferred()
-      }, function(error) {
-        alert(JSON.stringify(error, null, 2))
-        rejectDeferred()
-      });
-    }
+          this.loginButton.addEventListener('click', this.login)
+          this.logoutButton.addEventListener('click', this.logout)
 
-    updateSigninStatus(isSignedIn) {
-      if (isSignedIn) {
-        this.loginButton.setAttribute('hidden', true)
-        this.logoutButton.removeAttribute('hidden')
-      } else {
-        this.loginButton.removeAttribute('hidden')
-        this.logoutButton.setAttribute('hidden', true)
+          resolveDeferred()
+        }, function(error) {
+          alert(JSON.stringify(error, null, 2))
+          rejectDeferred()
+        });
+      }
+
+      updateSigninStatus(isSignedIn) {
+        if (isSignedIn) {
+          this.loginButton.setAttribute('hidden', true)
+          this.logoutButton.removeAttribute('hidden')
+        } else {
+          this.loginButton.removeAttribute('hidden')
+          this.logoutButton.setAttribute('hidden', true)
+        }
+        loggedInCallback && loggedInCallback(isSignedIn)
       }
     }
+
+    customElements.define('nbba-login', NbbaLogin);
   }
 
-  customElements.define('nbba-login', NbbaLogin);
+  return loadedGapiPromise
 }
 
 
-export default loadedGapiPromise;
+export default init;

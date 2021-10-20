@@ -15,7 +15,6 @@
     <meta name="keywords"
     content="Hecmocer, Hector, Moreno, Hector Moreno, NBBA, Bloodbowl, Tracker, Web, Application, Frontend">
     <meta name="author" content="Hecmocer">
-    <link rel="manifest" href="manifest.json">
 
   </head>
   <body>
@@ -26,20 +25,21 @@
 
     <div class="page page1" id="page1">
       <form id="form" class="page1-form" action="/play/">
-        <!-- <img src="NBBA.png" alt=""> -->
-        <a class="liga-nbba" target="_blank" href="https://api.sheet2site.com/api/v3/index.php?key=1sRx1FEHpiUjPxJHhjsOi_LTsLQDFQLTF-lxpLb_AOd0&g=1">Liga NBBA III</a>
+        <div id="more-league-info-insertion-point">
+          <!-- <a class="liga-nbba" target="_blank" href="https://api.sheet2site.com/api/v3/index.php?key=1sRx1FEHpiUjPxJHhjsOi_LTsLQDFQLTF-lxpLb_AOd0&g=1">Liga NBBA III</a> -->
+        </div>
         <div class="page1-form-group">
           <label for="team1" class="form1-label">Equipo 1<span class="label-helper">Local</span></label>
           <select name="team1" required>
-            <option value="0">N/A</option>
-            <option value="1">Orkadianoz</option>
-            <option value="2">Angry Stitches</option>
-            <option value="3">Los Inquisitors de Anhur</option>
-            <option value="4">Campamento Cresta</option>
-            <option value="5">El Dorado</option>
-            <option value="6">Amenaza Fantasma</option>
-            <option value="7">Avelorn Scions</option>
-            <option value="8">Pandilla del Monte</option>
+            <option value="0" id="team0">team 0</option>
+            <option value="1" id="team1">team 1</option>
+            <option value="2" id="team2">team 2</option>
+            <option value="3" id="team3">team 3</option>
+            <option value="4" id="team4">team 4</option>
+            <option value="5" id="team5">team 5</option>
+            <option value="6" id="team6">team 6</option>
+            <option value="7" id="team7">team 7</option>
+            <option value="8" id="team8">team 8</option>
           </select>
         </div>
         <div class="page1-form-group">
