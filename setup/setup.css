@@ -25,6 +25,7 @@ body {
 .page1-form {
   display: flex;
   flex-direction: column;
+  min-width: 224px;
 }
 
 .page1-form-group {
