@@ -49,7 +49,10 @@ function init(loggedInCallback) {
       }
 
       logout() {
-        gapi.auth2.getAuthInstance().signOut();
+        let r = confirm("¿Seguro que quieres hacer logout?");
+        if (r == true) {
+          gapi.auth2.getAuthInstance().signOut();
+        }
       }
 
       initClient() {
