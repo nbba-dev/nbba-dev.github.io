@@ -3,6 +3,8 @@ function init(loggedInCallback) {
   let resolveDeferred = () => {}
   let rejectDeferred = () => {}
 
+  let lastLoggedInStatus;
+
   const loadedGapiPromise = new Promise((resolve, reject) => {
     resolveDeferred = resolve
     rejectDeferred = reject
@@ -78,15 +80,19 @@ function init(loggedInCallback) {
         });
       }
 
-      updateSigninStatus(isSignedIn) {
-        if (isSignedIn) {
+      updateSigninStatus(isLoggedIn) {
+        if (isLoggedIn) {
           this.loginButton.setAttribute('hidden', true)
           this.logoutButton.removeAttribute('hidden')
         } else {
           this.loginButton.removeAttribute('hidden')
           this.logoutButton.setAttribute('hidden', true)
         }
-        loggedInCallback && loggedInCallback(isSignedIn)
+        if (isLoggedIn === false && lastLoggedInStatus === true) {
+          window.location.reload()
+        }
+        lastLoggedInStatus = isLoggedIn
+        loggedInCallback && loggedInCallback(isLoggedIn)
       }
     }
 

@@ -25,17 +25,17 @@
 
     <div class="page page1" id="page1">
       <form id="form" class="page1-form" action="/play/">
-        <div id="more-league-info-insertion-point"></div>
+        <div id="moreLeagueInfo-insertionPoint"></div>
         <div class="page1-form-group">
           <label for="team1" class="form1-label">Equipo 1<span class="label-helper">Local</span></label>
-          <select name="team1" required>
+          <select name="team1" id="team1-insertionPoint" required>
             <option value="0" selected>Equipo Local</option>
             <option value="-1" disabled>Inicia sesión para más opciones</option>
           </select>
         </div>
         <div class="page1-form-group">
           <label for="team2" class="form1-label">Equipo 2<span class="label-helper">Visitante</span></label>
-          <select name="team2" required>
+          <select name="team2" id="team2-insertionPoint" required>
             <option value="1" selected>Equipo Visitante</option>
             <option value="-1" disabled>Inicia sesión para más opciones</option>
           </select>
@@ -70,7 +70,7 @@
             <option value="5">5 segundos</option>
           </select>
         </div>
-        <div class="page1-form-group">
+        <div class="page1-form-group" id="formSubmit-insertionPoint">
           <button type="submit">¡Empezar partido!</button>
         </div>
       </form>
