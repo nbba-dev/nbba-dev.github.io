@@ -16,7 +16,6 @@
   <meta name="keywords"
   content="Hecmocer, Hector, Moreno, Hector Moreno, NBBA, Bloodbowl, Tracker, Web, Application, Frontend">
   <meta name="author" content="Hecmocer">
-  <link rel="manifest" href="manifest.json">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -430,74 +429,6 @@
 
   </div>
 
-  <div class="page page1" id="page1" hidden>
-    <form id="form" class="page1-form" action="">
-      <img src="NBBA.png" alt="">
-      <a class="liga-nbba" target="_blank" href="https://api.sheet2site.com/api/v3/index.php?key=1sRx1FEHpiUjPxJHhjsOi_LTsLQDFQLTF-lxpLb_AOd0&g=1">Liga NBBA III</a>
-      <div class="page1-form-group">
-        <label for="team1" class="form1-label">Equipo 1<span class="label-helper">Local</span></label>
-        <select name="team1" required>
-          <option value="0">N/A</option>
-          <option value="1">Orkadianoz</option>
-          <option value="2">Angry Stitches</option>
-          <option value="3">Los Inquisitors de Anhur</option>
-          <option value="4">Campamento Cresta</option>
-          <option value="5">El Dorado</option>
-          <option value="6">Amenaza Fantasma</option>
-          <option value="7">Avelorn Scions</option>
-          <option value="8">Pandilla del Monte</option>
-        </select>
-      </div>
-      <div class="page1-form-group">
-        <label for="team2" class="form1-label">Equipo 2<span class="label-helper">Visitante</span></label>
-        <select name="team2" required>
-          <option value="0">N/A</option>
-          <option value="1">Orkadianoz</option>
-          <option value="2">Angry Stitches</option>
-          <option value="3">Los Inquisitors de Anhur</option>
-          <option value="4">Campamento Cresta</option>
-          <option value="5">El Dorado</option>
-          <option value="6">Amenaza Fantasma</option>
-          <option value="7">Avelorn Scions</option>
-          <option value="8">Pandilla del Monte</option>
-        </select>
-      </div>
-      <div class="page1-form-group">
-        <label for="turns">Turnos</label>
-        <select name="turns" required>
-          <option value="2">2 turnos — TEST</option>
-          <option value="6" selected>6 turnos — BB7</option>
-          <option value="8">8 turnos — BB11</option>
-        </select>
-      </div>
-      <div class="page1-form-group">
-        <label for="time" class="form1-label">Tiempo por turno</label>
-        <select name="time" required>
-          <option value="2">2 segundos — TEST</option>
-          <option value="60">1 min</option>
-          <option value="90">1 min 30s</option>
-          <option value="120">2 min</option>
-          <option value="150" selected>2 min 30s</option>
-          <option value="180">3 min</option>
-          <option value="210">3 min 30s</option>
-        </select>
-      </div>
-      <div class="page1-form-group">
-        <label for="delay" class="form1-label">Retardo</label>
-        <select name="delay" required>
-          <option value="0">Instantáneo</option>
-          <option value="1">1 segundo</option>
-          <option value="2" selected>2 segundos</option>
-          <option value="3">3 segundos</option>
-          <option value="5">5 segundos</option>
-        </select>
-      </div>
-      <div class="page1-form-group">
-        <button type="submit">¡Empezar partido!</button>
-      </div>
-    </form>
-  </div>
-
   <div class="page page2" id="page2" hidden>
     <div class="score">
       <div class="team1-score-name team-score-name">
@@ -624,7 +555,7 @@
           <img id="team2-logo" src="team0.png" alt="" width="100%">
         </div>
       </div>
-      <a class="subir-acta" target="_blank" href="https://api.sheet2site.com/api/v3/index.php?key=14qEDsEraC6B0wK7vZGxOMP4I6sxiLB2FtADJ9zehoOA&g=1">¡Subir el acta!</a>
+      <!-- <a class="subir-acta" target="_blank" href="https://api.sheet2site.com/api/v3/index.php?key=14qEDsEraC6B0wK7vZGxOMP4I6sxiLB2FtADJ9zehoOA&g=1">¡Subir el acta!</a> -->
     </div>
   </div>
 
@@ -658,7 +589,6 @@
     const endgameOverlayNode = document.querySelector('#endgame-overlay')
 
     const pages = [
-      document.querySelector('#page1'),
       document.querySelector('#page2'),
       document.querySelector('#page3'),
     ];
@@ -666,49 +596,54 @@
     const teams = [
       {
         id: 0,
-        name: 'BB team',
+        name: 'Local',
         logo: 'team0.png',
       },
       {
         id: 1,
-        name: 'Orkadianoz',
-        logo: 'Orkadianoz.png',
+        name: 'Visitante',
+        logo: 'team0.png',
       },
-      {
-        id: 2,
-        name: 'Angry Stitches',
-        logo: 'Stitches.png',
-      },
-      {
-        id: 3,
-        name: 'Los Inquisitors de Anhur',
-        logo: 'Anhur.png',
-      },
-      {
-        id: 4,
-        name: 'Campamento Cresta',
-        logo: 'Cresta.png',
-      },
-      {
-        id: 5,
-        name: 'El Dorado',
-        logo: 'Dorado.png',
-      },
-      {
-        id: 6,
-        name: 'Amenaza Fantasma',
-        logo: 'Fantasma.png',
-      },
-      {
-        id: 7,
-        name: 'Avelorn Scions',
-        logo: 'Scions.png',
-      },
-      {
-        id: 8,
-        name: 'Pandilla del Monte',
-        logo: 'Pandilla.png',
-      },
+      // {
+      //   id: 1,
+      //   name: 'Orkadianoz',
+      //   logo: 'Orkadianoz.png',
+      // },
+      // {
+      //   id: 2,
+      //   name: 'Angry Stitches',
+      //   logo: 'Stitches.png',
+      // },
+      // {
+      //   id: 3,
+      //   name: 'Los Inquisitors de Anhur',
+      //   logo: 'Anhur.png',
+      // },
+      // {
+      //   id: 4,
+      //   name: 'Campamento Cresta',
+      //   logo: 'Cresta.png',
+      // },
+      // {
+      //   id: 5,
+      //   name: 'El Dorado',
+      //   logo: 'Dorado.png',
+      // },
+      // {
+      //   id: 6,
+      //   name: 'Amenaza Fantasma',
+      //   logo: 'Fantasma.png',
+      // },
+      // {
+      //   id: 7,
+      //   name: 'Avelorn Scions',
+      //   logo: 'Scions.png',
+      // },
+      // {
+      //   id: 8,
+      //   name: 'Pandilla del Monte',
+      //   logo: 'Pandilla.png',
+      // },
     ]
 
     let gameConfig;
@@ -746,32 +681,19 @@
       gameConfig.time = Number(params.time) + 1; // para que empiece en el minuto exacto
       gameConfig.delay = gameConfig.delay ?? 2;
 
-      if (params?.team1 !== null && params?.team1 !== undefined) {
-        showPage2()
-        initClock(params)
-      } else {
-        showPage1()
-      }
-    }
-
-    function showPage1() {
-      pages[0].removeAttribute('hidden')
-      pages[1].setAttribute('hidden', true)
-      pages[2].setAttribute('hidden', true)
+      showPage2()
+      initClock(params)
     }
 
     function showPage2() {
-      pages[0].setAttribute('hidden', true)
-      pages[1].removeAttribute('hidden')
-      pages[2].setAttribute('hidden', true)
+      pages[0].removeAttribute('hidden')
+      pages[1].setAttribute('hidden', true)
       pleaseRotateNode.removeAttribute('hidden')
     }
 
     function showPage3() {
       pauseClock()
-      pages[0].setAttribute('hidden', true)
-      // pages[1].setAttribute('hidden', true)
-      pages[2].removeAttribute('hidden')
+      pages[1].removeAttribute('hidden')
     }
 
     function reset(){
@@ -786,7 +708,7 @@
         startClock()
       }
       setTouchdowns()
-      pages[2].setAttribute('hidden', true)
+      pages[1].setAttribute('hidden', true)
     }
 
     function turnForTeam1() {
