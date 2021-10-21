@@ -10,6 +10,7 @@ const formSubmit = document.querySelector('#formSubmit-insertionPoint')
 const form = document.querySelector('#form')
 const team1 = document.querySelector('#team1-insertionPoint')
 const team2 = document.querySelector('#team2-insertionPoint')
+const checkbox = document.querySelector('#form1-checkbox')
 
 function loggedInCallback(newVal) {
   isLoggedIn = newVal
@@ -18,6 +19,7 @@ function loggedInCallback(newVal) {
       .then(setMoreLeagueInfo)
       .then(setFormSubmit)
       .then(setTeams)
+      .then(enableCheckbox)
   }
 }
 
@@ -82,6 +84,10 @@ function createOption(text, value) {
   node.value = value;
   return node;
   // <option value="0" selected>Equipo Local</option>
+}
+
+function enableCheckbox() {
+  checkbox.removeAttribute('disabled')
 }
 
 function loadLeagueExcel() {
