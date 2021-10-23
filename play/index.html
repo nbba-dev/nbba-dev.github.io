@@ -452,14 +452,14 @@
         Primera Parte
       </div>
     </div>
-    <button class="team-turn team1-turn" id="team1-turn" onclick="turnForTeam1()">
+    <button class="team-turn team1-turn" id="team1-turn" onclick="clickOnTurn1()">
       <img src="" id="team1-logo" class="team-logo" alt="">
       <div class="team-turn-content">
         <div class="team-turn-time" id="team1-turn-time">Empezar</div>
       </div>
       <div class="team-turn-turn">Turno: <span class="team-turn-number" id="team1-turn-turn">0</span></div>
     </button>
-    <button class="team-turn team2-turn" id="team2-turn" onclick="turnForTeam2()">
+    <button class="team-turn team2-turn" id="team2-turn" onclick="clickOnTurn2()">
       <img src="" id="team2-logo" class="team-logo" alt="">
       <div class="team-turn-content">
         <div class="team-turn-time" id="team2-turn-time">Empezar</div>
@@ -560,7 +560,6 @@
   </div>
 
   <script>
-
     // state
 
     const pleaseRotateNode = document.querySelector('#pleaseRotate')
@@ -596,54 +595,49 @@
     const teams = [
       {
         id: 0,
-        name: 'Local',
+        name: 'BB team',
         logo: 'team0.png',
       },
       {
         id: 1,
-        name: 'Visitante',
-        logo: 'team0.png',
+        name: 'Orkadianoz',
+        logo: 'Orkadianoz.png',
       },
-      // {
-      //   id: 1,
-      //   name: 'Orkadianoz',
-      //   logo: 'Orkadianoz.png',
-      // },
-      // {
-      //   id: 2,
-      //   name: 'Angry Stitches',
-      //   logo: 'Stitches.png',
-      // },
-      // {
-      //   id: 3,
-      //   name: 'Los Inquisitors de Anhur',
-      //   logo: 'Anhur.png',
-      // },
-      // {
-      //   id: 4,
-      //   name: 'Campamento Cresta',
-      //   logo: 'Cresta.png',
-      // },
-      // {
-      //   id: 5,
-      //   name: 'El Dorado',
-      //   logo: 'Dorado.png',
-      // },
-      // {
-      //   id: 6,
-      //   name: 'Amenaza Fantasma',
-      //   logo: 'Fantasma.png',
-      // },
-      // {
-      //   id: 7,
-      //   name: 'Avelorn Scions',
-      //   logo: 'Scions.png',
-      // },
-      // {
-      //   id: 8,
-      //   name: 'Pandilla del Monte',
-      //   logo: 'Pandilla.png',
-      // },
+      {
+        id: 2,
+        name: 'Angry Stitches',
+        logo: 'Stitches.png',
+      },
+      {
+        id: 3,
+        name: 'Los Inquisitors de Anhur',
+        logo: 'Anhur.png',
+      },
+      {
+        id: 4,
+        name: 'Campamento Cresta',
+        logo: 'Cresta.png',
+      },
+      {
+        id: 5,
+        name: 'El Dorado',
+        logo: 'Dorado.png',
+      },
+      {
+        id: 6,
+        name: 'Amenaza Fantasma',
+        logo: 'Fantasma.png',
+      },
+      {
+        id: 7,
+        name: 'Avelorn Scions',
+        logo: 'Scions.png',
+      },
+      {
+        id: 8,
+        name: 'Pandilla del Monte',
+        logo: 'Pandilla.png',
+      },
     ]
 
     let gameConfig;
@@ -662,7 +656,8 @@
       },
       isTeam1turn: false,
       isSecondPart: false,
-      endedGame: false
+      endedGame: false,
+      playedTimeoutForThisTurn: false
     }
     let clock;
     let wakeLock = null;
@@ -681,8 +676,12 @@
       gameConfig.time = Number(params.time) + 1; // para que empiece en el minuto exacto
       gameConfig.delay = gameConfig.delay ?? 2;
 
-      showPage2()
-      initClock(params)
+      if (params?.team1 !== null && params?.team1 !== undefined) {
+        showPage2()
+        initClock(params)
+      } else {
+        showPage1()
+      }
     }
 
     function showPage2() {
@@ -711,77 +710,84 @@
       pages[1].setAttribute('hidden', true)
     }
 
-    function turnForTeam1() {
+    function startTurn1() {
+      turnAudio.play()
+      const hasJustFinishedAHalf = gameState.team1.turn === Number(gameConfig.turns)
+      gameState.isTeam1turn = true
+      startTurn('team1', hasJustFinishedAHalf)
+      team1TurnTurnNode.innerHTML = gameState.team1.turn
+      if (hasJustFinishedAHalf) {
+        activateTeam2()
+      } else {
+        activateTeam1()
+      }
+    }
+
+    function startTurn2() {
+      turnAudio.play()
+      const hasJustFinishedAHalf = gameState.team2.turn === Number(gameConfig.turns)
+      gameState.isTeam1turn = false
+      startTurn('team2', hasJustFinishedAHalf)
+      team2TurnTurnNode.innerHTML = gameState.team2.turn
+      if (hasJustFinishedAHalf) {
+        activateTeam1()
+      } else {
+        activateTeam2()
+      }
+    }
+
+    function startTurn(newPlayer, hasJustFinishedAHalf) {
+      gameState[newPlayer].elapsedTime = 0
+      gameState[newPlayer].turn += 1
+      gameState.playedTimeoutForThisTurn = false
+
+      if (hasJustFinishedAHalf) {
+        finishedHalf(newPlayer)
+        pauseClock()
+      } else {
+        restartClock()
+      }
+    }
+
+    function clickOnTurn1() {
       const firstTurnInTheGame = !gameState.hasStarted
       const isAlreadyHisTurn = gameState.isTeam1turn
-      const hasJustFinishedAHalf = gameState.team1.turn === Number(gameConfig.turns)
-
       requestWakeLock()
-
-      turnAudio.play()
 
       if (firstTurnInTheGame) {
         gameState.hasStarted = true
         startGame()
-      }
-      if (!isAlreadyHisTurn) {
-        gameState.team1.turn += 1
-        gameState.team1.elapsedTime = 0
-        activateTeam1()
-        gameState.isTeam1turn = true
-        gameState.isTeam2turn = false
-        if (!hasJustFinishedAHalf) {
-          team1TurnTurnNode.innerHTML = gameState.team1.turn
-          restartClock()
-        } else {
-          // Si el equipo 1 termina la primera parte, es que empezó siendo el primero, y el primer turno de la segunda parte corresponde al otro jugador
-          gameState.team1.turn = 0
-          gameState.team2.turn = 0
-          team1TurnTimeNode.innerHTML = 'Fin primera parte'
-          team1TurnTurnNode.innerHTML = gameState.team1.turn
-          team2TurnTurnNode.innerHTML = gameState.team2.turn
-          finishedHalf()
-          pauseClock()
-        }
+        startTurn1()
+      } else if (isAlreadyHisTurn) {
+        startTurn2()
       }
     }
 
-    function turnForTeam2() {
+    function clickOnTurn2() {
       const firstTurnInTheGame = !gameState.hasStarted
-      const isAlreadyHisTurn = gameState.isTeam2turn
-      const hasJustFinishedAHalf = gameState.team2.turn === Number(gameConfig.turns)
-
+      const isAlreadyHisTurn = !gameState.isTeam1turn
       requestWakeLock()
-
-      turnAudio.play()
 
       if (firstTurnInTheGame) {
         gameState.hasStarted = true
         startGame()
-      }
-      if (!isAlreadyHisTurn) {
-        gameState.team2.turn += 1
-        gameState.team2.elapsedTime = 0
-        activateTeam2()
-        gameState.isTeam1turn = false
-        gameState.isTeam2turn = true
-        if (!hasJustFinishedAHalf) {
-          team2TurnTurnNode.innerHTML = gameState.team2.turn
-          restartClock()
-        } else {
-          // Si el equipo 2 termina la primera parte, es que empezó siendo el primero, y el primer turno de la segunda parte corresponde al otro jugador
-          gameState.team1.turn = 0
-          gameState.team2.turn = 0
-          team2TurnTimeNode.innerHTML = 'Fin primera parte'
-          team1TurnTurnNode.innerHTML = gameState.team1.turn
-          team2TurnTurnNode.innerHTML = gameState.team2.turn
-          finishedHalf()
-          pauseClock()
-        }
+        startTurn2()
+      } else if (isAlreadyHisTurn) {
+        startTurn1()
       }
     }
 
-    function finishedHalf() {
+    function finishedHalf(startingTeam) {
+      gameState.team1.turn = 0
+      gameState.team2.turn = 0
+      team1TurnTurnNode.innerHTML = gameState.team1.turn
+      team2TurnTurnNode.innerHTML = gameState.team2.turn
+      if (startingTeam === 'team1') {
+        team2TurnTimeNode.innerHTML = 'Comienza segunda parte'
+      } else {
+        team1TurnTimeNode.innerHTML = 'Comienza segunda parte'
+      }
+
       if (!gameState.isSecondPart) {
         halfNodes.forEach(a => a.innerHTML = 'Segunda Parte')
         gameState.isSecondPart = true
@@ -790,6 +796,8 @@
         halfNodes.forEach(a => a.innerHTML = '¡Fin del partido!')
         finishGame()
       }
+
+      gameState.hasStarted = false
     }
 
     function finishGame() {
@@ -839,8 +847,11 @@
       if (remainingTime < 0 || gameState.endedGame) {
         pauseClock()
         setTurnover()
-        navigator.vibrate(1000);
-        timeoutAudio.play()
+        if (!gameState.playedTimeoutForThisTurn) {
+          gameState.playedTimeoutForThisTurn = true
+          navigator.vibrate(1000);
+          timeoutAudio.play()
+        }
       } else {
         const remainingTimeInString = `${getRawMinutes(remainingTime)}:${getRawSeconds(remainingTime)}`
         if (gameState.isTeam1turn) {
