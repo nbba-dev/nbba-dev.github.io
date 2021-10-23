@@ -424,6 +424,7 @@ body {
 
 .modal-bottomBtn {
   width: 6rem;
+  margin-left: 2rem;
 }
 
 .modal-controls {
@@ -491,6 +492,7 @@ body {
 
 .weather {
   font-size: 3rem;
+  border-radius: 0 0 50% 50%;
 }
 
 .modalTable-emoji {

@@ -8,12 +8,12 @@ const halfNodes = [...document.querySelectorAll('#half')]
 const pauseTurnContainerNode = document.querySelector('#pause-turn-container')
 const team1NameNodes = [...document.querySelectorAll('#team1-name')]
 const team1LogoNodes = [...document.querySelectorAll('#team1-logo')]
-const team1ScoreNameNode = document.querySelector('#team1-score-name')
-const team1ScoreInputNode = document.querySelector('#team1-score-input')
+// const team1ScoreNameNode = document.querySelector('#team1-score-name')
+// const team1ScoreInputNode = document.querySelector('#team1-score-input')
 const team2NameNodes = [...document.querySelectorAll('#team2-name')]
 const team2LogoNodes = [...document.querySelectorAll('#team2-logo')]
-const team2ScoreNameNode = document.querySelector('#team2-score-name')
-const team2ScoreInputNode = document.querySelector('#team2-score-input')
+// const team2ScoreNameNode = document.querySelector('#team2-score-name')
+// const team2ScoreInputNode = document.querySelector('#team2-score-input')
 const team1TurnTimeNode = document.querySelector('#team1-turn-time')
 const team2TurnTimeNode = document.querySelector('#team2-turn-time')
 const team1ScoreboardNodes = [...document.querySelectorAll("#team1-scoreboard")]
@@ -28,18 +28,19 @@ const endgameOverlayNode = document.querySelector('#endgame-overlay')
 const fameModal = document.querySelector('#fameModal')
 const weatherModal = document.querySelector('#weatherModal')
 const kickoffModal = document.querySelector('#kickoffModal')
+const pauseModal = document.querySelector('#pauseModal')
 const weatherValue = document.querySelector('#weatherValue')
 const weather = document.querySelector('#weather')
 
 const pages = [
   document.querySelector('#page2'),
-  document.querySelector('#page3'),
 ];
 
 const modals = [
   fameModal,
   weatherModal,
-  kickoffModal
+  kickoffModal,
+  pauseModal
 ]
 
 let gameConfig;
@@ -97,13 +98,7 @@ function init() {
 
 function showPage2() {
   pages[0].removeAttribute('hidden')
-  pages[1].setAttribute('hidden', true)
   pleaseRotateNode.removeAttribute('hidden')
-}
-
-function showPage3() {
-  pauseClock()
-  pages[1].removeAttribute('hidden')
 }
 
 function reset(){
@@ -118,7 +113,7 @@ function keepGoing() {
     startClock()
   }
   setTouchdowns()
-  pages[1].setAttribute('hidden', true)
+  closeModal(3)
 }
 
 function startTurn1() {
@@ -202,7 +197,6 @@ function finishedHalf(startingTeam) {
   if (!gameState.isSecondPart) {
     halfNodes.forEach(a => a.innerHTML = 'Segunda Parte')
     gameState.isSecondPart = true
-    // showPage3()
   } else {
     halfNodes.forEach(a => a.innerHTML = '¡Fin del partido!')
     finishGame()
@@ -229,28 +223,28 @@ function finishGame() {
 }
 
 function initClock(params) {
-  initTeam1(params.team1)
-  initTeam2(params.team2)
+  initTeam1()
+  initTeam2()
 }
 
 function startGame() {
   pauseTurnContainerNode.removeAttribute('hidden')
 }
 
-function initTeam1(id) {
+function initTeam1() {
   const team = gameState.team1
   team1LogoNodes.forEach((a) => a.src = team.logo)
   team1NameNodes.forEach((a) => a.innerHTML = team.name)
-  team1ScoreNameNode.innerHTML = team.name
-  team1ScoreInputNode.value = '0'
+  // team1ScoreNameNode.innerHTML = team.name
+  // team1ScoreInputNode.value = '0'
 }
 
-function initTeam2(id) {
+function initTeam2() {
   const team = gameState.team2
   team2LogoNodes.forEach((a) => a.src = team.logo)
   team2NameNodes.forEach((a) => a.innerHTML = team.name)
-  team2ScoreNameNode.innerHTML = team.name
-  team2ScoreInputNode.value = '0'
+  // team2ScoreNameNode.innerHTML = team.name
+  // team2ScoreInputNode.value = '0'
 }
 
 function applyClockLogic(timeDiff) {
@@ -462,4 +456,9 @@ function kickoffTimeout() {
 
 function completedKickoff() {
   closeModal(2)
+}
+
+function pauseGame() {
+  pauseClock()
+  openModal(3)
 }

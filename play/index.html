@@ -291,6 +291,20 @@
     </div>
   </div>
 
+  <div class="modal-overlay" id="pauseModal" hidden>
+    <div class="modal">
+      <div class="modal-body">
+        <h2>Partido en pausa</h2>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam nulla esse, eos omnis, odit officiis fugit ea debitis saepe, quod ipsa facere! Sed officiis in laborum facere deleniti a at?
+      </div>
+      <div class="modal-controls">
+        <button class="modal-bottomBtn" onclick="reset()">Nuevo partido</button>
+        <button class="modal-bottomBtn" onclick="goFullscreen()">Fullscreen</button>
+        <button class="modal-bottomBtn" onclick="keepGoing()">Continuar</button>
+      </div>
+    </div>
+  </div>
+
   <div class="page page2" id="page2">
     <div class="score">
       <div class="team1-score-name team-score-name">
@@ -313,7 +327,7 @@
       <div class="half" id="half">
         Primera Parte
       </div>
-      <div class="weather" id="weather"></div>
+      <div class="half weather" id="weather"></div>
     </div>
     <button class="team-turn team1-turn" id="team1-turn" onclick="clickOnTurn1()">
       <img src="" id="team1-logo" class="team-logo" alt="">
@@ -330,11 +344,11 @@
       <div class="team-turn-turn">Turno: <span class="team-turn-number" id="team2-turn-turn">0</span></div>
     </button>
     <div class="pause-turn-container" id="pause-turn-container">
-      <button class="pause-turn" onclick="showPage3()">Pausa</button>
+      <button class="pause-turn" onclick="pauseGame()">Pausa</button>
     </div>
   </div>
 
-  <div class="page page3" id="page3" hidden>
+  <!-- <div class="page page3" id="page3" hidden>
     <div class="paused-container">
       <div class="paused">Pausado</div>
       <div class="teams-score">
@@ -377,7 +391,7 @@
         <button onclick="goFullscreen()">Fullscreen</button>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="delay-container" id="delay-container" hidden>
     <div class="delay" id="elapsedDelay"></div>
