@@ -33,10 +33,139 @@
       <span class="pleaseRotate-rotated">📱</span>
     </div>
     <button onclick="goFullscreen()">Fullscreen</button>
-
   </div>
 
-  <div class="page page2" id="page2" hidden>
+  <div class="modal-overlay" id="fameModal" hidden>
+    <div class="modal">
+      <h3>Fans y Fama</h3>
+      <p>Abren las puertas del campo y empiezan a acudir los fans a las gradas.</p>
+      <div class="modal-teamColumns">
+        <div>
+          <div><strong>Team1</strong></div>
+          <div class="dice-roll-container">
+            <div class="dice-roll">
+              <div>Fan factor</div>
+              <select name="" id="">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+            <div>+</div><div class="dice-roll">
+              <div>1D3</div>
+              <select name="" id="">
+                <option value="0">N/A</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div> = 0</div>
+          </div>
+        </div>
+        <div>
+          <div><strong>Team2</strong></div>
+          <div class="dice-roll-container">
+            <div class="dice-roll">
+              <div>Fan factor</div>
+              <select name="" id="">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+            <div>+</div><div class="dice-roll">
+              <div>1D3</div>
+              <select name="" id="">
+                <option value="0">N/A</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div> = 0</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-controls">
+        <button class="modal-bottomBtn" onclick="completedFame()">Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="weatherModal" hidden>
+    <div class="modal">
+      <h3>Clima</h3>
+      <p>Los equipos saltan al campo. Los árbitros consultan con los meteorólogos nurgle el tiempo que hará durante el partido</p>
+      <div class="dice-roll-container">
+        <div class="dice-roll">
+          <div>2D6</div>
+          <select name="" id="">
+            <option value="0">N/A</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+        </div>
+      </div>
+      <div class="weatherTable">
+        <div class="weatherTable-row">
+          <div><strong>2<br>Sweltering Heat</strong></div>
+          <div>Some players faint in the unbearable heat!</div>
+          <div>D3 randomly selected players from each team that are on the pitch when a drive ends are placed in the Reserves box. They must miss the next drive.</div>
+        </div>
+        <div class="weatherTable-row">
+          <div><strong>3<br>Very Sunny</strong></div>
+          <div>A glorious day, but the clear skies and bright sunlight interfere with the passing game!</div>
+          <div>Apply a -1 modifier every time a player tests against their Passing Ability.</div>
+        </div>
+        <div class="weatherTable-row">
+          <div><strong>4–10<br>Perfect Conditions</strong></div>
+          <div>Neither too cold nor too hot. A warm, dry and slightly overcast day provides perfect conditions for Blood Bowl.</div>
+          <div></div>
+        </div>
+        <div class="weatherTable-row">
+          <div><strong>11<br>Pouring Rain</strong></div>
+          <div>A torrential downpour leaves the players soaked and the ball very slippery!</div>
+          <div>Apply a -1 modifier every time a player makes an Agility test to catch or pick-up the ball, or to attempt to interfere with a pass.</div>
+        </div>
+        <div class="weatherTable-row">
+          <div><strong>12<br>Blizzard</strong></div>
+          <div>Freezing conditions and heavy falls of snow make the footing treacherous.</div>
+          <div>Apply a -1 modifier every time a player attempts to Rush an extra square. Additionally, the poor visibility means that only Quick and Short passes can be attempted.</div>
+        </div>
+      </div>
+      <div class="modal-controls">
+        <button class="modal-bottomBtn" onclick="completedWeather()">Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page page2" id="page2">
     <div class="score">
       <div class="team1-score-name team-score-name">
         <div id="team1-name">
