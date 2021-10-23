@@ -412,6 +412,8 @@ body {
   margin: 5rem;
   padding: 2rem;
   border-radius: 5px;
+  max-height: calc(100vh - 5rem - 5rem - 2rem - 2rem);
+  box-shadow: rgb(0 0 0 / 50%) 1px 1px 5px 2px;
 }
 
 .modal-teamColumns {
@@ -432,28 +434,38 @@ body {
   padding-top: 2rem;
 }
 
-.weatherTable {
+.modalTable {
   margin-top: 1rem;
 }
 
-.weatherTable-row {
+.modalTable-row {
   display: grid;
   grid-template-columns: 1fr 2fr 2fr;
   grid-gap: 1px;
-  background-color: black;
   border: 1px solid black;
 }
 
-.weatherTable-row > * {
-  padding: 1rem;
-  background-color: white;
+.modalTable-row > *:not(:first-child) {
+  border-left: 1px solid black;
 }
 
-.weatherTable-row:not(:first-child) {
+.modalTable-row.kickoffTable-row {
+  grid-template-columns: 1fr 1fr;
+}
+
+.modalTable-row > * {
+  padding: 1rem;
+}
+
+.modalTable-row:not(:first-child) {
   border-top: none;
 }
 
-.weatherTable-row:hover > * {
+.modalTable-row:not(.kickoffTable-row):hover > * {
+  background-color: #eee;
+}
+
+.kickoffTable-row > *:hover {
   background-color: #eee;
 }
 
@@ -481,11 +493,26 @@ body {
   font-size: 3rem;
 }
 
-.weatherTable-emoji {
+.modalTable-emoji {
   font-size: 2rem;
   margin-right: 1rem;
 }
 
-.weatherTable-firstRow {
+.modalTable-firstCell {
   display: flex;
+}
+
+.modal-body {
+  overflow: auto;
+  background: /* Shadow covers */
+  linear-gradient(white 30%, rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%, /* Shadows */
+  radial-gradient(50% 0, farthest-side, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)), radial-gradient(50% 100%, farthest-side, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
+  background: /* Shadow covers */
+  linear-gradient(white 30%, rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%, /* Shadows */
+  radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)), radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+  /* Opera doesn't support this in the shorthand */
+  background-attachment: local, local, scroll, scroll;
 }

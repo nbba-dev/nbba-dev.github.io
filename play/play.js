@@ -27,6 +27,7 @@ const endgameStateNode = document.querySelector('#endgame-state')
 const endgameOverlayNode = document.querySelector('#endgame-overlay')
 const fameModal = document.querySelector('#fameModal')
 const weatherModal = document.querySelector('#weatherModal')
+const kickoffModal = document.querySelector('#kickoffModal')
 const weatherValue = document.querySelector('#weatherValue')
 const weather = document.querySelector('#weather')
 
@@ -37,7 +38,8 @@ const pages = [
 
 const modals = [
   fameModal,
-  weatherModal
+  weatherModal,
+  kickoffModal
 ]
 
 let gameConfig;
@@ -61,7 +63,8 @@ let gameState = {
   isTeam1turn: false,
   isSecondPart: false,
   endedGame: false,
-  playedTimeoutForThisTurn: false
+  playedTimeoutForThisTurn: false,
+  initialWeatherComplete: false
 }
 let clock;
 let wakeLock = null;
@@ -441,4 +444,22 @@ function completedWeather() {
   }
   weather.innerText = weatherDict[valueForWeather] || ''
   closeModal(1)
+  if (!gameState.initialWeatherComplete) {
+    gameState.initialWeatherComplete = true
+    openModal(2)
+  }
+}
+
+function kickoffChangeWeather() {
+  completedKickoff()
+  openModal(1)
+}
+
+function kickoffTimeout() {
+  // TODO - change turns
+  completedKickoff()
+}
+
+function completedKickoff() {
+  closeModal(2)
 }
