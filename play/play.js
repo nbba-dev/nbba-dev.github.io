@@ -27,6 +27,8 @@ const endgameStateNode = document.querySelector('#endgame-state')
 const endgameOverlayNode = document.querySelector('#endgame-overlay')
 const fameModal = document.querySelector('#fameModal')
 const weatherModal = document.querySelector('#weatherModal')
+const weatherValue = document.querySelector('#weatherValue')
+const weather = document.querySelector('#weather')
 
 const pages = [
   document.querySelector('#page2'),
@@ -429,5 +431,14 @@ function completedFame() {
 }
 
 function completedWeather() {
+  const valueForWeather = Number(weatherValue.value)
+  const weatherDict = {
+    2: '🔥',
+    3: '☀️',
+    11: '🌨',
+    12: '❄️',
+    // else: '🌤'
+  }
+  weather.innerText = weatherDict[valueForWeather] || ''
   closeModal(1)
 }

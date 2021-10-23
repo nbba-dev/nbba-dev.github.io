@@ -116,7 +116,7 @@
       <div class="dice-roll-container">
         <div class="dice-roll">
           <div>2D6</div>
-          <select name="" id="">
+          <select name="" id="weatherValue">
             <option value="0">N/A</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -134,27 +134,62 @@
       </div>
       <div class="weatherTable">
         <div class="weatherTable-row">
-          <div><strong>2<br>Sweltering Heat</strong></div>
+          <div class="weatherTable-firstRow">
+            <div class="weatherTable-emoji">🔥</div>
+            <div>
+              <strong>2
+              <br>
+              Sweltering Heat</strong>
+            </div>
+          </div>
           <div>Some players faint in the unbearable heat!</div>
           <div>D3 randomly selected players from each team that are on the pitch when a drive ends are placed in the Reserves box. They must miss the next drive.</div>
         </div>
         <div class="weatherTable-row">
-          <div><strong>3<br>Very Sunny</strong></div>
+          <div class="weatherTable-firstRow">
+            <div class="weatherTable-emoji">☀️</div>
+            <div>
+              <strong>3
+              <br>
+              Very Sunny</strong>
+            </div>
+          </div>
           <div>A glorious day, but the clear skies and bright sunlight interfere with the passing game!</div>
           <div>Apply a -1 modifier every time a player tests against their Passing Ability.</div>
         </div>
         <div class="weatherTable-row">
-          <div><strong>4–10<br>Perfect Conditions</strong></div>
+          <div class="weatherTable-firstRow">
+            <div class="weatherTable-emoji">🌤</div>
+            <div>
+              <strong>4–10
+              <br>
+              Perfect Conditions</strong>
+            </div>
+          </div>
           <div>Neither too cold nor too hot. A warm, dry and slightly overcast day provides perfect conditions for Blood Bowl.</div>
           <div></div>
         </div>
         <div class="weatherTable-row">
-          <div><strong>11<br>Pouring Rain</strong></div>
+          <div class="weatherTable-firstRow">
+            <div class="weatherTable-emoji">🌨</div>
+            <div>
+              <strong>11
+              <br>
+              Pouring Rain</strong>
+            </div>
+          </div>
           <div>A torrential downpour leaves the players soaked and the ball very slippery!</div>
           <div>Apply a -1 modifier every time a player makes an Agility test to catch or pick-up the ball, or to attempt to interfere with a pass.</div>
         </div>
         <div class="weatherTable-row">
-          <div><strong>12<br>Blizzard</strong></div>
+          <div class="weatherTable-firstRow">
+            <div class="weatherTable-emoji">❄️</div>
+            <div>
+              <strong>12
+              <br>
+              Blizzard</strong>
+            </div>
+          </div>
           <div>Freezing conditions and heavy falls of snow make the footing treacherous.</div>
           <div>Apply a -1 modifier every time a player attempts to Rush an extra square. Additionally, the poor visibility means that only Quick and Short passes can be attempted.</div>
         </div>
@@ -183,10 +218,11 @@
         </div>
       </div>
     </div>
-    <div class="half-container">
+    <div class="gameInfo-container">
       <div class="half" id="half">
         Primera Parte
       </div>
+      <div class="weather" id="weather"></div>
     </div>
     <button class="team-turn team1-turn" id="team1-turn" onclick="clickOnTurn1()">
       <img src="" id="team1-logo" class="team-logo" alt="">
@@ -274,7 +310,7 @@
         </div>
       </div>
     </div>
-    <div class="half-container">
+    <div class="gameInfo-container">
       <div class="half" id="half">
         Fin del partido
       </div>
