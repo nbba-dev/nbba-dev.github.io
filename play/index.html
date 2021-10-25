@@ -597,7 +597,117 @@
     <div class="modal">
       <div class="modal-body">
         <h2>Partido en pausa</h2>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam nulla esse, eos omnis, odit officiis fugit ea debitis saepe, quod ipsa facere! Sed officiis in laborum facere deleniti a at?
+        <div>
+          <h3>Historia</h3>
+          <div id="gameRecordInsertionPoint"></div>
+        </div>
+        <p>¿Ha sucedido algo<span id="pauseMore" hidden> más</span>?</p>
+        <button onclick="openTouchdown()">¡Touchdown!</button>
+        <button onclick="openInjury()">¡Herida!</button>
+        <div id="touchdownForm" class="pauseForm" hidden>
+          <div>
+            Equipo:
+            <select name="" id="">
+              <option value="1">Team1</option>
+              <option value="2">Team2</option>
+            </select>
+          </div>
+          <div>Dorsal:
+            <select name="" id="">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+            </select>
+          </div>
+          <button onclick="confirmTouchdown()">Confirmar touchdown</button>
+        </div>
+        <div id="injuryForm" class="pauseForm" hidden>
+          <div class="injuryFormTwoColumns">
+            <div>
+              <b>Herido</b>
+              <div>
+                Equipo:
+                <select name="" id="">
+                  <option value="1">Team1</option>
+                  <option value="2">Team2</option>
+                </select>
+              </div>
+              <div>Dorsal:
+                <select name="" id="">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <input type="checkbox" id="attackingInjuryPlayerInput" onchange="onAttackingInjuryPlayerUpdate()">
+              <label for="attackingInjuryPlayerInput"><b>Agresor</b></label>
+              <div id="attackingInjuryPlayerForm" hidden>
+                <div>
+                  Equipo:
+                  <select name="" id="">
+                    <option value="1">Team1</option>
+                    <option value="2">Team2</option>
+                  </select>
+                </div>
+                <div>Dorsal:
+                  <select name="" id="">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dice-roll-container dice-roll-container-inline">
+            <div class="dice-roll">
+              <div>2D6</div>
+              <select name="" id="injuryRollSelect" onchange="updateSelectedInjury()">
+                <option value="">N/A</option>
+                <option value="0">2-7: Stunned</option>
+                <option value="1">8-9: KO'd</option>
+                <option value="2">10: Casualty (Badly hurt)</option>
+                <option value="3">11: Casualty (Seriously hurt)</option>
+                <option value="4">12: DEAD</option>
+              </select>
+            </div>
+          </div>
+          <div class="injuryHelp helpText" hidden>* Sent to the Reserves box if a player is off the pitch</div>
+          <div class="injuryHelp helpText" hidden>* The player is removed from the pitch and placed in the Knocked-out box</div>
+          <div class="injuryHelp helpText" hidden>* Miss the rest of the match</div>
+          <div class="injuryHelp helpText" hidden>* Miss next game</div>
+          <div class="injuryHelp helpText" hidden>* This player is far too dead to play!</div>
+          <!-- <div class="helpText">(1) Recuerda que puedes usar un <b>apotecario</b> para curar la herida</div> -->
+          <div class="helpText">(1) Los jugadores stunty sufren <b>KO</b> con resultado de <b>7</b></div>
+          <div class="helpText">(2) Los jugadores stunty sufren <b>Casualty  (badly hurt)</b> con resultado de <b>9</b></div>
+          <button onclick="confirmInjury()">Confirmar herida</button>
+        </div>
       </div>
       <div class="modal-controls">
         <button class="modal-bottomBtn" onclick="reset()">Nuevo partido</button>

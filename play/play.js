@@ -33,6 +33,14 @@ const nuffleModal = document.querySelector('#nuffleModal')
 const pauseModal = document.querySelector('#pauseModal')
 const weatherValue = document.querySelector('#weatherValue')
 const weather = document.querySelector('#weather')
+const touchdownForm = document.querySelector('#touchdownForm')
+const injuryForm = document.querySelector('#injuryForm')
+const injuryHelpNodes = [...document.querySelectorAll('.injuryHelp')]
+const injuryRollSelect = document.querySelector('#injuryRollSelect')
+const pauseMore = document.querySelector('#pauseMore')
+const gameRecordInsertionPoint = document.querySelector('#gameRecordInsertionPoint')
+const attackingInjuryPlayerInput = document.querySelector('#attackingInjuryPlayerInput')
+const attackingInjuryPlayerForm = document.querySelector('#attackingInjuryPlayerForm')
 
 const pages = [
   document.querySelector('#page2'),
@@ -71,6 +79,7 @@ let gameState = {
   playedTimeoutForThisTurn: false,
   initialWeatherComplete: false
 }
+let gameRecord = []
 let clock;
 let wakeLock = null;
 let isInFullscreen = false;
@@ -455,7 +464,16 @@ function kickoffChangeWeather() {
 }
 
 function kickoffTimeout() {
-  // TODO - change turns
+  const kickingTeamTurn = gameState.isTeam1turn ? gameState.team1.turn : gameState.team2.turn
+  if (kickingTeamTurn <= 3) {
+    gameState.team1.turn += 1
+    gameState.team2.turn += 1
+  } else {
+    gameState.team1.turn -= 1
+    gameState.team2.turn -= 1
+  }
+  team1TurnTurnNode.innerHTML = gameState.team1.turn
+  team2TurnTurnNode.innerHTML = gameState.team2.turn
   completedKickoff()
 }
 
@@ -464,6 +482,7 @@ function completedKickoff() {
 }
 
 function pauseGame() {
+  pauseMore.setAttribute('hidden', true)
   pauseClock()
   openModal(4)
 }
@@ -476,4 +495,118 @@ function kickoffNuffle() {
 function completedInducements() {
   closeModal(2)
   openModal(3)
+}
+
+function openTouchdown() {
+  touchdownForm.removeAttribute('hidden')
+  injuryForm.setAttribute('hidden', true)
+}
+
+function confirmTouchdown() {
+  touchdownForm.setAttribute('hidden', true)
+  gameRecord.push(getTouchdownRecord())
+  setGameRecordsContent()
+}
+
+function openInjury() {
+  injuryForm.removeAttribute('hidden')
+  touchdownForm.setAttribute('hidden', true)
+}
+
+function confirmInjury() {
+  injuryForm.setAttribute('hidden', true)
+  pauseMore.removeAttribute('hidden')
+  gameRecord.push(getInjuryRecord())
+  setGameRecordsContent()
+}
+
+function openInjuryHelp(index) {
+  injuryHelpNodes.forEach((node) => {
+    node.setAttribute('hidden', true)
+  })
+  if (index !== undefined && index !== null) {
+    injuryHelpNodes[index].removeAttribute('hidden')
+  }
+}
+
+function updateSelectedInjury() {
+  const value = injuryRollSelect.value
+  openInjuryHelp(value)
+}
+
+function setGameRecordsContent() {
+  removeChildren(gameRecordInsertionPoint)
+  const content = getGameRecordContent()
+  content.forEach((node) => {
+    gameRecordInsertionPoint.appendChild(node)
+  })
+}
+
+function getGameRecordContent() {
+  return gameRecord.flatMap((record) => {
+    if (record.event === 'TD') {
+      return getTouchdownRecordContent(record)
+    } else if (record.event === 'Injury') {
+      return [ getAttackingInjuryRecordContent(record), getHurtInjuryRecordContent(record) ]
+    }
+  })
+}
+
+function getTouchdownRecordContent(record) {
+  return createDiv(`Turno ${record.half}-${record.turn} — TD para ${record.team} por ${record.player}`)
+}
+
+function getAttackingInjuryRecordContent(record) {
+  return createDiv(`Turno ${record.half}-${record.turn} — Herida sufrida por ${record.hurtPlayer}`)
+}
+
+function getHurtInjuryRecordContent(record) {
+  return createDiv(`Turno ${record.half}-${record.turn} — Herida infligida por ${record.attackingPlayer}`)
+}
+
+function createDiv(content) {
+  const node = document.createElement("div");
+  let textNodes = []
+  textNodes.push(document.createTextNode(content))
+  textNodes.forEach((textNode) => {
+    node.appendChild(textNode);
+  })
+  return node;
+}
+
+function getTouchdownRecord() {
+  return {
+    event: 'TD',
+    team: 0,
+    player: 0,
+    turn: 0,
+    half: 0
+  }
+}
+
+function getInjuryRecord() {
+  return {
+    event: 'Injury',
+    hurtTeam: 0,
+    hurtPlayer: 0,
+    attackingTeam: 0,
+    attackingPlayer: 0,
+    turn: 0,
+    half: 0,
+    injuryType: 0
+  }
+}
+
+function removeChildren(node) {
+  while (node.firstChild) {
+    node.removeChild(node.lastChild);
+  }
+}
+
+function onAttackingInjuryPlayerUpdate() {
+  if (attackingInjuryPlayerInput.checked) {
+    attackingInjuryPlayerForm.removeAttribute('hidden')
+  } else {
+    attackingInjuryPlayerForm.setAttribute('hidden', true)
+  }
 }
