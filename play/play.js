@@ -27,7 +27,9 @@ const endgameStateNode = document.querySelector('#endgame-state')
 const endgameOverlayNode = document.querySelector('#endgame-overlay')
 const fameModal = document.querySelector('#fameModal')
 const weatherModal = document.querySelector('#weatherModal')
+const inducementsModal = document.querySelector('#inducementsModal')
 const kickoffModal = document.querySelector('#kickoffModal')
+const nuffleModal = document.querySelector('#nuffleModal')
 const pauseModal = document.querySelector('#pauseModal')
 const weatherValue = document.querySelector('#weatherValue')
 const weather = document.querySelector('#weather')
@@ -39,8 +41,10 @@ const pages = [
 const modals = [
   fameModal,
   weatherModal,
+  inducementsModal,
   kickoffModal,
-  pauseModal
+  pauseModal,
+  nuffleModal
 ]
 
 let gameConfig;
@@ -437,6 +441,7 @@ function completedWeather() {
     // else: '🌤'
   }
   weather.innerText = weatherDict[valueForWeather] || ''
+  weather.removeAttribute('hidden')
   closeModal(1)
   if (!gameState.initialWeatherComplete) {
     gameState.initialWeatherComplete = true
@@ -455,10 +460,20 @@ function kickoffTimeout() {
 }
 
 function completedKickoff() {
-  closeModal(2)
+  closeModal(3)
 }
 
 function pauseGame() {
   pauseClock()
+  openModal(4)
+}
+
+function kickoffNuffle() {
+  completedKickoff()
+  openModal(5)
+}
+
+function completedInducements() {
+  closeModal(2)
   openModal(3)
 }

@@ -454,6 +454,10 @@ body {
   grid-template-columns: 1fr 1fr;
 }
 
+.modalTable-row.inducementsTable-row {
+  grid-template-columns: 1fr 2fr;
+}
+
 .modalTable-row > * {
   padding: 1rem;
 }
