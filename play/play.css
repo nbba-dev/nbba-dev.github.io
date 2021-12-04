@@ -559,3 +559,9 @@ body {
   border-left: solid 2px black;
   padding: 8px;
 }
+
+.endgameShowRecord {
+  position: absolute;
+  bottom: 5%;
+  z-index: 9999;
+}

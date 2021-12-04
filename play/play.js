@@ -695,3 +695,7 @@ function onAttackingInjuryPlayerUpdate() {
     attackingInjuryPlayerForm.setAttribute('hidden', true)
   }
 }
+
+function showRecord() {
+  openModal(4)
+}
