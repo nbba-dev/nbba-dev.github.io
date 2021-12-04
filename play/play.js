@@ -42,6 +42,8 @@ const pauseMore = document.querySelector('#pauseMore')
 const gameRecordInsertionPoint = document.querySelector('#gameRecordInsertionPoint')
 const attackingInjuryPlayerInput = document.querySelector('#attackingInjuryPlayerInput')
 const attackingInjuryPlayerForm = document.querySelector('#attackingInjuryPlayerForm')
+const gameEventOnPauseModal = document.querySelector('#gameEventOnPauseModal')
+const gameRecordsContainer = document.querySelector('#gameRecordsContainer')
 
 const pages = [
   document.querySelector('#page2'),
@@ -81,7 +83,9 @@ let gameState = {
   isSecondPart: false,
   endedGame: false,
   playedTimeoutForThisTurn: false,
-  initialWeatherComplete: false
+  initialWeatherComplete: false,
+  temporalTouchdown: null,
+  temporalInjury: null,
 }
 let gameRecord = []
 let clock;
@@ -129,8 +133,9 @@ function keepGoing() {
   if (gameState.hasStarted) {
     startClock()
   }
-  setTouchdowns()
-  closeModal(3)
+  // THIS HAS TO BE DONE BY THE UPDATING INPUT LISTENERS AND THE CONFIRM TOUCHDOWN BUTTON
+  // setTouchdowns()
+  closeModal(4)
 }
 
 function startTurn1() {
@@ -438,6 +443,10 @@ function openModal(modalIndex) {
   pages[0].classList.add('modal-active')
 }
 
+function skipPregame() {
+  closeModal(0)
+}
+
 
 function completedFame() {
   closeModal(0)
@@ -507,6 +516,11 @@ function completedPrePrayersToNuffle() {
 function pauseGame() {
   pauseMore.setAttribute('hidden', true)
   pauseClock()
+  if (getActiveTurn() > 0) {
+    gameEventOnPauseModal.removeAttribute('hidden')
+  } else {
+    gameEventOnPauseModal.setAttribute('hidden', true)
+  }
   openModal(4)
 }
 
@@ -517,7 +531,9 @@ function openTouchdown() {
 
 function confirmTouchdown() {
   touchdownForm.setAttribute('hidden', true)
-  gameRecord.push(getTouchdownRecord())
+  const tempTd = gameState.temporalTouchdown ?? getTouchdownRecord({});
+  gameRecord.push(tempTd)
+  temporalTouchdown = null
   setGameRecordsContent()
 }
 
@@ -529,7 +545,9 @@ function openInjury() {
 function confirmInjury() {
   injuryForm.setAttribute('hidden', true)
   pauseMore.removeAttribute('hidden')
-  gameRecord.push(getInjuryRecord())
+  const tempInjury = gameState.temporalInjury ?? getInjuryRecord({});
+  gameRecord.push(tempInjury)
+  temporalInjury = null
   setGameRecordsContent()
 }
 
@@ -548,6 +566,7 @@ function updateSelectedInjury() {
 }
 
 function setGameRecordsContent() {
+  gameRecordsContainer.removeAttribute('hidden')
   removeChildren(gameRecordInsertionPoint)
   const content = getGameRecordContent()
   content.forEach((node) => {
@@ -560,54 +579,36 @@ function getGameRecordContent() {
     if (record.event === 'TD') {
       return getTouchdownRecordContent(record)
     } else if (record.event === 'Injury') {
-      return [ getAttackingInjuryRecordContent(record), getHurtInjuryRecordContent(record) ]
+      const events = [ getHurtInjuryRecordContent(record) ]
+      if (record.isThereHurtingTeam) {
+        events.push(getHurtingInjuryRecordContent(record))
+      }
+      return events
     }
   })
 }
 
 function getTouchdownRecordContent(record) {
-  return createDiv(`Turno ${record.half}-${record.turn} — TD para ${record.team} por ${record.player}`)
-}
-
-function getAttackingInjuryRecordContent(record) {
-  return createDiv(`Turno ${record.half}-${record.turn} — Herida sufrida por ${record.hurtPlayer}`)
+  return createDiv(`Turno ${record.half}-${record.turn} — TD para <b>${getTeamName(record.team)}</b> por jugador dorsal ${record.player}`)
 }
 
 function getHurtInjuryRecordContent(record) {
-  return createDiv(`Turno ${record.half}-${record.turn} — Herida infligida por ${record.attackingPlayer}`)
+  return createDiv(`Turno ${record.half}-${record.turn} — para <b>${getTeamName(record.hurtTeam)}</b>, ${getInjuryType(record.injuryType)} sufrido por ${record.hurtPlayer}`)
+}
+
+function getHurtingInjuryRecordContent(record) {
+  return createDiv(`Turno ${record.half}-${record.turn} — por <b>${getTeamName(record.hurtingTeam)}</b>, ${getInjuryType(record.injuryType)} infligido por ${record.hurtingPlayer}`)
 }
 
 function createDiv(content) {
   const node = document.createElement("div");
-  let textNodes = []
-  textNodes.push(document.createTextNode(content))
-  textNodes.forEach((textNode) => {
-    node.appendChild(textNode);
-  })
+  // let textNodes = []
+  // textNodes.push(document.createTextNode(content))
+  // textNodes.forEach((textNode) => {
+  //   node.appendChild(textNode);
+  // })
+  node.innerHTML = content
   return node;
-}
-
-function getTouchdownRecord() {
-  return {
-    event: 'TD',
-    team: 0,
-    player: 0,
-    turn: 0,
-    half: 0
-  }
-}
-
-function getInjuryRecord() {
-  return {
-    event: 'Injury',
-    hurtTeam: 0,
-    hurtPlayer: 0,
-    attackingTeam: 0,
-    attackingPlayer: 0,
-    turn: 0,
-    half: 0,
-    injuryType: 0
-  }
 }
 
 function removeChildren(node) {
