@@ -182,7 +182,8 @@ function startTurn(newPlayer, hasJustFinishedAHalf) {
 }
 
 function clickOnTurn1() {
-  const firstTurnInTheGame = !gameState.hasStarted
+  const firstTurnInTheGame = !gameState.hasStarted && !gameState.isSecondPart
+  const firstTurnInSecondHalf = !gameState.hasStarted && gameState.isSecondPart
   const isAlreadyHisTurn = gameState.isTeam1turn
   requestWakeLock()
 
@@ -190,13 +191,17 @@ function clickOnTurn1() {
     gameState.hasStarted = true
     startGame()
     startTurn1()
-  } else if (isAlreadyHisTurn) {
+  } else if (firstTurnInSecondHalf && !gameState.isTeam1turn) {
+    gameState.hasStarted = true
+    startTurn1()
+  } else if (!firstTurnInSecondHalf && isAlreadyHisTurn) {
     startTurn2()
   }
 }
 
 function clickOnTurn2() {
-  const firstTurnInTheGame = !gameState.hasStarted
+  const firstTurnInTheGame = !gameState.hasStarted && !gameState.isSecondPart
+  const firstTurnInSecondHalf = !gameState.hasStarted && gameState.isSecondPart
   const isAlreadyHisTurn = !gameState.isTeam1turn
   requestWakeLock()
 
@@ -204,7 +209,10 @@ function clickOnTurn2() {
     gameState.hasStarted = true
     startGame()
     startTurn2()
-  } else if (isAlreadyHisTurn) {
+  } else if (firstTurnInSecondHalf && gameState.isTeam1turn) {
+    gameState.hasStarted = true
+    startTurn2()
+  } else if (!firstTurnInSecondHalf && isAlreadyHisTurn) {
     startTurn1()
   }
 }
