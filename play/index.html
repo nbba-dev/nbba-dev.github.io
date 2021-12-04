@@ -614,12 +614,32 @@
         <div id="gameEventOnPauseModal">
           <div id="gameRecordsContainer" hidden>
             <h3>Historia</h3>
-            <div id="gameRecordInsertionPoint"></div>
+            <div id="gameRecordInsertionPoint" class="gameRecordGrid"></div>
           </div>
           <p>¿Ha sucedido algo<span id="pauseMore" hidden> más</span>?</p>
           <button onclick="openTouchdown()">¡Touchdown!</button>
           <button onclick="openInjury()">¡Herida!</button>
           <div id="touchdownForm" class="pauseForm" hidden>
+            <div>
+              <div>
+                <select name="" id="touchdownHalf">
+                  <option value="1">Primera parte</option>
+                  <option value="2">Segunda parte</option>
+                </select>
+              </div>
+              <div>
+                <select name="" id="touchdownTurn">
+                  <option value="1">Turno 1</option>
+                  <option value="2">Turno 2</option>
+                  <option value="3">Turno 3</option>
+                  <option value="4">Turno 4</option>
+                  <option value="5">Turno 5</option>
+                  <option value="6">Turno 6</option>
+                  <option value="7">Turno 7</option>
+                  <option value="8">Turno 8</option>
+                </select>
+              </div>
+            </div>
             <div>
               Equipo:
               <select name="" id="touchdownTeam">
@@ -645,6 +665,26 @@
             <button onclick="confirmTouchdown()">Confirmar touchdown</button>
           </div>
           <div id="injuryForm" class="pauseForm" hidden>
+            <div>
+              <div>
+                <select name="" id="injuryHalf">
+                  <option value="1">Primera parte</option>
+                  <option value="2">Segunda parte</option>
+                </select>
+              </div>
+              <div>
+                <select name="" id="injuryTurn">
+                  <option value="1">Turno 1</option>
+                  <option value="2">Turno 2</option>
+                  <option value="3">Turno 3</option>
+                  <option value="4">Turno 4</option>
+                  <option value="5">Turno 5</option>
+                  <option value="6">Turno 6</option>
+                  <option value="7">Turno 7</option>
+                  <option value="8">Turno 8</option>
+                </select>
+              </div>
+            </div>
             <div class="injuryFormTwoColumns">
               <div>
                 <b>Herido</b>

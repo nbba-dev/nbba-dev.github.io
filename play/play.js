@@ -44,6 +44,10 @@ const attackingInjuryPlayerInput = document.querySelector('#attackingInjuryPlaye
 const attackingInjuryPlayerForm = document.querySelector('#attackingInjuryPlayerForm')
 const gameEventOnPauseModal = document.querySelector('#gameEventOnPauseModal')
 const gameRecordsContainer = document.querySelector('#gameRecordsContainer')
+const touchdownHalf = document.querySelector('#touchdownHalf')
+const touchdownTurn = document.querySelector('#touchdownTurn')
+const injuryHalf = document.querySelector('#injuryHalf')
+const injuryTurn = document.querySelector('#injuryTurn')
 
 const pages = [
   document.querySelector('#page2'),
@@ -133,8 +137,8 @@ function keepGoing() {
   if (gameState.hasStarted) {
     startClock()
   }
-  // THIS HAS TO BE DONE BY THE UPDATING INPUT LISTENERS AND THE CONFIRM TOUCHDOWN BUTTON
-  // setTouchdowns()
+  closeTouchdown()
+  closeInjury()
   closeModal(4)
 }
 
@@ -289,11 +293,25 @@ function applyClockLogic(timeDiff) {
   }
 }
 
+function getTouchdownsFromRecords() {
+  let team1TDs = 0
+  let team2TDs = 0
+  gameRecord.forEach((record) => {
+    if (record.event === 'TD' && record.team === 1) {
+      team1TDs += 1
+    } else if (record.event === 'TD' && record.team === 2) {
+      team2TDs += 1
+    }
+  })
+  return [team1TDs, team2TDs]
+}
+
 function setTouchdowns() {
-  gameState.team1.score = team1ScoreInputNode.value
-  gameState.team2.score = team2ScoreInputNode.value
-  team1ScoreboardNodes.forEach((a) => a.innerHTML = team1ScoreInputNode.value)
-  team2ScoreboardNodes.forEach((a) => a.innerHTML = team2ScoreInputNode.value)
+  const touchDowns = getTouchdownsFromRecords()
+  gameState.team1.score = touchDowns[0]
+  gameState.team2.score = touchDowns[1]
+  team1ScoreboardNodes.forEach((a) => a.innerHTML = touchDowns[0])
+  team2ScoreboardNodes.forEach((a) => a.innerHTML = touchDowns[1])
 }
 
 function activateTeam1() {
@@ -524,9 +542,24 @@ function pauseGame() {
   openModal(4)
 }
 
+function setActiveTouchdownTurnAndHalf() {
+  touchdownHalf.children[getActiveHalf() - 1].setAttribute('selected', true)
+  touchdownTurn.children[getActiveTurn() - 1].setAttribute('selected', true)
+}
+
+function setActiveInjuryTurnAndHalf() {
+  injuryHalf.children[getActiveHalf() - 1].setAttribute('selected', true)
+  injuryTurn.children[getActiveTurn() - 1].setAttribute('selected', true)
+}
+
 function openTouchdown() {
   touchdownForm.removeAttribute('hidden')
-  injuryForm.setAttribute('hidden', true)
+  closeInjury()
+  setActiveTouchdownTurnAndHalf()
+}
+
+function closeTouchdown() {
+  injuryForm.removeAttribute('hidden')
 }
 
 function confirmTouchdown() {
@@ -534,12 +567,18 @@ function confirmTouchdown() {
   const tempTd = gameState.temporalTouchdown ?? getTouchdownRecord({});
   gameRecord.push(tempTd)
   temporalTouchdown = null
+  setTouchdowns()
   setGameRecordsContent()
 }
 
 function openInjury() {
-  injuryForm.removeAttribute('hidden')
+  closeTouchdown()
   touchdownForm.setAttribute('hidden', true)
+  setActiveInjuryTurnAndHalf()
+}
+
+function closeInjury() {
+  injuryForm.setAttribute('hidden', true)
 }
 
 function confirmInjury() {
@@ -566,7 +605,11 @@ function updateSelectedInjury() {
 }
 
 function setGameRecordsContent() {
-  gameRecordsContainer.removeAttribute('hidden')
+  if (gameRecord.length > 0) {
+    gameRecordsContainer.removeAttribute('hidden')
+  } else {
+    gameRecordsContainer.setAttribute('hidden', true)
+  }
   removeChildren(gameRecordInsertionPoint)
   const content = getGameRecordContent()
   content.forEach((node) => {
@@ -575,28 +618,35 @@ function setGameRecordsContent() {
 }
 
 function getGameRecordContent() {
-  return gameRecord.flatMap((record) => {
+  return gameRecord.flatMap((record, index) => {
+    const events = []
+    events.push(createButton('Eliminar registro', removeRecord.bind(this, index)))
     if (record.event === 'TD') {
-      return getTouchdownRecordContent(record)
+      events.push(getTouchdownRecordContent(record, index))
     } else if (record.event === 'Injury') {
-      const events = [ getHurtInjuryRecordContent(record) ]
+      events.push(getHurtInjuryRecordContent(record, index))
       if (record.isThereHurtingTeam) {
-        events.push(getHurtingInjuryRecordContent(record))
+        events.push(getHurtingInjuryRecordContent(record, index))
       }
-      return events
     }
+    return events
   })
 }
 
-function getTouchdownRecordContent(record) {
+function removeRecord(index) {
+  gameRecord.splice(index, 1)
+  setGameRecordsContent()
+}
+
+function getTouchdownRecordContent(record, index) {
   return createDiv(`Turno ${record.half}-${record.turn} — TD para <b>${getTeamName(record.team)}</b> por jugador dorsal ${record.player}`)
 }
 
-function getHurtInjuryRecordContent(record) {
+function getHurtInjuryRecordContent(record, index) {
   return createDiv(`Turno ${record.half}-${record.turn} — para <b>${getTeamName(record.hurtTeam)}</b>, ${getInjuryType(record.injuryType)} sufrido por ${record.hurtPlayer}`)
 }
 
-function getHurtingInjuryRecordContent(record) {
+function getHurtingInjuryRecordContent(record, index) {
   return createDiv(`Turno ${record.half}-${record.turn} — por <b>${getTeamName(record.hurtingTeam)}</b>, ${getInjuryType(record.injuryType)} infligido por ${record.hurtingPlayer}`)
 }
 
@@ -608,6 +658,18 @@ function createDiv(content) {
   //   node.appendChild(textNode);
   // })
   node.innerHTML = content
+  return node;
+}
+
+function createButton(content, onclickFn) {
+  const node = document.createElement("button");
+  // let textNodes = []
+  // textNodes.push(document.createTextNode(content))
+  // textNodes.forEach((textNode) => {
+  //   node.appendChild(textNode);
+  // })
+  node.innerHTML = content
+  node.onclick = onclickFn
   return node;
 }
 

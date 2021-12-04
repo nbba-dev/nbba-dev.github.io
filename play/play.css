@@ -551,3 +551,11 @@ body {
 .injuryFormTwoColumns > * {
   margin-right: 2rem;
 }
+
+.gameRecordGrid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 16px 8px;
+  border-left: solid 2px black;
+  padding: 8px;
+}

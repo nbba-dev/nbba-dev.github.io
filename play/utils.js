@@ -13,13 +13,15 @@ function getActiveHalf() {
 function getTouchdownRecord({
   team = 1,
   player = 1,
+  turn = 1,
+  half = 1,
 }) {
   return {
     event: 'TD',
     team,
     player,
-    turn: getActiveTurn(),
-    half: getActiveHalf(),
+    turn,
+    half,
   }
 }
 
@@ -39,6 +41,8 @@ function getInjuryRecord({
   hurtingTeam = 0,
   hurtingPlayer = 0,
   injuryType = 0,
+  turn = 1,
+  half = 1,
 }) {
   return {
     event: 'Injury',
@@ -47,9 +51,9 @@ function getInjuryRecord({
     isThereHurtingTeam,
     hurtingTeam,
     hurtingPlayer,
-    turn: getActiveTurn(),
-    half: getActiveHalf(),
     injuryType,
+    turn,
+    half,
   }
 }
 

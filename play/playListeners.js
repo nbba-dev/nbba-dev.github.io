@@ -48,12 +48,16 @@ const addDomNodesByIds = (ids) => {
   addDomNodesByIds([
     'touchdownTeam',
     'touchdownPlayer',
+    'touchdownTurn',
+    'touchdownHalf',
   ])
 
   function updateTempTouchdown() {
     const params = {
       team: Number(dom.get('touchdownTeam').value),
       player: Number(dom.get('touchdownPlayer').value),
+      turn: dom.get('touchdownTurn').value,
+      half: dom.get('touchdownHalf').value,
     }
     gameState.temporalTouchdown = getTouchdownRecord(params)
   }
@@ -72,7 +76,9 @@ const addDomNodesByIds = (ids) => {
     'injuryHurtingTeam',
     'injuryHurtingPlayer',
     'injuryRollSelect',
-    'confirmInjuryButton'
+    'confirmInjuryButton',
+    'injuryTurn',
+    'injuryHalf',
   ])
 
   function updateTempInjury() {
@@ -84,6 +90,8 @@ const addDomNodesByIds = (ids) => {
       hurtingTeam: isThereHurtingPlayer ? Number(dom.get('injuryHurtingTeam').value) : null,
       hurtingPlayer: isThereHurtingPlayer ? Number(dom.get('injuryHurtingPlayer').value) : null,
       injuryType: dom.get('injuryRollSelect').value,
+      turn: dom.get('injuryTurn').value,
+      half: dom.get('injuryHalf').value,
     }
     if (params.injuryType > 0) {
       dom.get('confirmInjuryButton').removeAttribute('disabled')
