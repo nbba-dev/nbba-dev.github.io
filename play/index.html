@@ -45,7 +45,7 @@
           <div class="dice-roll-container">
             <div class="dice-roll">
               <div>Fan factor</div>
-              <select name="" id="">
+              <select name="" id="fanFactorTeam1">
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -61,14 +61,14 @@
             </div>
             <div>+</div><div class="dice-roll">
               <div>1D3</div>
-              <select name="" id="">
+              <select name="" id="fansRollTeam1">
                 <option value="0">N/A</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
               </select>
             </div>
-            <div> = 0</div>
+            <div id="resultFansTeam1"> = 0</div>
           </div>
         </div>
         <div>
@@ -76,7 +76,7 @@
           <div class="dice-roll-container">
             <div class="dice-roll">
               <div>Fan factor</div>
-              <select name="" id="">
+              <select name="" id="fanFactorTeam2">
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -92,14 +92,14 @@
             </div>
             <div>+</div><div class="dice-roll">
               <div>1D3</div>
-              <select name="" id="">
+              <select name="" id="fansRollTeam2">
                 <option value="0">N/A</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
               </select>
             </div>
-            <div> = 0</div>
+            <div id="resultFansTeam2"> = 0</div>
           </div>
         </div>
       </div>
@@ -861,6 +861,7 @@
   </div>
 
 <script src='play.js'></script>
+<script src='playListeners.js'></script>
 
 <script src="confetti.js"></script>
 

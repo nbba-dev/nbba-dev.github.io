@@ -66,14 +66,16 @@ let gameState = {
     elapsedTime: 0,
     score: 0,
     name: 'Local',
-    logo: 'team0.png'
+    logo: 'team0.png',
+    fame: 0,
   },
   team2: {
     turn: 0,
     elapsedTime: 0,
     score: 0,
     name: 'Visitante',
-    logo: 'team0.png'
+    logo: 'team0.png',
+    fame: 0,
   },
   isTeam1turn: false,
   isSecondPart: false,
