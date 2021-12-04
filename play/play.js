@@ -174,6 +174,7 @@ function startTurn(newPlayer, hasJustFinishedAHalf) {
   gameState.playedTimeoutForThisTurn = false
 
   if (hasJustFinishedAHalf) {
+    openModal(3)
     finishedHalf(newPlayer)
     pauseClock()
   } else {
