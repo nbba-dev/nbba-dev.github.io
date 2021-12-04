@@ -492,6 +492,10 @@ function kickoffNuffle() {
   openModal(5)
 }
 
+function completedNuffle() {
+  closeModal(5)
+}
+
 function completedInducements() {
   closeModal(2)
   openModal(3)
