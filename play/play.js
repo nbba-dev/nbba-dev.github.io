@@ -30,6 +30,7 @@ const weatherModal = document.querySelector('#weatherModal')
 const inducementsModal = document.querySelector('#inducementsModal')
 const kickoffModal = document.querySelector('#kickoffModal')
 const nuffleModal = document.querySelector('#nuffleModal')
+const prePrayersToNuffleModal = document.querySelector('#prePrayersToNuffleModal')
 const pauseModal = document.querySelector('#pauseModal')
 const weatherValue = document.querySelector('#weatherValue')
 const weather = document.querySelector('#weather')
@@ -52,7 +53,8 @@ const modals = [
   inducementsModal,
   kickoffModal,
   pauseModal,
-  nuffleModal
+  nuffleModal,
+  prePrayersToNuffleModal,
 ]
 
 let gameConfig;
@@ -481,12 +483,6 @@ function completedKickoff() {
   closeModal(3)
 }
 
-function pauseGame() {
-  pauseMore.setAttribute('hidden', true)
-  pauseClock()
-  openModal(4)
-}
-
 function kickoffNuffle() {
   completedKickoff()
   openModal(5)
@@ -498,7 +494,18 @@ function completedNuffle() {
 
 function completedInducements() {
   closeModal(2)
+  openModal(6)
+}
+
+function completedPrePrayersToNuffle() {
+  closeModal(6)
   openModal(3)
+}
+
+function pauseGame() {
+  pauseMore.setAttribute('hidden', true)
+  pauseClock()
+  openModal(4)
 }
 
 function openTouchdown() {
