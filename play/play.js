@@ -174,7 +174,6 @@ function startTurn(newPlayer, hasJustFinishedAHalf) {
   gameState.playedTimeoutForThisTurn = false
 
   if (hasJustFinishedAHalf) {
-    openModal(3)
     finishedHalf(newPlayer)
     pauseClock()
   } else {
@@ -215,13 +214,14 @@ function finishedHalf(startingTeam) {
   gameState.team2.turn = 0
   team1TurnTurnNode.innerHTML = gameState.team1.turn
   team2TurnTurnNode.innerHTML = gameState.team2.turn
-  if (startingTeam === 'team1') {
-    team2TurnTimeNode.innerHTML = 'Comienza segunda parte'
-  } else {
-    team1TurnTimeNode.innerHTML = 'Comienza segunda parte'
-  }
 
   if (!gameState.isSecondPart) {
+    openModal(3)
+    if (startingTeam === 'team1') {
+      team2TurnTimeNode.innerHTML = 'Comienza segunda parte'
+    } else {
+      team1TurnTimeNode.innerHTML = 'Comienza segunda parte'
+    }
     halfNodes.forEach(a => a.innerHTML = 'Segunda Parte')
     gameState.isSecondPart = true
   } else {
