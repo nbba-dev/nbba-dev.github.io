@@ -284,6 +284,11 @@ body {
   :root {
     font-size: 10px;
   }
+
+  .modal-overlay .modal {
+    margin: 2rem;
+    max-height: calc(100vh - 2rem - 2rem - 2rem - 2rem);
+  }
 }
 
 @media (max-width: 500px) {
@@ -423,8 +428,9 @@ body {
 }
 
 .modal-bottomBtn {
-  width: 6rem;
+  width: fit-content;
   margin-left: 2rem;
+  padding: 0.5rem 1.5rem;
 }
 
 .modal-controls {
@@ -481,7 +487,7 @@ body {
   justify-content: space-around;
   align-items: center;
   border-radius: 8px;
-  height: 3rem;
+  height: 48px;
 }
 
 .dice-roll-container {
@@ -489,12 +495,12 @@ body {
   align-items: center;
   background-color: #eee;
   width: fit-content;
-  padding: 0 2rem;
+  padding: 0 24px;
   border-radius: 5px;
 }
 
 .dice-roll-container > * {
-  padding: 0.6rem 1rem;
+  padding: 8px 16px;
 }
 
 .dice-roll-container-inline {
