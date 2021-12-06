@@ -491,7 +491,6 @@ body {
 .modal-body {
   height: 100%;
   margin-top: 1rem;
-  border-bottom: solid 1px white;
   overflow: auto;
   background: /* Shadow covers */
   linear-gradient(white 30%, rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%, /* Shadows */
@@ -565,6 +564,12 @@ body {
 }
 
 .inducementsTable-row > * {
+  flex-direction: column;
+}
+
+.pause-modal-body {
+  display: flex;
+  align-items: center;
   flex-direction: column;
 }
 

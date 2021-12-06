@@ -48,6 +48,8 @@ const touchdownHalf = document.querySelector('#touchdownHalf')
 const touchdownTurn = document.querySelector('#touchdownTurn')
 const injuryHalf = document.querySelector('#injuryHalf')
 const injuryTurn = document.querySelector('#injuryTurn')
+const settingsModal = document.querySelector('#settingsModal')
+const eventModal = document.querySelector('#eventModal')
 
 const pages = [
   document.querySelector('#page2'),
@@ -61,6 +63,8 @@ const modals = [
   pauseModal,
   nuffleModal,
   prePrayersToNuffleModal,
+  settingsModal,
+  eventModal,
 ]
 
 let gameConfig;
@@ -566,6 +570,25 @@ function pauseGame() {
     gameEventOnPauseModal.setAttribute('hidden', true)
   }
   openModal(4)
+}
+
+function openSettingsModal() {
+  closeModal(4)
+  openModal(7)
+}
+
+function openEventModal() {
+  closeModal(4)
+  openModal(8)
+}
+
+function closeSettingsModal() {
+  closeModal(7)
+  keepGoing()
+}
+function closeEventModal() {
+  closeModal(8)
+  keepGoing()
 }
 
 function setActiveTouchdownTurnAndHalf() {

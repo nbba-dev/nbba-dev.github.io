@@ -40,7 +40,7 @@
 
   <div class="modal-overlay" id="pauseModal" hidden>
     <div class="modal">
-      <div class="modal-body">
+      <div class="modal-body pause-modal-body">
         <h2>Partido en pausa</h2>
         <div id="gameEventOnPauseModal">
           <div id="gameRecordsContainer" hidden>
@@ -199,10 +199,34 @@
         </div>
       </div>
       <div class="modal-controls">
+        <button class="modal-bottomBtn" onclick="openSettingsModal()">Ajustes</button>
+        <button class="modal-bottomBtn" onclick="openEventModal()">Nuevo suceso</button>
         <button class="modal-bottomBtn" onclick="openKickoffModal()">Tabla Kickoff</button>
         <button class="modal-bottomBtn" onclick="reset()">Nuevo partido</button>
         <button class="modal-bottomBtn" onclick="goFullscreen()">Fullscreen</button>
         <button class="modal-bottomBtn modal-continueBtn" onclick="keepGoing()">Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="settingsModal" hidden>
+    <div class="modal">
+      <div class="modal-body">
+        <h2>Ajustes</h2>
+      </div>
+      <div class="modal-controls">
+        <button class="modal-bottomBtn modal-continueBtn" onclick="closeSettingsModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="eventModal" hidden>
+    <div class="modal">
+      <div class="modal-body">
+        <h2>Nuevo suceso</h2>
+      </div>
+      <div class="modal-controls">
+        <button class="modal-bottomBtn modal-continueBtn" onclick="closeEventModal()">Cerrar</button>
       </div>
     </div>
   </div>
