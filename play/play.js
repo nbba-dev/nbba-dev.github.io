@@ -73,7 +73,7 @@ let gameState = {
     score: 0,
     name: 'Local',
     logo: 'team0.png',
-    fame: 0,
+    fame: 1,
   },
   team2: {
     turn: 0,
@@ -81,13 +81,12 @@ let gameState = {
     score: 0,
     name: 'Visitante',
     logo: 'team0.png',
-    fame: 0,
+    fame: 1,
   },
   isTeam1turn: false,
   isSecondPart: false,
   endedGame: false,
   playedTimeoutForThisTurn: false,
-  initialWeatherComplete: false,
   temporalTouchdown: null,
   temporalInjury: null,
 }
@@ -492,10 +491,7 @@ function completedWeather() {
   weather.innerText = weatherDict[valueForWeather] || ''
   weather.removeAttribute('hidden')
   closeModal(1)
-  if (!gameState.initialWeatherComplete) {
-    gameState.initialWeatherComplete = true
-    openModal(2)
-  }
+  openModal(2)
 }
 
 function kickoffChangeWeather() {
@@ -538,6 +534,35 @@ function completedInducements() {
 function completedPrePrayersToNuffle() {
   closeModal(6)
   openModal(3)
+}
+
+function openKickoffModal() {
+  openModal(3)
+}
+
+// 0 - fameModal,
+// 1 - weatherModal,
+// 2 - inducementsModal,
+// 3 - kickoffModal,
+// 4 - pauseModal,
+// 5 - nuffleModal,
+// 6 - prePrayersToNuffleModal,
+
+function goBackToFame() {
+  closeModal(1)
+  openModal(0)
+}
+function goBackToWeather() {
+  closeModal(2)
+  openModal(1)
+}
+function goBackToInducements() {
+  closeModal(6)
+  openModal(2)
+}
+function goBackToNuffle() {
+  closeModal(3)
+  openModal(6)
 }
 
 function pauseGame() {
