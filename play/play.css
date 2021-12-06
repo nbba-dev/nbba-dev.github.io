@@ -6,7 +6,7 @@ body {
   font-size: 16px;
 }
 
-.page[hidden], .delay-container[hidden], .pause-turn-container[hidden], .pleaseRotate[hidden], .endgame-winner[hidden] {
+.page[hidden], .delay-container[hidden], .pause-turn-container[hidden], .pleaseRotate[hidden], .endgame-winner[hidden], .modalTable-rollForResultRow[hidden] {
   display: none;
 }
 
@@ -397,10 +397,11 @@ body {
   box-shadow: rgb(0 0 0 / 50%) 1px 1px 5px 2px;
 }
 
-.modal-teamColumns {
+.modal-twoColumns {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto auto;
+  align-items: center;
 }
 
 .modal-bottomBtn {
@@ -412,9 +413,11 @@ body {
 .modal-controls {
   display: flex;
   justify-content: flex-end;
-  margin-top: 2rem;
-  border-top: solid 1px black;
   padding-top: 2rem;
+}
+
+.modal-bottomBtn:first-of-type {
+  margin-left: 0;
 }
 
 .modalTable {
@@ -432,12 +435,8 @@ body {
   border-left: 1px solid black;
 }
 
-.modalTable-row.kickoffTable-row {
-  grid-template-columns: 1fr 1fr;
-}
-
 .modalTable-row.inducementsTable-row {
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .modalTable-row > * {
@@ -446,14 +445,6 @@ body {
 
 .modalTable-row:not(:first-child) {
   border-top: none;
-}
-
-.modalTable-row:not(.kickoffTable-row):hover > * {
-  background-color: #eee;
-}
-
-.kickoffTable-row > *:hover {
-  background-color: #eee;
 }
 
 .dice-roll {
@@ -473,6 +464,7 @@ body {
   width: fit-content;
   padding: 0 24px;
   border-radius: 5px;
+  height: 8rem;
 }
 
 .dice-roll-container > * {
@@ -490,7 +482,6 @@ body {
 
 .modalTable-emoji {
   font-size: 2rem;
-  margin-right: 1rem;
 }
 
 .modalTable-firstCell {
@@ -498,6 +489,9 @@ body {
 }
 
 .modal-body {
+  height: 100%;
+  margin-top: 1rem;
+  border-bottom: solid 1px white;
   overflow: auto;
   background: /* Shadow covers */
   linear-gradient(white 30%, rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%, /* Shadows */
@@ -548,8 +542,30 @@ body {
   z-index: 9999;
 }
 
-.modal-body.noScrollEffect {
-  background: none;
+.modalTable-rollForResultRow {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+}
+
+.subtle {
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.modalTable-rollForResult {
+  width: 100%;
+}
+
+.modal-rollForResult {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.inducementsTable-row > * {
+  flex-direction: column;
 }
 
 @media (max-width: 1000px) {
@@ -572,16 +588,18 @@ body {
 
   .modal-title {
     position: relative;
-    font-size: 1rem;
-    color: #666;
     margin: 0;
     margin-right: 1rem;
     margin-bottom: 1rem;
   }
 
-  .modal-title p {
+  .modal-title p, .modal-title h3 {
     margin: 0
   }
+}
+
+.inducement {
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 500px) {

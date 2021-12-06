@@ -482,10 +482,10 @@ function completedFame() {
 function completedWeather() {
   const valueForWeather = Number(weatherValue.value)
   const weatherDict = {
-    2: '🔥',
-    3: '☀️',
-    11: '🌨',
-    12: '❄️',
+    1: '🔥',
+    2: '☀️',
+    4: '🌨',
+    5: '❄️',
     // else: '🌤'
   }
   weather.innerText = weatherDict[valueForWeather] || ''
@@ -539,14 +539,6 @@ function completedPrePrayersToNuffle() {
 function openKickoffModal() {
   openModal(3)
 }
-
-// 0 - fameModal,
-// 1 - weatherModal,
-// 2 - inducementsModal,
-// 3 - kickoffModal,
-// 4 - pauseModal,
-// 5 - nuffleModal,
-// 6 - prePrayersToNuffleModal,
 
 function goBackToFame() {
   closeModal(1)
@@ -723,4 +715,95 @@ function onAttackingInjuryPlayerUpdate() {
 
 function showRecord() {
   openModal(4)
+}
+
+function getDomArr(ids) {
+  const domArr = []
+  ids.forEach((id) => {
+    domArr.push(document.querySelector(`#${id}`))
+  })
+  return domArr
+}
+
+function updateSelectedWeather(val) {
+  const rows = getDomArr([
+    'weatherRow1',
+    'weatherRow2',
+    'weatherRow3',
+    'weatherRow4',
+    'weatherRow5',
+  ])
+
+  const dict = {
+    0: null
+  }
+
+  rows.forEach((row, index) => {
+    row.setAttribute('hidden', true)
+    dict[index + 1] = row
+  })
+
+  const rolledValue = Number(val);
+  dict[rolledValue]?.removeAttribute('hidden')
+}
+
+function updateSelectedKickoff(val) {
+  const rows = getDomArr([
+    'kickoffRow1',
+    'kickoffRow2',
+    'kickoffRow3',
+    'kickoffRow4',
+    'kickoffRow5',
+    'kickoffRow6',
+    'kickoffRow7',
+    'kickoffRow8',
+    'kickoffRow9',
+    'kickoffRow10',
+    'kickoffRow11',
+  ])
+
+  const dict = {
+    0: null
+  }
+
+  rows.forEach((row, index) => {
+    row.setAttribute('hidden', true)
+    dict[index + 1] = row
+  })
+
+  const rolledValue = Number(val);
+  dict[rolledValue]?.removeAttribute('hidden')
+}
+
+function updateSelectedNuffle(val) {
+  const rows = getDomArr([
+    'nuffle1',
+    'nuffle2',
+    'nuffle3',
+    'nuffle4',
+    'nuffle5',
+    'nuffle6',
+    'nuffle7',
+    'nuffle8',
+    'nuffle9',
+    'nuffle10',
+    'nuffle11',
+    'nuffle12',
+    'nuffle13',
+    'nuffle14',
+    'nuffle15',
+    'nuffle16',
+  ])
+
+  const dict = {
+    0: null
+  }
+
+  rows.forEach((row, index) => {
+    row.setAttribute('hidden', true)
+    dict[index + 1] = row
+  })
+
+  const rolledValue = Number(val);
+  dict[rolledValue]?.removeAttribute('hidden')
 }
