@@ -1,23 +1,6 @@
-/* Pre - setup variables and structs */
-const dom = new Map()
-
-const addDomNodesByIds = (ids) => {
-  ids.forEach((id) => {
-    const nodes = [...document.querySelectorAll(`#${id}`)]
-    if (nodes.length === 0) {
-      alert('Error document.queryselecting on', id)
-    }
-    else if (nodes.length === 1) {
-      dom.set(id, nodes[0])
-    } else {
-      dom.set(id, nodes)
-    }
-  })
-};
-
 /* fame */
 (() => {
-  addDomNodesByIds([
+  const dom = addDomNodesByIds([
     'fanFactorTeam1',
     'fansRollTeam1',
     'fanFactorTeam2',
@@ -45,7 +28,7 @@ const addDomNodesByIds = (ids) => {
 
 /* Touchdown */
 (() => {
-  addDomNodesByIds([
+  const dom = addDomNodesByIds([
     'touchdownTeam',
     'touchdownPlayer',
     'touchdownTurn',
@@ -69,7 +52,7 @@ const addDomNodesByIds = (ids) => {
 
 /* Injury */
 (() => {
-  addDomNodesByIds([
+  const dom = addDomNodesByIds([
     'injuryHurtTeam',
     'injuryHurtPlayer',
     'attackingInjuryPlayerInput',
@@ -112,7 +95,7 @@ const addDomNodesByIds = (ids) => {
 
 /* Pass */
 (() => {
-  addDomNodesByIds([
+  const dom = addDomNodesByIds([
     'passTeam',
     'passPlayer',
     'passTurn',

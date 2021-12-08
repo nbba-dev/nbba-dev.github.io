@@ -1,79 +1,76 @@
 
 // state
 
-const pleaseRotateNode = document.querySelector('#pleaseRotate')
-const team2TurnTurnNode = document.querySelector('#team2-turn-turn')
-const team1TurnTurnNode = document.querySelector('#team1-turn-turn')
-const halfNodes = [...document.querySelectorAll('#half')]
-const pauseTurnContainerNode = document.querySelector('#pause-turn-container')
-const team1NameNodes = [...document.querySelectorAll('#team1-name')]
-const team1LogoNodes = [...document.querySelectorAll('#team1-logo')]
-// const team1ScoreNameNode = document.querySelector('#team1-score-name')
-// const team1ScoreInputNode = document.querySelector('#team1-score-input')
-const team2NameNodes = [...document.querySelectorAll('#team2-name')]
-const team2LogoNodes = [...document.querySelectorAll('#team2-logo')]
-// const team2ScoreNameNode = document.querySelector('#team2-score-name')
-// const team2ScoreInputNode = document.querySelector('#team2-score-input')
-const team1TurnTimeNode = document.querySelector('#team1-turn-time')
-const team2TurnTimeNode = document.querySelector('#team2-turn-time')
-const team1ScoreboardNodes = [...document.querySelectorAll("#team1-scoreboard")]
-const team2ScoreboardNodes = [...document.querySelectorAll("#team2-scoreboard")]
-const team1TurnNode = document.querySelector('#team1-turn')
-const team2TurnNode = document.querySelector('#team2-turn')
-const delayContainerNode = document.querySelector('#delay-container')
-const endgameTeam1Node = document.querySelector('#endgame-team1')
-const endgameTeam2Node = document.querySelector('#endgame-team2')
-const endgameStateNode = document.querySelector('#endgame-state')
-const endgameOverlayNode = document.querySelector('#endgame-overlay')
-const fameModal = document.querySelector('#fameModal')
-const weatherModal = document.querySelector('#weatherModal')
-const inducementsModal = document.querySelector('#inducementsModal')
-const kickoffModal = document.querySelector('#kickoffModal')
-const nuffleModal = document.querySelector('#nuffleModal')
-const prePrayersToNuffleModal = document.querySelector('#prePrayersToNuffleModal')
-const pauseModal = document.querySelector('#pauseModal')
-const weatherValue = document.querySelector('#weatherValue')
-const weather = document.querySelector('#weather')
-const touchdownForm = document.querySelector('#touchdownForm')
-const injuryForm = document.querySelector('#injuryForm')
-const injuryHelpNodes = [...document.querySelectorAll('.injuryHelp')]
-const injuryRollSelect = document.querySelector('#injuryRollSelect')
-const gameRecordInsertionPoint = document.querySelector('#gameRecordInsertionPoint')
-const attackingInjuryPlayerInput = document.querySelector('#attackingInjuryPlayerInput')
-const attackingInjuryPlayerForm = document.querySelector('#attackingInjuryPlayerForm')
-const gameRecordsContainer = document.querySelector('#gameRecordsContainer')
-const touchdownHalf = document.querySelector('#touchdownHalf')
-const touchdownTurn = document.querySelector('#touchdownTurn')
-const injuryHalf = document.querySelector('#injuryHalf')
-const injuryTurn = document.querySelector('#injuryTurn')
-const settingsModal = document.querySelector('#settingsModal')
-const eventModal = document.querySelector('#eventModal')
-const eventButtons = document.querySelector('#eventButtons')
-const confirmTouchdownButton = document.querySelector('#confirmTouchdownButton')
-const confirmInjuryButton = document.querySelector('#confirmInjuryButton')
-const eventBackButton = document.querySelector('#eventBackButton')
-const passForm = document.querySelector('#passForm')
-const passHalf = document.querySelector('#passHalf')
-const passTurn = document.querySelector('#passTurn')
-const confirmPassButton = document.querySelector('#confirmPassButton')
-const kickoffBackBtn = document.querySelector('#kickoffBackBtn')
-const kickoffCompleted = document.querySelector('#kickoffCompleted')
-const kickoffCompletedStandalone = document.querySelector('#kickoffCompletedStandalone')
+const dom = addDomNodesByIds([
+  'pleaseRotate',
+  'team2TurnTurn',
+  'team1TurnTurn',
+  'half',
+  'pause-turn-container',
+  'team1Name',
+  'team1Logo',
+  'team2Name',
+  'team2Logo',
+  'team1TurnTime',
+  'team2TurnTime',
+  'team1Scoreboard',
+  'team2Scoreboard',
+  'team1Turn',
+  'team2Turn',
+  'delayContainer',
+  'endgameTeam1',
+  'endgameTeam2',
+  'endgameState',
+  'endgameOverlay',
+  'fameModal',
+  'weatherModal',
+  'inducementsModal',
+  'kickoffModal',
+  'nuffleModal',
+  'prePrayersToNuffleModal',
+  'pauseModal',
+  'weatherValue',
+  'weather',
+  'touchdownForm',
+  'injuryForm',
+  'injuryRollSelect',
+  'gameRecordInsertionPoint',
+  'attackingInjuryPlayerInput',
+  'attackingInjuryPlayerForm',
+  'gameRecordsContainer',
+  'touchdownHalf',
+  'touchdownTurn',
+  'injuryHalf',
+  'injuryTurn',
+  'settingsModal',
+  'eventModal',
+  'eventButtons',
+  'confirmTouchdownButton',
+  'confirmInjuryButton',
+  'eventBackButton',
+  'passForm',
+  'passHalf',
+  'passTurn',
+  'confirmPassButton',
+  'kickoffBackBtn',
+  'kickoffCompleted',
+  'kickoffCompletedStandalone',
+])
 
 const pages = [
   document.querySelector('#page2'),
 ];
 
 const modals = [
-  /* 0 */ fameModal,
-  /* 1 */ weatherModal,
-  /* 2 */ inducementsModal,
-  /* 3 */ kickoffModal,
-  /* 4 */ pauseModal,
-  /* 5 */ nuffleModal,
-  /* 6 */ prePrayersToNuffleModal,
-  /* 7 */ settingsModal,
-  /* 8 */ eventModal,
+  /* 0 */ dom.get('fameModal'),
+  /* 1 */ dom.get('weatherModal'),
+  /* 2 */ dom.get('inducementsModal'),
+  /* 3 */ dom.get('kickoffModal'),
+  /* 4 */ dom.get('pauseModal'),
+  /* 5 */ dom.get('nuffleModal'),
+  /* 6 */ dom.get('prePrayersToNuffleModal'),
+  /* 7 */ dom.get('settingsModal'),
+  /* 8 */ dom.get('eventModal'),
 ]
 
 let gameConfig;
@@ -136,7 +133,7 @@ function init() {
 
 function showPage2() {
   pages[0].removeAttribute('hidden')
-  pleaseRotateNode.removeAttribute('hidden')
+  dom.get('pleaseRotate').removeAttribute('hidden')
 }
 
 function reset(){
@@ -160,7 +157,7 @@ function startTurn1() {
   const hasJustFinishedAHalf = gameState.team1.turn === Number(gameConfig.turns)
   gameState.isTeam1turn = true
   startTurn('team1', hasJustFinishedAHalf)
-  team1TurnTurnNode.innerHTML = gameState.team1.turn
+  dom.get('team1TurnTurn').innerHTML = gameState.team1.turn
   if (hasJustFinishedAHalf) {
     activateTeam2()
   } else {
@@ -173,7 +170,7 @@ function startTurn2() {
   const hasJustFinishedAHalf = gameState.team2.turn === Number(gameConfig.turns)
   gameState.isTeam1turn = false
   startTurn('team2', hasJustFinishedAHalf)
-  team2TurnTurnNode.innerHTML = gameState.team2.turn
+  dom.get('team2TurnTurn').innerHTML = gameState.team2.turn
   if (hasJustFinishedAHalf) {
     activateTeam1()
   } else {
@@ -233,20 +230,20 @@ function clickOnTurn2() {
 function finishedHalf(startingTeam) {
   gameState.team1.turn = 0
   gameState.team2.turn = 0
-  team1TurnTurnNode.innerHTML = gameState.team1.turn
-  team2TurnTurnNode.innerHTML = gameState.team2.turn
+  dom.get('team1TurnTurn').innerHTML = gameState.team1.turn
+  dom.get('team2TurnTurn').innerHTML = gameState.team2.turn
 
   if (!gameState.isSecondPart) {
     openKickoffModal()
     if (startingTeam === 'team1') {
-      team2TurnTimeNode.innerHTML = 'Comienza segunda parte'
+      dom.get('team2TurnTime').innerHTML = 'Comienza segunda parte'
     } else {
-      team1TurnTimeNode.innerHTML = 'Comienza segunda parte'
+      dom.get('team1TurnTime').innerHTML = 'Comienza segunda parte'
     }
-    halfNodes.forEach(a => a.innerHTML = 'Segunda Parte')
+    dom.get('half').forEach(a => a.innerHTML = 'Segunda Parte')
     gameState.isSecondPart = true
   } else {
-    halfNodes.forEach(a => a.innerHTML = '¡Fin del partido!')
+    dom.get('half').forEach(a => a.innerHTML = '¡Fin del partido!')
     finishGame()
   }
 
@@ -276,21 +273,21 @@ function initClock(params) {
 }
 
 function startGame() {
-  pauseTurnContainerNode.removeAttribute('hidden')
+  dom.get('pauseTurnContainer').removeAttribute('hidden')
 }
 
 function initTeam1() {
   const team = gameState.team1
-  team1LogoNodes.forEach((a) => a.src = team.logo)
-  team1NameNodes.forEach((a) => a.innerHTML = team.name)
+  dom.get('team1Logo').forEach((a) => a.src = team.logo)
+  dom.get('team1Name').forEach((a) => a.innerHTML = team.name)
   // team1ScoreNameNode.innerHTML = team.name
   // team1ScoreInputNode.value = '0'
 }
 
 function initTeam2() {
   const team = gameState.team2
-  team2LogoNodes.forEach((a) => a.src = team.logo)
-  team2NameNodes.forEach((a) => a.innerHTML = team.name)
+  dom.get('team2Logo').forEach((a) => a.src = team.logo)
+  dom.get('team2Name').forEach((a) => a.innerHTML = team.name)
   // team2ScoreNameNode.innerHTML = team.name
   // team2ScoreInputNode.value = '0'
 }
@@ -308,9 +305,9 @@ function applyClockLogic(timeDiff) {
   } else {
     const remainingTimeInString = `${getRawMinutes(remainingTime)}:${getRawSeconds(remainingTime)}`
     if (gameState.isTeam1turn) {
-      team1TurnTimeNode.innerHTML = remainingTimeInString
+      dom.get('team1TurnTime').innerHTML = remainingTimeInString
     } else {
-      team2TurnTimeNode.innerHTML = remainingTimeInString
+      dom.get('team2TurnTime').innerHTML = remainingTimeInString
     }
   }
 }
@@ -332,8 +329,8 @@ function setTouchdowns() {
   const touchDowns = getTouchdownsFromRecords()
   gameState.team1.score = touchDowns[0]
   gameState.team2.score = touchDowns[1]
-  team1ScoreboardNodes.forEach((a) => a.innerHTML = touchDowns[0])
-  team2ScoreboardNodes.forEach((a) => a.innerHTML = touchDowns[1])
+  dom.get('team1Scoreboard').forEach((a) => a.innerHTML = touchDowns[0])
+  dom.get('team2Scoreboard').forEach((a) => a.innerHTML = touchDowns[1])
 }
 
 function activateTeam1() {
@@ -494,7 +491,7 @@ function completedFame() {
 }
 
 function completedWeather() {
-  const valueForWeather = Number(weatherValue.value)
+  const valueForWeather = Number(dom.get('weatherValue').value)
   const weatherDict = {
     1: '🔥',
     2: '☀️',
@@ -502,8 +499,8 @@ function completedWeather() {
     5: '❄️',
     // else: '🌤'
   }
-  weather.innerText = weatherDict[valueForWeather] || ''
-  weather.removeAttribute('hidden')
+  dom.get('weather').innerText = weatherDict[valueForWeather] || ''
+  dom.get('weather').removeAttribute('hidden')
   closeModal(1)
   openModal(2)
 }
@@ -523,8 +520,8 @@ function kickoffTimeout() {
     gameState.team1.turn -= 1
     gameState.team2.turn -= 1
   }
-  team1TurnTurnNode.innerHTML = gameState.team1.turn
-  team2TurnTurnNode.innerHTML = gameState.team2.turn
+  dom.get('team1TurnTurn').innerHTML = gameState.team1.turn
+  dom.get('team2TurnTurn').innerHTML = gameState.team2.turn
   completedKickoff()
 }
 
@@ -557,16 +554,16 @@ function completedPrePrayersToNuffle() {
 }
 
 function openKickoffModal() {
-  kickoffCompleted.removeAttribute('hidden')
-  kickoffCompletedStandalone.setAttribute('hidden', true)
-  kickoffBackBtn.removeAttribute('hidden')
+  dom.get('kickoffCompleted').removeAttribute('hidden')
+  dom.get('kickoffCompletedStandalone').setAttribute('hidden', true)
+  dom.get('kickoffBackBtn').removeAttribute('hidden')
   openModal(3)
 }
 
 function openKickoffModalStandalone() {
-  kickoffCompletedStandalone.removeAttribute('hidden')
-  kickoffCompleted.setAttribute('hidden', true)
-  kickoffBackBtn.setAttribute('hidden', true)
+  dom.get('kickoffCompletedStandalone').removeAttribute('hidden')
+  dom.get('kickoffCompleted').setAttribute('hidden', true)
+  dom.get('kickoffBackBtn').setAttribute('hidden', true)
   kickoffModal.classList.add('disableOverlay')
   openModal(3)
 }
@@ -599,7 +596,7 @@ function openSettingsModal() {
 }
 
 function openEventModal() {
-  eventBackButton.setAttribute('hidden', true)
+  dom.get('eventBackButton').setAttribute('hidden', true)
   openEventButtons()
   closeTouchdown()
   closeInjury()
@@ -618,40 +615,40 @@ function closeEventModal() {
 
 function setActiveTouchdownTurnAndHalf() {
   const activeTurn = getActiveTurn() || 1
-  touchdownHalf.children[getActiveHalf() - 1].setAttribute('selected', true)
-  touchdownTurn.children[activeTurn - 1].setAttribute('selected', true)
+  dom.get('touchdownHalf').children[getActiveHalf() - 1].setAttribute('selected', true)
+  dom.get('touchdownTurn').children[activeTurn - 1].setAttribute('selected', true)
 }
 
 function setActiveInjuryTurnAndHalf() {
   const activeTurn = getActiveTurn() || 1
-  injuryHalf.children[getActiveHalf() - 1].setAttribute('selected', true)
-  injuryTurn.children[activeTurn - 1].setAttribute('selected', true)
+  dom.get('injuryHalf').children[getActiveHalf() - 1].setAttribute('selected', true)
+  dom.get('injuryTurn').children[activeTurn - 1].setAttribute('selected', true)
 }
 
 function setActivePassTurnAndHalf() {
   const activeTurn = getActiveTurn() || 1
-  passHalf.children[getActiveHalf() - 1].setAttribute('selected', true)
-  passTurn.children[activeTurn - 1].setAttribute('selected', true)
+  dom.get('passHalf').children[getActiveHalf() - 1].setAttribute('selected', true)
+  dom.get('passTurn').children[activeTurn - 1].setAttribute('selected', true)
 }
 
 function openTouchdown() {
   closeEventButtons()
-  touchdownForm.removeAttribute('hidden')
-  confirmTouchdownButton.removeAttribute('hidden')
-  eventBackButton.removeAttribute('hidden')
+  dom.get('touchdownForm').removeAttribute('hidden')
+  dom.get('confirmTouchdownButton').removeAttribute('hidden')
+  dom.get('eventBackButton').removeAttribute('hidden')
   closeInjury()
   closePass()
   setActiveTouchdownTurnAndHalf()
 }
 
 function closeTouchdown() {
-  confirmTouchdownButton.setAttribute('hidden', true)
-  touchdownForm.setAttribute('hidden', true)
+  dom.get('confirmTouchdownButton').setAttribute('hidden', true)
+  dom.get('touchdownForm').setAttribute('hidden', true)
 }
 
 function confirmTouchdown() {
-  touchdownForm.setAttribute('hidden', true)
-  confirmTouchdownButton.setAttribute('hidden', true)
+  dom.get('touchdownForm').setAttribute('hidden', true)
+  dom.get('confirmTouchdownButton').setAttribute('hidden', true)
   const tempTd = gameState.temporalTouchdown ?? getTouchdownRecord({});
   gameRecord.push(tempTd)
   temporalTouchdown = null
@@ -665,20 +662,20 @@ function openInjury() {
   closeEventButtons()
   closeTouchdown()
   closePass()
-  injuryForm.removeAttribute('hidden')
-  confirmInjuryButton.removeAttribute('hidden')
-  eventBackButton.removeAttribute('hidden')
+  dom.get('injuryForm').removeAttribute('hidden')
+  dom.get('confirmInjuryButton').removeAttribute('hidden')
+  dom.get('eventBackButton').removeAttribute('hidden')
   setActiveInjuryTurnAndHalf()
 }
 
 function closeInjury() {
-  confirmInjuryButton.setAttribute('hidden', true)
-  injuryForm.setAttribute('hidden', true)
+  dom.get('confirmInjuryButton').setAttribute('hidden', true)
+  dom.get('injuryForm').setAttribute('hidden', true)
 }
 
 function confirmInjury() {
-  injuryForm.setAttribute('hidden', true)
-  confirmInjuryButton.setAttribute('hidden', true)
+  dom.get('injuryForm').setAttribute('hidden', true)
+  dom.get('confirmInjuryButton').setAttribute('hidden', true)
   const tempInjury = gameState.temporalInjury ?? getInjuryRecord({});
   gameRecord.push(tempInjury)
   temporalInjury = null
@@ -688,37 +685,37 @@ function confirmInjury() {
 }
 
 function openInjuryHelp(index) {
-  injuryHelpNodes.forEach((node) => {
+  dom.get('injuryHelp').forEach((node) => {
     node.setAttribute('hidden', true)
   })
   if (index !== undefined && index !== null) {
-    injuryHelpNodes[index].removeAttribute('hidden')
+    dom.get('injuryHelp')[index].removeAttribute('hidden')
   }
 }
 
 function updateSelectedInjury() {
-  const value = injuryRollSelect.value
+  const value = dom.get('injuryRollSelect').value
   openInjuryHelp(value)
 }
 
 function openPass() {
   closeEventButtons()
-  passForm.removeAttribute('hidden')
-  confirmPassButton.removeAttribute('hidden')
-  eventBackButton.removeAttribute('hidden')
+  dom.get('passForm').removeAttribute('hidden')
+  dom.get('confirmPassButton').removeAttribute('hidden')
+  dom.get('eventBackButton').removeAttribute('hidden')
   closeTouchdown()
   closeInjury()
   setActivePassTurnAndHalf()
 }
 
 function closePass() {
-  confirmPassButton.setAttribute('hidden', true)
-  passForm.setAttribute('hidden', true)
+  dom.get('confirmPassButton').setAttribute('hidden', true)
+  dom.get('passForm').setAttribute('hidden', true)
 }
 
 function confirmPass() {
-  passForm.setAttribute('hidden', true)
-  confirmPassButton.setAttribute('hidden', true)
+  dom.get('passForm').setAttribute('hidden', true)
+  dom.get('confirmPassButton').setAttribute('hidden', true)
   const tempPA = gameState.temporalPass ?? getPassRecord({});
   gameRecord.push(tempPA)
   temporalPass = null
@@ -728,23 +725,23 @@ function confirmPass() {
 }
 
 function closeEventButtons() {
-  eventButtons.setAttribute('hidden', true)
+  dom.get('eventButtons').setAttribute('hidden', true)
 }
 
 function openEventButtons() {
-  eventButtons.removeAttribute('hidden')
+  dom.get('eventButtons').removeAttribute('hidden')
 }
 
 function setGameRecordsContent() {
   if (gameRecord.length > 0) {
-    gameRecordsContainer.removeAttribute('hidden')
+    dom.get('gameRecordsContainer').removeAttribute('hidden')
   } else {
-    gameRecordsContainer.setAttribute('hidden', true)
+    dom.get('gameRecordsContainer').setAttribute('hidden', true)
   }
   removeChildren(gameRecordInsertionPoint)
   const content = getGameRecordContent()
   content.forEach((node) => {
-    gameRecordInsertionPoint.appendChild(node)
+    dom.get('gameRecordInsertionPoint').appendChild(node)
   })
 }
 
@@ -789,9 +786,9 @@ function getPassRecordContent(record, index) {
 
 function createDiv(content) {
   const node = document.createElement("div");
-  // let textNodes = []
-  // textNodes.push(document.createTextNode(content))
-  // textNodes.forEach((textNode) => {
+  // let textNode = []
+  // textNode.push(document.createTextNode(content))
+  // textNode.forEach((textNode) => {
   //   node.appendChild(textNode);
   // })
   node.innerHTML = content
@@ -800,9 +797,9 @@ function createDiv(content) {
 
 function createButton(content, onclickFn) {
   const node = document.createElement("button");
-  // let textNodes = []
-  // textNodes.push(document.createTextNode(content))
-  // textNodes.forEach((textNode) => {
+  // let textNode = []
+  // textNode.push(document.createTextNode(content))
+  // textNode.forEach((textNode) => {
   //   node.appendChild(textNode);
   // })
   node.innerHTML = content
@@ -817,10 +814,10 @@ function removeChildren(node) {
 }
 
 function onAttackingInjuryPlayerUpdate() {
-  if (attackingInjuryPlayerInput.checked) {
-    attackingInjuryPlayerForm.removeAttribute('hidden')
+  if (dom.get('attackingInjuryPlayerInput').checked) {
+    dom.get('attackingInjuryPlayerForm').removeAttribute('hidden')
   } else {
-    attackingInjuryPlayerForm.setAttribute('hidden', true)
+    dom.get('attackingInjuryPlayerForm').setAttribute('hidden', true)
   }
 }
 
