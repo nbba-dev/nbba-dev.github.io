@@ -38,7 +38,6 @@ const touchdownForm = document.querySelector('#touchdownForm')
 const injuryForm = document.querySelector('#injuryForm')
 const injuryHelpNodes = [...document.querySelectorAll('.injuryHelp')]
 const injuryRollSelect = document.querySelector('#injuryRollSelect')
-const pauseMore = document.querySelector('#pauseMore')
 const gameRecordInsertionPoint = document.querySelector('#gameRecordInsertionPoint')
 const attackingInjuryPlayerInput = document.querySelector('#attackingInjuryPlayerInput')
 const attackingInjuryPlayerForm = document.querySelector('#attackingInjuryPlayerForm')
@@ -50,6 +49,10 @@ const injuryHalf = document.querySelector('#injuryHalf')
 const injuryTurn = document.querySelector('#injuryTurn')
 const settingsModal = document.querySelector('#settingsModal')
 const eventModal = document.querySelector('#eventModal')
+const eventButtons = document.querySelector('#eventButtons')
+const confirmTouchdownButton = document.querySelector('#confirmTouchdownButton')
+const confirmInjuryButton = document.querySelector('#confirmInjuryButton')
+const eventBackButton = document.querySelector('#eventBackButton')
 
 const pages = [
   document.querySelector('#page2'),
@@ -562,7 +565,6 @@ function goBackToNuffle() {
 }
 
 function pauseGame() {
-  pauseMore.setAttribute('hidden', true)
   pauseClock()
   if (getActiveTurn() > 0) {
     gameEventOnPauseModal.removeAttribute('hidden')
@@ -578,6 +580,10 @@ function openSettingsModal() {
 }
 
 function openEventModal() {
+  eventBackButton.setAttribute('hidden', true)
+  openEventButtons()
+  closeTouchdown()
+  closeInjury()
   closeModal(4)
   openModal(8)
 }
@@ -592,50 +598,63 @@ function closeEventModal() {
 }
 
 function setActiveTouchdownTurnAndHalf() {
+  const activeTurn = getActiveTurn() || 1
   touchdownHalf.children[getActiveHalf() - 1].setAttribute('selected', true)
-  touchdownTurn.children[getActiveTurn() - 1].setAttribute('selected', true)
+  touchdownTurn.children[activeTurn - 1].setAttribute('selected', true)
 }
 
 function setActiveInjuryTurnAndHalf() {
+  const activeTurn = getActiveTurn() || 1
   injuryHalf.children[getActiveHalf() - 1].setAttribute('selected', true)
-  injuryTurn.children[getActiveTurn() - 1].setAttribute('selected', true)
+  injuryTurn.children[activeTurn - 1].setAttribute('selected', true)
 }
 
 function openTouchdown() {
+  closeEventButtons()
   touchdownForm.removeAttribute('hidden')
+  confirmTouchdownButton.removeAttribute('hidden')
+  eventBackButton.removeAttribute('hidden')
   closeInjury()
   setActiveTouchdownTurnAndHalf()
 }
 
 function closeTouchdown() {
-  injuryForm.removeAttribute('hidden')
+  confirmTouchdownButton.setAttribute('hidden', true)
+  touchdownForm.setAttribute('hidden', true)
 }
 
 function confirmTouchdown() {
   touchdownForm.setAttribute('hidden', true)
+  confirmTouchdownButton.setAttribute('hidden', true)
   const tempTd = gameState.temporalTouchdown ?? getTouchdownRecord({});
   gameRecord.push(tempTd)
   temporalTouchdown = null
+  openEventModal()
   setTouchdowns()
   setGameRecordsContent()
 }
 
 function openInjury() {
+  closeEventButtons()
   closeTouchdown()
-  touchdownForm.setAttribute('hidden', true)
+  injuryForm.removeAttribute('hidden')
+  confirmInjuryButton.removeAttribute('hidden')
+  eventBackButton.removeAttribute('hidden')
   setActiveInjuryTurnAndHalf()
 }
 
 function closeInjury() {
+  confirmInjuryButton.setAttribute('hidden', true)
   injuryForm.setAttribute('hidden', true)
 }
 
 function confirmInjury() {
   injuryForm.setAttribute('hidden', true)
-  pauseMore.removeAttribute('hidden')
+  confirmInjuryButton.setAttribute('hidden', true)
   const tempInjury = gameState.temporalInjury ?? getInjuryRecord({});
   gameRecord.push(tempInjury)
   temporalInjury = null
+  openEventModal()
   setGameRecordsContent()
 }
 
@@ -651,6 +670,14 @@ function openInjuryHelp(index) {
 function updateSelectedInjury() {
   const value = injuryRollSelect.value
   openInjuryHelp(value)
+}
+
+function closeEventButtons() {
+  eventButtons.setAttribute('hidden', true)
+}
+
+function openEventButtons() {
+  eventButtons.removeAttribute('hidden')
 }
 
 function setGameRecordsContent() {

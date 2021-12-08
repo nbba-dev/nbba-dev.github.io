@@ -6,7 +6,7 @@ body {
   font-size: 16px;
 }
 
-.page[hidden], .delay-container[hidden], .pause-turn-container[hidden], .pleaseRotate[hidden], .endgame-winner[hidden], .modalTable-rollForResultRow[hidden] {
+.page[hidden], .delay-container[hidden], .pause-turn-container[hidden], .pleaseRotate[hidden], .endgame-winner[hidden], .modalTable-rollForResultRow[hidden], .modal-body-onlyButtons[hidden] {
   display: none;
 }
 
@@ -397,7 +397,7 @@ body {
   box-shadow: rgb(0 0 0 / 50%) 1px 1px 5px 2px;
 }
 
-.modal-twoColumns {
+.twoColumns {
   width: 100%;
   display: grid;
   grid-template-columns: auto auto;
@@ -416,7 +416,9 @@ body {
   padding-top: 2rem;
 }
 
-.modal-bottomBtn:first-of-type {
+.modal-bottomBtn:first-of-type,
+/* Para cuando el botón de atrás está oculto, que el botón de continuar no tenga un margen izquierdo */
+.modal-bottomBtn:first-of-type[hidden] + .modal-bottomBtn {
   margin-left: 0;
 }
 
@@ -553,6 +555,10 @@ body {
   margin-bottom: 1rem;
 }
 
+.subtle > h2 {
+  margin: 0;
+}
+
 .modalTable-rollForResult {
   width: 100%;
 }
@@ -571,6 +577,13 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.modal-body-onlyButtons {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2rem;
 }
 
 @media (max-width: 1000px) {
