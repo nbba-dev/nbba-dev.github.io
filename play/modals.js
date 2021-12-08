@@ -43,15 +43,15 @@ function openInducementsModal() {
 }
 function openKickoffModal() {
   openModal(3)
-  hide(dom.get('kickoffCompleted'))
-  hide(dom.get('kickoffBackBtn'))
-  show(dom.get('kickoffCompletedStandalone'))
+  show(dom.get('kickoffCompleted'))
+  show(dom.get('kickoffBackBtn'))
+  hide(dom.get('kickoffCompletedStandalone'))
 }
 function openKickoffModalStandalone() {
   openModal(3)
-  hide(dom.get('kickoffCompletedStandalone'))
-  show(dom.get('kickoffCompleted'))
-  show(dom.get('kickoffBackBtn'))
+  show(dom.get('kickoffCompletedStandalone'))
+  hide(dom.get('kickoffCompleted'))
+  hide(dom.get('kickoffBackBtn'))
   kickoffModal.classList.add('disableOverlay')
 }
 function openPauseModal() {
