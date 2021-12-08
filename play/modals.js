@@ -8,6 +8,10 @@ addDomNodesByIds([
   'pauseModal',
   'settingsModal',
   'eventModal',
+  'outcomeModal',
+  'winningsModal',
+  'fanFactorModal',
+  'sppModal',
 ])
 
 const modals = [
@@ -20,6 +24,10 @@ const modals = [
   /* 6 */ dom.get('prePrayersToNuffleModal'),
   /* 7 */ dom.get('settingsModal'),
   /* 8 */ dom.get('eventModal'),
+  /* 9 */ dom.get('outcomeModal'),
+  /* 10 */ dom.get('winningsModal'),
+  /* 11 */ dom.get('fanFactorModal'),
+  /* 12 */ dom.get('sppModal'),
 ]
 
 function closeModal(modalIndex) {
@@ -75,6 +83,20 @@ function openEventModal() {
   closeInjury()
   closePauseModal()
 }
+function openOutcomeModal() {
+  openModal(9)
+}
+function openWinningsModal() {
+  openModal(10)
+}
+function openFanFactorModal() {
+  openModal(11)
+}
+function openSppModal() {
+  openModal(12)
+}
+
+
 
 function closeFameModal() {
   closeModal(0)
@@ -117,4 +139,16 @@ function closeEventModal() {
   closeTouchdown()
   closeInjury()
   closePauseModal()
+}
+function closeOutcomeModal() {
+  closeModal(9)
+}
+function closeWinningsModal() {
+  closeModal(10)
+}
+function closeFanFactorModal() {
+  closeModal(11)
+}
+function closeSppModal() {
+  closeModal(12)
 }

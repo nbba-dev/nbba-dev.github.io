@@ -291,7 +291,7 @@
     <div class="modal">
       <div class="modal-title subtle">
         <h3>1. Fans y Fama</h3>
-        <p>Abren las puertas del campo y empiezan a acudir los fans a las gradas.</p>
+        <p>Abren las puertas del campo y empiezan a acudir los fans a las gradas</p>
       </div>
       <div class="modal-body">
         <div class="twoColumns">
@@ -781,7 +781,7 @@
     <div class="modal">
       <div class="modal-title subtle">
         <h3>Cheering Fans - Prayers to Nuffle</h3>
-        <p>Los fans rezan a nuffle para que bendigan a su equipo.</p>
+        <p>Los fans rezan a nuffle para que bendigan a su equipo</p>
       </div>
       <div class="modal-body modal-rollForResult">
         <div class="dice-roll-container">
@@ -951,6 +951,58 @@
     </div>
   </div>
 
+  <div class="modal-overlay" id="outcomeModal" hidden>
+    <div class="modal">
+      <div class="modal-title subtle">
+        <h3>1. Outcome</h3>
+        <p>Los árbitros ponen en común lo ocurrido durante el partido</p>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-controls">
+        <button class="modal-bottomBtn modal-continueBtn" onclick="completedOutcome()">Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="winningsModal" hidden>
+    <div class="modal">
+      <div class="modal-title subtle">
+        <h3>2. Winnings</h3>
+        <p>Las marcas apoyan a los equipos favoritos a golpe de talonario</p>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-controls">
+        <button class="modal-bottomBtn modal-continueBtn" onclick="completedWinnings()">Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="fanFactorModal" hidden>
+    <div class="modal">
+      <div class="modal-title subtle">
+        <h3>3. Update fan factor</h3>
+        <p>Los hinchas aplauden el espectáculo recibido</p>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-controls">
+        <button class="modal-bottomBtn modal-continueBtn" onclick="completedFanFactor()">Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="sppModal" hidden>
+    <div class="modal">
+      <div class="modal-title subtle">
+        <h3>4. Player Advancements (SPP)</h3>
+        <p>Los jugadores aprenden y crecen de la experiencia partido a partido</p>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-controls">
+        <button class="modal-bottomBtn modal-continueBtn" onclick="completedSPP()">Continuar</button>
+      </div>
+    </div>
+  </div>
+
   <div class="page page2" id="page2">
     <div class="score">
       <div class="team1-score-name team-score-name">
@@ -1026,7 +1078,7 @@
         Empate
       </div>
       <div class="endgameShowRecord">
-        <button onclick="showRecord()">Post partido</button>
+        <button onclick="startAfterMatch()">Post partido</button>
       </div>
       <div class="endgame-logos">
         <div class="endgame-winner" id="endgameTeam1" hidden>

@@ -104,7 +104,7 @@ function init() {
     initClock(params)
     if (gameConfig.guided === 'on') {
       // TODO - REMOVE
-      openFameModal(0)
+      // openFameModal(0)
     }
   } else {
     alert('ERROR')
@@ -530,6 +530,26 @@ function goBackToInducements() {
 function goBackToNuffle() {
   closeKickoffModal()
   openPrePrayersToNuffleModal()
+}
+
+function startAfterMatch() {
+  stopConfetti()
+  openOutcomeModal()
+}
+function completedOutcome() {
+  closeOutcomeModal()
+  openWinningsModal()
+}
+function completedWinnings() {
+  closeWinningsModal()
+  openFanFactorModal()
+}
+function completedFanFactor() {
+  closeFanFactorModal()
+  openSppModal()
+}
+function completedSPP() {
+  closeSppModal()
 }
 
 function pauseGame() {
