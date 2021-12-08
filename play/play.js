@@ -6,7 +6,7 @@ addDomNodesByIds([
   'team2TurnTurn',
   'team1TurnTurn',
   'half',
-  'pause-turn-container',
+  'pauseTurnContainer',
   'team1Name',
   'team1Logo',
   'team2Name',
@@ -103,7 +103,8 @@ function init() {
     showPage2()
     initClock(params)
     if (gameConfig.guided === 'on') {
-      openFameModal(0)
+      // TODO - REMOVE
+      // openFameModal(0)
     }
   } else {
     alert('ERROR')
@@ -178,7 +179,6 @@ function clickOnTurn1() {
 
   if (firstTurnInTheGame) {
     gameState.hasStarted = true
-    startGame()
     startTurn1()
   } else if (firstTurnInSecondHalf && !gameState.isTeam1turn) {
     gameState.hasStarted = true
@@ -196,7 +196,6 @@ function clickOnTurn2() {
 
   if (firstTurnInTheGame) {
     gameState.hasStarted = true
-    startGame()
     startTurn2()
   } else if (firstTurnInSecondHalf && gameState.isTeam1turn) {
     gameState.hasStarted = true
@@ -231,17 +230,17 @@ function finishedHalf(startingTeam) {
 
 function finishGame() {
   gameState.endedGame = true
-  show(endgameOverlayNode)
+  show(dom.get('endgameOverlay'))
   if (gameState.team1.score > gameState.team2.score) {
-    endgameStateNode.innerHTML = 'Ganador'
-    show(endgameTeam1Node)
+    dom.get('endgameState').innerHTML = 'Ganador'
+    show(dom.get('endgameTeam1'))
   } else if (gameState.team1.score < gameState.team2.score) {
-    endgameStateNode.innerHTML = 'Ganador'
-    show(endgameTeam2Node)
+    dom.get('endgameState').innerHTML = 'Ganador'
+    show(dom.get('endgameTeam2'))
   } else {
-    endgameStateNode.innerHTML = 'Empate'
-    show(endgameTeam1Node)
-    show(endgameTeam2Node)
+    dom.get('endgameState').innerHTML = 'Empate'
+    show(dom.get('endgameTeam1'))
+    show(dom.get('endgameTeam2'))
   }
   startConfetti()
 }
@@ -251,24 +250,20 @@ function initClock(params) {
   initTeam2()
 }
 
-function startGame() {
-  hide(dom.get('pauseTurnContainer'))
-}
-
 function initTeam1() {
   const team = gameState.team1
   dom.get('team1Logo').forEach((a) => a.src = team.logo)
   dom.get('team1Name').forEach((a) => a.innerHTML = team.name)
-  // team1ScoreNameNode.innerHTML = team.name
-  // team1ScoreInputNode.value = '0'
+  // dom.get('team1ScoreName').innerHTML = team.name
+  // dom.get('team1ScoreInput').value = '0'
 }
 
 function initTeam2() {
   const team = gameState.team2
   dom.get('team2Logo').forEach((a) => a.src = team.logo)
   dom.get('team2Name').forEach((a) => a.innerHTML = team.name)
-  // team2ScoreNameNode.innerHTML = team.name
-  // team2ScoreInputNode.value = '0'
+  // dom.get('team2ScoreName').innerHTML = team.name
+  // dom.get('team2ScoreInput').value = '0'
 }
 
 function applyClockLogic(timeDiff) {
@@ -313,30 +308,30 @@ function setTouchdowns() {
 }
 
 function activateTeam1() {
-  team1TurnNode.classList.remove('notActivePlayer')
-  team1TurnNode.classList.add('activePlayer')
-  team2TurnNode.classList.remove('activePlayer')
-  team2TurnNode.classList.add('notActivePlayer')
+  dom.get('team1Turn').classList.remove('notActivePlayer')
+  dom.get('team1Turn').classList.add('activePlayer')
+  dom.get('team2Turn').classList.remove('activePlayer')
+  dom.get('team2Turn').classList.add('notActivePlayer')
 }
 
 function activateTeam2() {
-  team2TurnNode.classList.remove('notActivePlayer')
-  team2TurnNode.classList.add('activePlayer')
-  team1TurnNode.classList.remove('activePlayer')
-  team1TurnNode.classList.add('notActivePlayer')
+  dom.get('team2Turn').classList.remove('notActivePlayer')
+  dom.get('team2Turn').classList.add('activePlayer')
+  dom.get('team1Turn').classList.remove('activePlayer')
+  dom.get('team1Turn').classList.add('notActivePlayer')
 }
 
 function setTurnover() {
   if (gameState.isTeam1turn) {
-    team1TurnNode.classList.add('turnover')
+    dom.get('team1Turn').classList.add('turnover')
   } else {
-    team2TurnNode.classList.add('turnover')
+    dom.get('team2Turn').classList.add('turnover')
   }
 }
 
 function resetTurnover() {
-  team1TurnNode.classList.remove('turnover')
-  team2TurnNode.classList.remove('turnover')
+  dom.get('team1Turn').classList.remove('turnover')
+  dom.get('team2Turn').classList.remove('turnover')
 }
 
 function goFullscreen() {
@@ -432,9 +427,9 @@ function getRawSeconds(duration) {
 
 function triggerDelay() {
   return new Promise((resolve, reject) => {
-    show(delayContainerNode)
+    show(dom.get('delayContainer'))
     setTimeout(() => {
-      hide(delayContainerNode)
+      hide(dom.get('delayContainer'))
       turn2Audio.play()
       resolve()
     }, Number(gameConfig.delay) * 1000)
