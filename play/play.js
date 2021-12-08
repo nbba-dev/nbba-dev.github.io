@@ -1,7 +1,7 @@
 
 // state
 
-const dom = addDomNodesByIds([
+addDomNodesByIds([
   'pleaseRotate',
   'team2TurnTurn',
   'team1TurnTurn',
@@ -22,13 +22,6 @@ const dom = addDomNodesByIds([
   'endgameTeam2',
   'endgameState',
   'endgameOverlay',
-  'fameModal',
-  'weatherModal',
-  'inducementsModal',
-  'kickoffModal',
-  'nuffleModal',
-  'prePrayersToNuffleModal',
-  'pauseModal',
   'weatherValue',
   'weather',
   'touchdownForm',
@@ -42,8 +35,6 @@ const dom = addDomNodesByIds([
   'touchdownTurn',
   'injuryHalf',
   'injuryTurn',
-  'settingsModal',
-  'eventModal',
   'eventButtons',
   'confirmTouchdownButton',
   'confirmInjuryButton',
@@ -60,18 +51,6 @@ const dom = addDomNodesByIds([
 const pages = [
   document.querySelector('#page2'),
 ];
-
-const modals = [
-  /* 0 */ dom.get('fameModal'),
-  /* 1 */ dom.get('weatherModal'),
-  /* 2 */ dom.get('inducementsModal'),
-  /* 3 */ dom.get('kickoffModal'),
-  /* 4 */ dom.get('pauseModal'),
-  /* 5 */ dom.get('nuffleModal'),
-  /* 6 */ dom.get('prePrayersToNuffleModal'),
-  /* 7 */ dom.get('settingsModal'),
-  /* 8 */ dom.get('eventModal'),
-]
 
 let gameConfig;
 let gameState = {
@@ -124,7 +103,7 @@ function init() {
     showPage2()
     initClock(params)
     if (gameConfig.guided === 'on') {
-      openModal(0)
+      openFameModal(0)
     }
   } else {
     alert('ERROR')
@@ -132,8 +111,8 @@ function init() {
 }
 
 function showPage2() {
-  pages[0].removeAttribute('hidden')
-  dom.get('pleaseRotate').removeAttribute('hidden')
+  show(pages[0])
+  hide(dom.get('pleaseRotate'))
 }
 
 function reset(){
@@ -149,7 +128,7 @@ function keepGoing() {
   }
   closeTouchdown()
   closeInjury()
-  closeModal(4)
+  closePauseModal()
 }
 
 function startTurn1() {
@@ -252,17 +231,17 @@ function finishedHalf(startingTeam) {
 
 function finishGame() {
   gameState.endedGame = true
-  endgameOverlayNode.removeAttribute('hidden')
+  show(endgameOverlayNode)
   if (gameState.team1.score > gameState.team2.score) {
     endgameStateNode.innerHTML = 'Ganador'
-    endgameTeam1Node.removeAttribute('hidden')
+    show(endgameTeam1Node)
   } else if (gameState.team1.score < gameState.team2.score) {
     endgameStateNode.innerHTML = 'Ganador'
-    endgameTeam2Node.removeAttribute('hidden')
+    show(endgameTeam2Node)
   } else {
     endgameStateNode.innerHTML = 'Empate'
-    endgameTeam1Node.removeAttribute('hidden')
-    endgameTeam2Node.removeAttribute('hidden')
+    show(endgameTeam1Node)
+    show(endgameTeam2Node)
   }
   startConfetti()
 }
@@ -273,7 +252,7 @@ function initClock(params) {
 }
 
 function startGame() {
-  dom.get('pauseTurnContainer').removeAttribute('hidden')
+  hide(dom.get('pauseTurnContainer'))
 }
 
 function initTeam1() {
@@ -453,9 +432,9 @@ function getRawSeconds(duration) {
 
 function triggerDelay() {
   return new Promise((resolve, reject) => {
-    delayContainerNode.removeAttribute('hidden')
+    show(delayContainerNode)
     setTimeout(() => {
-      delayContainerNode.setAttribute('hidden', true)
+      hide(delayContainerNode)
       turn2Audio.play()
       resolve()
     }, Number(gameConfig.delay) * 1000)
@@ -468,26 +447,14 @@ init();
 
 
 
-
-
-function closeModal(modalIndex) {
-  modals[modalIndex].setAttribute('hidden', true)
-  pages[0].classList.remove('modal-active')
-}
-
-function openModal(modalIndex) {
-  modals[modalIndex].removeAttribute('hidden')
-  pages[0].classList.add('modal-active')
-}
-
 function skipPregame() {
-  closeModal(0)
+  closeFameModal()
 }
 
 
 function completedFame() {
-  closeModal(0)
-  openModal(1)
+  closeFameModal()
+  openWeatherModal()
 }
 
 function completedWeather() {
@@ -500,15 +467,15 @@ function completedWeather() {
     // else: '🌤'
   }
   dom.get('weather').innerText = weatherDict[valueForWeather] || ''
-  dom.get('weather').removeAttribute('hidden')
-  closeModal(1)
-  openModal(2)
+  hide(dom.get('weather'))
+  closeWeatherModal()
+  openInducementsModal()
 }
 
 function kickoffChangeWeather() {
   completedKickoff()
   kickoffModal.classList.remove('disableOverlay')
-  openModal(1)
+  openWeatherModal()
 }
 
 function kickoffTimeout() {
@@ -526,91 +493,53 @@ function kickoffTimeout() {
 }
 
 function completedKickoff() {
-  closeModal(3)
+  closeKickoffModal()
 }
 
 function completedKickoffStandalone() {
-  closeModal(3)
-  openModal(4)
+  closeKickoffModalStandalone()
+  openPauseModal()
 }
 
 function kickoffNuffle() {
   completedKickoff()
-  openModal(5)
+  openNuffleModal()
 }
 
 function completedNuffle() {
-  closeModal(5)
+  closeNuffleModal()
 }
 
 function completedInducements() {
-  closeModal(2)
-  openModal(6)
+  closeInducementsModal()
+  openPrePrayersToNuffleModal()
 }
 
 function completedPrePrayersToNuffle() {
-  closeModal(6)
+  closePrePrayersToNuffleModal()
   openKickoffModal()
 }
 
-function openKickoffModal() {
-  dom.get('kickoffCompleted').removeAttribute('hidden')
-  dom.get('kickoffCompletedStandalone').setAttribute('hidden', true)
-  dom.get('kickoffBackBtn').removeAttribute('hidden')
-  openModal(3)
-}
-
-function openKickoffModalStandalone() {
-  dom.get('kickoffCompletedStandalone').removeAttribute('hidden')
-  dom.get('kickoffCompleted').setAttribute('hidden', true)
-  dom.get('kickoffBackBtn').setAttribute('hidden', true)
-  kickoffModal.classList.add('disableOverlay')
-  openModal(3)
-}
-
 function goBackToFame() {
-  closeModal(1)
-  openModal(0)
+  closeWeatherModal()
+  openFameModal(0)
 }
 function goBackToWeather() {
-  closeModal(2)
-  openModal(1)
+  closeInducementsModal()
+  openWeatherModal()
 }
 function goBackToInducements() {
-  closeModal(6)
-  openModal(2)
+  closePrePrayersToNuffleModal()
+  openInducementsModal()
 }
 function goBackToNuffle() {
-  closeModal(3)
-  openModal(6)
+  closeKickoffModal()
+  openPrePrayersToNuffleModal()
 }
 
 function pauseGame() {
   pauseClock()
-  openModal(4)
-}
-
-function openSettingsModal() {
-  closeModal(4)
-  openModal(7)
-}
-
-function openEventModal() {
-  dom.get('eventBackButton').setAttribute('hidden', true)
-  openEventButtons()
-  closeTouchdown()
-  closeInjury()
-  closeModal(4)
-  openModal(8)
-}
-
-function closeSettingsModal() {
-  closeModal(7)
-  keepGoing()
-}
-function closeEventModal() {
-  closeModal(8)
-  keepGoing()
+  openPauseModal()
 }
 
 function setActiveTouchdownTurnAndHalf() {
@@ -633,27 +562,27 @@ function setActivePassTurnAndHalf() {
 
 function openTouchdown() {
   closeEventButtons()
-  dom.get('touchdownForm').removeAttribute('hidden')
-  dom.get('confirmTouchdownButton').removeAttribute('hidden')
-  dom.get('eventBackButton').removeAttribute('hidden')
+  hide(dom.get('touchdownForm'))
+  hide(dom.get('confirmTouchdownButton'))
+  hide(dom.get('eventBackButton'))
   closeInjury()
   closePass()
   setActiveTouchdownTurnAndHalf()
 }
 
 function closeTouchdown() {
-  dom.get('confirmTouchdownButton').setAttribute('hidden', true)
-  dom.get('touchdownForm').setAttribute('hidden', true)
+  show(dom.get('confirmTouchdownButton'))
+  show(dom.get('touchdownForm'))
 }
 
 function confirmTouchdown() {
-  dom.get('touchdownForm').setAttribute('hidden', true)
-  dom.get('confirmTouchdownButton').setAttribute('hidden', true)
+  show(dom.get('touchdownForm'))
+  show(dom.get('confirmTouchdownButton'))
   const tempTd = gameState.temporalTouchdown ?? getTouchdownRecord({});
   gameRecord.push(tempTd)
   temporalTouchdown = null
-  closeModal(8)
-  openModal(4)
+  closeEventModal()
+  openPauseModal()
   setTouchdowns()
   setGameRecordsContent()
 }
@@ -662,34 +591,34 @@ function openInjury() {
   closeEventButtons()
   closeTouchdown()
   closePass()
-  dom.get('injuryForm').removeAttribute('hidden')
-  dom.get('confirmInjuryButton').removeAttribute('hidden')
-  dom.get('eventBackButton').removeAttribute('hidden')
+  hide(dom.get('injuryForm'))
+  hide(dom.get('confirmInjuryButton'))
+  hide(dom.get('eventBackButton'))
   setActiveInjuryTurnAndHalf()
 }
 
 function closeInjury() {
-  dom.get('confirmInjuryButton').setAttribute('hidden', true)
-  dom.get('injuryForm').setAttribute('hidden', true)
+  show(dom.get('confirmInjuryButton'))
+  show(dom.get('injuryForm'))
 }
 
 function confirmInjury() {
-  dom.get('injuryForm').setAttribute('hidden', true)
-  dom.get('confirmInjuryButton').setAttribute('hidden', true)
+  show(dom.get('injuryForm'))
+  show(dom.get('confirmInjuryButton'))
   const tempInjury = gameState.temporalInjury ?? getInjuryRecord({});
   gameRecord.push(tempInjury)
   temporalInjury = null
-  closeModal(8)
-  openModal(4)
+  closeEventModal()
+  openPauseModal()
   setGameRecordsContent()
 }
 
 function openInjuryHelp(index) {
   dom.get('injuryHelp').forEach((node) => {
-    node.setAttribute('hidden', true)
+    hide(node)
   })
   if (index !== undefined && index !== null) {
-    dom.get('injuryHelp')[index].removeAttribute('hidden')
+    show(dom.get('injuryHelp')[index])
   }
 }
 
@@ -700,43 +629,43 @@ function updateSelectedInjury() {
 
 function openPass() {
   closeEventButtons()
-  dom.get('passForm').removeAttribute('hidden')
-  dom.get('confirmPassButton').removeAttribute('hidden')
-  dom.get('eventBackButton').removeAttribute('hidden')
+  hide(dom.get('passForm'))
+  hide(dom.get('confirmPassButton'))
+  hide(dom.get('eventBackButton'))
   closeTouchdown()
   closeInjury()
   setActivePassTurnAndHalf()
 }
 
 function closePass() {
-  dom.get('confirmPassButton').setAttribute('hidden', true)
-  dom.get('passForm').setAttribute('hidden', true)
+  show(dom.get('confirmPassButton'))
+  show(dom.get('passForm'))
 }
 
 function confirmPass() {
-  dom.get('passForm').setAttribute('hidden', true)
-  dom.get('confirmPassButton').setAttribute('hidden', true)
+  show(dom.get('passForm'))
+  show(dom.get('confirmPassButton'))
   const tempPA = gameState.temporalPass ?? getPassRecord({});
   gameRecord.push(tempPA)
   temporalPass = null
-  closeModal(8)
-  openModal(4)
+  closeEventModal()
+  openPauseModal()
   setGameRecordsContent()
 }
 
 function closeEventButtons() {
-  dom.get('eventButtons').setAttribute('hidden', true)
+  show(dom.get('eventButtons'))
 }
 
 function openEventButtons() {
-  dom.get('eventButtons').removeAttribute('hidden')
+  hide(dom.get('eventButtons'))
 }
 
 function setGameRecordsContent() {
   if (gameRecord.length > 0) {
-    dom.get('gameRecordsContainer').removeAttribute('hidden')
+    hide(dom.get('gameRecordsContainer'))
   } else {
-    dom.get('gameRecordsContainer').setAttribute('hidden', true)
+    show(dom.get('gameRecordsContainer'))
   }
   removeChildren(gameRecordInsertionPoint)
   const content = getGameRecordContent()
@@ -815,14 +744,14 @@ function removeChildren(node) {
 
 function onAttackingInjuryPlayerUpdate() {
   if (dom.get('attackingInjuryPlayerInput').checked) {
-    dom.get('attackingInjuryPlayerForm').removeAttribute('hidden')
+    hide(dom.get('attackingInjuryPlayerForm'))
   } else {
-    dom.get('attackingInjuryPlayerForm').setAttribute('hidden', true)
+    show(dom.get('attackingInjuryPlayerForm'))
   }
 }
 
 function showRecord() {
-  openModal(4)
+  openPauseModal()
 }
 
 function getDomArr(ids) {
@@ -847,12 +776,12 @@ function updateSelectedWeather(val) {
   }
 
   rows.forEach((row, index) => {
-    row.setAttribute('hidden', true)
+    hide(row)
     dict[index + 1] = row
   })
 
   const rolledValue = Number(val);
-  dict[rolledValue]?.removeAttribute('hidden')
+  show(dict[rolledValue])
 }
 
 function updateSelectedKickoff(val) {
@@ -875,12 +804,12 @@ function updateSelectedKickoff(val) {
   }
 
   rows.forEach((row, index) => {
-    row.setAttribute('hidden', true)
+    hide(row)
     dict[index + 1] = row
   })
 
   const rolledValue = Number(val);
-  dict[rolledValue]?.removeAttribute('hidden')
+  show(dict[rolledValue])
 }
 
 function updateSelectedNuffle(val) {
@@ -908,10 +837,10 @@ function updateSelectedNuffle(val) {
   }
 
   rows.forEach((row, index) => {
-    row.setAttribute('hidden', true)
+    hide(row)
     dict[index + 1] = row
   })
 
   const rolledValue = Number(val);
-  dict[rolledValue]?.removeAttribute('hidden')
+  show(dict[rolledValue])
 }

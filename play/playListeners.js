@@ -1,6 +1,6 @@
 /* fame */
 (() => {
-  const dom = addDomNodesByIds([
+  addDomNodesByIds([
     'fanFactorTeam1',
     'fansRollTeam1',
     'fanFactorTeam2',
@@ -28,7 +28,7 @@
 
 /* Touchdown */
 (() => {
-  const dom = addDomNodesByIds([
+  addDomNodesByIds([
     'touchdownTeam',
     'touchdownPlayer',
     'touchdownTurn',
@@ -52,7 +52,7 @@
 
 /* Injury */
 (() => {
-  const dom = addDomNodesByIds([
+  addDomNodesByIds([
     'injuryHurtTeam',
     'injuryHurtPlayer',
     'attackingInjuryPlayerInput',
@@ -95,7 +95,7 @@
 
 /* Pass */
 (() => {
-  const dom = addDomNodesByIds([
+  addDomNodesByIds([
     'passTeam',
     'passPlayer',
     'passTurn',

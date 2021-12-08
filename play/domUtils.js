@@ -1,7 +1,7 @@
 /* Pre - setup variables and structs */
-const addDomNodesByIds = (ids) => {
-  const dom = new Map()
+const dom = new Map()
 
+const addDomNodesByIds = (ids) => {
   ids.forEach((id) => {
     const nodes = [...document.querySelectorAll(`#${id}`)]
     if (nodes.length === 0) {
@@ -13,8 +13,6 @@ const addDomNodesByIds = (ids) => {
       dom.set(id, nodes)
     }
   })
-
-  return dom
 };
 
 const hide = (node) => {
