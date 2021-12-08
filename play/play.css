@@ -418,7 +418,8 @@ body {
 
 .modal-bottomBtn:first-of-type,
 /* Para cuando el botón de atrás está oculto, que el botón de continuar no tenga un margen izquierdo */
-.modal-bottomBtn:first-of-type[hidden] + .modal-bottomBtn {
+.modal-bottomBtn:first-of-type[hidden] + .modal-bottomBtn,
+.modal-bottomBtn:first-of-type[hidden] + .modal-bottomBtn[hidden] + .modal-bottomBtn {
   margin-left: 0;
 }
 
@@ -588,6 +589,10 @@ body {
 
 .gameRecordsContainer {
   width: 100%;
+}
+
+.modal-overlay.disableOverlay {
+  background-color: transparent;
 }
 
 @media (max-width: 1000px) {

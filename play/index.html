@@ -49,9 +49,7 @@
       <div class="modal-controls">
         <button class="modal-bottomBtn" onclick="openSettingsModal()">Ajustes</button>
         <button class="modal-bottomBtn" onclick="openEventModal()">Nuevo suceso</button>
-        <button class="modal-bottomBtn" onclick="openKickoffModal()">Tabla Kickoff</button>
-        <button class="modal-bottomBtn" onclick="reset()">Nuevo partido</button>
-        <button class="modal-bottomBtn" onclick="goFullscreen()">Fullscreen</button>
+        <button class="modal-bottomBtn" onclick="openKickoffModalStandalone()">Tabla Kickoff</button>
         <button class="modal-bottomBtn modal-continueBtn" onclick="keepGoing()">Continuar</button>
       </div>
     </div>
@@ -59,8 +57,14 @@
 
   <div class="modal-overlay" id="settingsModal" hidden>
     <div class="modal">
+      <div class="modal-title subtle">
+        <h3>Ajustes</h3>
+      </div>
       <div class="modal-body">
-        <h2>Ajustes</h2>
+        <div class="modal-body-onlyButtons">
+          <button onclick="reset()">Nuevo partido</button>
+          <button onclick="goFullscreen()">Toggle fullscreen</button>
+        </div>
       </div>
       <div class="modal-controls">
         <button class="modal-bottomBtn modal-continueBtn" onclick="closeSettingsModal()">Cerrar</button>
@@ -434,7 +438,7 @@
         </div>
       </div>
       <div class="modal-controls">
-        <button class="modal-bottomBtn" onclick="goBackToFame()"><</button>
+        <button class="modal-bottomBtn" onclick="goBackToFame()">Atrás</button>
         <button class="modal-bottomBtn modal-continueBtn" onclick="completedWeather()">Continuar</button>
       </div>
     </div>
@@ -606,7 +610,7 @@
           </div>
         </div>
         <div class="modal-controls">
-          <button class="modal-bottomBtn" onclick="goBackToWeather()"><</button>
+          <button class="modal-bottomBtn" onclick="goBackToWeather()">Atrás</button>
         <button class="modal-bottomBtn modal-continueBtn" onclick="completedInducements()">Continuar</button>
         </div>
       </div>
@@ -623,7 +627,7 @@
         <button onclick="kickoffNuffle()">Go to Nuffle table</button>
       </div>
       <div class="modal-controls">
-        <button class="modal-bottomBtn" onclick="goBackToInducements()"><</button>
+        <button class="modal-bottomBtn" onclick="goBackToInducements()">Atrás</button>
         <button class="modal-bottomBtn modal-continueBtn" onclick="completedPrePrayersToNuffle()">Continuar</button>
       </div>
     </div>
@@ -766,8 +770,9 @@
         </div>
       </div>
       <div class="modal-controls">
-        <button class="modal-bottomBtn" onclick="goBackToNuffle()"><</button>
-        <button class="modal-bottomBtn modal-continueBtn" onclick="completedKickoff()">Continuar</button>
+        <button class="modal-bottomBtn" id="kickoffBackBtn" onclick="goBackToNuffle()">Atrás</button>
+        <button class="modal-bottomBtn modal-continueBtn" id="kickoffCompleted" onclick="completedKickoff()" hidden>Continuar</button>
+        <button class="modal-bottomBtn modal-continueBtn" id="kickoffCompletedStandalone" onclick="completedKickoffStandalone()" hidden>Continuar</button>
       </div>
     </div>
   </div>

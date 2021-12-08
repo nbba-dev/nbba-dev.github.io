@@ -56,6 +56,9 @@ const passForm = document.querySelector('#passForm')
 const passHalf = document.querySelector('#passHalf')
 const passTurn = document.querySelector('#passTurn')
 const confirmPassButton = document.querySelector('#confirmPassButton')
+const kickoffBackBtn = document.querySelector('#kickoffBackBtn')
+const kickoffCompleted = document.querySelector('#kickoffCompleted')
+const kickoffCompletedStandalone = document.querySelector('#kickoffCompletedStandalone')
 
 const pages = [
   document.querySelector('#page2'),
@@ -234,7 +237,7 @@ function finishedHalf(startingTeam) {
   team2TurnTurnNode.innerHTML = gameState.team2.turn
 
   if (!gameState.isSecondPart) {
-    openModal(3)
+    openKickoffModal()
     if (startingTeam === 'team1') {
       team2TurnTimeNode.innerHTML = 'Comienza segunda parte'
     } else {
@@ -507,6 +510,7 @@ function completedWeather() {
 
 function kickoffChangeWeather() {
   completedKickoff()
+  kickoffModal.classList.remove('disableOverlay')
   openModal(1)
 }
 
@@ -528,6 +532,11 @@ function completedKickoff() {
   closeModal(3)
 }
 
+function completedKickoffStandalone() {
+  closeModal(3)
+  openModal(4)
+}
+
 function kickoffNuffle() {
   completedKickoff()
   openModal(5)
@@ -544,10 +553,21 @@ function completedInducements() {
 
 function completedPrePrayersToNuffle() {
   closeModal(6)
-  openModal(3)
+  openKickoffModal()
 }
 
 function openKickoffModal() {
+  kickoffCompleted.removeAttribute('hidden')
+  kickoffCompletedStandalone.setAttribute('hidden', true)
+  kickoffBackBtn.removeAttribute('hidden')
+  openModal(3)
+}
+
+function openKickoffModalStandalone() {
+  kickoffCompletedStandalone.removeAttribute('hidden')
+  kickoffCompleted.setAttribute('hidden', true)
+  kickoffBackBtn.setAttribute('hidden', true)
+  kickoffModal.classList.add('disableOverlay')
   openModal(3)
 }
 
