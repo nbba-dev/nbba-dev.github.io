@@ -586,6 +586,10 @@ body {
   grid-gap: 2rem;
 }
 
+.gameRecordsContainer {
+  width: 100%;
+}
+
 @media (max-width: 1000px) {
   :root {
     font-size: 10px;

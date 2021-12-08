@@ -108,3 +108,27 @@ const addDomNodesByIds = (ids) => {
   dom.get('injuryHurtingPlayer').addEventListener('change', updateTempInjury)
   dom.get('injuryRollSelect').addEventListener('change', updateTempInjury)
 })();
+
+
+/* Pass */
+(() => {
+  addDomNodesByIds([
+    'passTeam',
+    'passPlayer',
+    'passTurn',
+    'passHalf',
+  ])
+
+  function updateTempPass() {
+    const params = {
+      team: Number(dom.get('passTeam').value),
+      player: Number(dom.get('passPlayer').value),
+      turn: dom.get('passTurn').value,
+      half: dom.get('passHalf').value,
+    }
+    gameState.temporalPass = getPassRecord(params)
+  }
+
+  dom.get('passTeam').addEventListener('change', updateTempPass)
+  dom.get('passPlayer').addEventListener('change', updateTempPass)
+})();

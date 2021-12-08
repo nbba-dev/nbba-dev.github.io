@@ -42,11 +42,8 @@
     <div class="modal">
       <div class="modal-body pause-modal-body">
         <h3>Partido en pausa</h3>
-        <div id="gameEventOnPauseModal">
-          <div id="gameRecordsContainer" hidden>
-            <h3>Historia</h3>
-            <div id="gameRecordInsertionPoint" class="gameRecordGrid"></div>
-          </div>
+        <div id="gameRecordsContainer" class="gameRecordsContainer" hidden>
+          <div id="gameRecordInsertionPoint" class="gameRecordGrid"></div>
         </div>
       </div>
       <div class="modal-controls">
@@ -231,12 +228,57 @@
             </div>
           </div>
         </div>
+        <div id="passForm" class="pauseForm" hidden>
+          <div>
+            <div>
+              <select name="" id="passHalf">
+                <option value="1">Primera parte</option>
+                <option value="2">Segunda parte</option>
+              </select>
+            </div>
+            <div>
+              <select name="" id="passTurn">
+                <option value="1">Turno 1</option>
+                <option value="2">Turno 2</option>
+                <option value="3">Turno 3</option>
+                <option value="4">Turno 4</option>
+                <option value="5">Turno 5</option>
+                <option value="6">Turno 6</option>
+                <option value="7">Turno 7</option>
+                <option value="8">Turno 8</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            Equipo:
+            <select name="" id="passTeam">
+              <option value="1">Team1</option>
+              <option value="2">Team2</option>
+            </select>
+          </div>
+          <div>Dorsal:
+            <select name="" id="passPlayer">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+            </select>
+          </div>
+        </div>
       </div>
       <div class="modal-controls">
         <button id="eventBackButton" class="modal-bottomBtn" onclick="openEventModal()">Atrás</button>
         <button class="modal-bottomBtn modal-continueBtn" onclick="closeEventModal()">Cerrar</button>
         <button id="confirmInjuryButton" class="modal-bottomBtn" onclick="confirmInjury()" disabled hidden>Confirmar herida</button>
         <button id="confirmTouchdownButton" class="modal-bottomBtn" onclick="confirmTouchdown()" hidden>Confirmar touchdown</button>
+        <button id="confirmPassButton" class="modal-bottomBtn" onclick="confirmPass()" hidden>Confirmar pase</button>
       </div>
     </div>
   </div>

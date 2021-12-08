@@ -41,7 +41,6 @@ const injuryRollSelect = document.querySelector('#injuryRollSelect')
 const gameRecordInsertionPoint = document.querySelector('#gameRecordInsertionPoint')
 const attackingInjuryPlayerInput = document.querySelector('#attackingInjuryPlayerInput')
 const attackingInjuryPlayerForm = document.querySelector('#attackingInjuryPlayerForm')
-const gameEventOnPauseModal = document.querySelector('#gameEventOnPauseModal')
 const gameRecordsContainer = document.querySelector('#gameRecordsContainer')
 const touchdownHalf = document.querySelector('#touchdownHalf')
 const touchdownTurn = document.querySelector('#touchdownTurn')
@@ -53,21 +52,25 @@ const eventButtons = document.querySelector('#eventButtons')
 const confirmTouchdownButton = document.querySelector('#confirmTouchdownButton')
 const confirmInjuryButton = document.querySelector('#confirmInjuryButton')
 const eventBackButton = document.querySelector('#eventBackButton')
+const passForm = document.querySelector('#passForm')
+const passHalf = document.querySelector('#passHalf')
+const passTurn = document.querySelector('#passTurn')
+const confirmPassButton = document.querySelector('#confirmPassButton')
 
 const pages = [
   document.querySelector('#page2'),
 ];
 
 const modals = [
-  fameModal,
-  weatherModal,
-  inducementsModal,
-  kickoffModal,
-  pauseModal,
-  nuffleModal,
-  prePrayersToNuffleModal,
-  settingsModal,
-  eventModal,
+  /* 0 */ fameModal,
+  /* 1 */ weatherModal,
+  /* 2 */ inducementsModal,
+  /* 3 */ kickoffModal,
+  /* 4 */ pauseModal,
+  /* 5 */ nuffleModal,
+  /* 6 */ prePrayersToNuffleModal,
+  /* 7 */ settingsModal,
+  /* 8 */ eventModal,
 ]
 
 let gameConfig;
@@ -96,6 +99,7 @@ let gameState = {
   playedTimeoutForThisTurn: false,
   temporalTouchdown: null,
   temporalInjury: null,
+  temporalPass: null,
 }
 let gameRecord = []
 let clock;
@@ -566,11 +570,6 @@ function goBackToNuffle() {
 
 function pauseGame() {
   pauseClock()
-  if (getActiveTurn() > 0) {
-    gameEventOnPauseModal.removeAttribute('hidden')
-  } else {
-    gameEventOnPauseModal.setAttribute('hidden', true)
-  }
   openModal(4)
 }
 
@@ -609,12 +608,19 @@ function setActiveInjuryTurnAndHalf() {
   injuryTurn.children[activeTurn - 1].setAttribute('selected', true)
 }
 
+function setActivePassTurnAndHalf() {
+  const activeTurn = getActiveTurn() || 1
+  passHalf.children[getActiveHalf() - 1].setAttribute('selected', true)
+  passTurn.children[activeTurn - 1].setAttribute('selected', true)
+}
+
 function openTouchdown() {
   closeEventButtons()
   touchdownForm.removeAttribute('hidden')
   confirmTouchdownButton.removeAttribute('hidden')
   eventBackButton.removeAttribute('hidden')
   closeInjury()
+  closePass()
   setActiveTouchdownTurnAndHalf()
 }
 
@@ -629,7 +635,8 @@ function confirmTouchdown() {
   const tempTd = gameState.temporalTouchdown ?? getTouchdownRecord({});
   gameRecord.push(tempTd)
   temporalTouchdown = null
-  openEventModal()
+  closeModal(8)
+  openModal(4)
   setTouchdowns()
   setGameRecordsContent()
 }
@@ -637,6 +644,7 @@ function confirmTouchdown() {
 function openInjury() {
   closeEventButtons()
   closeTouchdown()
+  closePass()
   injuryForm.removeAttribute('hidden')
   confirmInjuryButton.removeAttribute('hidden')
   eventBackButton.removeAttribute('hidden')
@@ -654,7 +662,8 @@ function confirmInjury() {
   const tempInjury = gameState.temporalInjury ?? getInjuryRecord({});
   gameRecord.push(tempInjury)
   temporalInjury = null
-  openEventModal()
+  closeModal(8)
+  openModal(4)
   setGameRecordsContent()
 }
 
@@ -670,6 +679,32 @@ function openInjuryHelp(index) {
 function updateSelectedInjury() {
   const value = injuryRollSelect.value
   openInjuryHelp(value)
+}
+
+function openPass() {
+  closeEventButtons()
+  passForm.removeAttribute('hidden')
+  confirmPassButton.removeAttribute('hidden')
+  eventBackButton.removeAttribute('hidden')
+  closeTouchdown()
+  closeInjury()
+  setActivePassTurnAndHalf()
+}
+
+function closePass() {
+  confirmPassButton.setAttribute('hidden', true)
+  passForm.setAttribute('hidden', true)
+}
+
+function confirmPass() {
+  passForm.setAttribute('hidden', true)
+  confirmPassButton.setAttribute('hidden', true)
+  const tempPA = gameState.temporalPass ?? getPassRecord({});
+  gameRecord.push(tempPA)
+  temporalPass = null
+  closeModal(8)
+  openModal(4)
+  setGameRecordsContent()
 }
 
 function closeEventButtons() {
@@ -704,6 +739,8 @@ function getGameRecordContent() {
       if (record.isThereHurtingTeam) {
         events.push(getHurtingInjuryRecordContent(record, index))
       }
+    } else if (record.event === 'PA') {
+      events.push(getPassRecordContent(record, index))
     }
     return events
   })
@@ -724,6 +761,10 @@ function getHurtInjuryRecordContent(record, index) {
 
 function getHurtingInjuryRecordContent(record, index) {
   return createDiv(`Turno ${record.half}-${record.turn} — por <b>${getTeamName(record.hurtingTeam)}</b>, ${getInjuryType(record.injuryType)} infligido por ${record.hurtingPlayer}`)
+}
+
+function getPassRecordContent(record, index) {
+  return createDiv(`Turno ${record.half}-${record.turn} — Pase completado para <b>${getTeamName(record.team)}</b> por jugador dorsal ${record.player}`)
 }
 
 function createDiv(content) {

@@ -60,3 +60,18 @@ function getInjuryRecord({
 function getInjuryType(type) {
   return injuryDict.get(type)
 }
+
+function getPassRecord({
+  team = 1,
+  player = 1,
+  turn = 1,
+  half = 1,
+}) {
+  return {
+    event: 'PA',
+    team,
+    player,
+    turn,
+    half,
+  }
+}
