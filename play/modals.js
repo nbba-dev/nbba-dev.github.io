@@ -81,6 +81,7 @@ function openEventModal() {
   openEventButtons()
   closeTouchdown()
   closeInjury()
+  closePass()
   closePauseModal()
 }
 function openOutcomeModal() {

@@ -118,7 +118,7 @@ function showPage2() {
 function reset(){
   const alert = confirm("¿Seguro que quieres empezar un nuevo partido?");
   if (alert == true) {
-    window.location.href = './'
+    window.location.href = '/setup'
   }
 }
 
@@ -128,6 +128,7 @@ function keepGoing() {
   }
   closeTouchdown()
   closeInjury()
+  closePass()
   closePauseModal()
 }
 
@@ -576,22 +577,22 @@ function setActivePassTurnAndHalf() {
 
 function openTouchdown() {
   closeEventButtons()
-  hide(dom.get('touchdownForm'))
-  hide(dom.get('confirmTouchdownButton'))
-  hide(dom.get('eventBackButton'))
+  show(dom.get('touchdownForm'))
+  show(dom.get('confirmTouchdownButton'))
+  show(dom.get('eventBackButton'))
   closeInjury()
   closePass()
   setActiveTouchdownTurnAndHalf()
 }
 
 function closeTouchdown() {
-  show(dom.get('confirmTouchdownButton'))
-  show(dom.get('touchdownForm'))
+  hide(dom.get('confirmTouchdownButton'))
+  hide(dom.get('touchdownForm'))
 }
 
 function confirmTouchdown() {
-  show(dom.get('touchdownForm'))
-  show(dom.get('confirmTouchdownButton'))
+  hide(dom.get('touchdownForm'))
+  hide(dom.get('confirmTouchdownButton'))
   const tempTd = gameState.temporalTouchdown ?? getTouchdownRecord({});
   gameRecord.push(tempTd)
   temporalTouchdown = null
@@ -605,20 +606,20 @@ function openInjury() {
   closeEventButtons()
   closeTouchdown()
   closePass()
-  hide(dom.get('injuryForm'))
-  hide(dom.get('confirmInjuryButton'))
-  hide(dom.get('eventBackButton'))
+  show(dom.get('injuryForm'))
+  show(dom.get('confirmInjuryButton'))
+  show(dom.get('eventBackButton'))
   setActiveInjuryTurnAndHalf()
 }
 
 function closeInjury() {
-  show(dom.get('confirmInjuryButton'))
-  show(dom.get('injuryForm'))
+  hide(dom.get('confirmInjuryButton'))
+  hide(dom.get('injuryForm'))
 }
 
 function confirmInjury() {
-  show(dom.get('injuryForm'))
-  show(dom.get('confirmInjuryButton'))
+  hide(dom.get('injuryForm'))
+  hide(dom.get('confirmInjuryButton'))
   const tempInjury = gameState.temporalInjury ?? getInjuryRecord({});
   gameRecord.push(tempInjury)
   temporalInjury = null
@@ -629,10 +630,10 @@ function confirmInjury() {
 
 function openInjuryHelp(index) {
   dom.get('injuryHelp').forEach((node) => {
-    hide(node)
+    show(node)
   })
   if (index !== undefined && index !== null) {
-    show(dom.get('injuryHelp')[index])
+    hide(dom.get('injuryHelp')[index])
   }
 }
 
@@ -643,22 +644,22 @@ function updateSelectedInjury() {
 
 function openPass() {
   closeEventButtons()
-  hide(dom.get('passForm'))
-  hide(dom.get('confirmPassButton'))
-  hide(dom.get('eventBackButton'))
+  show(dom.get('passForm'))
+  show(dom.get('confirmPassButton'))
+  show(dom.get('eventBackButton'))
   closeTouchdown()
   closeInjury()
   setActivePassTurnAndHalf()
 }
 
 function closePass() {
-  show(dom.get('confirmPassButton'))
-  show(dom.get('passForm'))
+  hide(dom.get('confirmPassButton'))
+  hide(dom.get('passForm'))
 }
 
 function confirmPass() {
-  show(dom.get('passForm'))
-  show(dom.get('confirmPassButton'))
+  hide(dom.get('passForm'))
+  hide(dom.get('confirmPassButton'))
   const tempPA = gameState.temporalPass ?? getPassRecord({});
   gameRecord.push(tempPA)
   temporalPass = null
@@ -668,18 +669,18 @@ function confirmPass() {
 }
 
 function closeEventButtons() {
-  show(dom.get('eventButtons'))
+  hide(dom.get('eventButtons'))
 }
 
 function openEventButtons() {
-  hide(dom.get('eventButtons'))
+  show(dom.get('eventButtons'))
 }
 
 function setGameRecordsContent() {
   if (gameRecord.length > 0) {
-    hide(dom.get('gameRecordsContainer'))
-  } else {
     show(dom.get('gameRecordsContainer'))
+  } else {
+    hide(dom.get('gameRecordsContainer'))
   }
   removeChildren(gameRecordInsertionPoint)
   const content = getGameRecordContent()
@@ -758,9 +759,9 @@ function removeChildren(node) {
 
 function onAttackingInjuryPlayerUpdate() {
   if (dom.get('attackingInjuryPlayerInput').checked) {
-    hide(dom.get('attackingInjuryPlayerForm'))
-  } else {
     show(dom.get('attackingInjuryPlayerForm'))
+  } else {
+    hide(dom.get('attackingInjuryPlayerForm'))
   }
 }
 
