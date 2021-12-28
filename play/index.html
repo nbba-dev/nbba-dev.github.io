@@ -72,221 +72,6 @@
     </div>
   </div>
 
-  <div class="modal-overlay" id="eventModal" hidden>
-    <div class="modal">
-      <div class="modal-title subtle">
-        <h2>Nuevo suceso</h2>
-      </div>
-      <div class="modal-body">
-        <div id="eventButtons" class="modal-body-onlyButtons">
-          <button onclick="openTouchdown()">¡Touchdown!</button>
-          <button onclick="openInjury()">¡Herida!</button>
-          <button onclick="openPass()">¡Pase!</button>
-        </div>
-        <div id="touchdownForm" class="pauseForm" hidden>
-          <div>
-            <div>
-              <select name="" id="touchdownHalf">
-                <option value="1">Primera parte</option>
-                <option value="2">Segunda parte</option>
-              </select>
-            </div>
-            <div>
-              <select name="" id="touchdownTurn">
-                <option value="1">Turno 1</option>
-                <option value="2">Turno 2</option>
-                <option value="3">Turno 3</option>
-                <option value="4">Turno 4</option>
-                <option value="5">Turno 5</option>
-                <option value="6">Turno 6</option>
-                <option value="7">Turno 7</option>
-                <option value="8">Turno 8</option>
-              </select>
-            </div>
-          </div>
-          <div>
-            Equipo:
-            <select name="" id="touchdownTeam">
-              <option value="1">Team1</option>
-              <option value="2">Team2</option>
-            </select>
-          </div>
-          <div>Dorsal:
-            <select name="" id="touchdownPlayer">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-            </select>
-          </div>
-        </div>
-        <div id="injuryForm" class="pauseForm" hidden>
-          <div class="twoColumns">
-            <div>
-              <div>
-                <div>
-                  <select name="" id="injuryHalf">
-                    <option value="1">Primera parte</option>
-                    <option value="2">Segunda parte</option>
-                  </select>
-                </div>
-                <div>
-                  <select name="" id="injuryTurn">
-                    <option value="1">Turno 1</option>
-                    <option value="2">Turno 2</option>
-                    <option value="3">Turno 3</option>
-                    <option value="4">Turno 4</option>
-                    <option value="5">Turno 5</option>
-                    <option value="6">Turno 6</option>
-                    <option value="7">Turno 7</option>
-                    <option value="8">Turno 8</option>
-                  </select>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <b>Herido</b>
-                  <div>
-                    Equipo:
-                    <select name="" id="injuryHurtTeam">
-                      <option value="1">Team1</option>
-                      <option value="2">Team2</option>
-                    </select>
-                  </div>
-                  <div>Dorsal:
-                    <select name="" id="injuryHurtPlayer">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                      <option value="11">11</option>
-                    </select>
-                  </div>
-                </div>
-                <div>
-                  <input type="checkbox" id="attackingInjuryPlayerInput" onchange="onAttackingInjuryPlayerUpdate()">
-                  <label for="attackingInjuryPlayerInput"><b>Agresor</b></label>
-                  <div id="attackingInjuryPlayerForm" hidden>
-                    <div>
-                      Equipo:
-                      <select name="" id="injuryHurtingTeam">
-                        <option value="1">Team1</option>
-                        <option value="2">Team2</option>
-                      </select>
-                    </div>
-                    <div>Dorsal:
-                      <select name="" id="injuryHurtingPlayer">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="dice-roll-container dice-roll-container-inline">
-                <div class="dice-roll">
-                  <div>2D6</div>
-                  <select name="" id="injuryRollSelect">
-                    <option value="0">N/A</option>
-                    <option value="1">2-7: Stunned</option>
-                    <option value="2">8-9: KO'd</option>
-                    <option value="3">10: Casualty (Badly hurt)</option>
-                    <option value="4">11: Casualty (Seriously hurt)</option>
-                    <option value="5">12: DEAD</option>
-                  </select>
-                </div>
-              </div>
-              <div class="injuryHelp helpText" hidden>* Sent to the Reserves box if a player is off the pitch</div>
-              <div class="injuryHelp helpText" hidden>* The player is removed from the pitch and placed in the Knocked-out
-                box</div>
-              <div class="injuryHelp helpText" hidden>* Miss the rest of the match</div>
-              <div class="injuryHelp helpText" hidden>* Miss next game</div>
-              <div class="injuryHelp helpText" hidden>* This player is far too dead to play!</div>
-              <!-- <div class="helpText">(1) Recuerda que puedes usar un <b>apotecario</b> para curar la herida</div> -->
-              <div class="helpText">(1) Los jugadores stunty sufren <b>KO</b> con resultado de <b>7</b></div>
-              <div class="helpText">(2) Los jugadores stunty sufren <b>Casualty (badly hurt)</b> con resultado de <b>9</b></div>
-            </div>
-          </div>
-        </div>
-        <div id="passForm" class="pauseForm" hidden>
-          <div>
-            <div>
-              <select name="" id="passHalf">
-                <option value="1">Primera parte</option>
-                <option value="2">Segunda parte</option>
-              </select>
-            </div>
-            <div>
-              <select name="" id="passTurn">
-                <option value="1">Turno 1</option>
-                <option value="2">Turno 2</option>
-                <option value="3">Turno 3</option>
-                <option value="4">Turno 4</option>
-                <option value="5">Turno 5</option>
-                <option value="6">Turno 6</option>
-                <option value="7">Turno 7</option>
-                <option value="8">Turno 8</option>
-              </select>
-            </div>
-          </div>
-          <div>
-            Equipo:
-            <select name="" id="passTeam">
-              <option value="1">Team1</option>
-              <option value="2">Team2</option>
-            </select>
-          </div>
-          <div>Dorsal:
-            <select name="" id="passPlayer">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="modal-controls">
-        <button id="eventBackButton" class="modal-bottomBtn" onclick="openEventModal()">Atrás</button>
-        <button class="modal-bottomBtn modal-continueBtn" onclick="closeEventModal()">Cerrar</button>
-        <button id="confirmInjuryButton" class="modal-bottomBtn" onclick="confirmInjury()" disabled hidden>Confirmar herida</button>
-        <button id="confirmTouchdownButton" class="modal-bottomBtn" onclick="confirmTouchdown()" hidden>Confirmar touchdown</button>
-        <button id="confirmPassButton" class="modal-bottomBtn" onclick="confirmPass()" hidden>Confirmar pase</button>
-      </div>
-    </div>
-  </div>
-
   <div class="modal-overlay" id="fameModal" hidden>
     <div class="modal">
       <div class="modal-title subtle">
@@ -957,9 +742,230 @@
         <h3>1. Outcome</h3>
         <p>Los árbitros ponen en común lo ocurrido durante el partido</p>
       </div>
+        <div class="modal-body pause-modal-body">
+          <div id="gameRecordsContainerEndgame" class="gameRecordsContainer" hidden>
+            <div id="gameRecordInsertionPointEndgame" class="gameRecordGrid"></div>
+          </div>
+        </div>
       <div class="modal-body"></div>
       <div class="modal-controls">
+        <button class="modal-bottomBtn" onclick="openEventModal()">Nuevo suceso</button>
         <button class="modal-bottomBtn modal-continueBtn" onclick="completedOutcome()">Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="eventModal" hidden>
+    <div class="modal">
+      <div class="modal-title subtle">
+        <h2>Nuevo suceso</h2>
+      </div>
+      <div class="modal-body">
+        <div id="eventButtons" class="modal-body-onlyButtons">
+          <button onclick="openTouchdown()">¡Touchdown!</button>
+          <button onclick="openInjury()">¡Herida!</button>
+          <button onclick="openPass()">¡Pase!</button>
+        </div>
+        <div id="touchdownForm" class="pauseForm" hidden>
+          <div>
+            <div>
+              <select name="" id="touchdownHalf">
+                <option value="1">Primera parte</option>
+                <option value="2">Segunda parte</option>
+              </select>
+            </div>
+            <div>
+              <select name="" id="touchdownTurn">
+                <option value="1">Turno 1</option>
+                <option value="2">Turno 2</option>
+                <option value="3">Turno 3</option>
+                <option value="4">Turno 4</option>
+                <option value="5">Turno 5</option>
+                <option value="6">Turno 6</option>
+                <option value="7">Turno 7</option>
+                <option value="8">Turno 8</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            Equipo:
+            <select name="" id="touchdownTeam">
+              <option value="1">Team1</option>
+              <option value="2">Team2</option>
+            </select>
+          </div>
+          <div>Dorsal:
+            <select name="" id="touchdownPlayer">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+            </select>
+          </div>
+        </div>
+        <div id="injuryForm" class="pauseForm" hidden>
+          <div class="twoColumns">
+            <div>
+              <div>
+                <div>
+                  <select name="" id="injuryHalf">
+                    <option value="1">Primera parte</option>
+                    <option value="2">Segunda parte</option>
+                  </select>
+                </div>
+                <div>
+                  <select name="" id="injuryTurn">
+                    <option value="1">Turno 1</option>
+                    <option value="2">Turno 2</option>
+                    <option value="3">Turno 3</option>
+                    <option value="4">Turno 4</option>
+                    <option value="5">Turno 5</option>
+                    <option value="6">Turno 6</option>
+                    <option value="7">Turno 7</option>
+                    <option value="8">Turno 8</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <b>Herido</b>
+                  <div>
+                    Equipo:
+                    <select name="" id="injuryHurtTeam">
+                      <option value="1">Team1</option>
+                      <option value="2">Team2</option>
+                    </select>
+                  </div>
+                  <div>Dorsal:
+                    <select name="" id="injuryHurtPlayer">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <input type="checkbox" id="attackingInjuryPlayerInput" onchange="onAttackingInjuryPlayerUpdate()">
+                  <label for="attackingInjuryPlayerInput"><b>Agresor</b></label>
+                  <div id="attackingInjuryPlayerForm" hidden>
+                    <div>
+                      Equipo:
+                      <select name="" id="injuryHurtingTeam">
+                        <option value="1">Team1</option>
+                        <option value="2">Team2</option>
+                      </select>
+                    </div>
+                    <div>Dorsal:
+                      <select name="" id="injuryHurtingPlayer">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="dice-roll-container dice-roll-container-inline">
+                <div class="dice-roll">
+                  <div>2D6</div>
+                  <select name="" id="injuryRollSelect">
+                    <option value="0">N/A</option>
+                    <option value="1">2-7: Stunned</option>
+                    <option value="2">8-9: KO'd</option>
+                    <option value="3">10: Casualty (Badly hurt)</option>
+                    <option value="4">11: Casualty (Seriously hurt)</option>
+                    <option value="5">12: DEAD</option>
+                  </select>
+                </div>
+              </div>
+              <div class="injuryHelp helpText" hidden>* Sent to the Reserves box if a player is off the pitch</div>
+              <div class="injuryHelp helpText" hidden>* The player is removed from the pitch and placed in the Knocked-out
+                box</div>
+              <div class="injuryHelp helpText" hidden>* Miss the rest of the match</div>
+              <div class="injuryHelp helpText" hidden>* Miss next game</div>
+              <div class="injuryHelp helpText" hidden>* This player is far too dead to play!</div>
+              <!-- <div class="helpText">(1) Recuerda que puedes usar un <b>apotecario</b> para curar la herida</div> -->
+              <div class="helpText">(1) Los jugadores stunty sufren <b>KO</b> con resultado de <b>7</b></div>
+              <div class="helpText">(2) Los jugadores stunty sufren <b>Casualty (badly hurt)</b> con resultado de <b>9</b></div>
+            </div>
+          </div>
+        </div>
+        <div id="passForm" class="pauseForm" hidden>
+          <div>
+            <div>
+              <select name="" id="passHalf">
+                <option value="1">Primera parte</option>
+                <option value="2">Segunda parte</option>
+              </select>
+            </div>
+            <div>
+              <select name="" id="passTurn">
+                <option value="1">Turno 1</option>
+                <option value="2">Turno 2</option>
+                <option value="3">Turno 3</option>
+                <option value="4">Turno 4</option>
+                <option value="5">Turno 5</option>
+                <option value="6">Turno 6</option>
+                <option value="7">Turno 7</option>
+                <option value="8">Turno 8</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            Equipo:
+            <select name="" id="passTeam">
+              <option value="1">Team1</option>
+              <option value="2">Team2</option>
+            </select>
+          </div>
+          <div>Dorsal:
+            <select name="" id="passPlayer">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-controls">
+        <button id="eventBackButton" class="modal-bottomBtn" onclick="openEventModal()">Atrás</button>
+        <button class="modal-bottomBtn modal-continueBtn" onclick="closeEventModal()">Cerrar</button>
+        <button id="confirmInjuryButton" class="modal-bottomBtn" onclick="confirmInjury()" disabled hidden>Confirmar herida</button>
+        <button id="confirmTouchdownButton" class="modal-bottomBtn" onclick="confirmTouchdown()" hidden>Confirmar touchdown</button>
+        <button id="confirmPassButton" class="modal-bottomBtn" onclick="confirmPass()" hidden>Confirmar pase</button>
       </div>
     </div>
   </div>

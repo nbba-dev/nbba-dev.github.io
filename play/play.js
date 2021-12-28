@@ -28,9 +28,11 @@ addDomNodesByIds([
   'injuryForm',
   'injuryRollSelect',
   'gameRecordInsertionPoint',
+  'gameRecordInsertionPointEndgame',
   'attackingInjuryPlayerInput',
   'attackingInjuryPlayerForm',
   'gameRecordsContainer',
+  'gameRecordsContainerEndgame',
   'touchdownHalf',
   'touchdownTurn',
   'injuryHalf',
@@ -679,13 +681,20 @@ function openEventButtons() {
 function setGameRecordsContent() {
   if (gameRecord.length > 0) {
     show(dom.get('gameRecordsContainer'))
+    show(dom.get('gameRecordsContainerEndgame'))
   } else {
     hide(dom.get('gameRecordsContainer'))
+    hide(dom.get('gameRecordsContainerEndgame'))
   }
   removeChildren(gameRecordInsertionPoint)
+  removeChildren(gameRecordInsertionPointEndgame)
   const content = getGameRecordContent()
+  const endGamecontent = getGameRecordContent()
   content.forEach((node) => {
     dom.get('gameRecordInsertionPoint').appendChild(node)
+  })
+  endGamecontent.forEach((node) => {
+    dom.get('gameRecordInsertionPointEndgame').appendChild(node)
   })
 }
 
