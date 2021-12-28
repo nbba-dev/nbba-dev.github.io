@@ -48,6 +48,12 @@ addDomNodesByIds([
   'kickoffBackBtn',
   'kickoffCompleted',
   'kickoffCompletedStandalone',
+  'team1winnings',
+  'team2winnings',
+  'winningsFanFactorTeam1',
+  'winningsFanFactorTeam2',
+  'winningsFanFactorResultTeam1',
+  'winningsFanFactorResultTeam2',
 ])
 
 const pages = [

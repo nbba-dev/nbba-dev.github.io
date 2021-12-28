@@ -88,9 +88,19 @@ function openOutcomeModal() {
   openModal(9)
 }
 function openWinningsModal() {
+  function getTeamWinnings(teamScore) {
+    const fameCalc = (gameState.team1.fame + gameState.team2.fame) / 2
+    return (fameCalc + teamScore) * 10
+  }
+  const team1Winnings = getTeamWinnings(gameState.team1.score)
+  const team2Winnings = getTeamWinnings(gameState.team2.score)
+  team1winnings.innerHTML = `${team1Winnings}k`
+  team2winnings.innerHTML = `${team2Winnings}k`
   openModal(10)
 }
 function openFanFactorModal() {
+  winningsFanFactorTeam1.innerHTML = gameState.team1.fame
+  winningsFanFactorTeam2.innerHTML = gameState.team2.fame
   openModal(11)
 }
 function openSppModal() {

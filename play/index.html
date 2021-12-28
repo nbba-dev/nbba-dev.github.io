@@ -976,7 +976,17 @@
         <h3>2. Winnings</h3>
         <p>Las marcas apoyan a los equipos favoritos a golpe de talonario</p>
       </div>
-      <div class="modal-body"></div>
+      <div class="modal-body">
+        <p>
+          TODO - caso de conceder el partido
+        </p>
+        <div>
+          Team1: <span id="team1winnings"></span>
+        </div>
+        <div>
+          Team2: <span id="team2winnings"></span>
+        </div>
+      </div>
       <div class="modal-controls">
         <button class="modal-bottomBtn modal-continueBtn" onclick="completedWinnings()">Continuar</button>
       </div>
@@ -989,7 +999,42 @@
         <h3>3. Update fan factor</h3>
         <p>Los hinchas aplauden el espectáculo recibido</p>
       </div>
-      <div class="modal-body"></div>
+      <div class="modal-body">
+        <div class="dice-roll-container">
+          <div class="dice-roll">
+            <div>Fan factor</div>
+            <div id="winningsFanFactorTeam1"></div>
+          </div>
+          <div>vs</div>
+          <div class="dice-roll">
+            <div>1D3</div>
+            <select name="" id="winningsFanFactorRollTeam1">
+              <option value="0">N/A</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div id="winningsFanFactorResultTeam1"> = Se mantiene</div>
+        </div>
+        <div class="dice-roll-container">
+          <div class="dice-roll">
+            <div>Fan factor</div>
+            <div id="winningsFanFactorTeam2"></div>
+          </div>
+          <div>vs</div>
+          <div class="dice-roll">
+            <div>1D3</div>
+            <select name="" id="winningsFanFactorRollTeam2">
+              <option value="0">N/A</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div id="winningsFanFactorResultTeam2"> = Se mantiene</div>
+        </div>
+      </div>
       <div class="modal-controls">
         <button class="modal-bottomBtn modal-continueBtn" onclick="completedFanFactor()">Continuar</button>
       </div>
