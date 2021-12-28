@@ -103,8 +103,7 @@ function init() {
     showPage2()
     initClock(params)
     if (gameConfig.guided === 'on') {
-      // TODO - REMOVE
-      // openFameModal(0)
+      openFameModal(0)
     }
   } else {
     alert('ERROR')
