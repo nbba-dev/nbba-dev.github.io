@@ -1,18 +1,22 @@
 import init from '/shared/nbba-login.js'
 import { loadLeagueExcel } from '../shared/ExcelUtils.js'
 import { createA, createButton, removeChildren, createOption } from '../shared/nodeUtils.js'
+import { getUrlParams } from '../shared/urlParamsUtils.js'
+import { getDomNodesByIds } from '../shared/domUtils'
 
 // state
 let isLoggedIn;
 let sheet;
 
 // nodes
-const moreLeagueInfo = document.querySelector('#moreLeagueInfo-insertionPoint')
-const formSubmit = document.querySelector('#formSubmit-insertionPoint')
-const form = document.querySelector('#form')
-const team1 = document.querySelector('#team1-insertionPoint')
-const team2 = document.querySelector('#team2-insertionPoint')
-const checkbox = document.querySelector('#form1-checkbox')
+const dom = getDomNodesByIds([
+  'moreLeagueInfo',
+  'formSubmit',
+  'form',
+  'team1',
+  'team2',
+  'form1Checkbox',
+])
 
 function loggedInCallback(newVal) {
   isLoggedIn = newVal
@@ -27,35 +31,35 @@ function loggedInCallback(newVal) {
 }
 
 function setMoreLeagueInfo() {
-  moreLeagueInfo.appendChild(createA(sheet[2][1], sheet[1][1]))
+  dom.get('moreLeagueInfo').appendChild(createA(sheet[2][1], sheet[1][1]))
 }
 
 function setFormSubmit() {
-  removeChildren(formSubmit)
+  removeChildren(dom.get('formSubmit'))
   const friendlyMatchButton = createButton('Partido amistoso')
   const leagueMatchButton = createButton('¡Partido de liga!')
   leagueMatchButton.addEventListener('click', () => {
-    form.setAttribute('action', '/playLeague/')
+    dom.get('form').setAttribute('action', '/playLeague/')
   })
-  formSubmit.appendChild(friendlyMatchButton)
-  formSubmit.appendChild(leagueMatchButton)
+  dom.get('formSubmit').appendChild(friendlyMatchButton)
+  dom.get('formSubmit').appendChild(leagueMatchButton)
 }
 
 function setTeams() {
-  removeChildren(team1)
-  removeChildren(team2)
-  team1.appendChild(createOption('N/A', 0))
-  team2.appendChild(createOption('N/A', 0))
+  removeChildren(dom.get('team1'))
+  removeChildren(dom.get('team2'))
+  dom.get('team1').appendChild(createOption('N/A', 0))
+  dom.get('team2').appendChild(createOption('N/A', 0))
   sheet.forEach((row, rowIndex) => {
     if (rowIndex >= 1 && row[3]) {
-      team1.appendChild(createOption(row[3], rowIndex))
-      team2.appendChild(createOption(row[3], rowIndex))
+      dom.get('team1').appendChild(createOption(row[3], rowIndex))
+      dom.get('team2').appendChild(createOption(row[3], rowIndex))
     }
   })
 }
 
 function enableCheckbox() {
-  checkbox.removeAttribute('disabled')
+  dom.get('form1Checkbox').removeAttribute('disabled')
 }
 
 

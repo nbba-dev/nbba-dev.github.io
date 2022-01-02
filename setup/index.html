@@ -21,38 +21,39 @@
     <nbba-login></nbba-login>
 
     <link rel="stylesheet" href="./setup.css">
+    <script type="module" src="../shared/domUtils.js"></script>
     <script type="module" src="../shared/nodeUtils.js"></script>
     <script type="module" src="../shared/excelUtils.js"></script>
-    <script src="../shared/urlParams.js"></script>
+    <script type="module" src="../shared/urlParamsUtils.js"></script>
     <script type="module" src="./setup.js"></script>
 
     <div class="page page1" id="page1">
       <form id="form" class="page1-form" action="/play/">
-        <div id="moreLeagueInfo-insertionPoint"></div>
+        <div id="moreLeagueInfo"></div>
         <div class="page1-form-group" id="leagueMatchRound" hidden>
           <label for="round" class="form1-label">Jornada</label>
-          <select name="round" id="round-insertionPoint" required>
+          <select name="round" id="round" required>
             <option value="0" selected>Equipo Local</option>
             <option value="-1" disabled>Inicia sesión para más opciones</option>
           </select>
         </div>
         <div class="page1-form-group" id="leagueMatchTeams" hidden>
           <label for="leagueTeams" class="form1-label">Partido</label>
-          <select name="leagueTeams" id="leagueTeams-insertionPoint" required>
+          <select name="leagueTeams" id="leagueTeams" required>
             <option value="0" selected>Equipo Local</option>
             <option value="-1" disabled>Inicia sesión para más opciones</option>
           </select>
         </div>
         <div class="page1-form-group" id="friendlyMatchTeam1">
           <label for="team1" class="form1-label">Equipo 1<span class="label-helper">Local</span></label>
-          <select name="team1" id="team1-insertionPoint" required>
+          <select name="team1" id="team1" required>
             <option value="0" selected>Equipo Local</option>
             <option value="-1" disabled>Inicia sesión para más opciones</option>
           </select>
         </div>
         <div class="page1-form-group" id="friendlyMatchTeam2">
           <label for="team2" class="form1-label">Equipo 2<span class="label-helper">Visitante</span></label>
-          <select name="team2" id="team2-insertionPoint" required>
+          <select name="team2" id="team2" required>
             <option value="1" selected>Equipo Visitante</option>
             <option value="-1" disabled>Inicia sesión para más opciones</option>
           </select>
@@ -88,10 +89,10 @@
           </select>
         </div>
         <div class="page1-form-group horizontal">
-          <input type="checkbox" id="form1-checkbox" name="guided" disabled>
-          <label for="form1-checkbox">Partido guiado</label>
+          <input type="checkbox" id="form1Checkbox" name="guided" disabled>
+          <label for="form1Checkbox">Partido guiado</label>
         </div>
-        <div class="page1-form-group" id="formSubmit-insertionPoint">
+        <div class="page1-form-group" id="formSubmit">
           <button type="submit">¡Empezar partido!</button>
         </div>
       </form>
