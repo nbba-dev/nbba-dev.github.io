@@ -1,4 +1,6 @@
 import init from '/shared/nbba-login.js'
+import { loadLeagueExcel } from '../shared/ExcelUtils.js'
+import { createA, createButton, removeChildren, createOption } from '../shared/nodeUtils.js'
 
 // state
 let isLoggedIn;
@@ -16,6 +18,7 @@ function loggedInCallback(newVal) {
   isLoggedIn = newVal
   if (isLoggedIn) {
     loadLeagueExcel()
+      .then((loadedSheet) => { sheet = loadedSheet })
       .then(setMoreLeagueInfo)
       .then(setFormSubmit)
       .then(setTeams)
@@ -38,31 +41,6 @@ function setFormSubmit() {
   formSubmit.appendChild(leagueMatchButton)
 }
 
-function createA(text, href) {
-  const node = document.createElement('a');
-  const textNode = document.createTextNode(text);
-  node.appendChild(textNode);
-  node.title = text;
-  node.href = href;
-  node.target = '_blank'
-  return node;
-}
-
-function createButton(text) {
-  const node = document.createElement("button");
-  const textNode = document.createTextNode(text);
-  node.appendChild(textNode);
-  node.title = text;
-  node.type = "submit";
-  return node;
-}
-
-function removeChildren(node) {
-  while (node.firstChild) {
-    node.removeChild(node.lastChild);
-  }
-}
-
 function setTeams() {
   removeChildren(team1)
   removeChildren(team2)
@@ -76,31 +54,23 @@ function setTeams() {
   })
 }
 
-function createOption(text, value) {
-  const node = document.createElement("option");
-  const textNode = document.createTextNode(text);
-  node.appendChild(textNode);
-  node.title = text;
-  node.value = value;
-  return node;
-  // <option value="0" selected>Equipo Local</option>
-}
-
 function enableCheckbox() {
   checkbox.removeAttribute('disabled')
 }
 
-function loadLeagueExcel() {
-  return gapi.client.sheets.spreadsheets.values.get({
-    spreadsheetId: '1DMWedcFO_9MvNAOhd4mTzxzhKaNsTgoSaaR_Ua5F42Q',
-    range: 'A:G',
-    valueRenderOption: "FORMULA"
-  }).then(function(response) {
-    sheet = response.result.values;
-    console.log(response.result)
-  }, function(response) {
-    console.log('Error: ' + response.result.error.message);
-  });
+
+function initSetup() {
+  const params = getUrlParams()
+  if (params.league === 'true') {
+    document.querySelector('#friendlyMatchTeam1').setAttribute('hidden', true)
+    document.querySelector('#friendlyMatchTeam2').setAttribute('hidden', true)
+    document.querySelector('#leagueMatchTeams').removeAttribute('hidden')
+    document.querySelector('#leagueMatchRound').removeAttribute('hidden')
+  } else {
+
+  }
 }
+
+initSetup()
 
 init(loggedInCallback)
