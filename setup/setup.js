@@ -2,7 +2,7 @@ import init from '/shared/nbba-login.js'
 import { loadLeagueExcel } from '../shared/ExcelUtils.js'
 import { createA, createButton, removeChildren, createOption } from '../shared/nodeUtils.js'
 import { getUrlParams } from '../shared/urlParamsUtils.js'
-import { getDomNodesByIds } from '../shared/domUtils'
+import { getDomNodesByIds } from '../shared/domUtils.js'
 
 // state
 let isLoggedIn;
@@ -63,18 +63,18 @@ function enableCheckbox() {
 }
 
 
-function initSetup() {
-  const params = getUrlParams()
-  if (params.league === 'true') {
-    document.querySelector('#friendlyMatchTeam1').setAttribute('hidden', true)
-    document.querySelector('#friendlyMatchTeam2').setAttribute('hidden', true)
-    document.querySelector('#leagueMatchTeams').removeAttribute('hidden')
-    document.querySelector('#leagueMatchRound').removeAttribute('hidden')
-  } else {
+// function initSetup() {
+//   const params = getUrlParams()
+//   if (params.league === 'true') {
+//     document.querySelector('#friendlyMatchTeam1').setAttribute('hidden', true)
+//     document.querySelector('#friendlyMatchTeam2').setAttribute('hidden', true)
+//     document.querySelector('#leagueMatchTeams').removeAttribute('hidden')
+//     document.querySelector('#leagueMatchRound').removeAttribute('hidden')
+//   } else {
 
-  }
-}
+//   }
+// }
 
-initSetup()
+// initSetup()
 
 init(loggedInCallback)
