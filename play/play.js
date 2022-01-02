@@ -1,4 +1,5 @@
 import { getDomNodesByIds, show, hide } from '../shared/domUtils.js'
+import { getTeamName, getActiveTurn, getActiveHalf, getTouchdownRecord, getInjuryRecord, getInjuryType, getPassRecord } from './playUtils.js'
 
 // state
 const dom = getDomNodesByIds([

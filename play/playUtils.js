@@ -1,16 +1,16 @@
-function getTeamName(oneOrTwo) {
+const getTeamName = function (oneOrTwo) {
   return oneOrTwo === 1 ? gameState.team1.name : gameState.team2.name;
 }
 
-function getActiveTurn() {
+const getActiveTurn = function () {
   return gameState.isTeam1turn ? gameState.team1.turn : gameState.team2.turn;
 }
 
-function getActiveHalf() {
+const getActiveHalf = function () {
   return gameState.isSecondPart ? 2 : 1;
 }
 
-function getTouchdownRecord({
+const getTouchdownRecord = function ({
   team = 1,
   player = 1,
   turn = 1,
@@ -34,7 +34,7 @@ const injuryDict = new Map([
 ]);
 
 
-function getInjuryRecord({
+const getInjuryRecord = function ({
   hurtTeam = 0,
   hurtPlayer = 0,
   isThereHurtingTeam = false,
@@ -57,11 +57,11 @@ function getInjuryRecord({
   }
 }
 
-function getInjuryType(type) {
+const getInjuryType = function (type) {
   return injuryDict.get(type)
 }
 
-function getPassRecord({
+const getPassRecord = function ({
   team = 1,
   player = 1,
   turn = 1,
@@ -74,4 +74,14 @@ function getPassRecord({
     turn,
     half,
   }
+}
+
+export {
+  getTeamName,
+  getActiveTurn,
+  getActiveHalf,
+  getTouchdownRecord,
+  getInjuryRecord,
+  getInjuryType,
+  getPassRecord,
 }
