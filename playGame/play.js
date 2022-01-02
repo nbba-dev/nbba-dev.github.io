@@ -55,11 +55,8 @@ const dom = getDomNodesByIds([
   'winningsFanFactorTeam2',
   'winningsFanFactorResultTeam1',
   'winningsFanFactorResultTeam2',
+  'page2'
 ])
-
-const pages = [
-  document.querySelector('#page2'),
-];
 
 let gameConfig;
 let gameState = {
@@ -120,7 +117,7 @@ function init() {
 }
 
 function showPage2() {
-  show(pages[0])
+  show(dom.get('page2'))
   hide(dom.get('pleaseRotate'))
 }
 
@@ -496,7 +493,7 @@ window.kickoffTimeout = function() {
   completedKickoff()
 }
 
-function completedKickoff() {
+window.completedKickoff = function() {
   closeKickoffModal()
 }
 
@@ -594,7 +591,7 @@ window.openTouchdown = function() {
   setActiveTouchdownTurnAndHalf()
 }
 
-function closeTouchdown() {
+window.closeTouchdown = function() {
   hide(dom.get('confirmTouchdownButton'))
   hide(dom.get('touchdownForm'))
 }
@@ -621,7 +618,7 @@ window.openInjury = function() {
   setActiveInjuryTurnAndHalf()
 }
 
-function closeInjury() {
+window.closeInjury = function() {
   hide(dom.get('confirmInjuryButton'))
   hide(dom.get('injuryForm'))
 }
@@ -637,7 +634,7 @@ window.confirmInjury = function() {
   setGameRecordsContent()
 }
 
-function openInjuryHelp(index) {
+window.openInjuryHelp = function(index) {
   dom.get('injuryHelp').forEach((node) => {
     show(node)
   })
@@ -646,7 +643,7 @@ function openInjuryHelp(index) {
   }
 }
 
-function updateSelectedInjury() {
+window.updateSelectedInjury = function() {
   const value = dom.get('injuryRollSelect').value
   openInjuryHelp(value)
 }
@@ -661,7 +658,7 @@ window.openPass = function() {
   setActivePassTurnAndHalf()
 }
 
-function closePass() {
+window.closePass = function() {
   hide(dom.get('confirmPassButton'))
   hide(dom.get('passForm'))
 }

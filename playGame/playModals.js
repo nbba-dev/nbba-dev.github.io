@@ -1,4 +1,4 @@
-import { getDomNodesByIds } from '../shared/domUtils.js'
+import { getDomNodesByIds, hide, show } from '../shared/domUtils.js'
 
 const dom = getDomNodesByIds([
   'fameModal',
@@ -14,6 +14,11 @@ const dom = getDomNodesByIds([
   'winningsModal',
   'fanFactorModal',
   'sppModal',
+  'page2',
+  'kickoffCompleted',
+  'kickoffBackBtn',
+  'kickoffCompletedStandalone',
+  'eventBackButton',
 ])
 
 const modals = [
@@ -34,50 +39,50 @@ const modals = [
 
 function closeModal(modalIndex) {
   hide(modals[modalIndex])
-  pages[0].classList.remove('modal-active')
+  dom.get('page2').classList.remove('modal-active')
 }
 
 function openModal(modalIndex) {
   show(modals[modalIndex])
-  pages[0].classList.add('modal-active')
+  dom.get('page2').classList.add('modal-active')
 }
 
-function openFameModal() {
+window.openFameModal = function() {
   openModal(0)
 }
-function openWeatherModal() {
+window.openWeatherModal = function() {
   openModal(1)
 }
-function openInducementsModal() {
+window.openInducementsModal = function() {
   openModal(2)
 }
-function openKickoffModal() {
+window.openKickoffModal = function() {
   openModal(3)
   show(dom.get('kickoffCompleted'))
   show(dom.get('kickoffBackBtn'))
   hide(dom.get('kickoffCompletedStandalone'))
 }
-function openKickoffModalStandalone() {
+window.openKickoffModalStandalone = function() {
   openModal(3)
   show(dom.get('kickoffCompletedStandalone'))
   hide(dom.get('kickoffCompleted'))
   hide(dom.get('kickoffBackBtn'))
   kickoffModal.classList.add('disableOverlay')
 }
-function openPauseModal() {
+window.openPauseModal = function() {
   openModal(4)
 }
-function openNuffleModal() {
+window.openNuffleModal = function() {
   openModal(5)
 }
-function openPrePrayersToNuffleModal() {
+window.openPrePrayersToNuffleModal = function() {
   openModal(6)
 }
-function openSettingsModal() {
+window.openSettingsModal = function() {
   openModal(7)
   closePauseModal()
 }
-function openEventModal() {
+window.openEventModal = function() {
   openModal(8)
   show(dom.get('eventBackButton'))
   openEventButtons()
@@ -86,10 +91,10 @@ function openEventModal() {
   closePass()
   closePauseModal()
 }
-function openOutcomeModal() {
+window.openOutcomeModal = function() {
   openModal(9)
 }
-function openWinningsModal() {
+window.openWinningsModal = function() {
   function getTeamWinnings(teamScore) {
     const fameCalc = (gameState.team1.fame + gameState.team2.fame) / 2
     return (fameCalc + teamScore) * 10
@@ -100,52 +105,52 @@ function openWinningsModal() {
   team2winnings.innerHTML = `${team2Winnings}k`
   openModal(10)
 }
-function openFanFactorModal() {
+window.openFanFactorModal = function() {
   winningsFanFactorTeam1.innerHTML = gameState.team1.fame
   winningsFanFactorTeam2.innerHTML = gameState.team2.fame
   openModal(11)
 }
-function openSppModal() {
+window.openSppModal = function() {
   openModal(12)
 }
 
 
 
-function closeFameModal() {
+window.closeFameModal = function() {
   closeModal(0)
 }
-function closeWeatherModal() {
+window.closeWeatherModal = function() {
   closeModal(1)
 }
-function closeInducementsModal() {
+window.closeInducementsModal = function() {
   closeModal(2)
 }
-function closeKickoffModal() {
+window.closeKickoffModal = function() {
   closeModal(3)
   hide(dom.get('kickoffCompleted'))
   hide(dom.get('kickoffBackBtn'))
   show(dom.get('kickoffCompletedStandalone'))
 }
-function closeKickoffModalStandalone() {
+window.closeKickoffModalStandalone = function() {
   closeModal(3)
   hide(dom.get('kickoffCompletedStandalone'))
   show(dom.get('kickoffCompleted'))
   show(dom.get('kickoffBackBtn'))
   kickoffModal.classList.add('disableOverlay')
 }
-function closePauseModal() {
+window.closePauseModal = function() {
   closeModal(4)
 }
-function closeNuffleModal() {
+window.closeNuffleModal = function() {
   closeModal(5)
 }
-function closePrePrayersToNuffleModal() {
+window.closePrePrayersToNuffleModal = function() {
   closeModal(6)
 }
-function closeSettingsModal() {
+window.closeSettingsModal = function() {
   closeModal(7)
 }
-function closeEventModal() {
+window.closeEventModal = function() {
   closeModal(8)
   show(dom.get('eventBackButton'))
   closeEventButtons()
@@ -153,15 +158,15 @@ function closeEventModal() {
   closeInjury()
   closePauseModal()
 }
-function closeOutcomeModal() {
+window.closeOutcomeModal = function() {
   closeModal(9)
 }
-function closeWinningsModal() {
+window.closeWinningsModal = function() {
   closeModal(10)
 }
-function closeFanFactorModal() {
+window.closeFanFactorModal = function() {
   closeModal(11)
 }
-function closeSppModal() {
+window.closeSppModal = function() {
   closeModal(12)
 }
