@@ -107,15 +107,15 @@ function init() {
   gameConfig.time = Number(params.time) + 1; // para que empiece en el minuto exacto
   gameConfig.delay = gameConfig.delay ?? 2;
 
+  if (params?.team1 === null || params?.team1 === undefined) {
+    gameState.team1.name = params.team1Name
+    gameState.team2.name = params.team2Name
+  }
 
-  if (params?.team1 !== null && params?.team1 !== undefined) {
-    showPage2()
-    initClock(params)
-    if (gameConfig.guided === 'on') {
-      openFameModal(0)
-    }
-  } else {
-    alert('ERROR')
+  showPage2()
+  initClock(params)
+  if (gameConfig.guided === 'on') {
+    openFameModal(0)
   }
 }
 

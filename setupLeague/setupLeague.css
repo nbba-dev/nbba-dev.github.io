@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  background: black;
+  font-family: arial;
+  font-size: 16px;
+}
+
+.page[hidden], .page1-form-group[hidden]{
+  display: none;
+}
+
+.page {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  justify-content: center;
+  position: absolute;
+}
+
+.page1 {
+  padding: 5rem 0;
+}
+
+.page1-form {
+  display: flex;
+  flex-direction: column;
+  min-width: 224px;
+}
+
+.page1-form-group {
+  margin: 8px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.page1-form-group.horizontal {
+  flex-direction: row;
+}
+
+.page1 {
+  background: #e2e9ff;
+}
+
+.form1-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
