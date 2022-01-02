@@ -10,7 +10,7 @@ function init(loggedInCallback) {
     rejectDeferred = reject
   })
 
-  fetch("/shared/nbba-login.html")
+  fetch("/components/nbba-login/nbba-login.html")
   .then(stream => stream.text())
   .then(text => define(text));
 

@@ -1,4 +1,4 @@
-import init from '/shared/nbba-login.js'
+import init from '/components/nbba-login/nbba-login.js'
 import { loadLeagueExcel, loadTeamsFromExcel, loadRoundsFromExcel } from '../shared/excelUtils.js'
 import { createA, createButton, removeChildren, createOption } from '../shared/nodeUtils.js'
 import { getUrlParams } from '../shared/urlParamsUtils.js'
