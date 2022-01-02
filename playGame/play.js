@@ -124,14 +124,14 @@ function showPage2() {
   hide(dom.get('pleaseRotate'))
 }
 
-function reset(){
+window.reset = function(){
   const alert = confirm("¿Seguro que quieres empezar un nuevo partido?");
   if (alert == true) {
     window.location.href = '/setup'
   }
 }
 
-function keepGoing() {
+window.keepGoing = function() {
   if (gameState.hasStarted) {
     startClock()
   }
@@ -180,7 +180,7 @@ function startTurn(newPlayer, hasJustFinishedAHalf) {
   }
 }
 
-function clickOnTurn1() {
+window.clickOnTurn1 = function() {
   const firstTurnInTheGame = !gameState.hasStarted && !gameState.isSecondPart
   const firstTurnInSecondHalf = !gameState.hasStarted && gameState.isSecondPart
   const isAlreadyHisTurn = gameState.isTeam1turn
@@ -197,7 +197,7 @@ function clickOnTurn1() {
   }
 }
 
-function clickOnTurn2() {
+window.clickOnTurn2 = function() {
   const firstTurnInTheGame = !gameState.hasStarted && !gameState.isSecondPart
   const firstTurnInSecondHalf = !gameState.hasStarted && gameState.isSecondPart
   const isAlreadyHisTurn = !gameState.isTeam1turn
@@ -343,7 +343,7 @@ function resetTurnover() {
   dom.get('team2Turn').classList.remove('turnover')
 }
 
-function goFullscreen() {
+window.goFullscreen = function() {
   requestWakeLock()
   if (isInFullscreen) {
     isInFullscreen = false
@@ -451,17 +451,17 @@ init();
 
 
 
-function skipPregame() {
+window.skipPregame = function() {
   closeFameModal()
 }
 
 
-function completedFame() {
+window.completedFame = function() {
   closeFameModal()
   openWeatherModal()
 }
 
-function completedWeather() {
+window.completedWeather = function() {
   const valueForWeather = Number(dom.get('weatherValue').value)
   const weatherDict = {
     1: '🔥',
@@ -476,13 +476,13 @@ function completedWeather() {
   openInducementsModal()
 }
 
-function kickoffChangeWeather() {
+window.kickoffChangeWeather = function() {
   completedKickoff()
   kickoffModal.classList.remove('disableOverlay')
   openWeatherModal()
 }
 
-function kickoffTimeout() {
+window.kickoffTimeout = function() {
   const kickingTeamTurn = gameState.isTeam1turn ? gameState.team1.turn : gameState.team2.turn
   if (kickingTeamTurn <= 3) {
     gameState.team1.turn += 1
@@ -500,68 +500,68 @@ function completedKickoff() {
   closeKickoffModal()
 }
 
-function completedKickoffStandalone() {
+window.completedKickoffStandalone = function() {
   closeKickoffModalStandalone()
   openPauseModal()
 }
 
-function kickoffNuffle() {
+window.kickoffNuffle = function() {
   completedKickoff()
   openNuffleModal()
 }
 
-function completedNuffle() {
+window.completedNuffle = function() {
   closeNuffleModal()
 }
 
-function completedInducements() {
+window.completedInducements = function() {
   closeInducementsModal()
   openPrePrayersToNuffleModal()
 }
 
-function completedPrePrayersToNuffle() {
+window.completedPrePrayersToNuffle = function() {
   closePrePrayersToNuffleModal()
   openKickoffModal()
 }
 
-function goBackToFame() {
+window.goBackToFame = function() {
   closeWeatherModal()
   openFameModal(0)
 }
-function goBackToWeather() {
+window.goBackToWeather = function() {
   closeInducementsModal()
   openWeatherModal()
 }
-function goBackToInducements() {
+window.goBackToInducements = function() {
   closePrePrayersToNuffleModal()
   openInducementsModal()
 }
-function goBackToNuffle() {
+window.goBackToNuffle = function() {
   closeKickoffModal()
   openPrePrayersToNuffleModal()
 }
 
-function startAfterMatch() {
+window.startAfterMatch = function() {
   stopConfetti()
   openOutcomeModal()
 }
-function completedOutcome() {
+window.completedOutcome = function() {
   closeOutcomeModal()
   openWinningsModal()
 }
-function completedWinnings() {
+window.completedWinnings = function() {
   closeWinningsModal()
   openFanFactorModal()
 }
-function completedFanFactor() {
+window.completedFanFactor = function() {
   closeFanFactorModal()
   openSppModal()
 }
-function completedSPP() {
+window.completedSPP = function() {
   closeSppModal()
 }
 
-function pauseGame() {
+window.pauseGame = function() {
   pauseClock()
   openPauseModal()
 }
@@ -584,7 +584,7 @@ function setActivePassTurnAndHalf() {
   dom.get('passTurn').children[activeTurn - 1].setAttribute('selected', true)
 }
 
-function openTouchdown() {
+window.openTouchdown = function() {
   closeEventButtons()
   show(dom.get('touchdownForm'))
   show(dom.get('confirmTouchdownButton'))
@@ -599,7 +599,7 @@ function closeTouchdown() {
   hide(dom.get('touchdownForm'))
 }
 
-function confirmTouchdown() {
+window.confirmTouchdown = function() {
   hide(dom.get('touchdownForm'))
   hide(dom.get('confirmTouchdownButton'))
   const tempTd = gameState.temporalTouchdown ?? getTouchdownRecord({});
@@ -611,7 +611,7 @@ function confirmTouchdown() {
   setGameRecordsContent()
 }
 
-function openInjury() {
+window.openInjury = function() {
   closeEventButtons()
   closeTouchdown()
   closePass()
@@ -626,7 +626,7 @@ function closeInjury() {
   hide(dom.get('injuryForm'))
 }
 
-function confirmInjury() {
+window.confirmInjury = function() {
   hide(dom.get('injuryForm'))
   hide(dom.get('confirmInjuryButton'))
   const tempInjury = gameState.temporalInjury ?? getInjuryRecord({});
@@ -651,7 +651,7 @@ function updateSelectedInjury() {
   openInjuryHelp(value)
 }
 
-function openPass() {
+window.openPass = function() {
   closeEventButtons()
   show(dom.get('passForm'))
   show(dom.get('confirmPassButton'))
@@ -666,7 +666,7 @@ function closePass() {
   hide(dom.get('passForm'))
 }
 
-function confirmPass() {
+window.confirmPass = function() {
   hide(dom.get('passForm'))
   hide(dom.get('confirmPassButton'))
   const tempPA = gameState.temporalPass ?? getPassRecord({});
@@ -681,7 +681,7 @@ function closeEventButtons() {
   hide(dom.get('eventButtons'))
 }
 
-function openEventButtons() {
+window.openEventButtons = function() {
   show(dom.get('eventButtons'))
 }
 
@@ -773,7 +773,7 @@ function removeChildren(node) {
   }
 }
 
-function onAttackingInjuryPlayerUpdate() {
+window.onAttackingInjuryPlayerUpdate = function() {
   if (dom.get('attackingInjuryPlayerInput').checked) {
     show(dom.get('attackingInjuryPlayerForm'))
   } else {
@@ -781,7 +781,7 @@ function onAttackingInjuryPlayerUpdate() {
   }
 }
 
-function showRecord() {
+window.showRecord = function() {
   openPauseModal()
 }
 
@@ -793,7 +793,7 @@ function getDomArr(ids) {
   return domArr
 }
 
-function updateSelectedWeather(val) {
+window.updateSelectedWeather = function(val) {
   const rows = getDomArr([
     'weatherRow1',
     'weatherRow2',
@@ -815,7 +815,7 @@ function updateSelectedWeather(val) {
   show(dict[rolledValue])
 }
 
-function updateSelectedKickoff(val) {
+window.updateSelectedKickoff = function(val) {
   const rows = getDomArr([
     'kickoffRow1',
     'kickoffRow2',
@@ -843,7 +843,7 @@ function updateSelectedKickoff(val) {
   show(dict[rolledValue])
 }
 
-function updateSelectedNuffle(val) {
+window.updateSelectedNuffle = function(val) {
   const rows = getDomArr([
     'nuffle1',
     'nuffle2',
