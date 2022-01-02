@@ -3,7 +3,7 @@ const getDomNodesByIds = (ids) => {
   ids.forEach((id) => {
     const nodes = [...document.querySelectorAll(`#${id}`)]
     if (nodes.length === 0) {
-      alert('Error document.queryselecting on', id)
+      console.log('Error document.queryselecting on', id)
     }
     else if (nodes.length === 1) {
       dom.set(id, nodes[0])

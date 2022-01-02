@@ -23,23 +23,24 @@
     <link rel="stylesheet" href="./setupLeague.css">
 
     <div class="page page1" id="page1">
-      <form id="form" class="page1-form" action="/playGame/">
+      <div id="loadingLeague">Loading league...</div>
+      <form id="form" class="page1-form" action="/playGame/" hidden>
         <div id="moreLeagueInfo"></div>
-        <div class="page1-form-group" id="leagueMatchRound" hidden>
+        <div class="page1-form-group" id="leagueMatchRound">
           <label for="round" class="form1-label">Jornada</label>
-          <select name="round" id="round" required>
+          <select name="round" id="rounds" required>
             <option value="0" selected>Equipo Local</option>
             <option value="-1" disabled>Inicia sesión para más opciones</option>
           </select>
         </div>
-        <div class="page1-form-group" id="leagueMatchTeams" hidden>
+        <div class="page1-form-group" id="leagueMatchTeams">
           <label for="leagueTeams" class="form1-label">Partido</label>
           <select name="leagueTeams" id="leagueTeams" required>
             <option value="0" selected>Equipo Local</option>
             <option value="-1" disabled>Inicia sesión para más opciones</option>
           </select>
         </div>
-        <div class="page1-form-group" id="friendlyMatchTeam1">
+        <!-- <div class="page1-form-group" id="friendlyMatchTeam1">
           <label for="team1" class="form1-label">Equipo 1<span class="label-helper">Local</span></label>
           <select name="team1" id="team1" required>
             <option value="0" selected>Equipo Local</option>
@@ -52,7 +53,7 @@
             <option value="1" selected>Equipo Visitante</option>
             <option value="-1" disabled>Inicia sesión para más opciones</option>
           </select>
-        </div>
+        </div> -->
         <div class="page1-form-group">
           <label for="turns">Reglas</label>
           <select name="turns" required>
