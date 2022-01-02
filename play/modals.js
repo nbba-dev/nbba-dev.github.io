@@ -1,4 +1,6 @@
-addDomNodesByIds([
+import { getDomNodesByIds } from '../shared/domUtils.js'
+
+const dom = getDomNodesByIds([
   'fameModal',
   'weatherModal',
   'inducementsModal',

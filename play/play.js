@@ -1,7 +1,7 @@
+import { getDomNodesByIds, show, hide } from '../shared/domUtils.js'
 
 // state
-
-addDomNodesByIds([
+const dom = getDomNodesByIds([
   'pleaseRotate',
   'team2TurnTurn',
   'team1TurnTurn',

@@ -1,6 +1,8 @@
+import { getDomNodesByIds } from '../shared/domUtils.js'
+
 /* fame */
 (() => {
-  addDomNodesByIds([
+  const dom = getDomNodesByIds([
     'fanFactorTeam1',
     'fansRollTeam1',
     'fanFactorTeam2',
@@ -28,7 +30,7 @@
 
 /* Touchdown */
 (() => {
-  addDomNodesByIds([
+  const dom = getDomNodesByIds([
     'touchdownTeam',
     'touchdownPlayer',
     'touchdownTurn',
@@ -52,7 +54,7 @@
 
 /* Injury */
 (() => {
-  addDomNodesByIds([
+  const dom = getDomNodesByIds([
     'injuryHurtTeam',
     'injuryHurtPlayer',
     'attackingInjuryPlayerInput',
@@ -95,7 +97,7 @@
 
 /* Pass */
 (() => {
-  addDomNodesByIds([
+  const dom = getDomNodesByIds([
     'passTeam',
     'passPlayer',
     'passTurn',
