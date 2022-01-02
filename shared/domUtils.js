@@ -22,8 +22,17 @@ const show = (node) => {
   node.removeAttribute('hidden')
 }
 
+const getDomArr = (ids) => {
+  const domArr = []
+  ids.forEach((id) => {
+    domArr.push(document.querySelector(`#${id}`))
+  })
+  return domArr
+}
+
 export {
   getDomNodesByIds,
   hide,
-  show ,
+  show,
+  getDomArr,
 }

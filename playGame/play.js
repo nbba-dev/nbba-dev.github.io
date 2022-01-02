@@ -1,4 +1,4 @@
-import { getDomNodesByIds, show, hide } from '../shared/domUtils.js'
+import { getDomNodesByIds, show, hide, getDomArr } from '../shared/domUtils.js'
 import { getTeamName, getActiveTurn, getActiveHalf, getTouchdownRecord, getInjuryRecord, getInjuryType, getPassRecord } from './playUtils.js'
 
 // state
@@ -783,14 +783,6 @@ window.onAttackingInjuryPlayerUpdate = function() {
 
 window.showRecord = function() {
   openPauseModal()
-}
-
-function getDomArr(ids) {
-  const domArr = []
-  ids.forEach((id) => {
-    domArr.push(document.querySelector(`#${id}`))
-  })
-  return domArr
 }
 
 window.updateSelectedWeather = function(val) {
