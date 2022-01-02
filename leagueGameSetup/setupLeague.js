@@ -6,93 +6,75 @@ import { getDomNodesByIds, hide, show } from '../shared/domUtils.js'
 
 // state
 let isLoggedIn;
-let sheet;
+let selectedRound;
+let leagueRounds;
+let leagueTeams;
 
 // nodes
 const dom = getDomNodesByIds([
   'moreLeagueInfo',
-  'formSubmit',
   'form',
-  // 'team1',
-  // 'team2',
-  'form1Checkbox',
   'loadingLeague',
-
-  'leagueMatchRound',
-  'rounds',
-  'leagueMatchTeams',
-  'leagueTeams',
+  'roundSelect',
+  'matchSelect',
+  'turns',
 ])
 
 function loggedInCallback(newVal) {
   isLoggedIn = newVal
   if (isLoggedIn) {
-    loadTeamsFromExcel()
-    loadRoundsFromExcel()
-      .then(setRounds)
-      .then(setRoundGames)
+    const loadTeamsPromise = loadTeamsFromExcel().then(setTeams)
+    const loadRoundsPromise = loadRoundsFromExcel().then(setRounds)
     loadLeagueExcel()
-      .then((loadedSheet) => { sheet = loadedSheet })
-      .then(setMoreLeagueInfo)
-      // .then(setTeams)
-      .then(enableCheckbox)
+      .then(setLeagueInfo)
+
+    Promise.all([loadTeamsPromise, loadRoundsPromise]).then(setRoundGames)
   }
 }
 
-function setMoreLeagueInfo() {
-  hide(dom.get('loadingLeague'))
-  show(dom.get('form'))
-  dom.get('moreLeagueInfo').appendChild(createA(sheet[2][1], sheet[1][1]))
-}
-
-function setTeams() {
-  removeChildren(dom.get('team1'))
-  removeChildren(dom.get('team2'))
-  dom.get('team1').appendChild(createOption('N/A', 0))
-  dom.get('team2').appendChild(createOption('N/A', 0))
-  sheet.forEach((row, rowIndex) => {
-    if (rowIndex >= 1 && row[3]) {
-      dom.get('team1').appendChild(createOption(row[3], rowIndex))
-      dom.get('team2').appendChild(createOption(row[3], rowIndex))
-    }
-  })
-}
-
-function enableCheckbox() {
-  dom.get('form1Checkbox').removeAttribute('disabled')
+function setTeams(teams) {
+  leagueTeams = teams
 }
 
 function setRounds(rounds) {
-  removeChildren(dom.get('rounds'))
+  leagueRounds = rounds
+  removeChildren(dom.get('roundSelect'))
   rounds.forEach((round, roundIndex) => {
-    dom.get('rounds').appendChild(createOption(`Jornada ${round.roundNumber}`, roundIndex))
+    dom.get('roundSelect').appendChild(createOption(`Jornada ${round.roundNumber} – ${round.roundDates}`, roundIndex))
   })
+  selectedRound = rounds[0]
   return rounds
 }
 
-function setRoundGames(rounds) {
-  removeChildren(dom.get('leagueTeams'))
-  rounds.forEach((round, roundIndex) => {
-    round.roundGames.forEach((roundGame, roundGameIndex) => {
-      // TODO CAMBIAR POR NOMBRE DE EQUIPO A PARTIR DE LA CARGA DE EQUIPOS
-      dom.get('leagueTeams').appendChild(createOption(`${roundGame.team1} vs. ${roundGame.team2}`, `${roundIndex}-${roundGameIndex}`))
-    })
+function setLeagueInfo(leagueInfo) {
+  hide(dom.get('loadingLeague'))
+  show(dom.get('form'))
+  setTurns(leagueInfo.leagueRuleset)
+  dom.get('moreLeagueInfo').appendChild(createA(leagueInfo.leagueName, leagueInfo.leagueLink))
+}
+
+function setRoundGames() {
+  removeChildren(dom.get('matchSelect'))
+  selectedRound.roundGames.forEach((roundGame, roundGameIndex) => {
+    const team1Name = leagueTeams.find(a => a.teamId === roundGame.team1)?.teamName
+    const team2Name = leagueTeams.find(a => a.teamId === roundGame.team2)?.teamName
+    dom.get('matchSelect').appendChild(createOption(`${team1Name} – ${team2Name}`, roundGameIndex))
   })
 }
 
+function setTurns(ruleset) {
+  const turnsPerRuleset = {
+    'BB7': 6,
+    'BB11': 8
+  }
+  dom.get('turns').value = turnsPerRuleset[ruleset]
+}
 
-// function initSetup() {
-//   const params = getUrlParams()
-//   if (params.league === 'true') {
-//     document.querySelector('#friendlyMatchTeam1').setAttribute('hidden', true)
-//     document.querySelector('#friendlyMatchTeam2').setAttribute('hidden', true)
-//     document.querySelector('#leagueMatchTeams').removeAttribute('hidden')
-//     document.querySelector('#leagueMatchRound').removeAttribute('hidden')
-//   } else {
-
-//   }
-// }
-
-// initSetup()
+(function initListeners() {
+  dom.get('roundSelect').addEventListener('change', (e) => {
+    selectedRound = leagueRounds[dom.get('roundSelect').value]
+    setRoundGames()
+  })
+})()
 
 init(loggedInCallback)

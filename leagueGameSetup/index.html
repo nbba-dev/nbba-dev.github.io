@@ -22,44 +22,30 @@
 
     <link rel="stylesheet" href="./setupLeague.css">
 
-    <div class="page page1" id="page1">
+    <div class="page page1">
       <div id="loadingLeague">Loading league...</div>
       <form id="form" class="page1-form" action="/playGame/" hidden>
         <div id="moreLeagueInfo"></div>
-        <div class="page1-form-group" id="leagueMatchRound">
+        <div class="page1-form-group">
           <label for="round" class="form1-label">Jornada</label>
-          <select name="round" id="rounds" required>
+          <select name="round" id="roundSelect" required>
             <option value="0" selected>Equipo Local</option>
             <option value="-1" disabled>Inicia sesión para más opciones</option>
           </select>
         </div>
-        <div class="page1-form-group" id="leagueMatchTeams">
+        <div class="page1-form-group">
           <label for="leagueTeams" class="form1-label">Partido</label>
-          <select name="leagueTeams" id="leagueTeams" required>
+          <select name="leagueTeams" id="matchSelect" required>
             <option value="0" selected>Equipo Local</option>
             <option value="-1" disabled>Inicia sesión para más opciones</option>
           </select>
         </div>
-        <!-- <div class="page1-form-group" id="friendlyMatchTeam1">
-          <label for="team1" class="form1-label">Equipo 1<span class="label-helper">Local</span></label>
-          <select name="team1" id="team1" required>
-            <option value="0" selected>Equipo Local</option>
-            <option value="-1" disabled>Inicia sesión para más opciones</option>
-          </select>
-        </div>
-        <div class="page1-form-group" id="friendlyMatchTeam2">
-          <label for="team2" class="form1-label">Equipo 2<span class="label-helper">Visitante</span></label>
-          <select name="team2" id="team2" required>
-            <option value="1" selected>Equipo Visitante</option>
-            <option value="-1" disabled>Inicia sesión para más opciones</option>
-          </select>
-        </div> -->
         <div class="page1-form-group">
           <label for="turns">Reglas</label>
-          <select name="turns" required>
+          <select name="turns" id="turns" required disabled>
             <option value="2">TEST — 2 turnos</option>
-            <option value="6" selected>BB7 — 6 turnos</option>
-            <option value="8" disabled>BB11 — 8 turnos</option>
+            <option value="6">BB7 — 6 turnos</option>
+            <option value="8">BB11 — 8 turnos</option>
           </select>
         </div>
         <div class="page1-form-group">
@@ -85,10 +71,10 @@
           </select>
         </div>
         <div class="page1-form-group horizontal">
-          <input type="checkbox" id="form1Checkbox" name="guided" disabled>
+          <input type="checkbox" name="guided">
           <label for="form1Checkbox">Partido guiado</label>
         </div>
-        <div class="page1-form-group" id="formSubmit">
+        <div class="page1-form-group">
           <button type="submit">¡Empezar partido!</button>
         </div>
       </form>
