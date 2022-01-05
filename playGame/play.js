@@ -89,10 +89,14 @@ let gameState = {
   temporalInjury: null,
   temporalPass: null,
 }
+
 let gameRecord = []
 let clock;
 let wakeLock = null;
 let isInFullscreen = false;
+
+window.gameRecord = gameRecord
+window.gameState = gameState
 
 const timeoutAudio = new Audio('../multimedia/Timeout.mp3');
 const turnAudio = new Audio('../multimedia/Turn.mp3');
@@ -615,7 +619,7 @@ window.confirmTouchdown = function() {
   hide(dom.get('confirmTouchdownButton'))
   const tempTd = gameState.temporalTouchdown ?? getTouchdownRecord({});
   gameRecord.push(tempTd)
-  temporalTouchdown = null
+  gameState.temporalTouchdown = null
   closeEventModal()
   openPauseModal()
   setTouchdowns()
@@ -642,7 +646,7 @@ window.confirmInjury = function() {
   hide(dom.get('confirmInjuryButton'))
   const tempInjury = gameState.temporalInjury ?? getInjuryRecord({});
   gameRecord.push(tempInjury)
-  temporalInjury = null
+  gameState.temporalInjury = null
   closeEventModal()
   openPauseModal()
   setGameRecordsContent()
@@ -682,13 +686,13 @@ window.confirmPass = function() {
   hide(dom.get('confirmPassButton'))
   const tempPA = gameState.temporalPass ?? getPassRecord({});
   gameRecord.push(tempPA)
-  temporalPass = null
+  gameState.temporalPass = null
   closeEventModal()
   openPauseModal()
   setGameRecordsContent()
 }
 
-function closeEventButtons() {
+window.closeEventButtons = function() {
   hide(dom.get('eventButtons'))
 }
 
@@ -880,5 +884,3 @@ window.updateSelectedNuffle = function(val) {
   const rolledValue = Number(val);
   dict[rolledValue] && show(dict[rolledValue])
 }
-
-finishGame()

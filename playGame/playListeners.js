@@ -1,4 +1,5 @@
 import { getDomNodesByIds } from '../shared/domUtils.js'
+import { getTouchdownRecord, getInjuryRecord, getPassRecord } from './playUtils.js'
 
 const initPlayListeners = function (externalGameState) {
   let gameState = externalGameState;
