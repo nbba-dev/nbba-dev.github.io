@@ -22,6 +22,7 @@ const initPlayModals = function(externalGameState) {
     'kickoffBackBtn',
     'kickoffCompletedStandalone',
     'eventBackButton',
+    'kickoffSelect'
   ])
 
   const modals = [
@@ -70,6 +71,8 @@ const initPlayModals = function(externalGameState) {
     show(dom.get('kickoffCompletedStandalone'))
     hide(dom.get('kickoffCompleted'))
     hide(dom.get('kickoffBackBtn'))
+    dom.get('kickoffSelect').value = 0
+    updateSelectedKickoff(0)
     kickoffModal.classList.add('disableOverlay')
   }
   window.openPauseModal = function() {

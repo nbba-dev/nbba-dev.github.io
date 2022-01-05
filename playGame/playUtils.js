@@ -1,3 +1,5 @@
+import { show, hide, getDomArr } from '../shared/domUtils.js'
+
 const getTeamName = function (oneOrTwo) {
   return oneOrTwo === 1 ? gameState.team1.name : gameState.team2.name;
 }
@@ -74,6 +76,34 @@ const getPassRecord = function ({
     turn,
     half,
   }
+}
+
+window.updateSelectedKickoff = function(val) {
+  const rows = getDomArr([
+    'kickoffRow1',
+    'kickoffRow2',
+    'kickoffRow3',
+    'kickoffRow4',
+    'kickoffRow5',
+    'kickoffRow6',
+    'kickoffRow7',
+    'kickoffRow8',
+    'kickoffRow9',
+    'kickoffRow10',
+    'kickoffRow11',
+  ])
+
+  const dict = {
+    0: null
+  }
+
+  rows.forEach((row, index) => {
+    hide(row)
+    dict[index + 1] = row
+  })
+
+  const rolledValue = Number(val);
+  dict[rolledValue] && show(dict[rolledValue])
 }
 
 export {
