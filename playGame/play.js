@@ -36,6 +36,7 @@ const dom = getDomNodesByIds([
   'attackingInjuryPlayerForm',
   'gameRecordsContainer',
   'gameRecordsContainerEndgame',
+  'noGameRecordsEndgame',
   'touchdownHalf',
   'touchdownTurn',
   'injuryHalf',
@@ -129,7 +130,14 @@ function showPage2() {
 window.reset = function(){
   const alert = confirm("¿Seguro que quieres empezar un nuevo partido?");
   if (alert == true) {
-    window.location.href = '/setup'
+    window.location.href = '/setupGame'
+  }
+}
+
+window.goToHome = function(){
+  const alert = confirm("¿Seguro que quieres salir?");
+  if (alert == true) {
+    window.location.href = '/'
   }
 }
 
@@ -557,6 +565,7 @@ window.completedWinnings = function() {
 }
 window.completedFanFactor = function() {
   closeFanFactorModal()
+  // TODO - SUBIR ACTA
   openSppModal()
 }
 window.completedSPP = function() {
@@ -691,9 +700,11 @@ function setGameRecordsContent() {
   if (gameRecord.length > 0) {
     show(dom.get('gameRecordsContainer'))
     show(dom.get('gameRecordsContainerEndgame'))
+    hide(dom.get('noGameRecordsEndgame'))
   } else {
     hide(dom.get('gameRecordsContainer'))
     hide(dom.get('gameRecordsContainerEndgame'))
+    show(dom.get('noGameRecordsEndgame'))
   }
   removeChildren(gameRecordInsertionPoint)
   removeChildren(gameRecordInsertionPointEndgame)
@@ -869,3 +880,5 @@ window.updateSelectedNuffle = function(val) {
   const rolledValue = Number(val);
   dict[rolledValue] && show(dict[rolledValue])
 }
+
+finishGame()

@@ -743,11 +743,13 @@
         <p>Los árbitros ponen en común lo ocurrido durante el partido</p>
       </div>
         <div class="modal-body pause-modal-body">
+          <div id="noGameRecordsEndgame" class="noGameRecordsEndgame">
+            Sorprendentemente ha sido un partido limpio
+          </div>
           <div id="gameRecordsContainerEndgame" class="gameRecordsContainer" hidden>
             <div id="gameRecordInsertionPointEndgame" class="gameRecordGrid"></div>
           </div>
         </div>
-      <div class="modal-body"></div>
       <div class="modal-controls">
         <button class="modal-bottomBtn" onclick="openEventModal()">Nuevo suceso</button>
         <button class="modal-bottomBtn modal-continueBtn" onclick="completedOutcome()">Continuar</button>
@@ -980,12 +982,21 @@
         <p>
           TODO - caso de conceder el partido
         </p>
-        <div>
-          Team1: <span id="team1winnings"></span>
+        <div class="winningsContainer">
+          <div>
+            <div>Team1</div>
+            <div id="team1winnings" class="winningsNumber"></div>
+          </div>
+          <div>
+            <div>Team2</div>
+            <div id="team2winnings" class="winningsNumber"></div>
+          </div>
         </div>
-        <div>
-          Team2: <span id="team2winnings"></span>
-        </div>
+        <ul class="winningsExplanation">
+          <li>Add together the FAME of both teams, then divide the result by 2.</li>
+          <li>Add the number of friendly touchdowns to the result.</li>
+          <li>Multiply the total by 10.</li>
+        </ul>
       </div>
       <div class="modal-controls">
         <button class="modal-bottomBtn modal-continueBtn" onclick="completedWinnings()">Continuar</button>
@@ -1005,34 +1016,36 @@
             <div>Fan factor</div>
             <div id="winningsFanFactorTeam1"></div>
           </div>
-          <div>vs</div>
+          <div>&</div>
           <div class="dice-roll">
             <div>1D3</div>
-            <select name="" id="winningsFanFactorRollTeam1">
+            <select name="" id="winningsFanFactorRollTeam1" onchange="updateFanFactorTeam1(this.value)">
               <option value="0">N/A</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
             </select>
           </div>
-          <div id="winningsFanFactorResultTeam1"> = Se mantiene</div>
+          <div>=</div>
+          <div id="winningsFanFactorResultTeam1"></div>
         </div>
         <div class="dice-roll-container">
           <div class="dice-roll">
             <div>Fan factor</div>
             <div id="winningsFanFactorTeam2"></div>
           </div>
-          <div>vs</div>
+          <div>&</div>
           <div class="dice-roll">
             <div>1D3</div>
-            <select name="" id="winningsFanFactorRollTeam2">
+            <select name="" id="winningsFanFactorRollTeam2" onchange="updateFanFactorTeam2(this.value)">
               <option value="0">N/A</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
             </select>
           </div>
-          <div id="winningsFanFactorResultTeam2"> = Se mantiene</div>
+          <div>=</div>
+          <div id="winningsFanFactorResultTeam2"></div>
         </div>
       </div>
       <div class="modal-controls">
@@ -1044,12 +1057,25 @@
   <div class="modal-overlay" id="sppModal" hidden>
     <div class="modal">
       <div class="modal-title subtle">
-        <h3>4. Player Advancements (SPP)</h3>
-        <p>Los jugadores aprenden y crecen de la experiencia partido a partido</p>
+        <h3>¡Final del partido!</h3>
+        <p>Los jugadores vivos se suben al autobús y vuelven a casa con sus familias</p>
       </div>
-      <div class="modal-body"></div>
+      <div class="modal-body">
+        <p>
+          El acta se subirá automáticamente.
+        </p>
+        <p>
+          Recuerda actualizar el roster antes del siguiente partido a través de las hojas oficiales de la liga.
+        </p>
+        <p>
+          Ha sido un placer acompañarles en este partido.
+        </p>
+        <p>
+          ¡Bien jugado!
+        </p>
+      </div>
       <div class="modal-controls">
-        <button class="modal-bottomBtn modal-continueBtn" onclick="completedSPP()">Continuar</button>
+        <button class="modal-bottomBtn modal-continueBtn" onclick="goToHome()">Nuevo partido</button>
       </div>
     </div>
   </div>

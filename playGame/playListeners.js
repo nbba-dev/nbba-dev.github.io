@@ -14,12 +14,12 @@ const initPlayListeners = function (externalGameState) {
       'resultFansTeam2',
     ])
 
-    function updateFameTeam1() {
+    window.updateFameTeam1 = function() {
       const newFame = Number(dom.get('fanFactorTeam1').value) + Number(dom.get('fansRollTeam1').value)
       gameState.team1.fame = newFame
       dom.get('resultFansTeam1').innerHTML = `= ${newFame}`
     }
-    function updateFameTeam2() {
+    window.updateFameTeam2 = function() {
       const newFame = Number(dom.get('fanFactorTeam2').value) + Number(dom.get('fansRollTeam2').value)
       gameState.team2.fame = newFame
       dom.get('resultFansTeam2').innerHTML = `= ${newFame}`
@@ -40,7 +40,7 @@ const initPlayListeners = function (externalGameState) {
       'touchdownHalf',
     ])
 
-    function updateTempTouchdown() {
+    window.updateTempTouchdown = function() {
       const params = {
         team: Number(dom.get('touchdownTeam').value),
         player: Number(dom.get('touchdownPlayer').value),
@@ -69,7 +69,7 @@ const initPlayListeners = function (externalGameState) {
       'injuryHalf',
     ])
 
-    function updateTempInjury() {
+    window.updateTempInjury = function() {
       const isThereHurtingPlayer = !!dom.get('attackingInjuryPlayerInput').checked
       const params = {
         hurtTeam: Number(dom.get('injuryHurtTeam').value),
@@ -107,7 +107,7 @@ const initPlayListeners = function (externalGameState) {
       'passHalf',
     ])
 
-    function updateTempPass() {
+    window.updateTempPass = function() {
       const params = {
         team: Number(dom.get('passTeam').value),
         player: Number(dom.get('passPlayer').value),
@@ -120,6 +120,50 @@ const initPlayListeners = function (externalGameState) {
     dom.get('passTeam').addEventListener('change', updateTempPass)
     dom.get('passPlayer').addEventListener('change', updateTempPass)
   })();
+
+  (() => {
+    const dom = getDomNodesByIds([
+      'winningsFanFactorResultTeam1',
+      'winningsFanFactorResultTeam2',
+    ])
+
+    window.updateFanFactorTeam1 = function(newValue) {
+      if (newValue > 0) {
+        let newFame = gameState.team1.fame
+        if (gameState.team1.fame < newValue) {
+          newFame = gameState.team1.fame + 1
+          dom.get('winningsFanFactorResultTeam1').innerHTML = `Fama +1`
+        } else if (gameState.team1.fame > newValue) {
+          newFame = gameState.team1.fame - 1
+          dom.get('winningsFanFactorResultTeam1').innerHTML = `Fama -1`
+        } else {
+          dom.get('winningsFanFactorResultTeam1').innerHTML = `Se mantiene la misma Fama`
+        }
+        gameState.team1.newFame = newFame
+      } else {
+        dom.get('winningsFanFactorResultTeam1').innerHTML = ''
+      }
+    }
+
+    window.updateFanFactorTeam2 = function(newValue) {
+      if (newValue > 0) {
+        let newFame = gameState.team2.fame
+        if (gameState.team2.fame < newValue) {
+          newFame = gameState.team2.fame + 1
+          dom.get('winningsFanFactorResultTeam2').innerHTML = `Fama +1`
+        } else if (gameState.team2.fame > newValue) {
+          newFame = gameState.team2.fame - 1
+          dom.get('winningsFanFactorResultTeam2').innerHTML = `Fama -1`
+        } else {
+          dom.get('winningsFanFactorResultTeam2').innerHTML = `Se mantiene la misma Fama`
+        }
+        gameState.team1.newFame = newFame
+      } else {
+        dom.get('winningsFanFactorResultTeam2').innerHTML = ''
+      }
+    }
+
+  })()
 }
 
 export {

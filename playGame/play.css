@@ -629,6 +629,24 @@ body {
   margin-bottom: 1rem;
 }
 
+.noGameRecordsEndgame {
+  margin-top: 5rem;
+}
+
+.winningsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.winningsExplanation {
+  font-style: italic;
+}
+
+.winningsNumber {
+  font-weight: bold;
+  font-size: 4rem;
+}
+
 @media (max-width: 500px) {
   .pleaseRotate {
     display: flex;
