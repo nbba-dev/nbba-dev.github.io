@@ -69,7 +69,7 @@ let gameState = {
     elapsedTime: 0,
     score: 0,
     name: 'Local',
-    logo: 'team0.png',
+    logo: '../multimedia/team0.png',
     fame: 1,
   },
   team2: {
@@ -77,7 +77,7 @@ let gameState = {
     elapsedTime: 0,
     score: 0,
     name: 'Visitante',
-    logo: 'team0.png',
+    logo: '../multimedia/team0.png',
     fame: 1,
   },
   isTeam1turn: false,
@@ -93,9 +93,9 @@ let clock;
 let wakeLock = null;
 let isInFullscreen = false;
 
-const timeoutAudio = new Audio('Timeout.mp3');
-const turnAudio = new Audio('Turn.mp3');
-const turn2Audio = new Audio('Turn2.mp3');
+const timeoutAudio = new Audio('../multimedia/Timeout.mp3');
+const turnAudio = new Audio('../multimedia/Turn.mp3');
+const turn2Audio = new Audio('../multimedia/Turn2.mp3');
 
 initPlayListeners(gameState)
 initPlayModals(gameState)
