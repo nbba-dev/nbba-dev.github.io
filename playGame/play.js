@@ -1,5 +1,7 @@
 import { getDomNodesByIds, show, hide, getDomArr } from '../shared/domUtils.js'
 import { getTeamName, getActiveTurn, getActiveHalf, getTouchdownRecord, getInjuryRecord, getInjuryType, getPassRecord } from './playUtils.js'
+import { initPlayListeners } from './playListeners.js';
+import { initPlayModals } from './playModals.js';
 
 // state
 const dom = getDomNodesByIds([
@@ -94,6 +96,9 @@ let isInFullscreen = false;
 const timeoutAudio = new Audio('Timeout.mp3');
 const turnAudio = new Audio('Turn.mp3');
 const turn2Audio = new Audio('Turn2.mp3');
+
+initPlayListeners(gameState)
+initPlayModals(gameState)
 
 // functions
 
