@@ -22,7 +22,8 @@ const initPlayModals = function(externalGameState) {
     'kickoffBackBtn',
     'kickoffCompletedStandalone',
     'eventBackButton',
-    'kickoffSelect'
+    'kickoffSelect',
+    'nuffleSelect',
   ])
 
   const modals = [
@@ -79,6 +80,8 @@ const initPlayModals = function(externalGameState) {
     openModal(4)
   }
   window.openNuffleModal = function() {
+    dom.get('nuffleSelect').value = 0
+    updateSelectedNuffle(0)
     openModal(5)
   }
   window.openPrePrayersToNuffleModal = function() {

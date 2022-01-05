@@ -809,6 +809,34 @@ window.updateSelectedWeather = function(val) {
   show(dict[rolledValue])
 }
 
+window.updateSelectedKickoff = function(val) {
+  const rows = getDomArr([
+    'kickoffRow1',
+    'kickoffRow2',
+    'kickoffRow3',
+    'kickoffRow4',
+    'kickoffRow5',
+    'kickoffRow6',
+    'kickoffRow7',
+    'kickoffRow8',
+    'kickoffRow9',
+    'kickoffRow10',
+    'kickoffRow11',
+  ])
+
+  const dict = {
+    0: null
+  }
+
+  rows.forEach((row, index) => {
+    hide(row)
+    dict[index + 1] = row
+  })
+
+  const rolledValue = Number(val);
+  dict[rolledValue] && show(dict[rolledValue])
+}
+
 window.updateSelectedNuffle = function(val) {
   const rows = getDomArr([
     'nuffle1',
@@ -839,5 +867,5 @@ window.updateSelectedNuffle = function(val) {
   })
 
   const rolledValue = Number(val);
-  show(dict[rolledValue])
+  dict[rolledValue] && show(dict[rolledValue])
 }
