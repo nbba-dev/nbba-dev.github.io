@@ -1,4 +1,4 @@
-import { init } from '/components/nbba-login/nbba-login.js'
+import { initLogin } from '/components/nbba-login/nbba-login.js'
 import { loadLeagueExcel, loadTeamsFromExcel, loadRoundsFromExcel } from '../shared/excelUtils.js'
 import { createA, createButton, removeChildren, createOption } from '../shared/nodeUtils.js'
 import { getUrlParams } from '../shared/urlParamsUtils.js'
@@ -55,10 +55,11 @@ function setLeagueInfo(leagueInfo) {
 
 function setRoundGames() {
   removeChildren(dom.get('matchSelect'))
-  selectedRound.roundGames.forEach((roundGame, roundGameIndex) => {
-    const team1Name = leagueTeams.find(a => a.teamId === roundGame.team1)?.teamName
-    const team2Name = leagueTeams.find(a => a.teamId === roundGame.team2)?.teamName
-    dom.get('matchSelect').appendChild(createOption(`${team1Name} – ${team2Name}`, roundGameIndex))
+  selectedRound.roundGames.forEach((roundGame) => {
+    const team1Name = leagueTeams.find(a => a.teamId == roundGame.team1)?.teamName
+    const team2Name = leagueTeams.find(a => a.teamId == roundGame.team2)?.teamName
+    console.log(roundGame.gameId)
+    dom.get('matchSelect').appendChild(createOption(`${team1Name} – ${team2Name}`, roundGame.gameId))
   })
 }
 
@@ -77,4 +78,4 @@ function setTurns(ruleset) {
   })
 })()
 
-init(loggedInCallback)
+initLogin(loggedInCallback)

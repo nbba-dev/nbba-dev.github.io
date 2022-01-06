@@ -2,6 +2,8 @@ import { getDomNodesByIds, show, hide, getDomArr } from '../shared/domUtils.js'
 import { getTeamName, getActiveTurn, getActiveHalf, getTouchdownRecord, getInjuryRecord, getInjuryType, getPassRecord } from './playUtils.js'
 import { initPlayListeners } from './playListeners.js';
 import { initPlayModals } from './playModals.js';
+import { initLogin } from '/components/nbba-login/nbba-login.js'
+import { loadLeagueExcel, loadTeamsFromExcel, loadRoundsFromExcel } from '../shared/excelUtils.js'
 
 // state
 const dom = getDomNodesByIds([
@@ -94,6 +96,8 @@ let gameRecord = []
 let clock;
 let wakeLock = null;
 let isInFullscreen = false;
+let teams, rounds, league;
+let isLoggedIn;
 
 window.gameRecord = gameRecord
 window.gameState = gameState
@@ -106,6 +110,38 @@ initPlayListeners(gameState)
 initPlayModals(gameState)
 
 // functions
+
+function loggedInCallback(newVal) {
+  isLoggedIn = newVal
+  if (isLoggedIn) {
+    const loadTeamsPromise = loadTeamsFromExcel().then((response) => { teams = response })
+    const loadRoundsPromise = loadRoundsFromExcel().then((response) => { rounds = response })
+    const loadLeaguePromise = loadLeagueExcel().then((response) => { league = response })
+
+    Promise.all([loadTeamsPromise, loadRoundsPromise, loadLeaguePromise]).then(() => {
+      let currentGame
+      rounds.find(a => currentGame = a.roundGames.find(b => b.gameId == gameConfig.gameId))
+      const team1 = teams.find(a => a.teamId == currentGame.team1)
+      const team2 = teams.find(a => a.teamId == currentGame.team2)
+
+      gameState.team1.name = team1.teamName
+      gameState.team1.id = team1.teamId
+      gameState.team1.fame = team1.teamFame
+      gameState.team1.logo = team1.teamLogo
+
+      gameState.team2.name = team2.teamName
+      gameState.team2.id = team2.teamId
+      gameState.team2.fame = team2.teamFame
+      gameState.team2.logo = team2.teamLogo
+
+      initTeam1()
+      initTeam2()
+
+      updateFameTeam1()
+      updateFameTeam2()
+    })
+  }
+}
 
 function init() {
   const urlSearchParams = new URLSearchParams(window.location.search);
@@ -120,7 +156,8 @@ function init() {
   }
 
   showPage2()
-  initClock(params)
+  initTeam1()
+  initTeam2()
   if (gameConfig.guided === 'on') {
     openFameModal(0)
   }
@@ -266,11 +303,6 @@ function finishGame() {
     show(dom.get('endgameTeam2'))
   }
   startConfetti()
-}
-
-function initClock(params) {
-  initTeam1()
-  initTeam2()
 }
 
 function initTeam1() {
@@ -884,3 +916,5 @@ window.updateSelectedNuffle = function(val) {
   const rolledValue = Number(val);
   dict[rolledValue] && show(dict[rolledValue])
 }
+
+initLogin(loggedInCallback)

@@ -16,11 +16,13 @@ const initPlayListeners = function (externalGameState) {
     ])
 
     window.updateFameTeam1 = function() {
+      dom.get('fanFactorTeam1').value = gameState.team1.fame
       const newFame = Number(dom.get('fanFactorTeam1').value) + Number(dom.get('fansRollTeam1').value)
       gameState.team1.fame = newFame
       dom.get('resultFansTeam1').innerHTML = `= ${newFame}`
     }
     window.updateFameTeam2 = function() {
+      dom.get('fanFactorTeam2').value = gameState.team2.fame
       const newFame = Number(dom.get('fanFactorTeam2').value) + Number(dom.get('fansRollTeam2').value)
       gameState.team2.fame = newFame
       dom.get('resultFansTeam2').innerHTML = `= ${newFame}`

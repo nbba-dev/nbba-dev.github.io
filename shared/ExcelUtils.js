@@ -15,8 +15,8 @@ const loadLeagueExcel = function() {
 const loadTeamsFromExcel = function () {
   return gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: '1NbwBzW2OqGdAvIQu-36eGODHqx0dMslzzNvYrJ0P82k',
-    range: 'Equipos!A2:E9',
-    valueRenderOption: "FORMULA"
+    range: 'Equipos!A2:F9',
+    // valueRenderOption: "FORMULA"
   }).then(function(response) {
     // console.log('Equipos raw', response.result)
     console.log('Equipos formateados', getTeams(response.result.values))
@@ -29,7 +29,7 @@ const loadTeamsFromExcel = function () {
 const loadRoundsFromExcel = function () {
   return gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: '1NbwBzW2OqGdAvIQu-36eGODHqx0dMslzzNvYrJ0P82k',
-    range: 'Jornadas!A2:D30',
+    range: 'Jornadas!A2:E30',
     valueRenderOption: "FORMULA"
   }).then(function(response) {
     // console.log('Jornadas raw', response.result)
@@ -52,19 +52,20 @@ const getLeagueInfo = function(rawXlsData) {
 const getRounds = function(rawXlsData) {
   const rounds = []
   rawXlsData.forEach((row) => {
-    const roundNumber = row[0]
+    const roundNumber = row[1]
     if (roundNumber >= 0) {
       let round;
       const foundSameRound = rounds.find(a => a.roundNumber === roundNumber)
       if (foundSameRound) {
         round = foundSameRound
       } else {
-        round = { roundNumber: roundNumber, roundGames: [], roundDates: row[3] }
+        round = { roundNumber: roundNumber, roundGames: [], roundDates: row[4] }
         rounds.push(round)
       }
       round.roundGames.push({
-        team1: row[1],
-        team2: row[2]
+        team1: row[2],
+        team2: row[3],
+        gameId: row[0]
       })
     }
   })
@@ -81,6 +82,7 @@ const getTeams = function(rawXlsData) {
       teamTrainer: row[2],
       teamRoster: row[3],
       teamLogo: row[4],
+      teamFame: row[5],
     })
   })
 

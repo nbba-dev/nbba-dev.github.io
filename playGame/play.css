@@ -109,13 +109,13 @@ body {
   width: 100%;
 }
 
-.team1-turn .team-logo {
+/* .team1-turn .team-logo {
   transform: skew(0deg, -20deg);
 }
 
 .team2-turn .team-logo {
   transform: skew(0deg, 20deg);
-}
+} */
 
 .team-turn-content, .score, .gameInfo-container, .team-turn-turn {
   color: white;
@@ -181,6 +181,10 @@ body {
 
 .team1-score-name {
   justify-content: flex-end;
+}
+
+.team2-score-name {
+  text-align: end;
 }
 
 .teams-scoreboard {

@@ -1,4 +1,4 @@
-const init = function(loggedInCallback) {
+const initLogin = function(loggedInCallback) {
 
   let resolveDeferred = () => {}
   let rejectDeferred = () => {}
@@ -37,6 +37,10 @@ const init = function(loggedInCallback) {
         this.logoutButton = shadow.querySelector('#nbba-logout-btn');
         this.text = shadow.querySelector('#nbba-login-status');
 
+        if (this.dataset.noLogout === 'true') {
+          this.logoutButton.setAttribute('hidden', true)
+        }
+
         var script = document.createElement('script');
         script.setAttribute('async', true)
         script.setAttribute('defer', true)
@@ -73,7 +77,6 @@ const init = function(loggedInCallback) {
           this.loginButton.addEventListener('click', this.login)
           this.logoutButton.addEventListener('click', this.logout)
 
-          this.login()
           resolveDeferred()
         }, function(error) {
           alert(JSON.stringify(error, null, 2))
@@ -84,7 +87,9 @@ const init = function(loggedInCallback) {
       updateSigninStatus(isLoggedIn) {
         if (isLoggedIn) {
           this.loginButton.setAttribute('hidden', true)
-          this.logoutButton.removeAttribute('hidden')
+          if (this.dataset.noLogout !== 'true') {
+            this.logoutButton.removeAttribute('hidden')
+          }
         } else {
           this.loginButton.removeAttribute('hidden')
           this.logoutButton.setAttribute('hidden', true)
@@ -105,5 +110,5 @@ const init = function(loggedInCallback) {
 
 
 export {
-  init,
+  initLogin,
 }
