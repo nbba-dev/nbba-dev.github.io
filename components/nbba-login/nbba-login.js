@@ -23,7 +23,7 @@ const initLogin = function(loggedInCallback) {
 
   // Authorization scopes required by the API; multiple scopes can be
   // included, separated by spaces.
-  var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
+  var SCOPES = "https://www.googleapis.com/auth/spreadsheets";
 
   function define(html) {
     class NbbaLogin extends HTMLElement {

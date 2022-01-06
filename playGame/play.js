@@ -3,7 +3,8 @@ import { getTeamName, getActiveTurn, getActiveHalf, getTouchdownRecord, getInjur
 import { initPlayListeners } from './playListeners.js';
 import { initPlayModals } from './playModals.js';
 import { initLogin } from '/components/nbba-login/nbba-login.js'
-import { loadLeagueExcel, loadTeamsFromExcel, loadRoundsFromExcel } from '../shared/excelUtils.js'
+import { loadLeagueExcel, loadTeamsFromExcel, loadRoundsFromExcel, getTurnsBasedOnBBRules } from '../shared/excelUtils.js'
+import { recordGame } from './gameRecordUtils.js';
 
 // state
 const dom = getDomNodesByIds([
@@ -121,7 +122,8 @@ function loggedInCallback(newVal) {
 
     Promise.all([loadTeamsPromise, loadRoundsPromise, loadLeaguePromise]).then(() => {
       let currentGame
-      rounds.find(a => currentGame = a.roundGames.find(b => b.gameId == gameConfig.gameId))
+      const currentRound = rounds.find(a => currentGame = a.roundGames.find(b => b.gameId == gameConfig.gameId))
+
       const team1 = teams.find(a => a.teamId == currentGame.team1)
       const team2 = teams.find(a => a.teamId == currentGame.team2)
 
@@ -134,6 +136,11 @@ function loggedInCallback(newVal) {
       gameState.team2.id = team2.teamId
       gameState.team2.fame = team2.teamFame
       gameState.team2.logo = team2.teamLogo
+
+      gameState.currentGameId = currentGame.gameId
+      gameState.currentRoundNumber = currentRound.roundNumber
+
+      gameConfig.turns = getTurnsBasedOnBBRules(league.leagueRuleset)
 
       initTeam1()
       initTeam2()
@@ -158,16 +165,24 @@ function init() {
     gameState.team2.name = params.team2Name
   }
 
-  if (params?.isLeague !== 'true') {
+  if (!isLeagueGame()) {
     hide(dom.get('loadingModal'))
   }
 
   showPage2()
   initTeam1()
   initTeam2()
-  if (gameConfig.guided === 'on') {
+  if (isGuidedGame()) {
     openFameModal(0)
   }
+}
+
+function isLeagueGame() {
+  return gameConfig?.isLeague === 'true'
+}
+
+function isGuidedGame() {
+  return gameConfig.guided === 'on'
 }
 
 function showPage2() {
@@ -279,7 +294,9 @@ function finishedHalf(startingTeam) {
   dom.get('team2TurnTurn').innerHTML = gameState.team2.turn
 
   if (!gameState.isSecondPart) {
-    openKickoffModal()
+    if (isGuidedGame()) {
+      openKickoffModal()
+    }
     if (startingTeam === 'team1') {
       dom.get('team2TurnTime').innerHTML = 'Comienza segunda parte'
     } else {
@@ -608,7 +625,7 @@ window.completedWinnings = function() {
 }
 window.completedFanFactor = function() {
   closeFanFactorModal()
-  // TODO - SUBIR ACTA
+  recordGame(gameState, gameRecord, league)
   openSppModal()
 }
 window.completedSPP = function() {
@@ -924,4 +941,6 @@ window.updateSelectedNuffle = function(val) {
   dict[rolledValue] && show(dict[rolledValue])
 }
 
-initLogin(loggedInCallback)
+if (isLeagueGame()) {
+  initLogin(loggedInCallback)
+}

@@ -1,7 +1,7 @@
 const loadLeagueExcel = function() {
   return gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: '1NbwBzW2OqGdAvIQu-36eGODHqx0dMslzzNvYrJ0P82k',
-    range: 'A2:C2',
+    range: 'A2:E2',
     valueRenderOption: "FORMULA"
   }).then(function(response) {
     // console.log('Info de liga raw', response.result)
@@ -45,6 +45,8 @@ const getLeagueInfo = function(rawXlsData) {
     leagueName: rawXlsData[0][0],
     leagueLink: rawXlsData[0][1],
     leagueRuleset: rawXlsData[0][2],
+    leagueGameRecordsSpreadsheetId: rawXlsData[0][3],
+    leagueGameRecordsSheetId: rawXlsData[0][4],
   }
   return leagueInfo
 }
@@ -89,8 +91,17 @@ const getTeams = function(rawXlsData) {
   return teams
 }
 
+const getTurnsBasedOnBBRules = function(rulesetString) {
+  const turnsPerRuleset = {
+    'BB7': 6,
+    'BB11': 8
+  }
+  return turnsPerRuleset[rulesetString]
+}
+
 export {
   loadLeagueExcel,
   loadTeamsFromExcel,
-  loadRoundsFromExcel
+  loadRoundsFromExcel,
+  getTurnsBasedOnBBRules,
 }

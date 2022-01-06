@@ -1,5 +1,5 @@
 import { initLogin } from '/components/nbba-login/nbba-login.js'
-import { loadLeagueExcel, loadTeamsFromExcel, loadRoundsFromExcel } from '../shared/excelUtils.js'
+import { loadLeagueExcel, loadTeamsFromExcel, loadRoundsFromExcel, getTurnsBasedOnBBRules } from '../shared/excelUtils.js'
 import { createA, createButton, removeChildren, createOption } from '../shared/nodeUtils.js'
 import { getUrlParams } from '../shared/urlParamsUtils.js'
 import { getDomNodesByIds, hide, show } from '../shared/domUtils.js'
@@ -58,17 +58,12 @@ function setRoundGames() {
   selectedRound.roundGames.forEach((roundGame) => {
     const team1Name = leagueTeams.find(a => a.teamId == roundGame.team1)?.teamName
     const team2Name = leagueTeams.find(a => a.teamId == roundGame.team2)?.teamName
-    console.log(roundGame.gameId)
     dom.get('matchSelect').appendChild(createOption(`${team1Name} – ${team2Name}`, roundGame.gameId))
   })
 }
 
 function setTurns(ruleset) {
-  const turnsPerRuleset = {
-    'BB7': 6,
-    'BB11': 8
-  }
-  dom.get('turns').value = turnsPerRuleset[ruleset]
+  dom.get('turns').value = getTurnsBasedOnBBRules(ruleset)
 }
 
 (function initListeners() {
