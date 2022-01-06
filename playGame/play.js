@@ -60,7 +60,8 @@ const dom = getDomNodesByIds([
   'winningsFanFactorTeam2',
   'winningsFanFactorResultTeam1',
   'winningsFanFactorResultTeam2',
-  'page2'
+  'page2',
+  'loadingModal'
 ])
 
 let gameConfig;
@@ -139,6 +140,8 @@ function loggedInCallback(newVal) {
 
       updateFameTeam1()
       updateFameTeam2()
+
+      hide(dom.get('loadingModal'))
     })
   }
 }
@@ -153,6 +156,10 @@ function init() {
   if (params?.team1 === null || params?.team1 === undefined) {
     gameState.team1.name = params.team1Name
     gameState.team2.name = params.team2Name
+  }
+
+  if (params?.isLeague !== 'true') {
+    hide(dom.get('loadingModal'))
   }
 
   showPage2()
