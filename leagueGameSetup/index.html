@@ -24,8 +24,12 @@
     <link rel="stylesheet" href="./setupLeague.css">
 
     <div class="page page1">
-      <div id="loadingLeague">Loading league...</div>
+      <div id="loadingLeague">
+        <div>Please login</div>
+        <div>Google Sheets permissions are needed</div>
+      </div>
       <form id="form" class="page1-form" action="/playGame/" hidden>
+        <input type="hidden" name="isLeague" value="true" />
         <div id="moreLeagueInfo"></div>
         <div class="page1-form-group">
           <label for="round" class="form1-label">Jornada</label>

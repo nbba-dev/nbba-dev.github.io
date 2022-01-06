@@ -1,4 +1,4 @@
-function init(loggedInCallback) {
+const init = function(loggedInCallback) {
 
   let resolveDeferred = () => {}
   let rejectDeferred = () => {}
@@ -73,6 +73,7 @@ function init(loggedInCallback) {
           this.loginButton.addEventListener('click', this.login)
           this.logoutButton.addEventListener('click', this.logout)
 
+          this.login()
           resolveDeferred()
         }, function(error) {
           alert(JSON.stringify(error, null, 2))
@@ -103,4 +104,6 @@ function init(loggedInCallback) {
 }
 
 
-export default init;
+export {
+  init,
+}

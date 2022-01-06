@@ -9,16 +9,14 @@ body {
   display: none;
 }
 
-.page {
+.page1 {
   display: flex;
   width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  justify-content: center;
+  height: calc(100vh - 10rem);
+  overflow: auto;
+  align-items: center;
   position: absolute;
-}
-
-.page1 {
+  flex-direction: column;
   padding: 5rem 0;
 }
 
