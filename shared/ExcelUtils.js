@@ -1,13 +1,13 @@
-const loadLeagueExcel = function() {
+const loadLeagueExcel = function () {
   return gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: '1NbwBzW2OqGdAvIQu-36eGODHqx0dMslzzNvYrJ0P82k',
     range: 'A2:E2',
     valueRenderOption: "FORMULA"
-  }).then(function(response) {
+  }).then(function (response) {
     // console.log('Info de liga raw', response.result)
     console.log('Info de liga', getLeagueInfo(response.result.values))
     return getLeagueInfo(response.result.values);
-  }, function(response) {
+  }, function (response) {
     console.log('Error: ' + response.result.error.message);
   });
 }
@@ -17,11 +17,11 @@ const loadTeamsFromExcel = function () {
     spreadsheetId: '1NbwBzW2OqGdAvIQu-36eGODHqx0dMslzzNvYrJ0P82k',
     range: 'Equipos!A2:F9',
     // valueRenderOption: "FORMULA"
-  }).then(function(response) {
+  }).then(function (response) {
     // console.log('Equipos raw', response.result)
     console.log('Equipos formateados', getTeams(response.result.values))
     return getTeams(response.result.values);
-  }, function(response) {
+  }, function (response) {
     console.log('Error: ' + response.result.error.message);
   });
 }
@@ -31,16 +31,16 @@ const loadRoundsFromExcel = function () {
     spreadsheetId: '1NbwBzW2OqGdAvIQu-36eGODHqx0dMslzzNvYrJ0P82k',
     range: 'Jornadas!A2:E30',
     valueRenderOption: "FORMULA"
-  }).then(function(response) {
+  }).then(function (response) {
     // console.log('Jornadas raw', response.result)
     console.log('Jornadas formateadas', getRounds(response.result.values))
     return getRounds(response.result.values);
-  }, function(response) {
+  }, function (response) {
     console.log('Error: ' + response.result.error.message);
   });
 }
 
-const getLeagueInfo = function(rawXlsData) {
+const getLeagueInfo = function (rawXlsData) {
   const leagueInfo = {
     leagueName: rawXlsData[0][0],
     leagueLink: rawXlsData[0][1],
@@ -51,7 +51,7 @@ const getLeagueInfo = function(rawXlsData) {
   return leagueInfo
 }
 
-const getRounds = function(rawXlsData) {
+const getRounds = function (rawXlsData) {
   const rounds = []
   rawXlsData.forEach((row) => {
     const roundNumber = row[1]
@@ -75,7 +75,7 @@ const getRounds = function(rawXlsData) {
   return rounds
 }
 
-const getTeams = function(rawXlsData) {
+const getTeams = function (rawXlsData) {
   const teams = []
   rawXlsData.forEach((row) => {
     teams.push({
@@ -91,7 +91,7 @@ const getTeams = function(rawXlsData) {
   return teams
 }
 
-const getTurnsBasedOnBBRules = function(rulesetString) {
+const getTurnsBasedOnBBRules = function (rulesetString) {
   const turnsPerRuleset = {
     'BB7': 6,
     'BB11': 8
@@ -99,9 +99,24 @@ const getTurnsBasedOnBBRules = function(rulesetString) {
   return turnsPerRuleset[rulesetString]
 }
 
+const mapGameRecordToExcelCells = function (gameRecord) {
+  return [
+    gameRecord.event, // Suceso
+    Number(gameRecord.half), // Parte
+    Number(gameRecord.turn), // Turno
+    Number(gameRecord.team || gameRecord.hurtTeam), // Equipo
+    Number(gameRecord.player || gameRecord.hurtPlayer), // Dorsal
+    null, // [empty]
+    Number(gameRecord.injuryType), // Tipo herida
+    Number(gameRecord.hurtingPlayer), // Dorsal herido
+    Number(gameRecord.passType), // Tipo pase
+  ]
+}
+
 export {
   loadLeagueExcel,
   loadTeamsFromExcel,
   loadRoundsFromExcel,
   getTurnsBasedOnBBRules,
+  mapGameRecordToExcelCells,
 }

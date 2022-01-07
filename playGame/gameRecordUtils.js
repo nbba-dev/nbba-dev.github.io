@@ -1,3 +1,5 @@
+import { mapGameRecordToExcelCells } from '../shared/excelUtils.js'
+
 const recordGame = function (gameState, gameRecord, league) {
   console.log('gameState', gameState)
   console.log('gameRecord', gameRecord)
@@ -12,7 +14,7 @@ const recordGame = function (gameState, gameRecord, league) {
     const newSheetName = response.result.title
     const newSheetId = response.result.sheetId
 
-    const updateValuesRequest = gapi.client.sheets.spreadsheets.values.update({
+    const updateGameValuesRequest = gapi.client.sheets.spreadsheets.values.update({
       spreadsheetId: spreadsheetId,
       range: `${newSheetName}!B1:B11`,
       valueInputOption: 'RAW',
@@ -35,6 +37,22 @@ const recordGame = function (gameState, gameRecord, league) {
       var result = response.result;
       console.log(`${result.updatedCells} cells updated.`);
     });
+
+    if (gameRecord.length > 0) {
+      const gameRecordCells = gameRecord.map(mapGameRecordToExcelCells)
+      const updateGameRecordValuesRequest = gapi.client.sheets.spreadsheets.values.update({
+        spreadsheetId: spreadsheetId,
+        range: `${newSheetName}!D2:L${2 + gameRecord.length}`,
+        valueInputOption: 'RAW',
+        resource: {
+          values: gameRecordCells
+        }
+      }).then((response) => {
+        var result = response.result;
+        console.log(`${result.updatedCells} game record cells updated.`);
+      });
+    }
+
 
     const renameSheetRequest = gapi.client.sheets.spreadsheets.batchUpdate({
       spreadsheetId: spreadsheetId,
