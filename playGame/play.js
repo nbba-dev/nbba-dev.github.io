@@ -241,7 +241,6 @@ function startTurn2() {
 }
 
 function startTurn(newPlayer, hasJustFinishedAHalf) {
-  gameState[newPlayer].elapsedTime = 0
   gameState[newPlayer].turn += 1
   gameState.playedTimeoutForThisTurn = false
 
@@ -356,12 +355,22 @@ function applyClockLogic(timeDiff) {
       timeoutAudio.play()
     }
   } else {
+    addTimeToActivePlayer()
     const remainingTimeInString = `${getRawMinutes(remainingTime)}:${getRawSeconds(remainingTime)}`
     if (gameState.isTeam1turn) {
       dom.get('team1TurnTime').innerHTML = remainingTimeInString
     } else {
       dom.get('team2TurnTime').innerHTML = remainingTimeInString
     }
+  }
+}
+
+function addTimeToActivePlayer() {
+  console.log(gameState.team1.elapsedTime)
+  if (gameState.isTeam1turn) {
+    gameState.team1.elapsedTime += 1
+  } else {
+    gameState.team2.elapsedTime += 1
   }
 }
 

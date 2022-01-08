@@ -20,17 +20,17 @@ const recordGame = function (gameState, gameRecord, league) {
       valueInputOption: 'RAW',
       resource: {
         values: [
-          [new Date().toString()],         // B1
-          [league.leagueName],             // B2
-          [gameState.currentGameId],       // B3
-          [gameState.team1.name],          // B4
-          [gameState.team2.name],          // B5
-          [gameState.team1.score],         // B6
-          [gameState.team2.score],         // B7
-          [gameState.team1.fame],          // B8
-          [gameState.team2.fame],          // B9
-          [gameState.team1.timeElapsed],   // B10
-          [gameState.team2.timeElapsed],   // B11
+          [new Date().toString()],                // B1
+          [league.leagueName],                    // B2
+          [gameState.currentGameId],              // B3
+          [gameState.team1.name],                 // B4
+          [gameState.team2.name],                 // B5
+          [gameState.team1.score],                // B6
+          [gameState.team2.score],                // B7
+          [gameState.team1.fame],                 // B8
+          [gameState.team2.fame],                 // B9
+          [gameState.team1.elapsedTime / 1000],   // B10
+          [gameState.team2.elapsedTime / 1000],   // B11
         ]
       }
     }).then((response) => {
