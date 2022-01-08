@@ -27,7 +27,6 @@ const dom = getDomNodesByIds([
   'delayContainer',
   'endgameTeam1',
   'endgameTeam2',
-  'endgameState',
   'endgameOverlay',
   'weatherValue',
   'weather',
@@ -316,13 +315,10 @@ function finishGame() {
   gameState.endedGame = true
   show(dom.get('endgameOverlay'))
   if (gameState.team1.score > gameState.team2.score) {
-    dom.get('endgameState').innerHTML = 'Ganador'
     show(dom.get('endgameTeam1'))
   } else if (gameState.team1.score < gameState.team2.score) {
-    dom.get('endgameState').innerHTML = 'Ganador'
     show(dom.get('endgameTeam2'))
   } else {
-    dom.get('endgameState').innerHTML = 'Empate'
     show(dom.get('endgameTeam1'))
     show(dom.get('endgameTeam2'))
   }

@@ -1140,8 +1140,9 @@
 
   <div class="endgame-overlay" id="endgameOverlay" hidden>
     <div class="score">
-      <div class="team1-score-name team-score-info">
-        <div id="team1Name" class="team-score-name">
+      <div class="team1-score-name team-score-name">
+        <img src="" id="team1Logo" class="team-logo-mini" alt="">
+        <div id="team1Name" class="team-score-only-name">
           Equipo 1
         </div>
       </div>
@@ -1150,10 +1151,11 @@
         <span>–</span>
         <span id="team2Scoreboard">0</span>
       </div>
-      <div class="team2-score-name team-score-info">
-        <div id="team2Name" class="team-score-name">
+      <div class="team2-score-name team-score-name">
+        <div id="team2Name" class="team-score-only-name">
           Equipo 2
         </div>
+        <img src="" id="team2Logo" class="team-logo-mini" alt="">
       </div>
     </div>
     <div class="gameInfo-container">
@@ -1162,18 +1164,15 @@
       </div>
     </div>
     <div class="endgame-main">
-      <div class="endgame-state" id="endgameState">
-        Empate
-      </div>
       <div class="endgameShowRecord">
         <button onclick="startAfterMatch()">Post partido</button>
       </div>
       <div class="endgame-logos">
         <div class="endgame-winner" id="endgameTeam1" hidden>
-          <img id="team1Logo" src="../multimedia/team0.png" alt="" width="100%">
+          <img id="team1Logo" src="../multimedia/team0.png" alt="" height="100%">
         </div>
         <div class="endgame-winner" id="endgameTeam2" hidden>
-          <img id="team2Logo" src="../multimedia/team0.png" alt="" width="100%">
+          <img id="team2Logo" src="../multimedia/team0.png" alt="" height="100%">
         </div>
       </div>
       <!-- <a class="subir-acta" target="_blank" href="https://api.sheet2site.com/api/v3/index.php?key=14qEDsEraC6B0wK7vZGxOMP4I6sxiLB2FtADJ9zehoOA&g=1">¡Subir el acta!</a> -->
