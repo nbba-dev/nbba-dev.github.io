@@ -62,7 +62,10 @@ const dom = getDomNodesByIds([
   'winningsFanFactorResultTeam1',
   'winningsFanFactorResultTeam2',
   'page2',
-  'loadingModal'
+  'loadingModal',
+  'surrenderConfirmButton',
+  'surrenderTeamSelect',
+  'winningsOnSurrender',
 ])
 
 let gameConfig;
@@ -142,8 +145,8 @@ function loggedInCallback(newVal) {
 
       gameConfig.turns = getTurnsBasedOnBBRules(league.leagueRuleset)
 
-      initTeam1()
-      initTeam2()
+      updateTeam1()
+      updateTeam2()
 
       updateFameTeam1()
       updateFameTeam2()
@@ -170,8 +173,8 @@ function init() {
   }
 
   showPage2()
-  initTeam1()
-  initTeam2()
+  updateTeam1()
+  updateTeam2()
   if (isGuidedGame()) {
     openFameModal(0)
   }
@@ -325,7 +328,7 @@ function finishGame() {
   startConfetti()
 }
 
-function initTeam1() {
+function updateTeam1() {
   const team = gameState.team1
   dom.get('team1Logo').forEach((a) => a.src = team.logo)
   dom.get('team1Name').forEach((a) => a.innerHTML = team.name)
@@ -333,7 +336,7 @@ function initTeam1() {
   // dom.get('team1ScoreInput').value = '0'
 }
 
-function initTeam2() {
+function updateTeam2() {
   const team = gameState.team2
   dom.get('team2Logo').forEach((a) => a.src = team.logo)
   dom.get('team2Name').forEach((a) => a.innerHTML = team.name)
@@ -383,12 +386,14 @@ function getTouchdownsFromRecords() {
   return [team1TDs, team2TDs]
 }
 
-function setTouchdowns() {
+function setTouchdowns(team1Score, team2Score) {
+  const team1TD = team1Score ?? touchDowns[0]
+  const team2TD = team2Score ?? touchDowns[1]
   const touchDowns = getTouchdownsFromRecords()
-  gameState.team1.score = touchDowns[0]
-  gameState.team2.score = touchDowns[1]
-  dom.get('team1Scoreboard').forEach((a) => a.innerHTML = touchDowns[0])
-  dom.get('team2Scoreboard').forEach((a) => a.innerHTML = touchDowns[1])
+  gameState.team1.score = team1TD
+  gameState.team2.score = team2TD
+  dom.get('team1Scoreboard').forEach((a) => a.innerHTML = team1TD)
+  dom.get('team2Scoreboard').forEach((a) => a.innerHTML = team2TD)
 }
 
 function activateTeam1() {
@@ -630,7 +635,9 @@ window.completedWinnings = function() {
 }
 window.completedFanFactor = function() {
   closeFanFactorModal()
-  recordGame(gameState, gameRecord, league)
+  if (isLeagueGame) {
+    recordGame(gameState, gameRecord, league)
+  }
   openSppModal()
 }
 window.completedSPP = function() {
@@ -856,6 +863,35 @@ window.onAttackingInjuryPlayerUpdate = function() {
   } else {
     hide(dom.get('attackingInjuryPlayerForm'))
   }
+}
+
+window.updateSurrenderTeam = function(newValue) {
+  if (newValue) {
+    dom.get('surrenderConfirmButton').removeAttribute('disabled')
+  } else {
+    dom.get('surrenderConfirmButton').setAttribute('disabled', true)
+  }
+}
+
+window.confirmSurrender = function() {
+  closeSurrenderModal()
+  closePauseModal()
+  const surrenderTeam1 = dom.get('surrenderTeamSelect').value === 1
+  if (surrenderTeam1) {
+    gameState.team1.score = 0
+    gameState.team2.score = 2
+    gameState.team1.hasSurrendered = true
+  } else {
+    gameState.team2.score = 2
+    gameState.team1.score = 0
+    gameState.team2.hasSurrendered = true
+  }
+  updateTeam1()
+  updateTeam2()
+  setTouchdowns(gameState.team1.score, gameState.team2.score)
+  gameState.finishedOnSurrender = true
+  show(dom.get('winningsOnSurrender'))
+  finishGame()
 }
 
 window.showRecord = function() {

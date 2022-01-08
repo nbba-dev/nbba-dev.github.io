@@ -679,6 +679,22 @@ body {
   font-style: italic;
 }
 
+ul.winningsExplanationOnSurrender {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.winningsExplanationOnSurrender li {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+.winningsExplanationOnSurrender li:before {
+  content: "*";
+  padding-right: 5px;
+}
+
 .winningsNumber {
   font-weight: bold;
   font-size: 4rem;

@@ -24,6 +24,7 @@ const initPlayModals = function(externalGameState) {
     'eventBackButton',
     'kickoffSelect',
     'nuffleSelect',
+    'surrenderModal',
   ])
 
   const modals = [
@@ -40,6 +41,7 @@ const initPlayModals = function(externalGameState) {
     /* 10 */ dom.get('winningsModal'),
     /* 11 */ dom.get('fanFactorModal'),
     /* 12 */ dom.get('sppModal'),
+    /* 13 */ dom.get('surrenderModal'),
   ]
 
   function closeModal(modalIndex) {
@@ -78,6 +80,7 @@ const initPlayModals = function(externalGameState) {
   }
   window.openPauseModal = function() {
     openModal(4)
+    closeModal(8)
   }
   window.openNuffleModal = function() {
     dom.get('nuffleSelect').value = 0
@@ -104,12 +107,21 @@ const initPlayModals = function(externalGameState) {
     openModal(9)
   }
   window.openWinningsModal = function() {
-    function getTeamWinnings(teamScore) {
-      const fameCalc = (gameState.team1.fame + gameState.team2.fame) / 2
-      return (fameCalc + teamScore) * 10
+    function getTeamWinnings(teamScore, hasSomeoneSurrendered, haveISurrendered) {
+      const fameCalc = (gameState.team1.fame + gameState.team2.fame)
+      if (hasSomeoneSurrendered && haveISurrendered) {
+        return `*0k or ${((fameCalc / 2) + teamScore) * 10}`
+      } else if (hasSomeoneSurrendered && !haveISurrendered) {
+        return (fameCalc + teamScore) * 10
+      } else {
+        return ((fameCalc / 2) + teamScore) * 10
+      }
     }
-    const team1Winnings = getTeamWinnings(gameState.team1.score)
-    const team2Winnings = getTeamWinnings(gameState.team2.score)
+    const hasSomeoneSurrendered = gameState.finishedOnSurrender
+    const team1Surrendered = gameState.finishedOnSurrender && gameState.team1.hasSurrendered
+    const team2Surrendered = gameState.finishedOnSurrender && gameState.team2.hasSurrendered
+    const team1Winnings = getTeamWinnings(gameState.team1.score, hasSomeoneSurrendered, team1Surrendered)
+    const team2Winnings = getTeamWinnings(gameState.team2.score, hasSomeoneSurrendered, team2Surrendered)
     team1winnings.innerHTML = `${team1Winnings}k`
     team2winnings.innerHTML = `${team2Winnings}k`
     openModal(10)
@@ -121,6 +133,9 @@ const initPlayModals = function(externalGameState) {
   }
   window.openSppModal = function() {
     openModal(12)
+  }
+  window.openSurrenderModal = function() {
+    openModal(13)
   }
 
 
@@ -178,6 +193,9 @@ const initPlayModals = function(externalGameState) {
   }
   window.closeSppModal = function() {
     closeModal(12)
+  }
+  window.closeSurrenderModal = function() {
+    closeModal(13)
   }
 }
 

@@ -49,8 +49,26 @@
       <div class="modal-controls">
         <button class="modal-bottomBtn" onclick="openSettingsModal()">Ajustes</button>
         <button class="modal-bottomBtn" onclick="openEventModal()">Nuevo suceso</button>
-        <button class="modal-bottomBtn" onclick="openKickoffModalStandalone()">Tabla Kickoff</button>
         <button class="modal-bottomBtn modal-continueBtn" onclick="keepGoing()">Continuar</button>
+        <button class="modal-bottomBtn" onclick="openKickoffModalStandalone()">Tabla Kickoff</button>
+        <button class="modal-bottomBtn" onclick="openSurrenderModal()">Conceder</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="surrenderModal" hidden>
+    <div class="modal">
+      <div class="modal-body pause-modal-body">
+        <h3>¿Qué equipo quiere conceder?</h3>
+        <select name="" id="surrenderTeamSelect" onchange="updateSurrenderTeam(this.value)">
+          <option value="0">N/A</option>
+          <option value="1">Equipo 1</option>
+          <option value="2">Equipo 2</option>
+        </select>
+      </div>
+      <div class="modal-controls">
+        <button class="modal-bottomBtn modal-continueBtn" onclick="closeSurrenderModal()">Atrás</button>
+        <button class="modal-bottomBtn" onclick="confirmSurrender()" disabled id="surrenderConfirmButton">Confirmar rendición</button>
       </div>
     </div>
   </div>
@@ -972,7 +990,7 @@
         </div>
       </div>
       <div class="modal-controls">
-        <button id="eventBackButton" class="modal-bottomBtn" onclick="openEventModal()">Atrás</button>
+        <button id="eventBackButton" class="modal-bottomBtn" onclick="openPauseModal()">Atrás</button>
         <button class="modal-bottomBtn modal-continueBtn" onclick="closeEventModal()">Cerrar</button>
         <button id="confirmInjuryButton" class="modal-bottomBtn" onclick="confirmInjury()" disabled hidden>Confirmar herida</button>
         <button id="confirmTouchdownButton" class="modal-bottomBtn" onclick="confirmTouchdown()" hidden>Confirmar touchdown</button>
@@ -988,9 +1006,6 @@
         <p>Las marcas apoyan a los equipos favoritos a golpe de talonario</p>
       </div>
       <div class="modal-body">
-        <p>
-          TODO - caso de conceder el partido
-        </p>
         <div class="winningsContainer">
           <div>
             <div>Team1</div>
@@ -1005,6 +1020,9 @@
           <li>Add together the FAME of both teams, then divide the result by 2.</li>
           <li>Add the number of friendly touchdowns to the result.</li>
           <li>Multiply the total by 10.</li>
+        </ul>
+        <ul class="winningsExplanationOnSurrender" id="winningsOnSurrender" hidden>
+          <li>Conceding teams do not receive any winnings unless being reduced to 3 or less players during a set-up</li>
         </ul>
       </div>
       <div class="modal-controls">
