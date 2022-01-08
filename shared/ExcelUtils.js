@@ -5,7 +5,7 @@ const loadLeagueExcel = function () {
     valueRenderOption: "FORMULA"
   }).then(function (response) {
     // console.log('Info de liga raw', response.result)
-    console.log('Info de liga', getLeagueInfo(response.result.values))
+    // console.log('Info de liga', getLeagueInfo(response.result.values))
     return getLeagueInfo(response.result.values);
   }, function (response) {
     console.log('Error: ' + response.result.error.message);
@@ -19,7 +19,7 @@ const loadTeamsFromExcel = function () {
     // valueRenderOption: "FORMULA"
   }).then(function (response) {
     // console.log('Equipos raw', response.result)
-    console.log('Equipos formateados', getTeams(response.result.values))
+    // console.log('Equipos formateados', getTeams(response.result.values))
     return getTeams(response.result.values);
   }, function (response) {
     console.log('Error: ' + response.result.error.message);
@@ -33,7 +33,7 @@ const loadRoundsFromExcel = function () {
     valueRenderOption: "FORMULA"
   }).then(function (response) {
     // console.log('Jornadas raw', response.result)
-    console.log('Jornadas formateadas', getRounds(response.result.values))
+    // console.log('Jornadas formateadas', getRounds(response.result.values))
     return getRounds(response.result.values);
   }, function (response) {
     console.log('Error: ' + response.result.error.message);

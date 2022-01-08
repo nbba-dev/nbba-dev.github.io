@@ -814,12 +814,10 @@ function getTouchdownRecordContent(record, index) {
 }
 
 function getHurtInjuryRecordContent(record, index) {
-  console.log(record)
   return createDiv(`Turno ${record.half}-${record.turn} — para <b>${getTeamName(record.team)}</b>, ${getInjuryType(record.injuryType)} sufrido por ${record.player}`)
 }
 
 function getHurtingInjuryRecordContent(record, index) {
-  console.log(record)
   return createDiv(`Turno ${record.half}-${record.turn} — por <b>${getTeamName(record.team)}</b>, ${getInjuryType(record.injuryType)} infligido por ${record.player}`)
 }
 

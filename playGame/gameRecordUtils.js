@@ -1,16 +1,11 @@
 import { mapGameRecordToExcelCells } from '../shared/excelUtils.js'
 
 const recordGame = function (gameState, gameRecord, league) {
-  console.log('gameState', gameState)
-  console.log('gameRecord', gameRecord)
-
   const sheetId = league.leagueGameRecordsSheetId
   const spreadsheetId = league.leagueGameRecordsSpreadsheetId
   const duplicateSheetRequest = gapi.client.sheets.spreadsheets.sheets.copyTo({ spreadsheetId: spreadsheetId, sheetId: sheetId }, { destinationSpreadsheetId: spreadsheetId });
 
   duplicateSheetRequest.then((response) => {
-    console.log(response)
-
     const newSheetName = response.result.title
     const newSheetId = response.result.sheetId
 
@@ -34,8 +29,8 @@ const recordGame = function (gameState, gameRecord, league) {
         ]
       }
     }).then((response) => {
-      var result = response.result;
-      console.log(`${result.updatedCells} cells updated.`);
+      // var result = response.result;
+      // console.log(`${result.updatedCells} cells updated.`);
     });
 
     if (gameRecord.length > 0) {
@@ -48,11 +43,10 @@ const recordGame = function (gameState, gameRecord, league) {
           values: gameRecordCells
         }
       }).then((response) => {
-        var result = response.result;
-        console.log(`${result.updatedCells} game record cells updated.`);
+        // var result = response.result;
+        // console.log(`${result.updatedCells} game record cells updated.`);
       });
     }
-
 
     const renameSheetRequest = gapi.client.sheets.spreadsheets.batchUpdate({
       spreadsheetId: spreadsheetId,
@@ -70,8 +64,8 @@ const recordGame = function (gameState, gameRecord, league) {
         ]
       }
     }).then((response) => {
-      var result = response.result;
-      console.log('renombrada hoja', result);
+      // var result = response.result;
+      // console.log('renombrada hoja', result);
     });
   })
 
