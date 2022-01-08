@@ -1092,7 +1092,8 @@
   <div class="page page2" id="page2">
     <div class="score">
       <div class="team1-score-name team-score-name">
-        <div id="team1Name">
+        <img src="" id="team1Logo" class="team-logo-mini" alt="">
+        <div id="team1Name" class="team-score-only-name">
           Equipo 1
         </div>
       </div>
@@ -1102,9 +1103,10 @@
         <span id="team2Scoreboard">0</span>
       </div>
       <div class="team2-score-name team-score-name">
-        <div id="team2Name">
+        <div id="team2Name" class="team-score-only-name">
           Equipo 2
         </div>
+        <img src="" id="team2Logo" class="team-logo-mini" alt="">
       </div>
     </div>
     <div class="gameInfo-container">
@@ -1114,21 +1116,21 @@
       <div class="half weather" id="weather" hidden></div>
     </div>
     <button class="team-turn team1-turn" id="team1Turn" onclick="clickOnTurn1()">
-      <img src="" id="team1Logo" class="team-logo" alt="">
       <div class="team-turn-content">
         <div class="team-turn-time" id="team1TurnTime">Empezar</div>
       </div>
-      <div class="team-turn-turn">Turno: <span class="team-turn-number" id="team1TurnTurn">0</span></div>
     </button>
     <button class="team-turn team2-turn" id="team2Turn" onclick="clickOnTurn2()">
-      <img src="" id="team2Logo" class="team-logo" alt="">
       <div class="team-turn-content">
         <div class="team-turn-time" id="team2TurnTime">Empezar</div>
       </div>
-      <div class="team-turn-turn">Turno: <span class="team-turn-number" id="team2TurnTurn">0</span></div>
     </button>
     <div class="pause-turn-container" id="pauseTurnContainer">
       <button class="pause-turn" onclick="pauseGame()">Pausa</button>
+    </div>
+    <div class="turns">
+      <div class="team-turn-turn">Turno: <span class="team-turn-number" id="team1TurnTurn">0</span></div>
+      <div class="team-turn-turn">Turno: <span class="team-turn-number" id="team2TurnTurn">0</span></div>
     </div>
   </div>
 
@@ -1138,8 +1140,8 @@
 
   <div class="endgame-overlay" id="endgameOverlay" hidden>
     <div class="score">
-      <div class="team1-score-name team-score-name">
-        <div id="team1Name">
+      <div class="team1-score-name team-score-info">
+        <div id="team1Name" class="team-score-name">
           Equipo 1
         </div>
       </div>
@@ -1148,8 +1150,8 @@
         <span>–</span>
         <span id="team2Scoreboard">0</span>
       </div>
-      <div class="team2-score-name team-score-name">
-        <div id="team2Name">
+      <div class="team2-score-name team-score-info">
+        <div id="team2Name" class="team-score-name">
           Equipo 2
         </div>
       </div>
