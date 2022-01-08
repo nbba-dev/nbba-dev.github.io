@@ -108,7 +108,6 @@ const mapGameRecordToExcelCells = function (gameRecord) {
     Number(gameRecord.player || gameRecord.hurtPlayer), // Dorsal
     null, // [empty]
     Number(gameRecord.injuryType), // Tipo herida
-    Number(gameRecord.hurtingPlayer), // Dorsal herido
     Number(gameRecord.passType), // Tipo pase
   ]
 }

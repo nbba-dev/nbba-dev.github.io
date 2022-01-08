@@ -1,5 +1,6 @@
 import { getDomNodesByIds, show, hide, getDomArr } from '../shared/domUtils.js'
-import { getTeamName, getActiveTurn, getActiveHalf, getTouchdownRecord, getInjuryRecord, getInjuryType, getPassRecord } from './playUtils.js'
+import { getTeamName, getActiveTurn, getActiveHalf } from './playUtils.js'
+import { getTouchdownRecord, getInjuryRecords, getInjuryType, getPassRecord } from './gameEventsUtils.js'
 import { initPlayListeners } from './playListeners.js';
 import { initPlayModals } from './playModals.js';
 import { initLogin } from '/components/nbba-login/nbba-login.js'
@@ -366,7 +367,6 @@ function applyClockLogic(timeDiff) {
 }
 
 function addTimeToActivePlayer() {
-  console.log(gameState.team1.elapsedTime)
   if (gameState.isTeam1turn) {
     gameState.team1.elapsedTime += 1
   } else {
@@ -709,8 +709,8 @@ window.closeInjury = function() {
 window.confirmInjury = function() {
   hide(dom.get('injuryForm'))
   hide(dom.get('confirmInjuryButton'))
-  const tempInjury = gameState.temporalInjury ?? getInjuryRecord({});
-  gameRecord.push(tempInjury)
+  const tempInjury = gameState.temporalInjury ?? getInjuryRecords({});
+  tempInjury.forEach(a => gameRecord.push(a))
   gameState.temporalInjury = null
   closeEventModal()
   openPauseModal()
@@ -793,11 +793,10 @@ function getGameRecordContent() {
     events.push(createButton('Eliminar registro', removeRecord.bind(this, index)))
     if (record.event === 'TD') {
       events.push(getTouchdownRecordContent(record, index))
-    } else if (record.event === 'Injury') {
+    } else if (record.event === 'Suffered Injury') {
       events.push(getHurtInjuryRecordContent(record, index))
-      if (record.isThereHurtingTeam) {
-        events.push(getHurtingInjuryRecordContent(record, index))
-      }
+    } else if (record.event === 'Inflicted Injury') {
+      events.push(getHurtingInjuryRecordContent(record, index))
     } else if (record.event === 'PA') {
       events.push(getPassRecordContent(record, index))
     }
@@ -815,11 +814,13 @@ function getTouchdownRecordContent(record, index) {
 }
 
 function getHurtInjuryRecordContent(record, index) {
-  return createDiv(`Turno ${record.half}-${record.turn} — para <b>${getTeamName(record.hurtTeam)}</b>, ${getInjuryType(record.injuryType)} sufrido por ${record.hurtPlayer}`)
+  console.log(record)
+  return createDiv(`Turno ${record.half}-${record.turn} — para <b>${getTeamName(record.team)}</b>, ${getInjuryType(record.injuryType)} sufrido por ${record.player}`)
 }
 
 function getHurtingInjuryRecordContent(record, index) {
-  return createDiv(`Turno ${record.half}-${record.turn} — por <b>${getTeamName(record.hurtingTeam)}</b>, ${getInjuryType(record.injuryType)} infligido por ${record.hurtingPlayer}`)
+  console.log(record)
+  return createDiv(`Turno ${record.half}-${record.turn} — por <b>${getTeamName(record.team)}</b>, ${getInjuryType(record.injuryType)} infligido por ${record.player}`)
 }
 
 function getPassRecordContent(record, index) {
@@ -953,3 +954,5 @@ window.updateSelectedNuffle = function(val) {
 if (isLeagueGame()) {
   initLogin(loggedInCallback)
 }
+
+window.finishGame = finishGame

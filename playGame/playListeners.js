@@ -1,5 +1,5 @@
 import { getDomNodesByIds } from '../shared/domUtils.js'
-import { getTouchdownRecord, getInjuryRecord, getPassRecord } from './playUtils.js'
+import { getTouchdownRecord, getInjuryRecords, getPassRecord } from './gameEventsUtils.js'
 
 const initPlayListeners = function (externalGameState) {
   let gameState = externalGameState;
@@ -89,7 +89,7 @@ const initPlayListeners = function (externalGameState) {
       } else {
         dom.get('confirmInjuryButton').setAttribute('disabled', true)
       }
-      gameState.temporalInjury = getInjuryRecord(params)
+      gameState.temporalInjury = getInjuryRecords(params)
     }
 
     dom.get('injuryHurtTeam').addEventListener('change', updateTempInjury)
@@ -108,6 +108,7 @@ const initPlayListeners = function (externalGameState) {
       'passPlayer',
       'passTurn',
       'passHalf',
+      'passType',
     ])
 
     window.updateTempPass = function() {
@@ -116,12 +117,14 @@ const initPlayListeners = function (externalGameState) {
         player: Number(dom.get('passPlayer').value),
         turn: dom.get('passTurn').value,
         half: dom.get('passHalf').value,
+        passType: dom.get('passType').value
       }
       gameState.temporalPass = getPassRecord(params)
     }
 
     dom.get('passTeam').addEventListener('change', updateTempPass)
     dom.get('passPlayer').addEventListener('change', updateTempPass)
+    dom.get('passType').addEventListener('change', updateTempPass)
   })();
 
   (() => {

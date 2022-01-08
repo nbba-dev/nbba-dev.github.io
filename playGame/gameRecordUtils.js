@@ -42,7 +42,7 @@ const recordGame = function (gameState, gameRecord, league) {
       const gameRecordCells = gameRecord.map(mapGameRecordToExcelCells)
       const updateGameRecordValuesRequest = gapi.client.sheets.spreadsheets.values.update({
         spreadsheetId: spreadsheetId,
-        range: `${newSheetName}!D2:L${2 + gameRecord.length}`,
+        range: `${newSheetName}!D2:K${2 + gameRecord.length}`,
         valueInputOption: 'RAW',
         resource: {
           values: gameRecordCells
