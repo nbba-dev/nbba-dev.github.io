@@ -788,13 +788,13 @@
         </div>
         <div id="touchdownForm" class="pauseForm" hidden>
           <div>
-            <div>
+            <span>
               <select name="" id="touchdownHalf">
                 <option value="1">Primera parte</option>
                 <option value="2">Segunda parte</option>
               </select>
-            </div>
-            <div>
+            </span>
+            <span>
               <select name="" id="touchdownTurn">
                 <option value="1">Turno 1</option>
                 <option value="2">Turno 2</option>
@@ -805,16 +805,15 @@
                 <option value="7">Turno 7</option>
                 <option value="8">Turno 8</option>
               </select>
-            </div>
+            </span>
           </div>
           <div>
-            Equipo:
             <select name="" id="touchdownTeam" onchange="updateTouchdownPlayers(this.value)">
               <option value="1">Team1</option>
               <option value="2">Team2</option>
             </select>
           </div>
-          <div>Dorsal:
+          <div>
             <select name="" id="touchdownPlayer">
               <option value="1">1</option>
               <option value="2">2</option>
@@ -831,16 +830,16 @@
           </div>
         </div>
         <div id="injuryForm" class="pauseForm" hidden>
-          <div class="twoColumns">
+          <div class="twoColumns-injury">
             <div>
               <div>
-                <div>
+                <span>
                   <select name="" id="injuryHalf">
                     <option value="1">Primera parte</option>
                     <option value="2">Segunda parte</option>
                   </select>
-                </div>
-                <div>
+                </span>
+                <span>
                   <select name="" id="injuryTurn">
                     <option value="1">Turno 1</option>
                     <option value="2">Turno 2</option>
@@ -851,19 +850,19 @@
                     <option value="7">Turno 7</option>
                     <option value="8">Turno 8</option>
                   </select>
-                </div>
+                </span>
               </div>
+              <br>
               <div>
                 <div>
                   <b>Herido</b>
                   <div>
-                    Equipo:
                     <select name="" id="injuryHurtTeam" onchange="updateInjuryHurtPlayers(this.value)">
                       <option value="1">Team1</option>
                       <option value="2">Team2</option>
                     </select>
                   </div>
-                  <div>Dorsal:
+                  <div>
                     <select name="" id="injuryHurtPlayer">
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -879,18 +878,18 @@
                     </select>
                   </div>
                 </div>
+                <br>
                 <div>
                   <input type="checkbox" id="attackingInjuryPlayerInput" onchange="onAttackingInjuryPlayerUpdate()">
                   <label for="attackingInjuryPlayerInput"><b>Agresor</b></label>
                   <div id="attackingInjuryPlayerForm" hidden>
                     <div>
-                      Equipo:
                       <select name="" id="injuryHurtingTeam" onchange="updateInjuryHurtingPlayers(this.value)">
                         <option value="1">Team1</option>
                         <option value="2">Team2</option>
                       </select>
                     </div>
-                    <div>Dorsal:
+                    <div>
                       <select name="" id="injuryHurtingPlayer">
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -937,13 +936,13 @@
         </div>
         <div id="passForm" class="pauseForm" hidden>
           <div>
-            <div>
+            <span>
               <select name="" id="passHalf">
                 <option value="1">Primera parte</option>
                 <option value="2">Segunda parte</option>
               </select>
-            </div>
-            <div>
+            </span>
+            <span>
               <select name="" id="passTurn">
                 <option value="1">Turno 1</option>
                 <option value="2">Turno 2</option>
@@ -954,16 +953,15 @@
                 <option value="7">Turno 7</option>
                 <option value="8">Turno 8</option>
               </select>
-            </div>
+            </span>
           </div>
           <div>
-            Equipo:
             <select name="" id="passTeam" onchange="updatePassPlayers(this.value)">
               <option value="1">Team1</option>
               <option value="2">Team2</option>
             </select>
           </div>
-          <div>Dorsal:
+          <div>
             <select name="" id="passPlayer">
               <option value="1">1</option>
               <option value="2">2</option>
@@ -978,7 +976,7 @@
               <option value="11">11</option>
             </select>
           </div>
-          <div>Tipo de pase:
+          <div>
             <select name="" id="passType">
               <option value="0">N/A</option>
               <option value="1">Hand-off (Only AG)</option>

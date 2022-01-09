@@ -439,6 +439,15 @@ body {
   display: grid;
   grid-template-columns: auto auto;
   align-items: center;
+  grid-gap: 4px;
+}
+
+.twoColumns-injury {
+  width: calc(100% - 2rem - 12px);
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  grid-gap: 32px;
 }
 
 .modal-bottomBtn {
