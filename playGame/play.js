@@ -7,6 +7,7 @@ import { initLogin } from '/components/nbba-login/nbba-login.js'
 import { loadLeagueExcel, loadTeamsFromExcel, loadRoundsFromExcel, getTurnsBasedOnBBRules } from '../shared/excelUtils.js'
 import { recordGame } from './gameRecordUtils.js';
 import { createImg, createButtonInnerHtml } from '../shared/nodeUtils.js';
+import { setTeamsAsOptionsForSelect } from './playNodeUtils.js';
 
 // state
 const dom = getDomNodesByIds([
@@ -67,6 +68,10 @@ const dom = getDomNodesByIds([
   'surrenderConfirmButton',
   'surrenderTeamSelect',
   'winningsOnSurrender',
+  'touchdownTeam',
+  'injuryHurtTeam',
+  'injuryHurtingTeam',
+  'passTeam',
 ])
 
 let gameConfig;
@@ -335,6 +340,11 @@ function updateTeam1() {
   dom.get('team1Name').forEach((a) => a.innerHTML = team.name)
   // dom.get('team1ScoreName').innerHTML = team.name
   // dom.get('team1ScoreInput').value = '0'
+
+  setTeamsAsOptionsForSelect(dom.get('touchdownTeam'))
+  setTeamsAsOptionsForSelect(dom.get('injuryHurtTeam'))
+  setTeamsAsOptionsForSelect(dom.get('injuryHurtingTeam'))
+  setTeamsAsOptionsForSelect(dom.get('passTeam'))
 }
 
 function updateTeam2() {
