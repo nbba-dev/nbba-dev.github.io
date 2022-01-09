@@ -17,6 +17,18 @@ const createButton = function(text) {
   return node;
 }
 
+const createButtonInnerHtml = function(content, onclickFn) {
+  const node = document.createElement("button");
+  // let textNode = []
+  // textNode.push(document.createTextNode(content))
+  // textNode.forEach((textNode) => {
+  //   node.appendChild(textNode);
+  // })
+  node.innerHTML = content
+  node.onclick = onclickFn
+  return node;
+}
+
 const removeChildren = function(node) {
   while (node.firstChild) {
     node.removeChild(node.lastChild);
@@ -33,9 +45,17 @@ const createOption = function(text, value) {
   // <option value="0" selected>Equipo Local</option>
 }
 
+const createImg = function(path) {
+  const node = document.createElement("img");
+  node.src = path;
+  return node;
+}
+
 export {
   createA,
   createButton,
   removeChildren,
-  createOption
+  createOption,
+  createImg,
+  createButtonInnerHtml,
 }

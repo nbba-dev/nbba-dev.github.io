@@ -1,11 +1,12 @@
 import { getDomNodesByIds, show, hide, getDomArr } from '../shared/domUtils.js'
 import { getTeamName, getActiveTurn, getActiveHalf } from './playUtils.js'
-import { getTouchdownRecord, getInjuryRecords, getInjuryType, getPassRecord } from './gameEventsUtils.js'
+import { getTouchdownRecord, getInjuryRecords, getInjuryType, getPassRecord, getPassType } from './gameEventsUtils.js'
 import { initPlayListeners } from './playListeners.js';
 import { initPlayModals } from './playModals.js';
 import { initLogin } from '/components/nbba-login/nbba-login.js'
 import { loadLeagueExcel, loadTeamsFromExcel, loadRoundsFromExcel, getTurnsBasedOnBBRules } from '../shared/excelUtils.js'
 import { recordGame } from './gameRecordUtils.js';
+import { createImg, createButtonInnerHtml } from '../shared/nodeUtils.js';
 
 // state
 const dom = getDomNodesByIds([
@@ -387,9 +388,9 @@ function getTouchdownsFromRecords() {
 }
 
 function setTouchdowns(team1Score, team2Score) {
+  const touchDowns = getTouchdownsFromRecords()
   const team1TD = team1Score ?? touchDowns[0]
   const team2TD = team2Score ?? touchDowns[1]
-  const touchDowns = getTouchdownsFromRecords()
   gameState.team1.score = team1TD
   gameState.team2.score = team2TD
   dom.get('team1Scoreboard').forEach((a) => a.innerHTML = team1TD)
@@ -793,16 +794,41 @@ function setGameRecordsContent() {
 function getGameRecordContent() {
   return gameRecord.flatMap((record, index) => {
     const events = []
-    events.push(createButton('Eliminar registro', removeRecord.bind(this, index)))
+    const containerDiv = createDiv('')
+    containerDiv.classList.add('gameRecordItem')
+
     if (record.event === 'TD') {
-      events.push(getTouchdownRecordContent(record, index))
+      const eventDiv = createDiv('')
+      eventDiv.appendChild(getTouchdownRecordContent(record, index))
+      eventDiv.appendChild(getRecordTurnContent(record, index))
+      containerDiv.classList.add('gameRecordTD')
+      containerDiv.appendChild(eventDiv)
     } else if (record.event === 'Suffered Injury') {
-      events.push(getHurtInjuryRecordContent(record, index))
+      const eventDiv = createDiv('')
+      eventDiv.appendChild(getHurtInjuryRecordContent(record, index))
+      eventDiv.appendChild(getRecordTurnContent(record, index))
+      containerDiv.classList.add('gameRecordHS')
+      containerDiv.appendChild(eventDiv)
     } else if (record.event === 'Inflicted Injury') {
-      events.push(getHurtingInjuryRecordContent(record, index))
+      const eventDiv = createDiv('')
+      eventDiv.appendChild(getHurtingInjuryRecordContent(record, index))
+      eventDiv.appendChild(getRecordTurnContent(record, index))
+      containerDiv.classList.add('gameRecordHI')
+      containerDiv.appendChild(eventDiv)
     } else if (record.event === 'PA') {
-      events.push(getPassRecordContent(record, index))
+      const eventDiv = createDiv('')
+      eventDiv.appendChild(getPassRecordContent(record, index))
+      eventDiv.appendChild(getRecordTurnContent(record, index))
+      containerDiv.classList.add('gameRecordPass')
+      containerDiv.appendChild(eventDiv)
     }
+
+    const deleteButton = createButtonInnerHtml('', removeRecord.bind(this, index))
+    const deleteSVG = createImg("/multimedia/delete_black_24dp.svg")
+    deleteButton.appendChild(deleteSVG)
+    containerDiv.appendChild(deleteButton)
+
+    events.push(containerDiv)
     return events
   })
 }
@@ -812,20 +838,24 @@ function removeRecord(index) {
   setGameRecordsContent()
 }
 
+function getRecordTurnContent(record, index) {
+  return createDiv(`Turno ${record.half}, ${record.turn}`)
+}
+
 function getTouchdownRecordContent(record, index) {
-  return createDiv(`Turno ${record.half}-${record.turn} — TD para <b>${getTeamName(record.team)}</b> por jugador dorsal ${record.player}`)
+  return createDiv(`<b>Touchdown</b> – ${getTeamName(record.team)}, jugador ${record.player}`)
 }
 
 function getHurtInjuryRecordContent(record, index) {
-  return createDiv(`Turno ${record.half}-${record.turn} — para <b>${getTeamName(record.team)}</b>, ${getInjuryType(record.injuryType)} sufrido por ${record.player}`)
+  return createDiv(`<b>Herida sufrida</b> (${getInjuryType(record.injuryType)}) – ${getTeamName(record.team)}, jugador ${record.player}`)
 }
 
 function getHurtingInjuryRecordContent(record, index) {
-  return createDiv(`Turno ${record.half}-${record.turn} — por <b>${getTeamName(record.team)}</b>, ${getInjuryType(record.injuryType)} infligido por ${record.player}`)
+  return createDiv(`<b>Herida infligida</b> (${getInjuryType(record.injuryType)}) – ${getTeamName(record.team)}, jugador ${record.player}`)
 }
 
 function getPassRecordContent(record, index) {
-  return createDiv(`Turno ${record.half}-${record.turn} — Pase completado para <b>${getTeamName(record.team)}</b> por jugador dorsal ${record.player}`)
+  return createDiv(`<b>Pase</b> (${getPassType(record.passType)}) – ${getTeamName(record.team)}, jugador ${record.player}`)
 }
 
 function createDiv(content) {
@@ -836,18 +866,6 @@ function createDiv(content) {
   //   node.appendChild(textNode);
   // })
   node.innerHTML = content
-  return node;
-}
-
-function createButton(content, onclickFn) {
-  const node = document.createElement("button");
-  // let textNode = []
-  // textNode.push(document.createTextNode(content))
-  // textNode.forEach((textNode) => {
-  //   node.appendChild(textNode);
-  // })
-  node.innerHTML = content
-  node.onclick = onclickFn
   return node;
 }
 

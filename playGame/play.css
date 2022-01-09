@@ -569,10 +569,33 @@ body {
 
 .gameRecordGrid {
   display: grid;
-  grid-template-columns: auto 1fr;
-  grid-gap: 16px 8px;
+  grid-template-columns: 1fr;
+  grid-gap: 8px;
   border-left: solid 2px black;
   padding: 8px;
+}
+
+.gameRecordItem {
+  display: flex;
+  justify-content: space-between;
+  background: #f0f0ff;
+  padding: 8px;
+}
+
+.gameRecordItem.gameRecordTD {
+  background: #fffff0;
+}
+
+.gameRecordItem.gameRecordPass {
+  background: #f0fff0;
+}
+
+.gameRecordItem.gameRecordHS {
+  background: #f0f0ff;
+}
+
+.gameRecordItem.gameRecordHI {
+  background: #fff0f0;
 }
 
 .endgameShowRecord {

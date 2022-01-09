@@ -75,6 +75,19 @@ const getInjuryType = function (type) {
   return injuryDict.get(type)
 }
 
+const passDict = new Map([
+  ['0', 'N/A'],
+  ['1', 'Hand-off'],
+  ['2', 'Quick Pass'],
+  ['3', 'Short Pass'],
+  ['4', 'Long Pass'],
+  ['5', 'Long Bomb'],
+]);
+
+const getPassType = function (type) {
+  return passDict.get(type)
+}
+
 const getPassRecord = function ({
   team = 1,
   player = 1,
@@ -97,4 +110,5 @@ export {
   getInjuryType,
   getPassRecord,
   getInjuryRecords,
+  getPassType,
 }
