@@ -72,7 +72,10 @@ const dom = getDomNodesByIds([
   'injuryHurtTeam',
   'injuryHurtingTeam',
   'passTeam',
-  'touchdownPlayer'
+  'touchdownPlayer',
+  'injuryHurtPlayer',
+  'injuryHurtingPlayer',
+  'passPlayer',
 ])
 
 let gameConfig;
@@ -167,7 +170,6 @@ function loggedInCallback(newVal) {
 
       const loadTeam2PlayersPromise = loadTeamPlayersFromExcel(team2.teamRoster).then((response) => {
         gameState.team2.players = response
-        updateTeam2Players()
       })
 
       hide(dom.get('loadingModal'))
@@ -373,10 +375,26 @@ function updateTeamDropdowns() {
 function updateTeam1Players() {
   const team = gameState.team1
   team.players && setPlayersAsOptionsForSelect(dom.get('touchdownPlayer'), team.players)
+  team.players && setPlayersAsOptionsForSelect(dom.get('injuryHurtPlayer'), team.players)
+  team.players && setPlayersAsOptionsForSelect(dom.get('injuryHurtingPlayer'), team.players)
+  team.players && setPlayersAsOptionsForSelect(dom.get('passPlayer'), team.players)
 }
-function updateTeam2Players() {
-  const team = gameState.team2
-  team.players && setPlayersAsOptionsForSelect(dom.get('touchdownPlayer'), team.players)
+
+window.updateTouchdownPlayers = function(teamId) {
+  const team = teamId == 1 ? gameState.team1 : gameState.team2
+  setPlayersAsOptionsForSelect(dom.get('touchdownPlayer'), team.players)
+}
+window.updateInjuryHurtPlayers = function(teamId) {
+  const team = teamId == 1 ? gameState.team1 : gameState.team2
+  setPlayersAsOptionsForSelect(dom.get('injuryHurtPlayer'), team.players)
+}
+window.updateInjuryHurtingPlayers = function(teamId) {
+  const team = teamId == 1 ? gameState.team1 : gameState.team2
+  setPlayersAsOptionsForSelect(dom.get('injuryHurtingPlayer'), team.players)
+}
+window.updatePassPlayers = function(teamId) {
+  const team = teamId == 1 ? gameState.team1 : gameState.team2
+  setPlayersAsOptionsForSelect(dom.get('passPlayer'), team.players)
 }
 
 function applyClockLogic(timeDiff) {

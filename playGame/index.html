@@ -809,7 +809,7 @@
           </div>
           <div>
             Equipo:
-            <select name="" id="touchdownTeam">
+            <select name="" id="touchdownTeam" onchange="updateTouchdownPlayers(this.value)">
               <option value="1">Team1</option>
               <option value="2">Team2</option>
             </select>
@@ -858,7 +858,7 @@
                   <b>Herido</b>
                   <div>
                     Equipo:
-                    <select name="" id="injuryHurtTeam">
+                    <select name="" id="injuryHurtTeam" onchange="updateInjuryHurtPlayers(this.value)">
                       <option value="1">Team1</option>
                       <option value="2">Team2</option>
                     </select>
@@ -885,7 +885,7 @@
                   <div id="attackingInjuryPlayerForm" hidden>
                     <div>
                       Equipo:
-                      <select name="" id="injuryHurtingTeam">
+                      <select name="" id="injuryHurtingTeam" onchange="updateInjuryHurtingPlayers(this.value)">
                         <option value="1">Team1</option>
                         <option value="2">Team2</option>
                       </select>
@@ -958,7 +958,7 @@
           </div>
           <div>
             Equipo:
-            <select name="" id="passTeam">
+            <select name="" id="passTeam" onchange="updatePassPlayers(this.value)">
               <option value="1">Team1</option>
               <option value="2">Team2</option>
             </select>
