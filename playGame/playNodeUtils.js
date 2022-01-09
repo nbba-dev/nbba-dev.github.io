@@ -9,4 +9,14 @@ const setTeamsAsOptionsForSelect = function(selectNode) {
   })
 }
 
-export { setTeamsAsOptionsForSelect }
+const setPlayersAsOptionsForSelect = function(selectNode, players) {
+  removeChildren(selectNode)
+  players.forEach((player) => {
+    selectNode.appendChild(createOption(`(${player.playerNumber}) ${player.playerName} - ${player.playerPosition}, ${player.playerValue}`, player.playerId))
+  })
+}
+
+export {
+  setTeamsAsOptionsForSelect,
+  setPlayersAsOptionsForSelect,
+}

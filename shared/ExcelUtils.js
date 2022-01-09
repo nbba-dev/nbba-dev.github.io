@@ -40,6 +40,21 @@ const loadRoundsFromExcel = function () {
   });
 }
 
+const loadTeamPlayersFromExcel = function (sheet) {
+  const sheetId = sheet.split('https://docs.google.com/spreadsheets/d/')[1].split('/')[0]
+  return gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: sheetId,
+    range: 'Roster!A1:AN12',
+    // valueRenderOption: "FORMULA"
+  }).then(function (response) {
+    // console.log('Equipos raw', response.result)
+    // console.log('Equipos formateados', getTeams(response.result.values))
+    return getTeamPlayers(response.result.values);
+  }, function (response) {
+    console.log('Error: ' + response.result.error.message);
+  });
+}
+
 const getLeagueInfo = function (rawXlsData) {
   const leagueInfo = {
     leagueName: rawXlsData[0][0],
@@ -91,6 +106,23 @@ const getTeams = function (rawXlsData) {
   return teams
 }
 
+const getTeamPlayers = function (rawXlsData) {
+  const teamPlayers = []
+  rawXlsData.forEach((row, index) => {
+    if (index > 0 && !!row[1]) {
+      teamPlayers.push({
+        playerId: index,
+        playerNumber: row[0],
+        playerName: row[1],
+        playerPosition: row[2],
+        playerValue: row[39]
+      })
+    }
+  })
+
+  return teamPlayers
+}
+
 const getTurnsBasedOnBBRules = function (rulesetString) {
   const turnsPerRuleset = {
     'BB7': 6,
@@ -118,4 +150,5 @@ export {
   loadRoundsFromExcel,
   getTurnsBasedOnBBRules,
   mapGameRecordToExcelCells,
+  loadTeamPlayersFromExcel,
 }

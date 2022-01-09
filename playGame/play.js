@@ -4,10 +4,10 @@ import { getTouchdownRecord, getInjuryRecords, getInjuryType, getPassRecord, get
 import { initPlayListeners } from './playListeners.js';
 import { initPlayModals } from './playModals.js';
 import { initLogin } from '/components/nbba-login/nbba-login.js'
-import { loadLeagueExcel, loadTeamsFromExcel, loadRoundsFromExcel, getTurnsBasedOnBBRules } from '../shared/excelUtils.js'
+import { loadLeagueExcel, loadTeamsFromExcel, loadRoundsFromExcel, getTurnsBasedOnBBRules, loadTeamPlayersFromExcel } from '../shared/excelUtils.js'
 import { recordGame } from './gameRecordUtils.js';
 import { createImg, createButtonInnerHtml } from '../shared/nodeUtils.js';
-import { setTeamsAsOptionsForSelect } from './playNodeUtils.js';
+import { setTeamsAsOptionsForSelect, setPlayersAsOptionsForSelect } from './playNodeUtils.js';
 
 // state
 const dom = getDomNodesByIds([
@@ -72,6 +72,7 @@ const dom = getDomNodesByIds([
   'injuryHurtTeam',
   'injuryHurtingTeam',
   'passTeam',
+  'touchdownPlayer'
 ])
 
 let gameConfig;
@@ -156,6 +157,18 @@ function loggedInCallback(newVal) {
 
       updateFameTeam1()
       updateFameTeam2()
+
+      updateTeamDropdowns()
+
+      const loadTeam1PlayersPromise = loadTeamPlayersFromExcel(team1.teamRoster).then((response) => {
+        gameState.team1.players = response
+        updateTeam1Players()
+      })
+
+      const loadTeam2PlayersPromise = loadTeamPlayersFromExcel(team2.teamRoster).then((response) => {
+        gameState.team2.players = response
+        updateTeam2Players()
+      })
 
       hide(dom.get('loadingModal'))
     })
@@ -340,11 +353,6 @@ function updateTeam1() {
   dom.get('team1Name').forEach((a) => a.innerHTML = team.name)
   // dom.get('team1ScoreName').innerHTML = team.name
   // dom.get('team1ScoreInput').value = '0'
-
-  setTeamsAsOptionsForSelect(dom.get('touchdownTeam'))
-  setTeamsAsOptionsForSelect(dom.get('injuryHurtTeam'))
-  setTeamsAsOptionsForSelect(dom.get('injuryHurtingTeam'))
-  setTeamsAsOptionsForSelect(dom.get('passTeam'))
 }
 
 function updateTeam2() {
@@ -353,6 +361,22 @@ function updateTeam2() {
   dom.get('team2Name').forEach((a) => a.innerHTML = team.name)
   // dom.get('team2ScoreName').innerHTML = team.name
   // dom.get('team2ScoreInput').value = '0'
+}
+
+function updateTeamDropdowns() {
+  setTeamsAsOptionsForSelect(dom.get('touchdownTeam'))
+  setTeamsAsOptionsForSelect(dom.get('injuryHurtTeam'))
+  setTeamsAsOptionsForSelect(dom.get('injuryHurtingTeam'))
+  setTeamsAsOptionsForSelect(dom.get('passTeam'))
+}
+
+function updateTeam1Players() {
+  const team = gameState.team1
+  team.players && setPlayersAsOptionsForSelect(dom.get('touchdownPlayer'), team.players)
+}
+function updateTeam2Players() {
+  const team = gameState.team2
+  team.players && setPlayersAsOptionsForSelect(dom.get('touchdownPlayer'), team.players)
 }
 
 function applyClockLogic(timeDiff) {
