@@ -25,64 +25,72 @@
 
     <div class="page page1">
       <div id="loadingLeague">
-        <div>Please login</div>
-        <div>Google Sheets permissions are needed</div>
+        <div>Inicia sesión</div>
+        <div>Google Sheets necesita permisos para acceder a tus ligas</div>
       </div>
-      <form id="form" class="page1-form" action="/playGame/" hidden>
-        <input type="hidden" name="isLeague" value="true" />
-        <div id="moreLeagueInfo"></div>
-        <div class="page1-form-group">
-          <label for="round" class="form1-label">Jornada</label>
-          <select id="roundSelect" required>
-            <option value="0" selected>Equipo Local</option>
-            <option value="-1" disabled>Inicia sesión para más opciones</option>
+      <div id="form" hidden>
+        <div>
+            <label for="leagueSelect" class="form1-label">Liga</label>
+            <select id="leagueSelect" required>
+            <option value="0" selected>Inicia sesión para más opciones</option>
           </select>
         </div>
-        <div class="page1-form-group">
-          <label for="gameId" class="form1-label">Partido</label>
-          <select name="gameId" id="matchSelect" required>
-            <option value="0" selected>Equipo Local</option>
-            <option value="-1" disabled>Inicia sesión para más opciones</option>
-          </select>
-        </div>
-        <div class="page1-form-group">
-          <label for="turns">Reglas</label>
-          <select name="turns" id="turns" required disabled>
-            <option value="2">TEST — 2 turnos</option>
-            <option value="6">BB7 — 6 turnos</option>
-            <option value="8">BB11 — 8 turnos</option>
-          </select>
-        </div>
-        <div class="page1-form-group">
-          <label for="time" class="form1-label">Tiempo por turno</label>
-          <select name="time" required>
-            <option value="2">2 segundos — TEST</option>
-            <option value="60">1 min</option>
-            <option value="90">1 min 30s</option>
-            <option value="120">2 min</option>
-            <option value="150" selected>2 min 30s</option>
-            <option value="180">3 min</option>
-            <option value="210">3 min 30s</option>
-          </select>
-        </div>
-        <div class="page1-form-group">
-          <label for="delay" class="form1-label">Retardo</label>
-          <select name="delay" required>
-            <option value="0">Instantáneo</option>
-            <option value="1">1 segundo</option>
-            <option value="2" selected>2 segundos</option>
-            <option value="3">3 segundos</option>
-            <option value="5">5 segundos</option>
-          </select>
-        </div>
-        <div class="page1-form-group horizontal">
-          <input type="checkbox" name="guided" id="form1Checkbox">
-          <label for="form1Checkbox">Partido guiado</label>
-        </div>
-        <div class="page1-form-group">
-          <button type="submit">¡Empezar partido!</button>
-        </div>
-      </form>
+        <form class="page1-form" action="/playGame/">
+          <input type="hidden" name="isLeague" value="true" />
+          <div id="moreLeagueInfo"></div>
+          <div class="page1-form-group">
+            <label for="round" class="form1-label">Jornada</label>
+            <select id="roundSelect" required>
+              <option value="0" selected>Equipo Local</option>
+              <option value="-1" disabled>Inicia sesión para más opciones</option>
+            </select>
+          </div>
+          <div class="page1-form-group">
+            <label for="gameId" class="form1-label">Partido</label>
+            <select name="gameId" id="matchSelect" required>
+              <option value="0" selected>Equipo Local</option>
+              <option value="-1" disabled>Inicia sesión para más opciones</option>
+            </select>
+          </div>
+          <div class="page1-form-group">
+            <label for="turns">Reglas</label>
+            <select name="turns" id="turns" required disabled>
+              <option value="2">TEST — 2 turnos</option>
+              <option value="6">BB7 — 6 turnos</option>
+              <option value="8">BB11 — 8 turnos</option>
+            </select>
+          </div>
+          <div class="page1-form-group">
+            <label for="time" class="form1-label">Tiempo por turno</label>
+            <select name="time" required>
+              <option value="2">2 segundos — TEST</option>
+              <option value="60">1 min</option>
+              <option value="90">1 min 30s</option>
+              <option value="120">2 min</option>
+              <option value="150" selected>2 min 30s</option>
+              <option value="180">3 min</option>
+              <option value="210">3 min 30s</option>
+            </select>
+          </div>
+          <div class="page1-form-group">
+            <label for="delay" class="form1-label">Retardo</label>
+            <select name="delay" required>
+              <option value="0">Instantáneo</option>
+              <option value="1">1 segundo</option>
+              <option value="2" selected>2 segundos</option>
+              <option value="3">3 segundos</option>
+              <option value="5">5 segundos</option>
+            </select>
+          </div>
+          <div class="page1-form-group horizontal">
+            <input type="checkbox" name="guided" id="form1Checkbox">
+            <label for="form1Checkbox">Partido guiado</label>
+          </div>
+          <div class="page1-form-group">
+            <button type="submit">¡Empezar partido!</button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <script type="module" src="../shared/domUtils.js"></script>

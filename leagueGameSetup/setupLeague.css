@@ -24,6 +24,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 25vw;
+  margin-top: 16px;
 }
 
 .page1-form-group {

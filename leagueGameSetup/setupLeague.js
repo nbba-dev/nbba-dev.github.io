@@ -1,5 +1,5 @@
 import { initLogin } from '/components/nbba-login/nbba-login.js'
-import { loadLeagueExcel, loadTeamsFromExcel, loadRoundsFromExcel, getTurnsBasedOnBBRules } from '../shared/excelUtils.js'
+import { loadLeaguesExcel, loadLeagueExcel, loadTeamsFromExcel, loadRoundsFromExcel, getTurnsBasedOnBBRules } from '../shared/excelUtils.js'
 import { createA, createButton, removeChildren, createOption } from '../shared/nodeUtils.js'
 import { getUrlParams } from '../shared/urlParamsUtils.js'
 import { getDomNodesByIds, hide, show } from '../shared/domUtils.js'
@@ -18,17 +18,13 @@ const dom = getDomNodesByIds([
   'roundSelect',
   'matchSelect',
   'turns',
+  'leagueSelect',
 ])
 
 function loggedInCallback(newVal) {
   isLoggedIn = newVal
   if (isLoggedIn) {
-    const loadTeamsPromise = loadTeamsFromExcel().then(setTeams)
-    const loadRoundsPromise = loadRoundsFromExcel().then(setRounds)
-    loadLeagueExcel()
-      .then(setLeagueInfo)
-
-    Promise.all([loadTeamsPromise, loadRoundsPromise]).then(setRoundGames)
+    const leaguesInfoPromise = loadLeaguesExcel().then(setLeagues)
   }
 }
 
@@ -47,9 +43,8 @@ function setRounds(rounds) {
 }
 
 function setLeagueInfo(leagueInfo) {
-  hide(dom.get('loadingLeague'))
-  show(dom.get('form'))
   setTurns(leagueInfo.leagueRuleset)
+  removeChildren(dom.get('moreLeagueInfo'))
   dom.get('moreLeagueInfo').appendChild(createA(leagueInfo.leagueName, leagueInfo.leagueLink))
 }
 
@@ -66,10 +61,36 @@ function setTurns(ruleset) {
   dom.get('turns').value = getTurnsBasedOnBBRules(ruleset)
 }
 
+function setLeagues(leagues) {
+  removeChildren(dom.get('leagueSelect'))
+  leagues.forEach((league) => {
+    if (league.isCompleted === 'No') {
+      dom.get('leagueSelect').appendChild(createOption(league.leagueName, league.leagueSheetId))
+    }
+  })
+  // TODO - when there are no active leagues
+  hide(dom.get('loadingLeague'))
+  show(dom.get('form'))
+  setLeague(leagues[0].leagueSheetId)
+}
+
+function setLeague(sheetId) {
+  const loadTeamsPromise = loadTeamsFromExcel(sheetId).then(setTeams)
+  const loadRoundsPromise = loadRoundsFromExcel(sheetId).then(setRounds)
+  loadLeagueExcel(sheetId)
+    .then(setLeagueInfo)
+
+  Promise.all([loadTeamsPromise, loadRoundsPromise]).then(setRoundGames)
+}
+
 (function initListeners() {
   dom.get('roundSelect').addEventListener('change', (e) => {
     selectedRound = leagueRounds[dom.get('roundSelect').value]
     setRoundGames()
+  })
+
+  dom.get('leagueSelect').addEventListener('change', (e) => {
+    setLeague(dom.get('leagueSelect').value)
   })
 })()
 

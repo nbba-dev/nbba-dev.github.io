@@ -1,6 +1,19 @@
-const loadLeagueExcel = function () {
+const loadLeaguesExcel = function () {
   return gapi.client.sheets.spreadsheets.values.get({
-    spreadsheetId: '1NbwBzW2OqGdAvIQu-36eGODHqx0dMslzzNvYrJ0P82k',
+    spreadsheetId: '1AJ4-Gu_c5v0miiNMDvMbIGg0wwCxLFnYHHmt6cKDvuY',
+    range: 'A2:E3',
+    valueRenderOption: "FORMULA"
+  }).then(function (response) {
+    return getLeaguesInfo(response.result.values);
+  }, function (response) {
+    console.log('Error: ' + response.result.error.message);
+  });
+}
+
+const loadLeagueExcel = function (sheetId) {
+  return gapi.client.sheets.spreadsheets.values.get({
+    // spreadsheetId: '1NbwBzW2OqGdAvIQu-36eGODHqx0dMslzzNvYrJ0P82k',
+    spreadsheetId: sheetId,
     range: 'A2:E2',
     valueRenderOption: "FORMULA"
   }).then(function (response) {
@@ -12,9 +25,10 @@ const loadLeagueExcel = function () {
   });
 }
 
-const loadTeamsFromExcel = function () {
+const loadTeamsFromExcel = function (sheetId) {
   return gapi.client.sheets.spreadsheets.values.get({
-    spreadsheetId: '1NbwBzW2OqGdAvIQu-36eGODHqx0dMslzzNvYrJ0P82k',
+    // spreadsheetId: '1NbwBzW2OqGdAvIQu-36eGODHqx0dMslzzNvYrJ0P82k',
+    spreadsheetId: sheetId,
     range: 'Equipos!A2:F9',
     // valueRenderOption: "FORMULA"
   }).then(function (response) {
@@ -26,9 +40,10 @@ const loadTeamsFromExcel = function () {
   });
 }
 
-const loadRoundsFromExcel = function () {
+const loadRoundsFromExcel = function (sheetId) {
   return gapi.client.sheets.spreadsheets.values.get({
-    spreadsheetId: '1NbwBzW2OqGdAvIQu-36eGODHqx0dMslzzNvYrJ0P82k',
+    // spreadsheetId: '1NbwBzW2OqGdAvIQu-36eGODHqx0dMslzzNvYrJ0P82k',
+    spreadsheetId: sheetId,
     range: 'Jornadas!A2:E30',
     valueRenderOption: "FORMULA"
   }).then(function (response) {
@@ -52,6 +67,16 @@ const loadTeamPlayersFromExcel = function (sheet) {
     return getTeamPlayers(response.result.values);
   }, function (response) {
     console.log('Error: ' + response.result.error.message);
+  });
+}
+
+const getLeaguesInfo = function (rawXlsData) {
+  return rawXlsData.map((row) => {
+    return {
+      leagueName: row[0],
+      isCompleted: row[1],
+      leagueSheetId: row[3],
+    }
   });
 }
 
@@ -145,6 +170,7 @@ const mapGameRecordToExcelCells = function (gameRecord) {
 }
 
 export {
+  loadLeaguesExcel,
   loadLeagueExcel,
   loadTeamsFromExcel,
   loadRoundsFromExcel,
