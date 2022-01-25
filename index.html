@@ -19,11 +19,20 @@
 </head>
 <body>
 
-  <h1>Bienvenido a NBBA app</h1>
+  <link rel="stylesheet" href="home/home.css">
 
-  <a href="/gameSetup/">Jugar partido!</a>
-  <br>
-  <a href="/leagueGameSetup/">Jugar partido de liga</a>
+  <div class="home-background"></div>
+  <div class="home-container">
+    <div>
+      <img src="multimedia/NBBA.png" alt="">
+    </div>
+    <div class="home-button-container">
+      <button class="home-button" id="playGame">Jugar partido!</button>
+      <button class="home-button" id="playLeagueGame">Jugar partido de liga</button>
+    </div>
+  </div>
+
+  <script src="home/home.js"></script>
 
   <script>
     try {

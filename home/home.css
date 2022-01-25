@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  background-color: black;
+}
+
+.home-background {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url(../multimedia/bloodbowl.jpeg);
+  background-size: cover;
+  background-position: 50%;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.home-button-container {
+  margin: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-button {
+  padding: 8px 16px;
+  margin: 16px;
+}
