@@ -28,16 +28,20 @@
         <div>Inicia sesión</div>
         <div>Google Sheets necesita permisos para acceder a tus ligas</div>
       </div>
+      <div id="noLeagues" hidden>
+        <div>No tienes ligas activas</div>
+        <div>Inicia sesión con una cuenta con ligas activas</div>
+      </div>
       <div id="form" hidden>
-        <div>
-            <label for="leagueSelect" class="form1-label">Liga</label>
-            <select id="leagueSelect" required>
-            <option value="0" selected>Inicia sesión para más opciones</option>
-          </select>
-        </div>
         <form class="page1-form" action="/playGame/">
+          <div id="leagueSelectContainer" hidden>
+            <label for="leagueSelect" class="form1-label">Liga</label>
+            <select name="league" id="leagueSelect" required>
+              <option value="0" selected>Inicia sesión para más opciones</option>
+            </select>
+          </div>
           <input type="hidden" name="isLeague" value="true" />
-          <div id="moreLeagueInfo"></div>
+          <div id="moreLeagueInfo" class="moreLeagueInfo"></div>
           <div class="page1-form-group">
             <label for="round" class="form1-label">Jornada</label>
             <select id="roundSelect" required>

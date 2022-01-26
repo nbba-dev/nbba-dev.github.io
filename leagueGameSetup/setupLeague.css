@@ -23,7 +23,10 @@ body {
 .page1-form {
   display: flex;
   flex-direction: column;
-  width: 25vw;
+  width: 35vw;
+}
+
+.moreLeagueInfo {
   margin-top: 16px;
 }
 

@@ -113,6 +113,7 @@ let wakeLock = null;
 let isInFullscreen = false;
 let teams, rounds, league;
 let isLoggedIn;
+let playerSecuencialNumber;
 
 window.gameRecord = gameRecord
 window.gameState = gameState
@@ -129,9 +130,9 @@ initPlayModals(gameState)
 function loggedInCallback(newVal) {
   isLoggedIn = newVal
   if (isLoggedIn) {
-    const loadTeamsPromise = loadTeamsFromExcel().then((response) => { teams = response })
-    const loadRoundsPromise = loadRoundsFromExcel().then((response) => { rounds = response })
-    const loadLeaguePromise = loadLeagueExcel().then((response) => { league = response })
+    const loadTeamsPromise = loadTeamsFromExcel(gameConfig.leagueSheetId).then((response) => { teams = response })
+    const loadRoundsPromise = loadRoundsFromExcel(gameConfig.leagueSheetId).then((response) => { rounds = response })
+    const loadLeaguePromise = loadLeagueExcel(gameConfig.leagueSheetId).then((response) => { league = response })
 
     Promise.all([loadTeamsPromise, loadRoundsPromise, loadLeaguePromise]).then(() => {
       let currentGame
@@ -163,14 +164,23 @@ function loggedInCallback(newVal) {
 
       updateTeamDropdowns()
 
-      const loadTeam1PlayersPromise = loadTeamPlayersFromExcel(team1.teamRoster).then((response) => {
-        gameState.team1.players = response
+      if (team1.teamRoster) {
+        const loadTeam1PlayersPromise = loadTeamPlayersFromExcel(team1.teamRoster).then((response) => {
+          gameState.team1.players = response
+          updateTeam1Players()
+        })
+      } else {
+        setDefaultPlayers(gameState.team1)
         updateTeam1Players()
-      })
+      }
 
-      const loadTeam2PlayersPromise = loadTeamPlayersFromExcel(team2.teamRoster).then((response) => {
-        gameState.team2.players = response
-      })
+      if (team2.teamRoster) {
+          const loadTeam2PlayersPromise = loadTeamPlayersFromExcel(team2.teamRoster).then((response) => {
+          gameState.team2.players = response
+        })
+      } else {
+        setDefaultPlayers(gameState.team2)
+      }
 
       hide(dom.get('loadingModal'))
     })
@@ -183,6 +193,7 @@ function init() {
   gameConfig = params;
   gameConfig.time = Number(params.time) + 1; // para que empiece en el minuto exacto
   gameConfig.delay = gameConfig.delay ?? 2;
+  gameConfig.leagueSheetId = gameConfig.league;
 
   if (params?.team1 === null || params?.team1 === undefined) {
     gameState.team1.name = params.team1Name
@@ -351,7 +362,9 @@ function finishGame() {
 
 function updateTeam1() {
   const team = gameState.team1
-  dom.get('team1Logo').forEach((a) => a.src = team.logo)
+  if (team.logo) {
+    dom.get('team1Logo').forEach((a) => a.src = team.logo)
+  }
   dom.get('team1Name').forEach((a) => a.innerHTML = team.name)
   // dom.get('team1ScoreName').innerHTML = team.name
   // dom.get('team1ScoreInput').value = '0'
@@ -359,7 +372,9 @@ function updateTeam1() {
 
 function updateTeam2() {
   const team = gameState.team2
-  dom.get('team2Logo').forEach((a) => a.src = team.logo)
+  if (team.logo) {
+    dom.get('team2Logo').forEach((a) => a.src = team.logo)
+  }
   dom.get('team2Name').forEach((a) => a.innerHTML = team.name)
   // dom.get('team2ScoreName').innerHTML = team.name
   // dom.get('team2ScoreInput').value = '0'
@@ -378,6 +393,23 @@ function updateTeam1Players() {
   team.players && setPlayersAsOptionsForSelect(dom.get('injuryHurtPlayer'), team.players)
   team.players && setPlayersAsOptionsForSelect(dom.get('injuryHurtingPlayer'), team.players)
   team.players && setPlayersAsOptionsForSelect(dom.get('passPlayer'), team.players)
+}
+
+function setDefaultPlayers(team) {
+  // for BB sevens only
+  const defaultPlayers = [1,2,3,4,5,6,7]
+  const teamPlayers = []
+  defaultPlayers.forEach((playerNumber) => {
+    playerSecuencialNumber += 1
+    teamPlayers.push({
+      playerId: playerSecuencialNumber,
+      playerNumber: playerNumber,
+      playerName: `jugador (${playerNumber})`,
+      playerPosition: '',
+      playerValue: '-',
+    })
+  })
+  team.players = teamPlayers
 }
 
 window.updateTouchdownPlayers = function(teamId) {
@@ -1055,4 +1087,5 @@ if (isLeagueGame()) {
   initLogin(loggedInCallback)
 }
 
+// TODO - REMOVE
 window.finishGame = finishGame

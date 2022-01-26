@@ -524,6 +524,10 @@ body {
   flex-direction: column;
 }
 
+.fame-dice-roll-container {
+  width: calc(100% - 24px - 24px);
+}
+
 .weather {
   font-size: 3rem;
   border-radius: 0 0 50% 50%;

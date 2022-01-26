@@ -19,6 +19,8 @@ const dom = getDomNodesByIds([
   'matchSelect',
   'turns',
   'leagueSelect',
+  'leagueSelectContainer',
+  'noLeagues'
 ])
 
 function loggedInCallback(newVal) {
@@ -63,15 +65,24 @@ function setTurns(ruleset) {
 
 function setLeagues(leagues) {
   removeChildren(dom.get('leagueSelect'))
-  leagues.forEach((league) => {
-    if (league.isCompleted === 'No') {
+  const activeLeagues = leagues.filter(league => league.isCompleted === 'No')
+  if (activeLeagues.length > 0) {
+    activeLeagues.forEach((league) => {
       dom.get('leagueSelect').appendChild(createOption(league.leagueName, league.leagueSheetId))
-    }
-  })
-  // TODO - when there are no active leagues
+    })
+  }
+
   hide(dom.get('loadingLeague'))
-  show(dom.get('form'))
-  setLeague(leagues[0].leagueSheetId)
+
+  if (activeLeagues.length > 0) {
+    if (activeLeagues.length > 1) {
+      show(dom.get('leagueSelectContainer'))
+    }
+    show(dom.get('form'))
+    setLeague(leagues[0].leagueSheetId)
+  } else {
+    show(dom.get('noLeagues'))
+  }
 }
 
 function setLeague(sheetId) {
