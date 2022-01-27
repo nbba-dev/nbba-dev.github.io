@@ -1,24 +1,23 @@
-var i = 1;
-document.querySelector('#control').addEventListener('click', function () {
-  document.querySelector('.parts').classList.remove('pos' + i);
-  for (var s = 1; s < 11; s++) {
-    document.querySelector('#side' + s).classList.remove('side' + s + 'pos' + i);
-  }
-  i++;
-  if (i > 4) {
-    i = 1;
-  }
-  document.querySelector('.parts').classList.add('pos' + i);
-  for (var s = 1; s < 11; s++) {
-    document.querySelector('#side' + s).classList.add('side' + s + 'pos' + i);
-  }
-});
+let x = 0
+let y = 0
+let z = 0
 
-document.querySelector('#button').addEventListener('click', function () {
-  document.querySelector('#display_blank').classList.toggle('hidden');
-  document.querySelector('#display_browser').classList.toggle('hidden');
-});
+const intervalFn = () => {
+  x += 1
+  // y += 1
+  // z += 1
 
-// setInterval(() => {
-//   document.querySelector('#control').click()
-// }, 2000)
+  document.documentElement.style.setProperty('--rotateX', `${x}deg`);
+  // document.documentElement.style.setProperty('--rotateY', `${y}deg`);
+  // document.documentElement.style.setProperty('--rotateZ', `${z}deg`);
+}
+
+const stop = () => {
+  clearInterval(interval)
+}
+
+const start = () => {
+  interval = setInterval(intervalFn, 10)
+}
+
+start()
