@@ -105,10 +105,40 @@ const getPassRecord = function ({
   }
 }
 
+const getWeatherRecord = function (roll, half, turn) {
+  return {
+    event: 'Weather',
+    roll,
+    turn,
+    half,
+  }
+}
+
+const getKickoffRecord = function (roll, half, turn) {
+  return {
+    event: 'Kickoff',
+    roll,
+    turn,
+    half,
+  }
+}
+
+const getNuffleRecord = function (roll, half, turn) {
+  return {
+    event: 'Nuffle',
+    roll,
+    turn,
+    half,
+  }
+}
+
 export {
   getTouchdownRecord,
   getInjuryType,
   getPassRecord,
   getInjuryRecords,
   getPassType,
+  getWeatherRecord,
+  getKickoffRecord,
+  getNuffleRecord,
 }

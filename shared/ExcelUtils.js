@@ -166,6 +166,7 @@ const mapGameRecordToExcelCells = function (gameRecord) {
     null, // [empty]
     Number(gameRecord.injuryType), // Tipo herida
     Number(gameRecord.passType), // Tipo pase
+    Number(gameRecord.roll), // Resultado del dado
   ]
 }
 

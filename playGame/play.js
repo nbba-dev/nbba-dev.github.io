@@ -1,6 +1,6 @@
 import { getDomNodesByIds, show, hide, getDomArr } from '../shared/domUtils.js'
 import { getTeamName, getActiveTurn, getActiveHalf } from './playUtils.js'
-import { getTouchdownRecord, getInjuryRecords, getInjuryType, getPassRecord, getPassType } from './gameEventsUtils.js'
+import { getTouchdownRecord, getInjuryRecords, getInjuryType, getPassRecord, getPassType, getWeatherRecord, getKickoffRecord, getNuffleRecord } from './gameEventsUtils.js'
 import { initPlayListeners } from './playListeners.js';
 import { initPlayModals } from './playModals.js';
 import { initLogin } from '/components/nbba-login/nbba-login.js'
@@ -76,6 +76,8 @@ const dom = getDomNodesByIds([
   'injuryHurtPlayer',
   'injuryHurtingPlayer',
   'passPlayer',
+  'kickoffSelect',
+  'nuffleSelect',
 ])
 
 let gameConfig;
@@ -108,6 +110,7 @@ let gameState = {
 }
 
 let gameRecord = []
+let gameSecondaryRecords = []
 let clock;
 let wakeLock = null;
 let isInFullscreen = false;
@@ -116,6 +119,7 @@ let isLoggedIn;
 let playerSecuencialNumber;
 
 window.gameRecord = gameRecord
+window.gameSecondaryRecords = gameSecondaryRecords
 window.gameState = gameState
 
 const timeoutAudio = new Audio('../multimedia/Timeout.mp3');
@@ -645,10 +649,11 @@ window.completedWeather = function() {
   hide(dom.get('weather'))
   closeWeatherModal()
   openInducementsModal()
+  registerWeatherRoll()
 }
 
 window.kickoffChangeWeather = function() {
-  completedKickoff()
+  closeKickoffModal()
   kickoffModal.classList.remove('disableOverlay')
   openWeatherModal()
 }
@@ -664,14 +669,40 @@ window.kickoffTimeout = function() {
   }
   dom.get('team1TurnTurn').innerHTML = gameState.team1.turn
   dom.get('team2TurnTurn').innerHTML = gameState.team2.turn
-  completedKickoff()
+  closeKickoffModal()
+}
+
+const registerKickoffRoll = function () {
+  const valueForKickoff = dom.get('kickoffSelect').value
+  dom.get('kickoffSelect').value = '0'
+  if (valueForKickoff !== '0') {
+    gameSecondaryRecords.push(getKickoffRecord(valueForKickoff, getActiveHalf() - 1, getActiveTurn()))
+  }
+}
+
+const registerWeatherRoll = function () {
+  const valueForWeather = Number(dom.get('weatherValue').value)
+  dom.get('weatherValue').value = '0'
+  if (valueForWeather !== '0') {
+    gameSecondaryRecords.push(getWeatherRecord(valueForWeather, getActiveHalf() - 1, getActiveTurn()))
+  }
+}
+
+const registerNuffleRoll = function () {
+  const valueForNuffle = dom.get('nuffleSelect').value
+  dom.get('nuffleSelect').value = '0'
+  if (valueForNuffle !== '0') {
+    gameSecondaryRecords.push(getNuffleRecord(valueForNuffle, getActiveHalf() - 1, getActiveTurn()))
+  }
 }
 
 window.completedKickoff = function() {
+  registerKickoffRoll()
   closeKickoffModal()
 }
 
 window.completedKickoffStandalone = function() {
+  registerKickoffRoll()
   closeKickoffModalStandalone()
   openPauseModal()
 }
@@ -682,6 +713,7 @@ window.kickoffNuffle = function() {
 }
 
 window.completedNuffle = function() {
+  registerNuffleRoll()
   closeNuffleModal()
 }
 
@@ -726,8 +758,8 @@ window.completedWinnings = function() {
 }
 window.completedFanFactor = function() {
   closeFanFactorModal()
-  if (isLeagueGame) {
-    recordGame(gameState, gameRecord, league)
+  if (isLeagueGame()) {
+    recordGame(gameState, [...gameRecord, ...gameSecondaryRecords], league)
   }
   openSppModal()
 }
