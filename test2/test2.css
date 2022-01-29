@@ -1,0 +1,160 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  /* -webkit-perspective: 800; */
+
+  margin: 0px;
+  background-color: black;
+  color: #333;
+}
+
+.home-section {
+  height: 90vh;
+  width: 100vw;
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.home-section:nth-of-type(1) {
+  background-color: hsl(231, 80%, 100%);
+}
+.home-section:nth-of-type(2) {
+  background: linear-gradient(0deg, hsl(222deg 70% 45% / 60%) 0%, hsl(222deg 65% 45% / 60%) 100%);
+}
+.home-section:nth-of-type(3) {
+  background: linear-gradient(0deg, hsl(202deg 100% 40% / 60%) 0%, hsl(202deg 100% 45% / 60%) 100%)
+}
+.home-section:nth-of-type(4) {
+  background: linear-gradient(0deg, hsl(296deg 80% 35% / 60%) 0%, hsl(296deg 70% 35% / 60%) 100%);
+}
+.home-section:nth-of-type(5) {
+  background: linear-gradient(0deg, hsl(124deg 50% 35% / 60%) 0%, hsl(124deg 50% 40% / 60%) 100%);
+}
+
+.smartphone-container {
+  -webkit-perspective: 800;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+
+.content {
+  max-width: 400px;
+  font-family: 'roboto';
+  color: white;
+  line-height: 1.5;
+}
+
+#homeSection1 {
+  background: url(../multimedia/bloodbowl.jpeg);
+  background-size: cover;
+  background-position: 50%;
+}
+
+#homeSection2 .content {
+  margin-left: calc(200px + 25vw)
+}
+
+#homeSection3 .content {
+  margin-right: calc(200px + 25vw)
+}
+
+#homeSection4 .content {
+  margin-left: calc(200px + 25vw)
+}
+
+#homeSection5 .content {
+  margin-right: calc(200px + 25vw)
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.home-button-container {
+  margin: 24px 24px 10vh 24px;
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+}
+
+.home-button {
+  padding: 16px;
+  margin: 16px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.nbba-desc {
+  width: 280px;
+  color: white;
+  font-family: 'roboto';
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: bolder;
+  letter-spacing: 1.2px;
+  margin-top: 0;
+}
+
+.home-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nbba-logo {
+  width: 30vw;
+}
+
+#homeSection6 {
+  height: 40vh;
+  color: white;
+  background: linear-gradient(0deg, #222, #333);
+  font-family: 'roboto';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#homeSection6 a {
+  color: white;
+}
+
+@media only screen and (max-width: 1000px) {
+  .home-section:not(.mobile), .nbba-desc, #homeSection6 {
+    display: none;
+  }
+
+  .home-section {
+    height: 100vh;
+  }
+
+  .home-button-container {
+    margin: 24px;
+    width: auto;
+  }
+
+  .home-button {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+}
