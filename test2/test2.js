@@ -118,14 +118,3 @@ function startHoverSmartphone(phone) {
     }
   }, 3000)
 }
-
-/*
-
-TODO
-
-- Hacer textos más grandes
-- Reducir altura de las secciones
-- Paleta de colores para los fondos
-
-
-*/
