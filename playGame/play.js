@@ -228,7 +228,7 @@ function showPage2() {
 window.reset = function(){
   const alert = confirm("¿Seguro que quieres empezar un nuevo partido?");
   if (alert == true) {
-    window.location.href = '/setupGame'
+    window.location.href = '/'
   }
 }
 
@@ -291,7 +291,7 @@ window.clickOnTurn1 = function() {
   const firstTurnInTheGame = !gameState.hasStarted && !gameState.isSecondPart
   const firstTurnInSecondHalf = !gameState.hasStarted && gameState.isSecondPart
   const isAlreadyHisTurn = gameState.isTeam1turn
-  requestWakeLock()
+  goFullscreen()
 
   if (firstTurnInTheGame) {
     gameState.hasStarted = true
@@ -308,7 +308,7 @@ window.clickOnTurn2 = function() {
   const firstTurnInTheGame = !gameState.hasStarted && !gameState.isSecondPart
   const firstTurnInSecondHalf = !gameState.hasStarted && gameState.isSecondPart
   const isAlreadyHisTurn = !gameState.isTeam1turn
-  requestWakeLock()
+  goFullscreen()
 
   if (firstTurnInTheGame) {
     gameState.hasStarted = true
@@ -509,6 +509,12 @@ function resetTurnover() {
 }
 
 window.goFullscreen = function() {
+  requestWakeLock()
+  isInFullscreen = true
+  document.body.requestFullscreen()
+}
+
+window.toggleFullscreen = function() {
   requestWakeLock()
   if (isInFullscreen) {
     isInFullscreen = false
