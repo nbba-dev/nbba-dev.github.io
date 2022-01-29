@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,26 +14,191 @@
   <meta name="application-name" content="NBBA App">
   <meta name="description" content="NBBA official application">
   <meta name="keywords"
-  content="Hecmocer, Hector, Moreno, Hector Moreno, NBBA, Bloodbowl, Tracker, Web, Application, Frontend">
+    content="Hecmocer, Hector, Moreno, Hector Moreno, NBBA, Bloodbowl, Tracker, Web, Application, Frontend">
   <meta name="author" content="Hecmocer">
   <link rel="manifest" href="manifest.json">
 </head>
+
 <body>
 
-  <link rel="stylesheet" href="home/home.css">
+  <style>
+    html {
+      visibility: ;
+      opacity: 0;
+    }
+  </style>
 
-  <div class="home-background"></div>
-  <div class="home-container">
-    <div>
-      <img src="multimedia/NBBA.png" alt="">
+  <section class="home-section mobile" id="homeSection1">
+    <div class="home-container">
+      <div class="home-header">
+        <img src="../multimedia/NBBA.png" alt="nbba logo" class="nbba-logo">
+        <p class="nbba-desc">La app que te acompaña en tus partidos de Bloodbowl</p>
+      </div>
+      <div class="home-button-container">
+        <button class="home-button" id="playGame">Jugar partido rápido</button>
+        <button class="home-button" id="playLeagueGame">Jugar partido de liga</button>
+      </div>
     </div>
-    <div class="home-button-container">
-      <button class="home-button" id="playGame">Jugar partido!</button>
-      <button class="home-button" id="playLeagueGame">Jugar partido de liga</button>
-    </div>
+  </section>
+  <div class="home-section-container">
+    <section class="home-section" id="homeSection4">
+      <div class="section-pill"></div>
+      <div class="content">
+        <h2>PARTIDO GUIADO</h2>
+        <p>NBBA te guía a lo largo de las fases del partido, para que no se te olvide ningún paso ni tengas que llevar
+          contigo el manual completo</p>
+        <p>Te informa de</p>
+        <ul>
+          <li>Tabla de patadas iniciales</li>
+          <li>Tabla de incentivos</li>
+          <li>Tiradas y qué resultados aplicar</li>
+          <li>...y mucho más!</li>
+        </ul>
+      </div>
+      <div class="smartphone-container">
+        <div id="smartphone3" class="smartphone">
+          <div class="side" id="side10"></div>
+          <div class="side" id="side9"></div>
+          <div class="side" id="side8"></div>
+          <div class="side" id="side7"></div>
+          <div class="side" id="side6"></div>
+          <div class="side" id="side5"></div>
+          <div class="side" id="side4"></div>
+          <div class="side" id="side3"></div>
+          <div class="side" id="side2"></div>
+          <div class="side" id="side1"></div>
+          <div class="parts" id="front">
+            <div class="subparts" id="speeker"></div>
+            <div class="subparts" id="button">
+              <div id="buttonlabel"></div>
+            </div>
+            <div class="subparts" id="display_blank"></div>
+            <iframe class="subparts" id="display_browser" src="http://localhost:5501/playGame" width="0"
+              height="0"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="home-section" id="homeSection5">
+      <div class="section-pill"></div>
+      <div class="content">
+        <h2>LIGA O AMISTOSO</h2>
+        <p>Inicia sesión para registrar automáticamente las actas de tus partidos de liga</p>
+        <p>...o juega un partido amistoso gratis</p>
+      </div>
+      <div class="smartphone-container">
+        <div id="smartphone4" class="smartphone">
+          <div class="side" id="side10"></div>
+          <div class="side" id="side9"></div>
+          <div class="side" id="side8"></div>
+          <div class="side" id="side7"></div>
+          <div class="side" id="side6"></div>
+          <div class="side" id="side5"></div>
+          <div class="side" id="side4"></div>
+          <div class="side" id="side3"></div>
+          <div class="side" id="side2"></div>
+          <div class="side" id="side1"></div>
+          <div class="parts" id="front">
+            <div class="subparts" id="speeker"></div>
+            <div class="subparts" id="button">
+              <div id="buttonlabel"></div>
+            </div>
+            <div class="subparts" id="display_blank"></div>
+            <iframe class="subparts" id="display_browser" src="http://localhost:5501/gameSetup" width="0"
+              height="0"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="home-section" id="homeSection2">
+      <div class="section-pill"></div>
+      <div class="content">
+        <h2>TU PARTIDO TUS REGLAS</h2>
+        <p>Configura los nombres de los equipos, la duración de los turnos, y si es un partido de liga podrás ver los
+          logos de los equipos</p>
+        <p>NBBA soporta las reglas de Bloodbowl Sevens</p>
+      </div>
+      <div class="smartphone-container">
+        <div id="smartphone1" class="smartphone">
+          <div class="side" id="side10"></div>
+          <div class="side" id="side9"></div>
+          <div class="side" id="side8"></div>
+          <div class="side" id="side7"></div>
+          <div class="side" id="side6"></div>
+          <div class="side" id="side5"></div>
+          <div class="side" id="side4"></div>
+          <div class="side" id="side3"></div>
+          <div class="side" id="side2"></div>
+          <div class="side" id="side1"></div>
+          <div class="parts" id="front">
+            <div class="subparts" id="speeker"></div>
+            <div class="subparts" id="button">
+              <div id="buttonlabel"></div>
+            </div>
+            <div class="subparts" id="display_blank"></div>
+            <iframe class="subparts" id="display_browser" src="http://localhost:5501/gameSetup" width="0"
+              height="0"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="home-section" id="homeSection3">
+      <div class="section-pill"></div>
+      <div class="content">
+        <h2>GESTIONA TU LIGA</h2>
+        <p>Contacta con nosotros para ayudarte a crear tu propia liga</p>
+        <p>Tus jugadores no tendrán que preocuparse por enviar actas de los partidos, ya que se registran
+          automáticamente</p>
+        <p>Analiza estadísticas, como el jugador más agresivo o el equipo con peor suerte en los pases</p>
+        <p>Consulta quién ha jugado ya su partido y cuántos partidos quedan por jugar esta jornada</p>
+        <p>...y más!</p>
+      </div>
+      <div class="smartphone-container">
+        <div id="smartphone2" class="smartphone">
+          <div class="side" id="side10"></div>
+          <div class="side" id="side9"></div>
+          <div class="side" id="side8"></div>
+          <div class="side" id="side7"></div>
+          <div class="side" id="side6"></div>
+          <div class="side" id="side5"></div>
+          <div class="side" id="side4"></div>
+          <div class="side" id="side3"></div>
+          <div class="side" id="side2"></div>
+          <div class="side" id="side1"></div>
+          <div class="parts" id="front">
+            <div class="subparts" id="speeker"></div>
+            <div class="subparts" id="button">
+              <div id="buttonlabel"></div>
+            </div>
+            <div class="subparts" id="display_blank"></div>
+            <iframe class="subparts" id="display_browser" src="http://localhost:5501/playGame" width="0"
+              height="0"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
+  <section class="home-section" id="homeSection6">
+    <div class="section-border"></div>
+    <div class="content">
+      <p>Creado por <a href="https://github.com/hecmocer-pro">Hecmocer</a> en tiempo libre</p>
+      <p>Apoya su trabajo a través de <img src="../multimedia/point-right.png" alt="" height="16px"> <a
+          href="https://www.buymeacoffee.com/hecmocerpro">Buy me a coffee!</a> <img src="../multimedia/point-left.png"
+          alt="" height="16px"></p>
+      <p>Contacto — <a href="mailto:nbba.dev@gmail.com">nbba.dev@gmail.com</a></p>
+    </div>
+  </section>
 
-  <script src="home/home.js"></script>
+  <link rel="stylesheet" href="/home/smartphone.css">
+  <link rel="stylesheet" href="/home/home.css">
+  <script src="/home/home.js"></script>
+
+  <style>
+    html {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
 
   <script>
     try {
@@ -41,8 +207,9 @@
           navigator.serviceWorker.register("./service-worker.js");
         }
       });
-    } catch {}
+    } catch { }
   </script>
 
 </body>
+
 </html>
