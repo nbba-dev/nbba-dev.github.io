@@ -638,13 +638,6 @@ function triggerDelay() {
 
 init();
 
-
-
-window.skipPregame = function() {
-  closeFameModal()
-}
-
-
 window.completedFame = function() {
   closeFameModal()
   openWeatherModal()
@@ -1177,5 +1170,7 @@ if (isLeagueGame()) {
   initLogin(loggedInCallback)
 }
 
-// TODO - REMOVE
-window.finishGame = finishGame
+// window.finishGame = finishGame
+// window.skipPregame = function() {
+//   closeFameModal()
+// }
