@@ -1,5 +1,3 @@
-import { show, hide, getDomArr } from '../shared/domUtils.js'
-
 const getTeamName = function (oneOrTwo) {
   return oneOrTwo === 1 ? gameState.team1.name : gameState.team2.name;
 }
@@ -12,8 +10,13 @@ const getActiveHalf = function () {
   return gameState.isSecondPart ? 2 : 1;
 }
 
+const isLeagueGame = function () {
+  return gameConfig?.isLeague === 'true'
+}
+
 export {
   getTeamName,
   getActiveTurn,
   getActiveHalf,
+  isLeagueGame
 }

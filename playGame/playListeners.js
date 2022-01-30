@@ -1,4 +1,5 @@
-import { getDomNodesByIds } from '../shared/domUtils.js'
+import { getDomNodesByIds, show, hide } from '../shared/domUtils.js'
+import { isLeagueGame } from './playUtils.js'
 import { getTouchdownRecord, getInjuryRecords, getPassRecord } from './gameEventsUtils.js'
 
 const initPlayListeners = function (externalGameState) {
@@ -13,6 +14,8 @@ const initPlayListeners = function (externalGameState) {
       'fansRollTeam2',
       'resultFansTeam1',
       'resultFansTeam2',
+      'completedFameBtn',
+      'completedFameBtnPls',
     ])
 
     window.updateFameTeam1 = function() {
@@ -20,12 +23,26 @@ const initPlayListeners = function (externalGameState) {
       const newFame = Number(dom.get('fanFactorTeam1').value) + Number(dom.get('fansRollTeam1').value)
       gameState.team1.fame = newFame
       dom.get('resultFansTeam1').innerHTML = `= ${newFame}`
+      testEnableFameContinue()
     }
     window.updateFameTeam2 = function() {
       dom.get('fanFactorTeam2').value = gameState.team2.fame
       const newFame = Number(dom.get('fanFactorTeam2').value) + Number(dom.get('fansRollTeam2').value)
       gameState.team2.fame = newFame
       dom.get('resultFansTeam2').innerHTML = `= ${newFame}`
+      testEnableFameContinue()
+    }
+
+    const testEnableFameContinue = function() {
+      if (isLeagueGame()) {
+        if (dom.get('fansRollTeam1').value !== '0' && dom.get('fansRollTeam2').value !== '0') {
+          show(dom.get('completedFameBtn'))
+          hide(dom.get('completedFameBtnPls'))
+        } else {
+          hide(dom.get('completedFameBtn'))
+          show(dom.get('completedFameBtnPls'))
+        }
+      }
     }
 
     dom.get('fanFactorTeam1').addEventListener('change', updateFameTeam1)

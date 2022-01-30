@@ -163,8 +163,9 @@
         </div>
       </div>
       <div class="modal-controls">
-        <button class="modal-bottomBtn" onclick="skipPregame()">Saltar</button>
-        <button class="modal-bottomBtn modal-continueBtn" onclick="completedFame()">Continuar</button>
+        <button class="modal-bottomBtn" onclick="skipPregame()" id="skipGuidedMode">Saltar</button>
+        <button class="modal-bottomBtn modal-continueBtn" onclick="completedFame()" id="completedFameBtn">Continuar</button>
+        <button class="modal-bottomBtn modal-continueBtn" id="completedFameBtnPls" disabled hidden>Completa la tirada de fama para continuar</button>
       </div>
     </div>
   </div>
@@ -240,7 +241,8 @@
       </div>
       <div class="modal-controls">
         <button class="modal-bottomBtn" onclick="goBackToFame()">Atrás</button>
-        <button class="modal-bottomBtn modal-continueBtn" onclick="completedWeather()">Continuar</button>
+        <button class="modal-bottomBtn modal-continueBtn" onclick="completedWeather()" id="completedWeatherBtn">Continuar</button>
+        <button class="modal-bottomBtn modal-continueBtn" id="completedWeatherBtnPls" disabled hidden>Completa la tirada de tiempo para continuar</button>
       </div>
     </div>
   </div>
@@ -572,8 +574,9 @@
       </div>
       <div class="modal-controls">
         <button class="modal-bottomBtn" id="kickoffBackBtn" onclick="goBackToNuffle()">Atrás</button>
-        <button class="modal-bottomBtn modal-continueBtn" id="kickoffCompleted" onclick="completedKickoff()" hidden>Continuar</button>
-        <button class="modal-bottomBtn modal-continueBtn" id="kickoffCompletedStandalone" onclick="completedKickoffStandalone()" hidden>Continuar</button>
+        <button class="modal-bottomBtn modal-continueBtn" id="kickoffCompleted" onclick="completedKickoff()">Continuar</button>
+        <!-- <button class="modal-bottomBtn modal-continueBtn" id="kickoffCompletedStandalone" onclick="completedKickoffStandalone()" hidden>Continuar</button> -->
+        <button class="modal-bottomBtn modal-continueBtn" id="completedKickoffBtnPls" disabled hidden>Completa la tirada para continuar</button>
       </div>
     </div>
   </div>
@@ -747,7 +750,8 @@
         </div>
       </div>
       <div class="modal-controls">
-        <button class="modal-bottomBtn modal-continueBtn" onclick="completedNuffle()">Continuar</button>
+        <button class="modal-bottomBtn modal-continueBtn" id="completedNuffleBtn" onclick="completedNuffle()">Continuar</button>
+        <button class="modal-bottomBtn modal-continueBtn" id="completedNuffleBtnPls" disabled hidden>Completa la tirada para continuar</button>
       </div>
     </div>
   </div>

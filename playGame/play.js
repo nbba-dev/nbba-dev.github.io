@@ -1,5 +1,5 @@
 import { getDomNodesByIds, show, hide, getDomArr } from '../shared/domUtils.js'
-import { getTeamName, getActiveTurn, getActiveHalf } from './playUtils.js'
+import { getTeamName, getActiveTurn, getActiveHalf, isLeagueGame } from './playUtils.js'
 import { getTouchdownRecord, getInjuryRecords, getInjuryType, getPassRecord, getPassType, getWeatherRecord, getKickoffRecord, getNuffleRecord } from './gameEventsUtils.js'
 import { initPlayListeners } from './playListeners.js';
 import { initPlayModals } from './playModals.js';
@@ -55,7 +55,6 @@ const dom = getDomNodesByIds([
   'confirmPassButton',
   'kickoffBackBtn',
   'kickoffCompleted',
-  'kickoffCompletedStandalone',
   'team1winnings',
   'team2winnings',
   'winningsFanFactorTeam1',
@@ -77,6 +76,14 @@ const dom = getDomNodesByIds([
   'passPlayer',
   'kickoffSelect',
   'nuffleSelect',
+  'skipGuidedMode',
+  'completedFameBtn',
+  'completedFameBtnPls',
+  'completedWeatherBtn',
+  'completedWeatherBtnPls',
+  'completedKickoffBtnPls',
+  'completedNuffleBtn',
+  'completedNuffleBtnPls',
 ])
 
 let gameConfig;
@@ -197,6 +204,7 @@ function init() {
   gameConfig.time = Number(params.time) + 1; // para que empiece en el minuto exacto
   gameConfig.delay = gameConfig.delay ?? 2;
   gameConfig.leagueSheetId = gameConfig.league;
+  window.gameConfig = gameConfig
 
   if (params?.team1 === null || params?.team1 === undefined) {
     gameState.team1.name = params.team1Name
@@ -205,6 +213,16 @@ function init() {
 
   if (!isLeagueGame()) {
     hide(dom.get('loadingModal'))
+  } else {
+    hide(dom.get('skipGuidedMode'))
+    hide(dom.get('completedFameBtn'))
+    show(dom.get('completedFameBtnPls'))
+    hide(dom.get('completedWeatherBtn'))
+    show(dom.get('completedWeatherBtnPls'))
+    hide(dom.get('kickoffCompleted'))
+    show(dom.get('completedKickoffBtnPls'))
+    hide(dom.get('completedNuffleBtn'))
+    show(dom.get('completedNuffleBtnPls'))
   }
 
   showPage2()
@@ -213,10 +231,6 @@ function init() {
   if (isGuidedGame()) {
     openFameModal(0)
   }
-}
-
-function isLeagueGame() {
-  return gameConfig?.isLeague === 'true'
 }
 
 function isGuidedGame() {
@@ -634,7 +648,7 @@ window.completedFame = function() {
   openWeatherModal()
 }
 
-window.completedWeather = function() {
+window.completedWeatherStandalone = function() {
   const valueForWeather = Number(dom.get('weatherValue').value)
   const weatherDict = {
     1: '🔥',
@@ -646,12 +660,17 @@ window.completedWeather = function() {
   dom.get('weather').innerText = weatherDict[valueForWeather] || ''
   hide(dom.get('weather'))
   closeWeatherModal()
-  openInducementsModal()
   registerWeatherRoll()
+}
+
+window.completedWeather = function() {
+  completedWeatherStandalone()
+  openInducementsModal()
 }
 
 window.kickoffChangeWeather = function() {
   closeKickoffModal()
+  dom.get('completedWeatherBtn').onclick = completedWeatherStandalone
   kickoffModal.classList.remove('disableOverlay')
   openWeatherModal()
 }
@@ -684,6 +703,7 @@ const registerWeatherRoll = function () {
   if (valueForWeather !== '0') {
     gameSecondaryRecords.push(getWeatherRecord(valueForWeather, getActiveHalf() - 1, getActiveTurn()))
   }
+  updateSelectedWeather(0)
 }
 
 const registerNuffleRoll = function () {
@@ -1055,7 +1075,15 @@ window.updateSelectedWeather = function(val) {
   })
 
   const rolledValue = Number(val);
-  show(dict[rolledValue])
+  dict[rolledValue] && show(dict[rolledValue])
+
+  if (isLeagueGame() && Number(val) !== 0) {
+    show(dom.get('completedWeatherBtn'))
+    hide(dom.get('completedWeatherBtnPls'))
+  } else {
+    hide(dom.get('completedWeatherBtn'))
+    show(dom.get('completedWeatherBtnPls'))
+  }
 }
 
 window.updateSelectedKickoff = function(val) {
@@ -1084,6 +1112,14 @@ window.updateSelectedKickoff = function(val) {
 
   const rolledValue = Number(val);
   dict[rolledValue] && show(dict[rolledValue])
+
+  if (isLeagueGame() && Number(val) !== 0) {
+    show(dom.get('kickoffCompleted'))
+    hide(dom.get('completedKickoffBtnPls'))
+  } else {
+    hide(dom.get('kickoffCompleted'))
+    show(dom.get('completedKickoffBtnPls'))
+  }
 }
 
 window.updateSelectedNuffle = function(val) {
@@ -1117,6 +1153,14 @@ window.updateSelectedNuffle = function(val) {
 
   const rolledValue = Number(val);
   dict[rolledValue] && show(dict[rolledValue])
+
+  if (isLeagueGame() && Number(val) !== 0) {
+    show(dom.get('completedNuffleBtn'))
+    hide(dom.get('completedNuffleBtnPls'))
+  } else {
+    hide(dom.get('completedNuffleBtn'))
+    show(dom.get('completedNuffleBtnPls'))
+  }
 }
 
 if (isLeagueGame()) {
