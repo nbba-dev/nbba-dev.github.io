@@ -184,6 +184,14 @@ body {
   box-shadow: 1px 1px 20px black;
 }
 
+#display_browser.video-vertical {
+  transform: scale(0.33333) rotate(0.75turn);
+  transform-origin: 0 0;
+  height: 1430px;
+  width: 810px;
+  top: 285px;
+}
+
 @media only screen and (max-width: 1300px) {
   .home-section:not(.mobile), #homeSection6 {
     display: none;
