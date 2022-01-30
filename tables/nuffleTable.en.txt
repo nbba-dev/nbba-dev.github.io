@@ -1,0 +1,169 @@
+1 – TREACHEROUS TRAPDOOR
+  Until the end of this half, every time any player enters a Trapdoor square, for any reason, roll a D6. On a roll of 1, the trapdoor falls open and the player is immediately removed from play. Treat them exactly as if they had been pushed into the crowd. If the player was in possession of the ball, it bounces from the trapdoor square.
+2 – FRIENDS WITH THE REF
+  Until the end of this drive, you may treat a roll of 5 or 6 on the Argue the Call table as a “Well, When You Put It Like That...” result and a roll of 2-4 as an “I Don’t Care!” result.
+3 – STILETTO
+  Randomly select one player on your team that is available to play during this drive and that does not have the Loner (X+) trait. Until the end of this drive, that player gains the Stab trait.
+4 – IRON MAN
+  Choose one player on your team that is available to play during this drive and that does not have the Loner (X+) trait. Until the end of this game, that player improves their AV by 1, to a maximum o
+5 – KNUCKLE DUSTERS
+  Choose one player on your team that is available to play during this drive and that does not have the Loner (X+) trait. Until the end of this drive, that player gains the Mighty Blow (+1) skill.
+6 – BAD HABITS
+  Randomly select D3 opposition players that are available to play during this drive and that do not have the Loner (X+) trait. Until the end of this drive, those players gain the Loner (2+) trait.
+7 – GREASY CLEATS
+  Randomly select one opposition player that is available to play during this drive. That player has had their boots tampered with! Until the end of this drive, their MA is reduced by 1.
+8 – BLESSED STATUE OF NUFFLE
+  Choose one player on your team that is available to play during this drive and that does not have the Loner (X+) trait. Until the end of this game, that player gains the Pro skill.
+9 – MOLES UNDER THE PITCH
+  Until the end of this half, apply a -1 modifier every time any player attempts to Rush an extra square (-2 should it occur that both coaches have rolled this result).
+10 – PERFECT PASSING
+  Until the end of this game, any player on your team that makes a Completion earns 2 SPP, rather than the usual 1 SPP.
+11 – FAN INTERACTION
+  Until the end of this drive, if a player on your team causes a Casualty by pushing an opponent into the crowd, that player will earn 2 SPP exactly as if they had caused a Casualty by performing a Block action.
+12 – NECESSARY VIOLENCE
+  Until the end of this drive, any player on your team that causes a Casualty earns 3 SPP, rather than the usual 2 SPP.
+13 – FOULING FRENZY
+  Until the end of this drive, any player on your team that causes a Casualty with a Foul action earns 2 SPP exactly as if they had caused a Casualty by performing a Block action.
+14 – THROW A ROCK
+  Until the end of this drive, should an opposition player Stall, at the end of their team turn you may roll a D6. On a roll of 5+, an angry fan throws a rock at that player. The player is immediately Knocked Down.
+15 – UNDER SCRUTINY
+  Until the end of this half, any player on the opposing team that commits a Foul action is automatically seen by the referee, even if a natural double is not rolled.
+16 – INTENSIVE TRAINING
+  Randomly select one player on your team that is available to play during this drive and that does not have the Loner (X+) trait. Until the end of this game, that player gains a single Primary skill of your choice.
+
+
+<select name="" onchange="updateSelectedNuffle(this.value)" id="nuffleSelect">
+              <option value="0">N/A</option>
+              <option value="1">1 – Treacherous trapdoor</option>
+              <option value="2">2 – Friends with the ref</option>
+              <option value="3">3 – Stiletto</option>
+              <option value="4">4 – Iron man</option>
+              <option value="5">5 – Knuckle dusters</option>
+              <option value="6">6 – Bad habits</option>
+              <option value="7">7 – Greasy cleats</option>
+              <option value="8">8 – Blessed statue of nuffle</option>
+              <option value="9">9 – Moles under the pitch</option>
+              <option value="10">10 – Perfect passing</option>
+              <option value="11">11 – Fan interaction</option>
+              <option value="12">12 – Necessary violence</option>
+              <option value="13">13 – Fouling frenzy</option>
+              <option value="14">14 – Throw a rock</option>
+              <option value="15">15 – Under scrutiny</option>
+              <option value="16">16 – Intensive training</option>
+            </select>
+
+<div class="modalTable-rollForResult">
+          <div class="modalTable-rollForResultRow" id="nuffle1" hidden>
+            <div>
+              <div><strong>1 – TREACHEROUS TRAPDOOR</strong></div>
+              <br>
+              <div>Until the end of this half, every time any player enters a Trapdoor square, for any reason, roll a D6. On a roll of 1, the trapdoor falls open and the player is immediately removed from play. Treat them exactly as if they had been pushed into the crowd. If the player was in possession of the ball, it bounces from the trapdoor square.</div>
+            </div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="nuffle2" hidden>
+            <div>
+              <div><strong>2 – FRIENDS WITH THE REF</strong></div>
+              <br>
+              <div>Until the end of this drive, you may treat a roll of 5 or 6 on the Argue the Call table as a “Well, When You Put It Like That...” result and a roll of 2-4 as an “I Don’t Care!” result.</div>
+            </div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="nuffle3" hidden>
+            <div>
+              <div><strong>3 – STILETTO</strong></div>
+              <br>
+              <div>Randomly select one player on your team that is available to play during this drive and that does not have the Loner (X+) trait. Until the end of this drive, that player gains the Stab trait.</div>
+            </div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="nuffle4" hidden>
+            <div>
+              <div><strong>4 – IRON MAN</strong></div>
+              <br>
+              <div>Choose one player on your team that is available to play during this drive and that does not have the Loner (X+) trait. Until the end of this game, that player improves their AV by 1, to a maximum of 11+.
+              </div>
+            </div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="nuffle5" hidden>
+            <div>
+              <div><strong>5 – KNUCKLE DUSTERS</strong></div>
+              <br>
+              <div>Choose one player on your team that is available to play during this drive and that does not have the Loner (X+) trait. Until the end of this drive, that player gains the Mighty Blow (+1) skill.</div>
+            </div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="nuffle6" hidden>
+            <div>
+              <div><strong>6 – BAD HABITS</strong></div>
+              <br>
+              <div>Randomly select D3 opposition players that are available to play during this drive and that do not have the Loner (X+) trait. Until the end of this drive, those players gain the Loner (2+) trait.</div>
+            </div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="nuffle7" hidden>
+            <div>
+              <div><strong>7 – GREASY CLEATS</strong></div>
+              <br>
+              <div>Randomly select one opposition player that is available to play during this drive. That player has had their boots tampered with! Until the end of this drive, their MA is reduced by 1.</div>
+            </div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="nuffle8" hidden>
+            <div>
+              <div><strong>8 – BLESSED STATUE OF NUFFLE</strong></div>
+              <br>
+              <div>Choose one player on your team that is available to play during this drive and that does not have the Loner (X+) trait. Until the end of this game, that player gains the Pro skill.</div>
+            </div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="nuffle9" hidden>
+            <div>
+              <div><strong>9 – MOLES UNDER THE PITCH</strong></div>
+              <br>
+              <div>Until the end of this half, apply a -1 modifier every time any player attempts to Rush an extra square (-2 should it occur that both coaches have rolled this result).</div>
+            </div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="nuffle10" hidden>
+            <div>
+              <div><strong>10 – PERFECT PASSING</strong></div>
+              <br>
+              <div>Until the end of this game, any player on your team that makes a Completion earns 2 SPP, rather than the usual 1 SPP.</div>
+            </div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="nuffle11" hidden>
+            <div>
+              <div><strong>11 – FAN INTERACTION</strong></div>
+              <br>
+              <div>Until the end of this drive, if a player on your team causes a Casualty by pushing an opponent into the crowd, that player will earn 2 SPP exactly as if they had caused a Casualty by performing a Block action.</div>
+            </div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="nuffle12" hidden>
+            <div>
+              <div><strong>12 – NECESSARY VIOLENCE</strong></div>
+              <br>
+              <div>Until the end of this drive, any player on your team that causes a Casualty earns 3 SPP, rather than the usual 2 SPP.</div>
+            </div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="nuffle13" hidden>
+            <div>
+              <div><strong>13 – FOULING FRENZY</strong></div>
+              <br>
+              <div>Until the end of this drive, any player on your team that causes a Casualty with a Foul action earns 2 SPP exactly as if they had caused a Casualty by performing a Block action.</div>
+            </div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="nuffle14" hidden>
+            <div>
+              <div><strong>14 – THROW A ROCK</strong></div>
+              <br>
+              <div>Until the end of this drive, should an opposition player Stall, at the end of their team turn you may roll a D6. On a roll of 5+, an angry fan throws a rock at that player. The player is immediately Knocked Down.</div>
+            </div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="nuffle15" hidden>
+            <div>
+              <div><strong>15 – UNDER SCRUTINY</strong></div>
+              <br>
+              <div>Until the end of this half, any player on the opposing team that commits a Foul action is automatically seen by the referee, even if a natural double is not rolled.</div>
+            </div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="nuffle16" hidden>
+            <div>
+              <div><strong>16 – INTENSIVE TRAINING</strong></div>
+              <br>
+              <div>Randomly select one player on your team that is available to play during this drive and that does not have the Loner (X+) trait. Until the end of this game, that player gains a single Primary skill of your choice.</div>
+            </div>
+          </div>
+        </div>

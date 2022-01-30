@@ -1,0 +1,15 @@
+2 Calor asfixiante:
+  ¡Algunos jugadores se desmayan por el calor insoportable!
+  1 D3 jugadores aleatorios de cada equipo que estén en el campo cuando termine una entrada son colocados en la zona de Reservas. Deberán perderse la siguiente entrada.
+3 Muy soleado:
+  Hace un día excelente, pero el cielo despejado y la luz del sol dificultan el juego de pase.
+  Aplica un modificador de -1 a todos los chequeos de Pase.
+4-10 Clima perfecto:
+  Ni demasiado frio ni demasiado calor.
+  Un día cálido, seco y ligeramente nublado, el ambiente perfecto para jugar a Blood Bowl.
+11 Lluvioso:
+  ¡Una lluvia torrencial deja a los jugadores empapados y el balón resbaladizo!
+  Aplica un modificador de -1 a los chequeos de Agilidad para intentar atrapar o recoger el balón, o al intentar interferir en un pase.
+12 Ventisca:
+  El ambiente helado y la nieve que cae hacen que el suelo sea traicionero.
+  Aplica un mo-dificador de -1 a los intentos de forzar la marcha. Además, la mala visibilidad hace que sólo puedan intentarse Pases rápidos y Pases cortos.

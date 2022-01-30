@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>NBBA Clock</title>
+  <title>NBBA App</title>
   <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -65,7 +65,7 @@
         </select>
       </div>
       <div class="modal-controls">
-        <button class="modal-bottomBtn modal-continueBtn" onclick="closeSurrenderModal()">Atrás</button>
+        <button class="modal-bottomBtn modal-continueBtn" onclick="closeSurrenderModal() & openPauseModal()">Atrás</button>
         <button class="modal-bottomBtn" onclick="confirmSurrender()" disabled id="surrenderConfirmButton">Confirmar rendición</button>
       </div>
     </div>
@@ -79,11 +79,11 @@
       <div class="modal-body">
         <div class="modal-body-onlyButtons">
           <button onclick="reset()">Nuevo partido</button>
-          <button onclick="toggleFullscreen()">Toggle fullscreen</button>
+          <button onclick="toggleFullscreen()">Activar / Desactivar<br>Pantalla Completa</button>
         </div>
       </div>
       <div class="modal-controls">
-        <button class="modal-bottomBtn modal-continueBtn" onclick="closeSettingsModal()">Cerrar</button>
+        <button class="modal-bottomBtn modal-continueBtn" onclick="closeSettingsModal() & openPauseModal()">Atrás</button>
       </div>
     </div>
   </div>
@@ -91,7 +91,7 @@
   <div class="modal-overlay" id="fameModal" hidden>
     <div class="modal">
       <div class="modal-title subtle">
-        <h3>1. Fans y Fama</h3>
+        <h3>1. Los Hinchas</h3>
         <p>Abren las puertas del campo y empiezan a acudir los fans a las gradas</p>
       </div>
       <div class="modal-body">
@@ -100,7 +100,7 @@
             <div><strong id="team1Name">Team1</strong></div>
             <div class="dice-roll-container">
               <div class="dice-roll">
-                <div>Fan factor</div>
+                <div>Hinchas</div>
                 <select name="" id="fanFactorTeam1">
                   <option value="0">0</option>
                   <option value="1" selected>1</option>
@@ -132,7 +132,7 @@
             <div><strong id="team2Name">Team2</strong></div>
             <div class="dice-roll-container">
               <div class="dice-roll">
-                <div>Fan factor</div>
+                <div>Hinchas</div>
                 <select name="" id="fanFactorTeam2">
                   <option value="0">0</option>
                   <option value="1" selected>1</option>
@@ -173,7 +173,7 @@
   <div class="modal-overlay" id="weatherModal" hidden>
     <div class="modal">
       <div class="modal-title subtle">
-        <h3>2. Clima</h3>
+        <h3>2. El Clima</h3>
         <p>Los equipos saltan al campo. Los árbitros consultan con los meteorólogos nurgle el tiempo que hará durante el
           partido</p>
       </div>
@@ -195,47 +195,42 @@
           <div class="modalTable-rollForResultRow" id="weatherRow1" hidden>
             <div>
               <span class="modalTable-emoji">🔥</span>
-              <strong>Sweltering Heat</strong>
+              <strong>Calor asfixiante</strong>
             </div>
-            <div class="subtle">Some players faint in the unbearable heat!</div>
-            <div>D3 randomly selected players from each team that are on the pitch when a drive ends are placed in the
-              Reserves box. They must miss the next drive.</div>
+            <div class="subtle">¡Algunos jugadores se desmayan por el calor insoportable!</div>
+            <div>D3 jugadores aleatorios de cada equipo que estén en el campo cuando termine una entrada son colocados en la zona de Reservas. Deberán perderse la siguiente entrada.</div>
           </div>
           <div class="modalTable-rollForResultRow" id="weatherRow2" hidden>
             <div>
               <span class="modalTable-emoji">☀️</span>
-              <strong>Very Sunny</strong>
+              <strong>Muy soleado</strong>
             </div>
-            <div class="subtle">A glorious day, but the clear skies and bright sunlight interfere with the
-              passing game!</div>
-            <div>Apply a -1 modifier every time a player tests against their Passing Ability.</div>
+            <div class="subtle">Hace un día excelente, pero el cielo despejado y la luz del sol dificultan el juego de pase.</div>
+            <div>Aplica un modificador de -1 a todos los chequeos de Pase.</div>
           </div>
           <div class="modalTable-rollForResultRow" id="weatherRow3" hidden>
             <div>
               <span class="modalTable-emoji">🌤</span>
-              <strong>Perfect Conditions</strong>
+              <strong>Clima perfecto</strong>
             </div>
-            <div class="subtle">Neither too cold nor too hot. A warm, dry and slightly overcast day provides perfect conditions for
-              Blood Bowl.</div>
-              <div></div>
+            <div class="subtle">Ni demasiado frio ni demasiado calor.</div>
+            <div>Un día cálido, seco y ligeramente nublado, el ambiente perfecto para jugar a Blood Bowl.</div>
           </div>
           <div class="modalTable-rollForResultRow" id="weatherRow4" hidden>
             <div>
               <span class="modalTable-emoji">🌨</span>
-              <strong>Pouring Rain</strong>
+              <strong>Lluvioso</strong>
             </div>
-            <div class="subtle">A torrential downpour leaves the players soaked and the ball very slippery!</div>
-            <div>Apply a -1 modifier every time a player makes an Agility test to catch or pick-up the ball, or to
-              attempt to interfere with a pass.</div>
+            <div class="subtle">¡Una lluvia torrencial deja a los jugadores empapados y el balón resbaladizo!</div>
+            <div>Aplica un modificador de -1 a los chequeos de Agilidad para intentar atrapar o recoger el balón, o al intentar interferir en un pase.</div>
           </div>
           <div class="modalTable-rollForResultRow" id="weatherRow5" hidden>
             <div>
               <span class="modalTable-emoji">❄️</span>
-              <strong>Blizzard</strong>
+              <strong>Ventisca</strong>
             </div>
-            <div class="subtle">Freezing conditions and heavy falls of snow make the footing treacherous.</div>
-            <div>Apply a -1 modifier every time a player attempts to Rush an extra square. Additionally, the poor
-              visibility means that only Quick and Short passes can be attempted.</div>
+            <div class="subtle">El ambiente helado y la nieve que cae hacen que el suelo sea traicionero.</div>
+            <div>Aplica un mo-dificador de -1 a los intentos de forzar la marcha. Además, la mala visibilidad hace que sólo puedan intentarse Pases rápidos y Pases cortos.</div>
           </div>
         </div>
       </div>
@@ -260,162 +255,164 @@
               <div class="inducement">
                 <strong>0 - 4</strong>
                 <br>
-                Temp Agency Cheerleaders
+                Animadoras temporales
               </div>
-              <div class="subtle">20,000 gold pieces each</div>
+              <div class="subtle">20.000 monedas de oro cada una</div>
             </div>
             <div class="modalTable-firstCell">
               <div class="inducement">
                 <strong>0 - 3</strong>
                 <br>
-                Part-time Assistant Coaches
+                Ayudantes a tiempo parcial
               </div>
-              <div class="subtle">20,000 gold pieces each</div>
+              <div class="subtle">20.000 monedas de oro cada uno</div>
             </div>
           </div>
         </div>
-          <div class="modalTable-row inducementsTable-row">
-            <div class="modalTable-firstCell">
-              <div class="inducement">
-                <strong>0 - 1</strong>
-                <br>
-                Weather Mage
-              </div>
-              <div class="subtle">30,000 gold pieces</div>
+        <div class="modalTable-row inducementsTable-row">
+          <div class="modalTable-firstCell">
+            <div class="inducement">
+              <strong>0 - 1</strong>
+              <br>
+              Cambiaclimas
             </div>
-            <div class="modalTable-firstCell">
-              <div class="inducement">
-                <strong>0 - 2</strong>
-                <br>
-                Bloodweiser Kegs
-              </div>
-              <div class="subtle">50,000 gold pieces each</div>
-            </div>
+            <div class="subtle">30.000 monedas de oro</div>
           </div>
-          <div class="modalTable-row inducementsTable-row">
-            <div class="modalTable-firstCell">
-              <div class="inducement">
-                <strong>0 - 5</strong>
-                <br>
-                Special Plays
-              </div>
-              <div class="subtle">100,000 gold pieces each</div>
+          <div class="modalTable-firstCell">
+            <div class="inducement">
+              <strong>0 - 2</strong>
+              <br>
+              Barriles de Bloodweiser
             </div>
-            <div class="modalTable-firstCell">
-              <div class="inducement">
-                <strong>0 - 8</strong>
-                <br>
-                Extra Team Training
-              </div>
-              <div class="subtle">100,000 gold pieces each</div>
-            </div>
-          </div>
-          <div class="modalTable-row inducementsTable-row">
-            <div class="modalTable-firstCell">
-              <div class="inducement">
-                <strong>0 - 3</strong>
-                <br>
-                Bribes
-              </div>
-              <div class="subtle">100,000 gold pieces each (50,000 gold pieces for teams with the ‘Bribery and Corruption’ special rule)
-            </div>
-            </div>
-            <div class="modalTable-firstCell">
-              <div class="inducement">
-                <strong>0 - 2</strong>
-                <br>
-                Wandering Apothecaries
-              </div>
-              <div class="subtle">100,000 gold pieces each (not available to teams that cannot hire an apothecary)</div>
-            </div>
-          </div>
-          <div class="modalTable-row inducementsTable-row">
-            <div class="modalTable-firstCell">
-              <div class="inducement">
-                <strong>0 - 1</strong>
-                <br>
-                Mortuary Assistant
-              </div>
-              <div class="subtle">100,000 gold pieces (only available to teams with the ‘Sylvanian Spotlight’ special rule)</div>
-            </div>
-            <div class="modalTable-firstCell">
-              <div class="inducement">
-                <strong>0 - 1</strong>
-                <br>
-                Plague Doctor
-              </div>
-              <div class="subtle">100,000 gold pieces (only available to teams with the ‘Favoured of Nurgle’ special rule)</div>
-            </div>
-          </div>
-          <div class="modalTable-row inducementsTable-row">
-            <div class="modalTable-firstCell">
-              <div class="inducement">
-                <strong>0 - 1</strong>
-                <br>
-                Riotous Rookies
-              </div>
-              <div class="subtle">100,000 gold pieces (only available to teams with the ‘Low Cost Linemen’ special rule)</div>
-            </div>
-            <div class="modalTable-firstCell">
-              <div class="inducement">
-                <strong>0 - 1</strong>
-                <br>
-                Halfling Master Chef
-              </div>
-              <div class="subtle">300,000 gold pieces (100,000 gold pieces for teams with the ‘Halfling Thimble Cup’ special rule)</div>
-            </div>
-          </div>
-          <div class="modalTable-row inducementsTable-row">
-            <div class="modalTable-firstCell">
-              <div class="inducement">
-                <strong>Unlimited</strong>
-                <br>
-                Mercenary Players
-              </div>
-              <div class="subtle">Price varies</div>
-            </div>
-            <div class="modalTable-firstCell">
-              <div class="inducement">
-                <strong>0 - 2</strong>
-                <br>
-                Star Players
-              </div>
-              <div class="subtle">Price varies</div>
-            </div>
-          </div>
-          <div class="modalTable-row inducementsTable-row">
-            <div class="modalTable-firstCell">
-              <div class="inducement">
-                <strong>0 - 2</strong>
-                <br>
-                (In)Famous Coaching Staff
-              </div>
-              <div class="subtle">Price varies</div>
-            </div>
-            <div class="modalTable-firstCell">
-              <div class="inducement">
-                <strong>0 - 1</strong>
-                <br>
-                Wizard
-              </div>
-              <div class="subtle">Price varies</div>
-            </div>
-          </div>
-          <div class="modalTable-row inducementsTable-row">
-            <div class="modalTable-firstCell">
-              <div class="inducement">
-                <strong>0 - 1</strong>
-                <br>
-                Biased Referee
-              </div>
-              <div class="subtle">Price varies</div>
-            </div>
+            <div class="subtle">50.000 monedas de oro cada uno</div>
           </div>
         </div>
-        <div class="modal-controls">
-          <button class="modal-bottomBtn" onclick="goBackToWeather()">Atrás</button>
-        <button class="modal-bottomBtn modal-continueBtn" onclick="completedInducements()">Continuar</button>
+        <div class="modalTable-row inducementsTable-row">
+          <div class="modalTable-firstCell">
+            <div class="inducement">
+              <strong>0 - 5</strong>
+              <br>
+              Jugadas especiales
+            </div>
+            <div class="subtle">100.000 monedas de oro cada una</div>
+          </div>
+          <div class="modalTable-firstCell">
+            <div class="inducement">
+              <strong>0 - 8</strong>
+              <br>
+              Entrenamientos adicionales
+            </div>
+            <div class="subtle">100.000 monedas de oro cada uno</div>
+          </div>
         </div>
+        <div class="modalTable-row inducementsTable-row">
+          <div class="modalTable-firstCell">
+            <div class="inducement">
+              <strong>0 - 3</strong>
+              <br>
+              Sobornos
+            </div>
+            <div class="subtle">100.000 monedas de oro cada uno (50.000 monedas de oro para equipos con 'Sobornos y corrupción'
+              special rule)
+            </div>
+          </div>
+          <div class="modalTable-firstCell">
+            <div class="inducement">
+              <strong>0 - 2</strong>
+              <br>
+              Apotecarios errantes
+            </div>
+            <div class="subtle">100.000 monedas de oro cada uno (solo para equipos que puedan tener un apotecario)</div>
+          </div>
+        </div>
+        <div class="modalTable-row inducementsTable-row">
+          <div class="modalTable-firstCell">
+            <div class="inducement">
+              <strong>0 - 1</strong>
+              <br>
+              Ayudante de la morgue
+            </div>
+            <div class="subtle">100.000 monedas de oro (solo para equipos con la regla especial 'Selectiva de Sylvania')
+            </div>
+          </div>
+          <div class="modalTable-firstCell">
+            <div class="inducement">
+              <strong>0 - 1</strong>
+              <br>
+              Médico de la peste
+            </div>
+            <div class="subtle">100.000 monedas de oro (solo para equipos con la regla especial 'Elegidos de Nurgle')</div>
+          </div>
+        </div>
+        <div class="modalTable-row inducementsTable-row">
+          <div class="modalTable-firstCell">
+            <div class="inducement">
+              <strong>0 - 1</strong>
+              <br>
+              Novatos embravecidos
+            </div>
+            <div class="subtle">100.000 monedas de oro (solo para equipos con la regla especial 'Linemen prescindibles')</div>
+          </div>
+          <div class="modalTable-firstCell">
+            <div class="inducement">
+              <strong>0 - 1</strong>
+              <br>
+              Chef maestro Halfling
+            </div>
+            <div class="subtle">300.000 monedas de oro (100.000 monedas de oro para equipos con la regla especial 'Copa dedal Halfling')</div>
+          </div>
+        </div>
+        <div class="modalTable-row inducementsTable-row">
+          <div class="modalTable-firstCell">
+            <div class="inducement">
+              <strong>Ilimitados</strong>
+              <br>
+              Jugadores mercenarios
+            </div>
+            <div class="subtle">Precio variable</div>
+          </div>
+          <div class="modalTable-firstCell">
+            <div class="inducement">
+              <strong>0 - 2</strong>
+              <br>
+              Jugadores estrella
+            </div>
+            <div class="subtle">Precio variable</div>
+          </div>
+        </div>
+        <div class="modalTable-row inducementsTable-row">
+          <div class="modalTable-firstCell">
+            <div class="inducement">
+              <strong>0 - 2</strong>
+              <br>
+              Miembros del cuadro técnico famosos (o infames)
+            </div>
+            <div class="subtle">Precio variable</div>
+          </div>
+          <div class="modalTable-firstCell">
+            <div class="inducement">
+              <strong>0 - 1</strong>
+              <br>
+              Incentivo de mago
+            </div>
+            <div class="subtle">Precio variable</div>
+          </div>
+        </div>
+        <div class="modalTable-row inducementsTable-row">
+          <div class="modalTable-firstCell">
+            <div class="inducement">
+              <strong>0 - 1</strong>
+              <br>
+              Árbitro poco imparcial
+            </div>
+            <div class="subtle">Precio variable</div>
+          </div>
+          <div class="modalTable-firstCell"></div>
+        </div>
+      </div>
+      <div class="modal-controls">
+        <button class="modal-bottomBtn" onclick="goBackToWeather()">Atrás</button>
+      <button class="modal-bottomBtn modal-continueBtn" onclick="completedInducements()">Continuar</button>
       </div>
     </div>
   </div>
@@ -423,11 +420,11 @@
   <div class="modal-overlay" id="prePrayersToNuffleModal" hidden>
     <div class="modal">
       <div class="modal-title subtle">
-        <h3>4. Prayers To Nuffle</h3>
+        <h3>4. Plegarias a Nuffle</h3>
       </div>
       <div class="modal-body">
-        <p>The underdog can roll once per 50 difference in Team Value</p>
-        <button onclick="kickoffNuffle()">Go to Nuffle table</button>
+        <p>Si un equipo tiene ahora una Valoración actual de equipo inferior a la del otro, puede tirar una vez por cada 50.000 M.O. de diferencia</p>
+        <button onclick="kickoffNuffle()">Ir a la tabla de plegarias de Nuffle</button>
       </div>
       <div class="modal-controls">
         <button class="modal-bottomBtn" onclick="goBackToInducements()">Atrás</button>
@@ -439,9 +436,8 @@
   <div class="modal-overlay" id="kickoffModal" hidden>
     <div class="modal">
       <div class="modal-title subtle">
-        <h3>Kick-off</h3>
-        <p>El bloodbowl destaca por el poco respeto que se tiene a las reglas y lo caóticos que se vuelven los partidos
-        </p>
+        <h3>Patada inicial</h3>
+        <p>El bloodbowl destaca por el poco respeto que se tiene a las reglas y lo caóticos que se vuelven los partidos</p>
       </div>
       <div class="modal-body modal-rollForResult">
         <div class="dice-roll-container">
@@ -449,124 +445,103 @@
             <div>2D6</div>
             <select name="" onchange="updateSelectedKickoff(this.value)" id="kickoffSelect">
               <option value="0">N/A</option>
-              <option value="1">2 — Get the ref</option>
-              <option value="2">3 — Time-out</option>
-              <option value="3">4 — Solid defence</option>
-              <option value="4">5 — High kick</option>
-              <option value="5">6 — Cheering fans</option>
-              <option value="6">7 — Brilliant coaching</option>
-              <option value="7">8 — Changing weather</option>
-              <option value="8">9 — Quick snap</option>
-              <option value="9">10 — Blitz</option>
-              <option value="10">11 — Officious ref</option>
-              <option value="11">12 — Pitch invasion</option>
+              <option value="1">2 — Arbitro Intimidado</option>
+              <option value="2">3 — Tiempo muerto</option>
+              <option value="3">4 — Defensa sólida</option>
+              <option value="4">5 — Patada alta</option>
+              <option value="5">6 — Los hinchas animan</option>
+              <option value="6">7 — Entrenador brillante</option>
+              <option value="7">8 — Clima cambiante</option>
+              <option value="8">9 — Anticipación</option>
+              <option value="9">10 — ¡Penetración!</option>
+              <option value="10">11 — Árbitro buscabroncas</option>
+              <option value="11">12 — Invasión de campo</option>
             </select>
           </div>
         </div>
         <div class="modalTable-rollForResult">
           <div class="modalTable-rollForResultRow" id="kickoffRow1" hidden>
             <div>
-              <div><strong>2 – GET THE REF</strong></div>
+              <div><strong>2 – ARBITRO INTIMIDADO</strong></div>
               <br>
-              <div>Each team gains a free Bribe Inducement as described on page 91. This Inducement must be used before
-                the end of the game or it is lost.</div>
+              <div>Cada equipo recibe un incentivo de Soborno gratuito, tal como se describe en la pág. 91. Este incentivo debe usarse antes del final del partido o se pierde.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="kickoffRow2" hidden>
             <div>
-              <div><strong>3 – TIME-OUT</strong></div>
+              <div><strong>3 – TIEMPO MUERTO</strong></div>
               <br>
-              <div>If the kicking team’s turn marker is on turn 6, 7 or 8 for the half, both coaches move their turn
-                marker back one space. Otherwise, both coaches move their turn marker forward one space.</div>
+              <div>Sí la ficha de turno del equipo pateador está en el turno 6, 7 u 8 de esa parte, ambos entrenadores mueven su ficha de turno un espacio hacia atrás. En cualquier otro caso, ambos entrenado-res mueven su ficha de turno un espacio hacia delante.</div>
               <br>
-              <button onclick="kickoffTimeout()">Apply</button>
+              <button onclick="kickoffTimeout()">Aplicar efecto</button>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="kickoffRow3" hidden>
             <div>
-              <div><strong>4 – SOLID DEFENCE</strong></div>
+              <div><strong>4 – DEFENSA SÓLIDA</strong></div>
               <br>
-              <div>D3+3 Open players on the kicking team may be removed and set up again in different locations,
-                following all of the usual set-up rules.</div>
+              <div>1D3+3 jugadores Desmarcados del equipo pateador pueden ser retirados y desplegados de nuevo en casillas diferentes, siguiendo las reglas normales de despliegue.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="kickoffRow4" hidden>
             <div>
-              <div><strong>5 – HIGH KICK</strong></div>
+              <div><strong>5 – PATADA ALTA</strong></div>
               <br>
-              <div>One Open player on the receiving team may be moved any number of squares, regardless of their MA, and
-                placed in the same square the ball will land in.</div>
+              <div>Un jugador Desmarcado del equipo receptor puede ser movido cualquier número de casillas, sin importar su atributo MV, hasta ser colocado en la mísma casilla en la que va a caer el balón.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="kickoffRow5" hidden>
             <div>
-              <div><strong>6 – CHEERING FANS</strong></div>
+              <div><strong>6 – LOS HINCHAS ANIMAN</strong></div>
               <br>
-              <div>Both coaches roll a D6 and add the number of cheerleaders on their Team Draft list. The coach with
-                the highest total may immediately roll once on the Prayers to Nuffle table. In the case of a tie,
-                neither coach rolls on the Prayers to Nuffle table. Note that if you roll a result that is currently in
-                effect, you must re-roll it. However, if you roll a result that has been rolled previously but has since
-                expired, there is no need to re-roll it.</div>
+              <div>Cada entrenador tira 1D6 y le suma el número de animadoras de su Hoja de plantilla. El entrenador que obtenga un resultado total más alto puede hacer de inmediato una tirada en la tabla de Plegarias a Nuffle. En caso de empate en la tirada del D6 + el número de animadoras, nadie tira en la tabla de Plegarias a Nuffle. Al tirar en la tabla de Plegarías a Nuffle ten en cuenta que, si obtienes un resultado que está activo ahora mismo, debes volver a tirar. En cambio, si es un resultado que ya había salido pero cuyo efecto ha acabado, no se vuelve a tirar.</div>
               <br>
-              <button onclick="kickoffNuffle()">Go to Nuffle table</button>
+              <button onclick="kickoffNuffle()">Ir a la tabla de Nuffle</button>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="kickoffRow6" hidden>
             <div>
-              <div><strong>7 – BRILLIANT COACHING</strong></div>
+              <div><strong>7 – ENTRENADOR BRILLANTE</strong></div>
               <br>
-              <div>Both coaches roll a D6 and add the number of assistant coaches on their Team Draft list. The coach
-                with the highest total gains one extra team re-roll for the drive ahead. If this team re- roll is not
-                used before the end of this drive, it is lost. In the case of a tie, neither coach gains an extra team
-                re-roll.</div>
+              <div>Cada entrenador tira 1D6 y le suma el nú-mero de ayudantes del entrenador de su Hoja de plantilla. El entre-nador con un resultado total más alto obtiene una Segunda oportuni-dad adicional para la inminente entrada. Si esa Segunda oportunidad no se usa antes del final de la entrada, se pierde. En caso de empate en la tirada del D6 + el número de ayudantes del entrenador; nadie obtiene una Segunda oportunidad adicional.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="kickoffRow7" hidden>
             <div>
-              <div><strong>8 – CHANGING WEATHER</strong></div>
+              <div><strong>8 – CLIMA CAMBIANTE</strong></div>
               <br>
-              <div>Make a new roll on the Weather table and apply that result. If the weather conditions are ‘Perfect
-                Conditions’ as a result of this roll, the ball will scatter, as described on page 25, before landing.
+              <div>Haz una nueva tirada en la tabla de Clima y aplica ese resultado. Si esta tirada obtiene un resultado de "Clima perfec-to", el balón se escorará antes de caer al suelo, tal como se describe en la pág. 25.e landing.
               </div>
               <br>
-              <button onclick="kickoffChangeWeather()">Change weather</button>
+              <button onclick="kickoffChangeWeather()">Ir a la tabla de climas</button>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="kickoffRow8" hidden>
             <div>
-              <div><strong>9 – QUICK SNAP</strong></div>
+              <div><strong>9 – ANTICIPACIÓN</strong></div>
               <br>
-              <div>D3+3 Open players on the receiving team may immediately move one square in any direction.</div>
+              <div>El entrenador del equipo receptor puede mover 1D3+3 jugadores Desmarcados de su equipo una casilla en cualquier dirección.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="kickoffRow9" hidden>
             <div>
-              <div><strong>10 – BLITZ</strong></div>
+              <div><strong>10 – ¡PENETRACIÓN!</strong></div>
               <br>
-              <div>D3+3 Open players on the kicking team may immediately activate to perform a Move action. One may
-                perform a Blitz action and one may perform a Throw Team-mate action. If a player Falls Over or is
-                Knocked Down, no further players can be activated and the Blitz ends immediately.</div>
+              <div>1D3+3 jugadores Desmarcados del equipo pateador se pueden activar de inmediato para realizar una acción de Movimiento. Uno de ellos puede realizar una acción de Penetración y otro una acción de Pase o Lanzar compañero. Si un jugador se Cae o es Derribado, no se pueden activar más jugadores y el evento termina inmediatamente.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="kickoffRow10" hidden>
             <div>
-              <div><strong>11 – OFFICIOUS REF</strong></div>
+              <div><strong>11 – ÁRBITRO BUSCABRONCAS</strong></div>
               <br>
-              <div>Both coaches roll a D6 and add their Fan Factor to the result. The coach that rolls the lowest
-                randomly selects one of their players from among those on the pitch. In the case of a tie, both coaches
-                randomly select a player. Roll a D6 for the selected player(s). On a roll of 2+, the player and the
-                referee argue and come to blows. The player is Placed Prone and becomes Stunned. On a roll of 1 however,
-                the player is immediately Sent-off, as described on page 63.</div>
+              <div>Cada entrenador tira 1 D6 y suma su Factor de Hinchas al resultado. El entrenador que obtenga un resultado total más bajo elige aleatoriamente a un jugador de su equipo que esté en el campo. En caso de empate en la tirada del D6 + el Factor de Hinchas, ambos entrenadores eligen un jugador aleatorio de su equipo. Se tira 1D6 por cada jugador elegido. Con un 2+, el jugador en cuestión y el árbitro llegan a las manos, debido a lo cual el jugador es colocado Tumbado boca arriba y queda Aturdido. Con un 1, en cambio, el juga-dor es Expulsado inmediatamente, tal como se explica en la pág. 63.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="kickoffRow11" hidden>
             <div>
-              <div><strong>12 – PITCH INVASION</strong></div>
+              <div><strong>12 – INVASIÓN DE CAMPO</strong></div>
               <br>
-              <div>Both coaches roll a D6 and add their Fan Factor to the result. The coach that rolls the lowest
-                randomly selects D3 of their players from among those on the pitch. In the case of a tie, both coaches
-                randomly select D3 of their players from among those on the pitch. All of the randomly selected players
-                are Placed Prone and become Stunned.</div>
+              <div>Cada entrenador tira 1D6 y suma su Factor de Hinchas al resultado. El entrenador que obtenga un resultado total más bajo elige aleatoriamente 1D3 jugadores de su equipo que estén en el campo. En caso de empate en la tirada del D6 + el Factor de Hinchas, ambos entrenadores eligen aleatoriamente 1 D3 jugadores de su equipo que estén en el campo. Todos los jugadores elegidos son colocados Tumbados boca arriba y quedan Aturdidos.</div>
             </div>
             <div></div>
           </div>
@@ -592,158 +567,137 @@
             <div>D16</div>
             <select name="" onchange="updateSelectedNuffle(this.value)" id="nuffleSelect">
               <option value="0">N/A</option>
-              <option value="1">1 – Treacherous trapdoor</option>
-              <option value="2">2 – Friends with the ref</option>
-              <option value="3">3 – Stiletto</option>
-              <option value="4">4 – Iron man</option>
-              <option value="5">5 – Knuckle dusters</option>
-              <option value="6">6 – Bad habits</option>
-              <option value="7">7 – Greasy cleats</option>
-              <option value="8">8 – Blessed statue of nuffle</option>
-              <option value="9">9 – Moles under the pitch</option>
-              <option value="10">10 – Perfect passing</option>
-              <option value="11">11 – Fan interaction</option>
-              <option value="12">12 – Necessary violence</option>
-              <option value="13">13 – Fouling frenzy</option>
-              <option value="14">14 – Throw a rock</option>
-              <option value="15">15 – Under scrutiny</option>
-              <option value="16">16 – Intensive training</option>
+              <option value="1">1 – Trampilla traicionera</option>
+              <option value="2">2 – Amigo del árbitro</option>
+              <option value="3">3 – Puñal</option>
+              <option value="4">4 – Músculos de hierro</option>
+              <option value="5">5 – Nudilleras</option>
+              <option value="6">6 – Malas costumbres</option>
+              <option value="7">7 – Tacos engrasados</option>
+              <option value="8">8 – Estatua bendita de Nuffle</option>
+              <option value="9">9 – Topos bajo el campo</option>
+              <option value="10">10 – Pase perfecto</option>
+              <option value="11">11 – Apoyo del público</option>
+              <option value="12">12 – Violencia necesaria</option>
+              <option value="13">13 – Con faltas y a lo loco</option>
+              <option value="14">14 – Pedrada</option>
+              <option value="15">15 – Escrutinio arbitral</option>
+              <option value="16">16 – Entrenamiento intensivo</option>
             </select>
           </div>
         </div>
         <div class="modalTable-rollForResult">
           <div class="modalTable-rollForResultRow" id="nuffle1" hidden>
             <div>
-              <div><strong>1 – TREACHEROUS TRAPDOOR</strong></div>
+              <div><strong>1 – TRAMPILLA TRAICIONERA</strong></div>
               <br>
-              <div>Until the end of this half, every time any player enters a Trapdoor square, for any reason, roll a
-                D6. On a roll of 1, the trapdoor falls open and the player is immediately removed from play. Treat them
-                exactly as if they had been pushed into the crowd. If the player was in possession of the ball, it
-                bounces from the trapdoor square.</div>
+              <div>Hasta el final de esta parte del partido, cada vez que algún jugador entre en una casilla de trampilla por cualquier motivo, tira 106. Si sacas un 1 la trampilla se abre y el jugador es inmediatamente retirado del juego. Resuélvelo como si hubiera sido empujado fuera del campo. Si el jugador estaba en posesión del balón, éste rebota desde la casilla de la trampilla.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="nuffle2" hidden>
             <div>
-              <div><strong>2 – FRIENDS WITH THE REF</strong></div>
+              <div><strong>2 – AMIGO DEL ÁRBITRO</strong></div>
               <br>
-              <div>Until the end of this drive, you may treat a roll of 5 or 6 on the Argue the Call table as a “Well,
-                When You Put It Like That...” result and a roll of 2-4 as an “I Don’t Care!” result.</div>
+              <div>Hasta el final de esta entrada, puedes tratar una tirada de 5 en la tabla de Protestar al árbitro como un resultado de "Ahora que lo dices..." en lugar de uno de "iMe da igual!".</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="nuffle3" hidden>
             <div>
-              <div><strong>3 – STILETTO</strong></div>
+              <div><strong>3 – PUÑAL</strong></div>
               <br>
-              <div>Randomly select one player on your team that is available to play during this drive and that does not
-                have the Loner (X+) trait. Until the end of this drive, that player gains the Stab trait.</div>
+              <div>Elige un jugador aleatorio de tu equipo que esté disponible para jugar en esta entrada y no tenga el rasgo de Solitario (X+). Hasta el final de esta entrada, dicho jugador obtiene el rasgo de Apuñalar.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="nuffle4" hidden>
             <div>
-              <div><strong>4 – IRON MAN</strong></div>
+              <div><strong>4 – MÚSCULOS DE HIERRO</strong></div>
               <br>
-              <div>Choose one player on your team that is available to play during this drive and that does not have the
-                Loner (X+) trait. Until the end of this game, that player improves their AV by 1, to a maximum of 11+.
+              <div>Elige un jugador de tu equipo que esté disponible para jugar en esta entrada y no tenga el rasgo de Solitario (X+). Hasta el final del partido, dicho jugador aumenta en 1 su atributo AR, hasta un máximo de 11+.11+.
               </div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="nuffle5" hidden>
             <div>
-              <div><strong>5 – KNUCKLE DUSTERS</strong></div>
+              <div><strong>5 – NUDILLERAS</strong></div>
               <br>
-              <div>Choose one player on your team that is available to play during this drive and that does not have the
-                Loner (X+) trait. Until the end of this drive, that player gains the Mighty Blow (+1) skill.</div>
+              <div>Elige un jugador de tu equipo que esté disponible para jugar en esta entrada y no tenga el rasgo de Solitario (X+). Hasta el final de esta entrada, dicho jugador obtiene la habilidad Golpe mortífero (+1).</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="nuffle6" hidden>
             <div>
-              <div><strong>6 – BAD HABITS</strong></div>
+              <div><strong>6 – MALAS COSTUMBRES</strong></div>
               <br>
-              <div>Randomly select D3 opposition players that are available to play during this drive and that do not
-                have the Loner (X+) trait. Until the end of this drive, those players gain the Loner (2+) trait.</div>
+              <div>Elige aleatoriamente a 1 D3 jugadores rivales que estén disponibles para jugar en esta entrada y no tengan el rasgo de Solitario (X+). Hasta el final de esta entrada, dichos jugadores obtienen el rasgo de Solitario (2+).</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="nuffle7" hidden>
             <div>
-              <div><strong>7 – GREASY CLEATS</strong></div>
+              <div><strong>7 – TACOS ENGRASADOS</strong></div>
               <br>
-              <div>Randomly select one opposition player that is available to play during this drive. That player has
-                had their boots tampered with! Until the end of this drive, their MA is reduced by 1.</div>
+              <div>Elige un jugador rival aleatorio que esté disponible para jugar en esta entrada. iSus botas han sido saboteadas! Hasta el final de la entrada, su atributo MV se reduce en 1.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="nuffle8" hidden>
             <div>
-              <div><strong>8 – BLESSED STATUE OF NUFFLE</strong></div>
+              <div><strong>8 – ESTATUA BENDITA DE NUFFLE</strong></div>
               <br>
-              <div>Choose one player on your team that is available to play during this drive and that does not have the
-                Loner (X+) trait. Until the end of this game, that player gains the Pro skill.</div>
+              <div>Elige un jugador de tu equipo que esté disponible para jugar en esta entrada y que no tenga el rasgo de Solitario (X+). Hasta el final del partido, dicho jugador obtiene la habilidad Profesional.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="nuffle9" hidden>
             <div>
-              <div><strong>9 – MOLES UNDER THE PITCH</strong></div>
+              <div><strong>9 – TOPOS BAJO EL CAMPO</strong></div>
               <br>
-              <div>Until the end of this half, apply a -1 modifier every time any player attempts to Rush an extra
-                square (-2 should it occur that both coaches have rolled this result).</div>
+              <div>Hasta el final de esta parte del partido, aplica un modificador de -1 a los intentos de forzar la marcha (o de -2 si ambos entrenadores obtienen este resultado).</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="nuffle10" hidden>
             <div>
-              <div><strong>10 – PERFECT PASSING</strong></div>
+              <div><strong>10 – PASE PERFECTO</strong></div>
               <br>
-              <div>Until the end of this game, any player on your team that makes a Completion earns 2 SPP, rather than
-                the usual 1 SPP.</div>
+              <div>Hasta el final del partido, cualquier jugador de tu equipo que logre un Pase completo gana 2 PE en lugar de 1.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="nuffle11" hidden>
             <div>
-              <div><strong>11 – FAN INTERACTION</strong></div>
+              <div><strong>11 – APOYO DEL PÚBLICO</strong></div>
               <br>
-              <div>Until the end of this drive, if a player on your team causes a Casualty by pushing an opponent into
-                the crowd, that player will earn 2 SPP exactly as if they had caused a Casualty by performing a Block
-                action.</div>
+              <div>Hasta el final de esta entrada, si un jugador de tu equipo deja Lesionado a un rival al empu-jarlo fuera del campo, tu jugador gana 2 PE igual que si lo hubiera dejado Lesionado con una acción de Placaje.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="nuffle12" hidden>
             <div>
-              <div><strong>12 – NECESSARY VIOLENCE</strong></div>
+              <div><strong>12 – VIOLENCIA NECESARIA</strong></div>
               <br>
-              <div>Until the end of this drive, any player on your team that causes a Casualty earns 3 SPP, rather than
-                the usual 2 SPP.</div>
+              <div>Hasta el final de esta entrada, cualquier jugador de tu equipo que obtenga Puntos de Estrellato por dejar Lesionado a un rival gana 3 PE en lugar de 2.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="nuffle13" hidden>
             <div>
-              <div><strong>13 – FOULING FRENZY</strong></div>
+              <div><strong>13 – CON FALTAS Y A LO LOCO</strong></div>
               <br>
-              <div>Until the end of this drive, any player on your team that causes a Casualty with a Foul action earns
-                2 SPP exactly as if they had caused a Casualty by performing a Block action.</div>
+              <div>Hasta el final de esta entrada, si un jugador de tu equipo deja Lesionado a un rival mediante una acción de Falta, tu jugador gana 2 PE igual que si lo hubiera dejado Lesionado mediante una acción de Placaje.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="nuffle14" hidden>
             <div>
-              <div><strong>14 – THROW A ROCK</strong></div>
+              <div><strong>14 – PEDRADA</strong></div>
               <br>
-              <div>Until the end of this drive, should an opposition player Stall, at the end of their team turn you may
-                roll a D6. On a roll of 5+, an angry fan throws a rock at that player. The player is immediately Knocked
-                Down.</div>
+              <div>Hasta el final de esta entrada, si un jugador rival está reteniendo el balón (ver pág. 64), al final del turno de su equipo puedes tirar 1D6. Con un 5+, un hincha enfurecido lanza una piedra a ese jugador. El juga-dor es Derribado inmediatamente.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="nuffle15" hidden>
             <div>
-              <div><strong>15 – UNDER SCRUTINY</strong></div>
+              <div><strong>15 – ESCRUTINIO ARBITRAL</strong></div>
               <br>
-              <div>Until the end of this half, any player on the opposing team that commits a Foul action is
-                automatically seen by the referee, even if a natural double is not rolled.</div>
+              <div>Hasta el final de esta parte del partido, cualquier jugador rival que cometa una acción de Falta será visto automáticamente por el árbitro, aunque no saque un doble natural en la tirada de Armadura.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="nuffle16" hidden>
             <div>
-              <div><strong>16 – INTENSIVE TRAINING</strong></div>
+              <div><strong>16 – ENTRENAMIENTO INTENSIVO</strong></div>
               <br>
-              <div>Randomly select one player on your team that is available to play during this drive and that does not
-                have the Loner (X+) trait. Until the end of this game, that player gains a single Primary skill of your
-                choice.</div>
+              <div>Elige aleatoriamente un jugador de tu equipo que esté disponible para jugar en esta entrada y no tenga el rasgo de Solitario (X+). Hasta el final del partido, dicho jugador obtiene una Habilidad Primaria a tu elección.</div>
             </div>
           </div>
         </div>
@@ -758,7 +712,7 @@
   <div class="modal-overlay" id="outcomeModal" hidden>
     <div class="modal">
       <div class="modal-title subtle">
-        <h3>1. Outcome</h3>
+        <h3>1. Anotar el resultado</h3>
         <p>Los árbitros ponen en común lo ocurrido durante el partido</p>
       </div>
         <div class="modal-body pause-modal-body">
@@ -915,23 +869,27 @@
                   <div>2D6</div>
                   <select name="" id="injuryRollSelect">
                     <option value="0">N/A</option>
-                    <option value="1">2-7: Stunned</option>
+                    <!-- <option value="1">2-7: Stunned</option>
                     <option value="2">8-9: KO'd</option>
                     <option value="3">10: Casualty (Badly hurt)</option>
                     <option value="4">11: Casualty (Seriously hurt)</option>
-                    <option value="5">12: DEAD</option>
+                    <option value="5">12: DEAD</option> -->
+                    <option value="1">2-7: Aturdido</option>
+                    <option value="2">8-9: Inconsciente</option>
+                    <option value="3">10: Lesionado (herida grave)</option>
+                    <option value="4">11: Lesionado (herida permanente)</option>
+                    <option value="5">12: ¡MUERTO!</option>
                   </select>
                 </div>
               </div>
-              <div class="injuryHelp helpText" hidden>* Sent to the Reserves box if a player is off the pitch</div>
-              <div class="injuryHelp helpText" hidden>* The player is removed from the pitch and placed in the Knocked-out
-                box</div>
-              <div class="injuryHelp helpText" hidden>* Miss the rest of the match</div>
-              <div class="injuryHelp helpText" hidden>* Miss next game</div>
-              <div class="injuryHelp helpText" hidden>* This player is far too dead to play!</div>
+              <div class="injuryHelp helpText" hidden>* El jugador es colocado en la zona de reservas si está fuera del campo</div>
+              <div class="injuryHelp helpText" hidden>* El jugador es colocado en la zona de inconscientes</div>
+              <div class="injuryHelp helpText" hidden>* El jugador se pierde el resto del partido</div>
+              <div class="injuryHelp helpText" hidden>* El jugador se pierde el próximo partido</div>
+              <div class="injuryHelp helpText" hidden>* ¡El jugador está demasiado muerto como para volver a jugar!</div>
               <!-- <div class="helpText">(1) Recuerda que puedes usar un <b>apotecario</b> para curar la herida</div> -->
-              <div class="helpText">(1) Los jugadores stunty sufren <b>KO</b> con resultado de <b>7</b></div>
-              <div class="helpText">(2) Los jugadores stunty sufren <b>Casualty (badly hurt)</b> con resultado de <b>9</b></div>
+              <div class="helpText">(1) Los jugadores stunty sufren <b>Inconsciente</b> con resultado de <b>7-8</b></div>
+              <div class="helpText">(2) Los jugadores stunty sufren <b>Lesionado (herida grave)</b> con resultado de <b>9</b></div>
             </div>
           </div>
         </div>
@@ -980,11 +938,16 @@
           <div>
             <select name="" id="passType">
               <option value="0">N/A</option>
-              <option value="1">Hand-off (Only AG)</option>
+              <!-- <option value="1">Hand-off (Only AG)</option>
               <option value="2">Quick Pass (PA +0)</option>
               <option value="3">Short Pass (PA -1)</option>
               <option value="4">Long Pass (PA -2)</option>
-              <option value="5">Long Bomb (PA -3)</option>
+              <option value="5">Long Bomb (PA -3)</option> -->
+              <option value="1">Pase en mano (Solo AG)</option>
+              <option value="2">Pase rápido (PA +0)</option>
+              <option value="3">Pase corto (PA -1)</option>
+              <option value="4">Pase largo (PA -2)</option>
+              <option value="5">Bomba larga (PA -3)</option>
             </select>
           </div>
         </div>
@@ -1001,7 +964,7 @@
   <div class="modal-overlay" id="winningsModal" hidden>
     <div class="modal">
       <div class="modal-title subtle">
-        <h3>2. Winnings</h3>
+        <h3>2. Ganancias</h3>
         <p>Las marcas apoyan a los equipos favoritos a golpe de talonario</p>
       </div>
       <div class="modal-body">
@@ -1016,12 +979,16 @@
           </div>
         </div>
         <ul class="winningsExplanation">
-          <li>Add together the FAME of both teams, then divide the result by 2.</li>
+          <!-- <li>Add together the FAME of both teams, then divide the result by 2.</li>
           <li>Add the number of friendly touchdowns to the result.</li>
-          <li>Multiply the total by 10.</li>
+          <li>Multiply the total by 10.</li> -->
+          <li>Suma el factor de hinchas de cada equipo para obtener la Afluencia y divide el resultado entre 2.</li>
+          <li>Suma a esa cifra el número de touchdowns que ha anotado tu equipo.</li>
+          <li>Multiplica el valor total por 10.</li>
         </ul>
         <ul class="winningsExplanationOnSurrender" id="winningsOnSurrender" hidden>
-          <li>Conceding teams do not receive any winnings unless being reduced to 3 or less players during a set-up</li>
+          <!-- <li>Conceding teams do not receive any winnings unless being reduced to 3 or less players during a set-up</li> -->
+          <li>Ten en cuenta que, si un equipo ha concedido el partido, la Afluencia no se divide entre dos, sino que la cantidad íntegra se otorga al equipo ganador</li>
         </ul>
       </div>
       <div class="modal-controls">
@@ -1033,13 +1000,13 @@
   <div class="modal-overlay" id="fanFactorModal" hidden>
     <div class="modal">
       <div class="modal-title subtle">
-        <h3>3. Update fan factor</h3>
-        <p>Los hinchas aplauden el espectáculo recibido</p>
+        <h3>3. Actualizar Hinchas</h3>
+        <p>Los hinchas agradecen el espectáculo recibido dispuestos a dejarse el dinero en entradas y productos oficiales del equipo</p>
       </div>
       <div class="modal-body">
         <div class="dice-roll-container fame-dice-roll-container">
           <div class="dice-roll">
-            <div>Fan factor</div>
+            <div>Hinchas</div>
             <div id="winningsFanFactorTeam1"></div>
           </div>
           <div>&</div>
@@ -1057,7 +1024,7 @@
         </div>
         <div class="dice-roll-container fame-dice-roll-container">
           <div class="dice-roll">
-            <div>Fan factor</div>
+            <div>Hinchas</div>
             <div id="winningsFanFactorTeam2"></div>
           </div>
           <div>&</div>

@@ -1,0 +1,163 @@
+<div class="modal-body">
+  <div class="modalTable">
+    <div class="modalTable-row inducementsTable-row">
+      <div class="modalTable-firstCell">
+        <div class="inducement">
+          <strong>0 - 4</strong>
+          <br>
+          Temp Agency Cheerleaders
+        </div>
+        <div class="subtle">20,000 gold pieces each</div>
+      </div>
+      <div class="modalTable-firstCell">
+        <div class="inducement">
+          <strong>0 - 3</strong>
+          <br>
+          Part-time Assistant Coaches
+        </div>
+        <div class="subtle">20,000 gold pieces each</div>
+      </div>
+    </div>
+  </div>
+  <div class="modalTable-row inducementsTable-row">
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 1</strong>
+        <br>
+        Weather Mage
+      </div>
+      <div class="subtle">30,000 gold pieces</div>
+    </div>
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 2</strong>
+        <br>
+        Bloodweiser Kegs
+      </div>
+      <div class="subtle">50,000 gold pieces each</div>
+    </div>
+  </div>
+  <div class="modalTable-row inducementsTable-row">
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 5</strong>
+        <br>
+        Special Plays
+      </div>
+      <div class="subtle">100,000 gold pieces each</div>
+    </div>
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 8</strong>
+        <br>
+        Extra Team Training
+      </div>
+      <div class="subtle">100,000 gold pieces each</div>
+    </div>
+  </div>
+  <div class="modalTable-row inducementsTable-row">
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 3</strong>
+        <br>
+        Bribes
+      </div>
+      <div class="subtle">100,000 gold pieces each (50,000 gold pieces for teams with the ‘Bribery and Corruption’
+        special rule)
+      </div>
+    </div>
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 2</strong>
+        <br>
+        Wandering Apothecaries
+      </div>
+      <div class="subtle">100,000 gold pieces each (not available to teams that cannot hire an apothecary)</div>
+    </div>
+  </div>
+  <div class="modalTable-row inducementsTable-row">
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 1</strong>
+        <br>
+        Mortuary Assistant
+      </div>
+      <div class="subtle">100,000 gold pieces (only available to teams with the ‘Sylvanian Spotlight’ special rule)
+      </div>
+    </div>
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 1</strong>
+        <br>
+        Plague Doctor
+      </div>
+      <div class="subtle">100,000 gold pieces (only available to teams with the ‘Favoured of Nurgle’ special rule)</div>
+    </div>
+  </div>
+  <div class="modalTable-row inducementsTable-row">
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 1</strong>
+        <br>
+        Riotous Rookies
+      </div>
+      <div class="subtle">100,000 gold pieces (only available to teams with the ‘Low Cost Linemen’ special rule)</div>
+    </div>
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 1</strong>
+        <br>
+        Halfling Master Chef
+      </div>
+      <div class="subtle">300,000 gold pieces (100,000 gold pieces for teams with the ‘Halfling Thimble Cup’ special
+        rule)</div>
+    </div>
+  </div>
+  <div class="modalTable-row inducementsTable-row">
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>Unlimited</strong>
+        <br>
+        Mercenary Players
+      </div>
+      <div class="subtle">Price varies</div>
+    </div>
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 2</strong>
+        <br>
+        Star Players
+      </div>
+      <div class="subtle">Price varies</div>
+    </div>
+  </div>
+  <div class="modalTable-row inducementsTable-row">
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 2</strong>
+        <br>
+        (In)Famous Coaching Staff
+      </div>
+      <div class="subtle">Price varies</div>
+    </div>
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 1</strong>
+        <br>
+        Wizard
+      </div>
+      <div class="subtle">Price varies</div>
+    </div>
+  </div>
+  <div class="modalTable-row inducementsTable-row">
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 1</strong>
+        <br>
+        Biased Referee
+      </div>
+      <div class="subtle">Price varies</div>
+    </div>
+    <div class="modalTable-firstCell"></div>
+  </div>
+</div>

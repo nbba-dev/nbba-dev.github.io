@@ -1,0 +1,32 @@
+1 Trampilla traicionera:
+  Hasta el final de esta parte del partido, cada vez que algún jugador entre en una casilla de trampilla por cualquier motivo, tira 106. Si sacas un 1 la trampilla se abre y el jugador es inmediatamente retirado del juego. Resuélvelo como si hubiera sido empujado fuera del campo. Si el jugador estaba en posesión del balón, éste rebota desde la casilla de la trampilla.
+2 Amigo del árbitro:
+  Hasta el final de esta entrada, puedes tratar una tirada de 5 en la tabla de Protestar al árbitro como un resultado de "Ahora que lo dices..." en lugar de uno de "iMe da igual!".
+3 Puñal:
+  Elige un jugador aleatorio de tu equipo que esté disponible para jugar en esta entrada y no tenga el rasgo de Solitario (X+). Hasta el final de esta entrada, dicho jugador obtiene el rasgo de Apuñalar.
+4 Músculos de hierro:
+  Elige un jugador de tu equipo que esté disponible para jugar en esta entrada y no tenga el rasgo de Solitario (X+). Hasta el final del partido, dicho jugador aumenta en 1 su atributo AR, hasta un máximo de 11+.
+5 Nudilleras:
+  Elige un jugador de tu equipo que esté disponible para jugar en esta entrada y no tenga el rasgo de Solitario (X+). Hasta el final de esta entrada, dicho jugador obtiene la habilidad Golpe mortífero (+1).
+6 Malas costumbres:
+  Elige aleatoriamente a 1 D3 jugadores rivales que estén disponibles para jugar en esta entrada y no tengan el rasgo de Solitario (X+). Hasta el final de esta entrada, dichos jugadores obtienen el rasgo de Solitario (2+).
+7 Tacos engrasados:
+  Elige un jugador rival aleatorio que esté disponible para jugar en esta entrada. iSus botas han sido saboteadas! Hasta el final de la entrada, su atributo MV se reduce en 1.
+8 Estatua bendita de Nuffle:
+  Elige un jugador de tu equipo que esté disponible para jugar en esta entrada y que no tenga el rasgo de Solitario (X+). Hasta el final del partido, dicho jugador obtiene la habilidad Profesional.
+9 Topos bajo el campo:
+  Hasta el final de esta parte del partido, aplica un modificador de -1 a los intentos de forzar la marcha (o de -2 si ambos entrenadores obtienen este resultado).
+10 Pase perfecto:
+  Hasta el final del partido, cualquier jugador de tu equipo que logre un Pase completo gana 2 PE en lugar de 1.
+11 Apoyo del público:
+  Hasta el final de esta entrada, si un jugador de tu equipo deja Lesionado a un rival al empu-jarlo fuera del campo, tu jugador gana 2 PE igual que si lo hubiera dejado Lesionado con una acción de Placaje.
+12 Violencia necesaria:
+  Hasta el final de esta entrada, cualquier jugador de tu equipo que obtenga Puntos de Estrellato por dejar Lesionado a un rival gana 3 PE en lugar de 2.
+13 Con faltas y a lo loco:
+  Hasta el final de esta entrada, si un jugador de tu equipo deja Lesionado a un rival mediante una acción de Falta, tu jugador gana 2 PE igual que si lo hubiera dejado Lesionado mediante una acción de Placaje.
+14 Pedrada:
+  Hasta el final de esta entrada, si un jugador rival está reteniendo el balón (ver pág. 64), al final del turno de su equipo puedes tirar 1D6. Con un 5+, un hincha enfurecido lanza una piedra a ese jugador. El juga-dor es Derribado inmediatamente.
+15 Escrutinio arbitral:
+  Hasta el final de esta parte del partido, cualquier jugador rival que cometa una acción de Falta será visto automáticamente por el árbitro, aunque no saque un doble natural en la tirada de Armadura.
+16 Entrenamiento intensivo:
+  Elige aleatoriamente un jugador de tu equipo que esté disponible para jugar en esta entrada y no tenga el rasgo de Solitario (X+). Hasta el final del partido, dicho jugador obtiene una Habilidad Primaria a tu elección.

@@ -1,0 +1,162 @@
+<div class="modal-body">
+  <div class="modalTable">
+    <div class="modalTable-row inducementsTable-row">
+      <div class="modalTable-firstCell">
+        <div class="inducement">
+          <strong>0 - 4</strong>
+          <br>
+          Animadoras temporales
+        </div>
+        <div class="subtle">20.000 monedas de oro cada una</div>
+      </div>
+      <div class="modalTable-firstCell">
+        <div class="inducement">
+          <strong>0 - 3</strong>
+          <br>
+          Ayudantes a tiempo parcial
+        </div>
+        <div class="subtle">20.000 monedas de oro cada uno</div>
+      </div>
+    </div>
+  </div>
+  <div class="modalTable-row inducementsTable-row">
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 1</strong>
+        <br>
+        Cambiaclimas
+      </div>
+      <div class="subtle">30.000 monedas de oro</div>
+    </div>
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 2</strong>
+        <br>
+        Barriles de Bloodweiser
+      </div>
+      <div class="subtle">50.000 monedas de oro cada uno</div>
+    </div>
+  </div>
+  <div class="modalTable-row inducementsTable-row">
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 5</strong>
+        <br>
+        Jugadas especiales
+      </div>
+      <div class="subtle">100.000 monedas de oro cada una</div>
+    </div>
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 8</strong>
+        <br>
+        Entrenamientos adicionales
+      </div>
+      <div class="subtle">100.000 monedas de oro cada uno</div>
+    </div>
+  </div>
+  <div class="modalTable-row inducementsTable-row">
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 3</strong>
+        <br>
+        Sobornos
+      </div>
+      <div class="subtle">100.000 monedas de oro cada uno (50.000 monedas de oro para equipos con 'Sobornos y corrupción'
+        special rule)
+      </div>
+    </div>
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 2</strong>
+        <br>
+        Apotecarios errantes
+      </div>
+      <div class="subtle">100.000 monedas de oro cada uno (solo para equipos que puedan tener un apotecario)</div>
+    </div>
+  </div>
+  <div class="modalTable-row inducementsTable-row">
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 1</strong>
+        <br>
+        Ayudante de la morgue
+      </div>
+      <div class="subtle">100.000 monedas de oro (solo para equipos con la regla especial 'Selectiva de Sylvania')
+      </div>
+    </div>
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 1</strong>
+        <br>
+        Médico de la peste
+      </div>
+      <div class="subtle">100.000 monedas de oro (solo para equipos con la regla especial 'Elegidos de Nurgle')</div>
+    </div>
+  </div>
+  <div class="modalTable-row inducementsTable-row">
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 1</strong>
+        <br>
+        Novatos embravecidos
+      </div>
+      <div class="subtle">100.000 monedas de oro (solo para equipos con la regla especial 'Linemen prescindibles')</div>
+    </div>
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 1</strong>
+        <br>
+        Chef maestro Halfling
+      </div>
+      <div class="subtle">300.000 monedas de oro (100.000 monedas de oro para equipos con la regla especial 'Copa dedal Halfling')</div>
+    </div>
+  </div>
+  <div class="modalTable-row inducementsTable-row">
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>Ilimitados</strong>
+        <br>
+        Jugadores mercenarios
+      </div>
+      <div class="subtle">Precio variable</div>
+    </div>
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 2</strong>
+        <br>
+        Jugadores estrella
+      </div>
+      <div class="subtle">Precio variable</div>
+    </div>
+  </div>
+  <div class="modalTable-row inducementsTable-row">
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 2</strong>
+        <br>
+        Miembros del cuadro técnico famosos (o infames)
+      </div>
+      <div class="subtle">Precio variable</div>
+    </div>
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 1</strong>
+        <br>
+        Incentivo de mago
+      </div>
+      <div class="subtle">Precio variable</div>
+    </div>
+  </div>
+  <div class="modalTable-row inducementsTable-row">
+    <div class="modalTable-firstCell">
+      <div class="inducement">
+        <strong>0 - 1</strong>
+        <br>
+        Árbitro poco imparcial
+      </div>
+      <div class="subtle">Precio variable</div>
+    </div>
+    <div class="modalTable-firstCell"></div>
+  </div>
+</div>

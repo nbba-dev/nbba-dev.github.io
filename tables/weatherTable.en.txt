@@ -1,0 +1,69 @@
+Sweltering
+  Some players faint in the unbearable heat!
+  D3 randomly selected players from each team that are on the pitch when a drive ends are placed in the Reserves box. They must miss the next drive.
+Very
+  A glorious day, but the clear skies and bright sunlight interfere with the passing game!
+  Apply a -1 modifier every time a player tests against their Passing Ability.
+Perfect
+  Neither too cold nor too hot.
+  A warm, dry and slightly overcast day provides perfect conditions for Blood Bowl.
+Pouring
+  A torrential downpour leaves the players soaked and the ball very slippery!
+  Apply a -1 modifier every time a player makes an Agility test to catch or pick-up the ball, or to attempt to interfere with a pass.
+Blizzard
+  Freezing conditions and heavy falls of snow make the footing treacherous.
+  Apply a -1 modifier every time a player attempts to Rush an extra square. Additionally, the poor visibility means that only Quick and Short passes can be attempted.
+
+
+
+<select name="" id="weatherValue" onchange="updateSelectedWeather(this.value)">
+              <option value="0">N/A</option>
+              <option value="1">🔥 2</option>
+              <option value="2">☀️ 3</option>
+              <option value="3">🌤 4-10</option>
+              <option value="4">🌨 11</option>
+              <option value="5">❄️ 12</option>
+            </select>
+
+  <div class="modalTable-rollForResult">
+          <div class="modalTable-rollForResultRow" id="weatherRow1" hidden>
+            <div>
+              <span class="modalTable-emoji">🔥</span>
+              <strong>Sweltering Heat</strong>
+            </div>
+            <div class="subtle">Some players faint in the unbearable heat!</div>
+            <div>D3 randomly selected players from each team that are on the pitch when a drive ends are placed in the Reserves box. They must miss the next drive.</div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="weatherRow2" hidden>
+            <div>
+              <span class="modalTable-emoji">☀️</span>
+              <strong>Very Sunny</strong>
+            </div>
+            <div class="subtle">A glorious day, but the clear skies and bright sunlight interfere with the passing game!</div>
+            <div>Apply a -1 modifier every time a player tests against their Passing Ability.</div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="weatherRow3" hidden>
+            <div>
+              <span class="modalTable-emoji">🌤</span>
+              <strong>Perfect Conditions</strong>
+            </div>
+            <div class="subtle">Neither too cold nor too hot. A warm, dry and slightly overcast day provides perfect conditions for Blood Bowl.</div>
+              <div></div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="weatherRow4" hidden>
+            <div>
+              <span class="modalTable-emoji">🌨</span>
+              <strong>Pouring Rain</strong>
+            </div>
+            <div class="subtle">A torrential downpour leaves the players soaked and the ball very slippery!</div>
+            <div>Apply a -1 modifier every time a player makes an Agility test to catch or pick-up the ball, or to attempt to interfere with a pass.</div>
+          </div>
+          <div class="modalTable-rollForResultRow" id="weatherRow5" hidden>
+            <div>
+              <span class="modalTable-emoji">❄️</span>
+              <strong>Blizzard</strong>
+            </div>
+            <div class="subtle">Freezing conditions and heavy falls of snow make the footing treacherous.</div>
+            <div>Apply a -1 modifier every time a player attempts to Rush an extra square. Additionally, the poor visibility means that only Quick and Short passes can be attempted.</div>
+          </div>
+        </div>
