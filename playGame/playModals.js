@@ -65,16 +65,12 @@ const initPlayModals = function(externalGameState) {
   window.openKickoffModal = function() {
     openModal(3)
     dom.get('kickoffCompleted').onclick = completedKickoff
-    // show(dom.get('kickoffCompleted'))
-    // hide(dom.get('kickoffCompletedStandalone'))
     show(dom.get('kickoffBackBtn'))
   }
   window.openKickoffModalStandalone = function() {
     openModal(3)
     dom.get('kickoffCompleted').onclick = completedKickoffStandalone
-    // show(dom.get('kickoffCompletedStandalone'))
-    // hide(dom.get('kickoffCompleted'))
-    hide(dom.get('kickoffBackBtn'))
+    dom.get('kickoffBackBtn').onclick = closeKickoffModal
     dom.get('kickoffSelect').value = 0
     updateSelectedKickoff(0)
     kickoffModal.classList.add('disableOverlay')
@@ -153,14 +149,10 @@ const initPlayModals = function(externalGameState) {
   window.closeKickoffModal = function() {
     closeModal(3)
     hide(dom.get('kickoffCompleted'))
-    hide(dom.get('kickoffBackBtn'))
-    // show(dom.get('kickoffCompletedStandalone'))
   }
   window.closeKickoffModalStandalone = function() {
     closeModal(3)
-    // hide(dom.get('kickoffCompletedStandalone'))
     show(dom.get('kickoffCompleted'))
-    show(dom.get('kickoffBackBtn'))
     kickoffModal.classList.add('disableOverlay')
   }
   window.closePauseModal = function() {
