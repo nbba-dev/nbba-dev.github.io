@@ -11,7 +11,6 @@ import { setTeamsAsOptionsForSelect, setPlayersAsOptionsForSelect } from './play
 
 // state
 const dom = getDomNodesByIds([
-  'pleaseRotate',
   'team2TurnTurn',
   'team1TurnTurn',
   'half',
@@ -226,7 +225,6 @@ function isGuidedGame() {
 
 function showPage2() {
   show(dom.get('page2'))
-  hide(dom.get('pleaseRotate'))
 }
 
 window.reset = function(){

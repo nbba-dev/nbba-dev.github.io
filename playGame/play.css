@@ -303,15 +303,23 @@ body {
   z-index: 40;
   position: absolute;
   font-size: 3rem;
+  z-index: 99999;
 }
-.pleaseRotate-icons {
+.pleaseRotate-icon {
   margin: 24px 0;
   font-size: 10rem;
+  animation: rotateAnimation ease-out 3s infinite;
 }
-.pleaseRotate-rotated {
+
+@keyframes rotateAnimation {
+  0% { transform: rotate(0) }
+  30% { transform: rotate(0.25turn) }
+  100% { transform: rotate(0.25turn) }
+}
+/* .pleaseRotate-rotated {
   display: inline-block;
   transform: rotate(0.25turn);
-}
+} */
 
 .endgame-overlay {
   position: absolute;
@@ -739,7 +747,6 @@ ul.winningsExplanationOnSurrender {
 @media (max-width: 500px) {
   .pleaseRotate {
     display: flex;
-    z-index: 40;
     position: absolute;
     width: 100vw;
     height: 100vh;
