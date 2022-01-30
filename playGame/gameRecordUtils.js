@@ -11,7 +11,7 @@ const recordGame = function (gameState, gameRecord, league) {
 
     const updateGameValuesRequest = gapi.client.sheets.spreadsheets.values.update({
       spreadsheetId: spreadsheetId,
-      range: `${newSheetName}!B1:B11`,
+      range: `${newSheetName}!B1:B13`,
       valueInputOption: 'RAW',
       resource: {
         values: [
@@ -26,6 +26,8 @@ const recordGame = function (gameState, gameRecord, league) {
           [gameState.team2.fame],                 // B9
           [gameState.team1.elapsedTime / 1000],   // B10
           [gameState.team2.elapsedTime / 1000],   // B11
+          [gameState.team1.newFame],              // B12
+          [gameState.team2.newFame],              // B13
         ]
       }
     }).then((response) => {

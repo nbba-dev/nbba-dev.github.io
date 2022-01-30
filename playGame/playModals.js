@@ -124,8 +124,8 @@ const initPlayModals = function(externalGameState) {
     openModal(10)
   }
   window.openFanFactorModal = function() {
-    winningsFanFactorTeam1.innerHTML = gameState.team1.fame
-    winningsFanFactorTeam2.innerHTML = gameState.team2.fame
+    winningsFanFactorTeam1.innerHTML = gameState.team1.fanFactor
+    winningsFanFactorTeam2.innerHTML = gameState.team2.fanFactor
     openModal(11)
   }
   window.openSppModal = function() {

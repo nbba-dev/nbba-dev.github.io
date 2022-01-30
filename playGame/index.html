@@ -1075,7 +1075,8 @@
         </div>
       </div>
       <div class="modal-controls">
-        <button class="modal-bottomBtn modal-continueBtn" onclick="completedFanFactor()">Continuar</button>
+        <button class="modal-bottomBtn modal-continueBtn" id="completedNewFanFactorBtn" onclick="completedFanFactor()" hidden>Continuar</button>
+        <button class="modal-bottomBtn modal-continueBtn" id="completedNewFanFactorBtnPls" disabled>Completa la tirada de fama para continuar</button>
       </div>
     </div>
   </div>
@@ -1199,8 +1200,8 @@
   <div class="modal-overlay" id="loadingModal">
     <div class="modal">
       <div class="modal-body">
-        Loading team information
-        <p class="subtle">It will be just a second...</p>
+        Cargando equipos
+        <p class="subtle">Será solo un momento...</p>
       </div>
       <div class="modal-controls"></div>
     </div>

@@ -148,41 +148,62 @@ const initPlayListeners = function (externalGameState) {
     const dom = getDomNodesByIds([
       'winningsFanFactorResultTeam1',
       'winningsFanFactorResultTeam2',
+      'completedNewFanFactorBtn',
+      'completedNewFanFactorBtnPls',
+      'winningsFanFactorRollTeam1',
+      'winningsFanFactorRollTeam2',
     ])
 
     window.updateFanFactorTeam1 = function(newValue) {
       if (newValue > 0) {
-        let newFame = gameState.team1.fame
-        if (gameState.team1.fame < newValue) {
-          newFame = gameState.team1.fame + 1
+        let newFame = gameState.team1.fanFactor
+        if (gameState.team1.fanFactor < newValue) {
+          newFame = Number(gameState.team1.fanFactor) + 1
           dom.get('winningsFanFactorResultTeam1').innerHTML = `Fama +1`
-        } else if (gameState.team1.fame > newValue) {
-          newFame = gameState.team1.fame - 1
+        } else if (gameState.team1.fanFactor > newValue) {
+          newFame = Number(gameState.team1.fanFactor) - 1
           dom.get('winningsFanFactorResultTeam1').innerHTML = `Fama -1`
         } else {
           dom.get('winningsFanFactorResultTeam1').innerHTML = `Se mantiene la misma Fama`
+          newFame = Number(gameState.team1.fanFactor)
         }
         gameState.team1.newFame = newFame
       } else {
         dom.get('winningsFanFactorResultTeam1').innerHTML = ''
       }
+
+      testEnableNewFanFactorContinue()
     }
 
     window.updateFanFactorTeam2 = function(newValue) {
       if (newValue > 0) {
-        let newFame = gameState.team2.fame
-        if (gameState.team2.fame < newValue) {
-          newFame = gameState.team2.fame + 1
+        let newFame = gameState.team2.fanFactor
+        if (gameState.team2.fanFactor < newValue) {
+          newFame = Number(gameState.team2.fanFactor) + 1
           dom.get('winningsFanFactorResultTeam2').innerHTML = `Fama +1`
-        } else if (gameState.team2.fame > newValue) {
-          newFame = gameState.team2.fame - 1
+        } else if (gameState.team2.fanFactor > newValue) {
+          newFame = Number(gameState.team2.fanFactor) - 1
           dom.get('winningsFanFactorResultTeam2').innerHTML = `Fama -1`
         } else {
           dom.get('winningsFanFactorResultTeam2').innerHTML = `Se mantiene la misma Fama`
+          newFame = Number(gameState.team2.fanFactor)
         }
-        gameState.team1.newFame = newFame
+        gameState.team2.newFame = newFame
       } else {
         dom.get('winningsFanFactorResultTeam2').innerHTML = ''
+      }
+
+      testEnableNewFanFactorContinue()
+    }
+
+
+    const testEnableNewFanFactorContinue = function() {
+      if (dom.get('winningsFanFactorRollTeam1').value !== '0' && dom.get('winningsFanFactorRollTeam2').value !== '0') {
+        show(dom.get('completedNewFanFactorBtn'))
+        hide(dom.get('completedNewFanFactorBtnPls'))
+      } else {
+        hide(dom.get('completedNewFanFactorBtn'))
+        show(dom.get('completedNewFanFactorBtnPls'))
       }
     }
 

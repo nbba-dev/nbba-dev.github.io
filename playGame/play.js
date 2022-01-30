@@ -153,11 +153,13 @@ function loggedInCallback(newVal) {
 
       gameState.team1.name = team1.teamName
       gameState.team1.id = team1.teamId
+      gameState.team1.fanFactor = team1.teamFame
       gameState.team1.fame = team1.teamFame
       gameState.team1.logo = team1.teamLogo
 
       gameState.team2.name = team2.teamName
       gameState.team2.id = team2.teamId
+      gameState.team2.fanFactor = team2.teamFame
       gameState.team2.fame = team2.teamFame
       gameState.team2.logo = team2.teamLogo
 
@@ -693,15 +695,16 @@ const registerKickoffRoll = function () {
   const valueForKickoff = dom.get('kickoffSelect').value
   dom.get('kickoffSelect').value = '0'
   if (valueForKickoff !== '0') {
-    gameSecondaryRecords.push(getKickoffRecord(valueForKickoff, getActiveHalf() - 1, getActiveTurn()))
+    gameSecondaryRecords.push(getKickoffRecord(valueForKickoff, getActiveHalf(), getActiveTurn()))
   }
+  updateSelectedKickoff(0)
 }
 
 const registerWeatherRoll = function () {
   const valueForWeather = Number(dom.get('weatherValue').value)
   dom.get('weatherValue').value = '0'
   if (valueForWeather !== '0') {
-    gameSecondaryRecords.push(getWeatherRecord(valueForWeather, getActiveHalf() - 1, getActiveTurn()))
+    gameSecondaryRecords.push(getWeatherRecord(valueForWeather, getActiveHalf(), getActiveTurn()))
   }
   updateSelectedWeather(0)
 }
@@ -710,8 +713,9 @@ const registerNuffleRoll = function () {
   const valueForNuffle = dom.get('nuffleSelect').value
   dom.get('nuffleSelect').value = '0'
   if (valueForNuffle !== '0') {
-    gameSecondaryRecords.push(getNuffleRecord(valueForNuffle, getActiveHalf() - 1, getActiveTurn()))
+    gameSecondaryRecords.push(getNuffleRecord(valueForNuffle, getActiveHalf(), getActiveTurn()))
   }
+  updateSelectedNuffle(0)
 }
 
 window.completedKickoff = function() {
@@ -1077,12 +1081,14 @@ window.updateSelectedWeather = function(val) {
   const rolledValue = Number(val);
   dict[rolledValue] && show(dict[rolledValue])
 
-  if (isLeagueGame() && Number(val) !== 0) {
-    show(dom.get('completedWeatherBtn'))
-    hide(dom.get('completedWeatherBtnPls'))
-  } else {
-    hide(dom.get('completedWeatherBtn'))
-    show(dom.get('completedWeatherBtnPls'))
+  if (isLeagueGame()) {
+    if (Number(val) !== 0) {
+      show(dom.get('completedWeatherBtn'))
+      hide(dom.get('completedWeatherBtnPls'))
+    } else {
+      hide(dom.get('completedWeatherBtn'))
+      show(dom.get('completedWeatherBtnPls'))
+    }
   }
 }
 
@@ -1113,12 +1119,14 @@ window.updateSelectedKickoff = function(val) {
   const rolledValue = Number(val);
   dict[rolledValue] && show(dict[rolledValue])
 
-  if (isLeagueGame() && Number(val) !== 0) {
-    show(dom.get('kickoffCompleted'))
-    hide(dom.get('completedKickoffBtnPls'))
-  } else {
-    hide(dom.get('kickoffCompleted'))
-    show(dom.get('completedKickoffBtnPls'))
+  if (isLeagueGame()) {
+    if (Number(val) !== 0) {
+      show(dom.get('kickoffCompleted'))
+      hide(dom.get('completedKickoffBtnPls'))
+    } else {
+      hide(dom.get('kickoffCompleted'))
+      show(dom.get('completedKickoffBtnPls'))
+    }
   }
 }
 
@@ -1154,12 +1162,14 @@ window.updateSelectedNuffle = function(val) {
   const rolledValue = Number(val);
   dict[rolledValue] && show(dict[rolledValue])
 
-  if (isLeagueGame() && Number(val) !== 0) {
-    show(dom.get('completedNuffleBtn'))
-    hide(dom.get('completedNuffleBtnPls'))
-  } else {
-    hide(dom.get('completedNuffleBtn'))
-    show(dom.get('completedNuffleBtnPls'))
+  if (isLeagueGame()) {
+    if (Number(val) !== 0) {
+      show(dom.get('completedNuffleBtn'))
+      hide(dom.get('completedNuffleBtnPls'))
+    } else {
+      hide(dom.get('completedNuffleBtn'))
+      show(dom.get('completedNuffleBtnPls'))
+    }
   }
 }
 
