@@ -1,4 +1,4 @@
-import { getDomNodesByIds, hide, show } from '../shared/domUtils.js'
+import { getDomNodesByIds, hide, show } from '/shared/domUtils.js'
 
 const initPlayModals = function(externalGameState) {
   let gameState = externalGameState

@@ -1,5 +1,5 @@
-import { createOption, removeChildren } from '../shared/nodeUtils.js'
-import { getTeamName } from './playUtils.js'
+import { createOption, removeChildren } from '/shared/nodeUtils.js'
+import { getTeamName } from '/playGame/playUtils.js'
 
 const setTeamsAsOptionsForSelect = function(selectNode) {
   removeChildren(selectNode)

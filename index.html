@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>NBBA App</title>
-  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <meta name="theme-color" content="#000000" />
@@ -31,7 +31,7 @@
   <section class="home-section mobile" id="homeSection1">
     <div class="home-container">
       <div class="home-header">
-        <img src="../multimedia/NBBA.png" alt="nbba logo" class="nbba-logo">
+        <img src="/multimedia/NBBA.png" alt="nbba logo" class="nbba-logo">
         <p class="nbba-desc">La app que te acompaña en tus partidos de Bloodbowl</p>
       </div>
       <div class="home-button-container">
@@ -178,8 +178,8 @@
     <div class="section-border"></div>
     <div class="content">
       <p>Creado por <a href="https://github.com/hecmocer-pro">Hecmocer</a> en tiempo libre</p>
-      <p>Apoya su trabajo a través de <img src="../multimedia/point-right.png" alt="" height="16px"> <a
-          href="https://www.buymeacoffee.com/hecmocerpro">Buy me a coffee!</a> <img src="../multimedia/point-left.png"
+      <p>Apoya su trabajo a través de <img src="/multimedia/point-right.png" alt="" height="16px"> <a
+          href="https://www.buymeacoffee.com/hecmocerpro">Buy me a coffee!</a> <img src="/multimedia/point-left.png"
           alt="" height="16px"></p>
       <p>Contacto — <a href="mailto:nbba.dev@gmail.com">nbba.dev@gmail.com</a></p>
     </div>
@@ -200,7 +200,7 @@
     try {
       window.addEventListener("load", () => {
         if ("serviceWorker" in navigator) {
-          navigator.serviceWorker.register("./service-worker.js");
+          navigator.serviceWorker.register("/service-worker.js");
         }
       });
     } catch { }

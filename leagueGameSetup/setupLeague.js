@@ -1,8 +1,8 @@
 import { initLogin } from '/components/nbba-login/nbba-login.js'
-import { loadLeaguesExcel, loadLeagueExcel, loadTeamsFromExcel, loadRoundsFromExcel, getTurnsBasedOnBBRules } from '../shared/excelUtils.js'
-import { createA, createButton, removeChildren, createOption } from '../shared/nodeUtils.js'
-import { getUrlParams } from '../shared/urlParamsUtils.js'
-import { getDomNodesByIds, hide, show } from '../shared/domUtils.js'
+import { loadLeaguesExcel, loadLeagueExcel, loadTeamsFromExcel, loadRoundsFromExcel, getTurnsBasedOnBBRules } from '/shared/excelUtils.js'
+import { createA, createButton, removeChildren, createOption } from '/shared/nodeUtils.js'
+import { getUrlParams } from '/shared/urlParamsUtils.js'
+import { getDomNodesByIds, hide, show } from '/shared/domUtils.js'
 
 // state
 let isLoggedIn;

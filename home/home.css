@@ -60,7 +60,7 @@ body {
 }
 
 #homeSection1 {
-  background: url(../multimedia/bloodbowl.jpeg);
+  background: url(/multimedia/bloodbowl.jpeg);
   background-size: cover;
   background-position: 50%;
 }

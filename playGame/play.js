@@ -1,13 +1,13 @@
-import { getDomNodesByIds, show, hide, getDomArr } from '../shared/domUtils.js'
-import { getTeamName, getActiveTurn, getActiveHalf, isLeagueGame } from './playUtils.js'
-import { getTouchdownRecord, getInjuryRecords, getInjuryType, getPassRecord, getPassType, getWeatherRecord, getKickoffRecord, getNuffleRecord } from './gameEventsUtils.js'
-import { initPlayListeners } from './playListeners.js';
-import { initPlayModals } from './playModals.js';
+import { getDomNodesByIds, show, hide, getDomArr } from '/shared/domUtils.js'
+import { getTeamName, getActiveTurn, getActiveHalf, isLeagueGame } from '/playGame/playUtils.js'
+import { getTouchdownRecord, getInjuryRecords, getInjuryType, getPassRecord, getPassType, getWeatherRecord, getKickoffRecord, getNuffleRecord } from '/playGame/gameEventsUtils.js'
+import { initPlayListeners } from '/playGame/playListeners.js';
+import { initPlayModals } from '/playGame/playModals.js';
 import { initLogin } from '/components/nbba-login/nbba-login.js'
-import { loadLeagueExcel, loadTeamsFromExcel, loadRoundsFromExcel, getTurnsBasedOnBBRules, loadTeamPlayersFromExcel } from '../shared/excelUtils.js'
-import { recordGame } from './gameRecordUtils.js';
-import { createImg, createButtonInnerHtml } from '../shared/nodeUtils.js';
-import { setTeamsAsOptionsForSelect, setPlayersAsOptionsForSelect } from './playNodeUtils.js';
+import { loadLeagueExcel, loadTeamsFromExcel, loadRoundsFromExcel, getTurnsBasedOnBBRules, loadTeamPlayersFromExcel } from '/shared/excelUtils.js'
+import { recordGame } from '/playGame/gameRecordUtils.js';
+import { createImg, createButtonInnerHtml } from '/shared/nodeUtils.js';
+import { setTeamsAsOptionsForSelect, setPlayersAsOptionsForSelect } from '/playGame/playNodeUtils.js';
 
 // state
 const dom = getDomNodesByIds([
@@ -95,7 +95,7 @@ let gameState = {
     elapsedTime: 0,
     score: 0,
     name: 'Local',
-    logo: '../multimedia/team0.png',
+    logo: '/multimedia/team0.png',
     fame: 1,
   },
   team2: {
@@ -103,7 +103,7 @@ let gameState = {
     elapsedTime: 0,
     score: 0,
     name: 'Visitante',
-    logo: '../multimedia/team0.png',
+    logo: '/multimedia/team0.png',
     fame: 1,
   },
   isTeam1turn: false,
@@ -128,9 +128,9 @@ window.gameRecord = gameRecord
 window.gameSecondaryRecords = gameSecondaryRecords
 window.gameState = gameState
 
-const timeoutAudio = new Audio('../multimedia/Timeout.mp3');
-const turnAudio = new Audio('../multimedia/Turn.mp3');
-const turn2Audio = new Audio('../multimedia/Turn2.mp3');
+const timeoutAudio = new Audio('/multimedia/Timeout.mp3');
+const turnAudio = new Audio('/multimedia/Turn.mp3');
+const turn2Audio = new Audio('/multimedia/Turn2.mp3');
 
 initPlayListeners(gameState)
 initPlayModals(gameState)

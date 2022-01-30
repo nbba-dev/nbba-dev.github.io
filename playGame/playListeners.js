@@ -1,6 +1,6 @@
-import { getDomNodesByIds, show, hide } from '../shared/domUtils.js'
-import { isLeagueGame } from './playUtils.js'
-import { getTouchdownRecord, getInjuryRecords, getPassRecord } from './gameEventsUtils.js'
+import { getDomNodesByIds, show, hide } from '/shared/domUtils.js'
+import { isLeagueGame } from '/playGame/playUtils.js'
+import { getTouchdownRecord, getInjuryRecords, getPassRecord } from '/playGame/gameEventsUtils.js'
 
 const initPlayListeners = function (externalGameState) {
   let gameState = externalGameState;

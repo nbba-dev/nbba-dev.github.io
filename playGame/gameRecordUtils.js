@@ -1,4 +1,4 @@
-import { mapGameRecordToExcelCells } from '../shared/excelUtils.js'
+import { mapGameRecordToExcelCells } from '/shared/excelUtils.js'
 
 const recordGame = function (gameState, gameRecord, league) {
   const sheetId = league.leagueGameRecordsSheetId
