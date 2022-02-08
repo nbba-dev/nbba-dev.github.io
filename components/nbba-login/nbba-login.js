@@ -15,8 +15,8 @@ const initLogin = function(loggedInCallback) {
   .then(text => define(text));
 
   // Client ID and API key from the Developer Console
-  var CLIENT_ID = '673474108161-nr43igs2gi8j9nbu6pjnuuc620j45ana.apps.googleusercontent.com';
-  var API_KEY = 'AIzaSyCJYgfijMbwroLQX1qBd51rx9UHDgnVrh8';
+  var CLIENT_ID = '124947130590-4o3iv3uuio1hlbr69i191v0edo7i0o7f.apps.googleusercontent.com';
+  var API_KEY = 'AIzaSyCCJYcKu7IHzQlaFXdlA6HBLhpeUjxAQwQ';
 
   // Array of API discovery doc URLs for APIs used by the quickstart
   var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
