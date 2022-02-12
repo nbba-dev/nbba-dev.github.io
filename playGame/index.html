@@ -80,6 +80,7 @@
         <div class="modal-body-onlyButtons">
           <button onclick="reset()">Nuevo partido</button>
           <button onclick="toggleFullscreen()">Activar / Desactivar<br>Pantalla Completa</button>
+          <button onclick="goBackOneTurn()">Ir un turno atrás</button>
         </div>
       </div>
       <div class="modal-controls">
@@ -1042,6 +1043,7 @@
         </div>
       </div>
       <div class="modal-controls">
+        <button class="modal-bottomBtn" onclick="skipNewFanFactor()" id="skipNewFanFactor">Saltar</button>
         <button class="modal-bottomBtn modal-continueBtn" id="completedNewFanFactorBtn" onclick="completedFanFactor()" hidden>Continuar</button>
         <button class="modal-bottomBtn modal-continueBtn" id="completedNewFanFactorBtnPls" disabled>Completa la tirada de fama para continuar</button>
       </div>

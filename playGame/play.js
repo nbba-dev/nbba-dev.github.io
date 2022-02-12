@@ -84,6 +84,7 @@ const dom = getDomNodesByIds([
   'completedKickoffBtnPls',
   'completedNuffleBtn',
   'completedNuffleBtnPls',
+  'skipNewFanFactor'
 ])
 
 let gameConfig;
@@ -216,6 +217,7 @@ function init() {
   if (!isLeagueGame()) {
     hide(dom.get('loadingModal'))
   } else {
+    hide(dom.get('skipNewFanFactor'))
     hide(dom.get('skipGuidedMode'))
     hide(dom.get('completedFameBtn'))
     show(dom.get('completedFameBtnPls'))
@@ -547,6 +549,24 @@ window.toggleFullscreen = function() {
       // element could not enter fullscreen mode
     });
   }
+}
+
+window.goBackOneTurn = function () {
+  if (gameState.isTeam1turn) {
+    gameState.team1.turn = gameState.team1.turn === 0 ? 0 : gameState.team1.turn -= 1
+    dom.get('team1TurnTurn').innerHTML = gameState.team1.turn
+    activateTeam2()
+    gameState.isTeam1turn = false
+  } else {
+    gameState.team2.turn = gameState.team2.turn === 0 ? 0 : gameState.team2.turn -= 1
+    dom.get('team2TurnTurn').innerHTML = gameState.team2.turn
+    activateTeam1()
+    gameState.isTeam1turn = true
+  }
+  gameState.playedTimeoutForThisTurn = false
+  closeSettingsModal()
+  openPauseModal()
+  restartClock()
 }
 
 // Function that attempts to request a wake lock.
@@ -1170,7 +1190,14 @@ if (isLeagueGame()) {
   initLogin(loggedInCallback)
 }
 
-// window.finishGame = finishGame
-// window.skipPregame = function() {
-//   closeFameModal()
-// }
+window.skipPregame = function() {
+  closeFameModal()
+}
+
+window.skipNewFanFactor = function() {
+  closeFanFactorModal()
+  openSppModal()
+}
+
+
+window.finishGame = finishGame
