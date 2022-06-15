@@ -304,7 +304,8 @@ function startTurn(newPlayer, hasJustFinishedAHalf) {
     finishedHalf(newPlayer)
     pauseClock()
   } else {
-    restartClock()
+    resetClock()
+    startClock()
   }
 }
 
@@ -567,7 +568,7 @@ window.goBackOneTurn = function () {
   gameState.playedTimeoutForThisTurn = false
   closeSettingsModal()
   openPauseModal()
-  restartClock()
+  resetClock()
 }
 
 // Function that attempts to request a wake lock.
@@ -594,6 +595,7 @@ let storedElapsedTime = 0;
 let now;
 
 function startClock() {
+  console.log('start clock')
   resetTurnover()
   triggerDelay().then(() => {
     startTime = performance.now()
@@ -602,23 +604,24 @@ function startClock() {
 }
 
 function pauseClock() {
+  console.log('paused')
   storedElapsedTime = (now - startTime) + storedElapsedTime;
   cancelAnimationFrame(repaintLoop)
 }
 
 function tickClock() {
+  console.log('tick')
   now = performance.now()
   const timeDiff = (now - startTime) + storedElapsedTime || 0;
   repaintLoop = requestAnimationFrame(tickClock)
   applyClockLogic(timeDiff)
 }
 
-function restartClock() {
+function resetClock() {
   startTime = null
   storedElapsedTime = null
   startTime = performance.now();
   cancelAnimationFrame(repaintLoop)
-  startClock()
 }
 
 function getRawMinutes(duration) {

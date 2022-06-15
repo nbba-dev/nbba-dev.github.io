@@ -9,6 +9,8 @@
 ### Bugfixes
 - Guided matches
   - TODO - Fix fan factor update when it is a tie
+- Go back one turn
+  - Fix bug that ocurred when going back one turn and kept a clock ticking in the background
 
 ---
 
