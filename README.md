@@ -57,4 +57,4 @@ Open live server from VSCode
 
 ## How to deploy...
 
-TBD
+Just push new code to the master branch
