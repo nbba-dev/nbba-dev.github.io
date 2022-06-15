@@ -54,3 +54,7 @@
 ## How to run...
 
 Open live server from VSCode
+
+## How to deploy...
+
+TBD
