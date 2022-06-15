@@ -6,7 +6,7 @@ body {
   font-size: 16px;
 }
 
-.page[hidden], .delay-container[hidden], .pause-turn-container[hidden], .pleaseRotate[hidden], .endgame-winner[hidden], .modalTable-rollForResultRow[hidden], .modal-body-onlyButtons[hidden] {
+.page[hidden], .delay-container[hidden], .pause-turn-container[hidden], .pleaseRotate[hidden], .endgame-winner[hidden], .modalTable-rollForResultRow[hidden], .modal-body-onlyButtons[hidden], .fame-dice-roll-container[hidden], *[fameWinnerloserContainer][hidden] {
   display: none;
 }
 
@@ -225,6 +225,7 @@ body {
   display: block;
   background: url('/multimedia/Bloodbowl field.jpeg');
   background-size: cover;
+  background-position: center;
 }
 
 .page3 {
@@ -332,6 +333,7 @@ body {
   /*background: linear-gradient(to top, #F45C43 50%, #c71d31); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: url('/multimedia/Bloodbowl field.jpeg');
   background-size: cover;
+  z-index: 40;
 }
 
 .endgame-gameend {

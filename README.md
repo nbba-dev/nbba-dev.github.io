@@ -4,11 +4,14 @@
 
 ### New Features
 - TODO - allow MVP roll and register that
+- Rework fan factor update calculation to fit the actual rules of BB7s
 - Pause button over delay overlay, so that you can now pause the game even during a delay
+- Center background so that the field is always center no matter the screen resolution
 
 ### Bugfixes
 - Guided matches
-  - TODO - Fix fan factor update when it is a tie
+  - TODO - Guided match does not work without skipping the intro
+  - Couldn't select fan factor for team2
 - Go back one turn
   - Fix bug that ocurred when going back one turn and kept a clock ticking in the background
 

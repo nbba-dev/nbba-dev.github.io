@@ -1005,41 +1005,46 @@
         <p>Los hinchas agradecen el espectáculo recibido dispuestos a dejarse el dinero en entradas y productos oficiales del equipo</p>
       </div>
       <div class="modal-body">
-        <div class="dice-roll-container fame-dice-roll-container">
-          <div class="dice-roll">
-            <div>Hinchas</div>
-            <div id="winningsFanFactorTeam1"></div>
-          </div>
-          <div>&</div>
-          <div class="dice-roll">
-            <div>1D3</div>
-            <select name="" id="winningsFanFactorRollTeam1" onchange="updateFanFactorTeam1(this.value)">
-              <option value="0">N/A</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-          </div>
-          <div>=</div>
-          <div id="winningsFanFactorResultTeam1"></div>
+        <div class="dice-roll-container fame-dice-roll-container" id="fameTieContainer">
+          Como hubo empate, ninguno de los equipos pierde fama
         </div>
-        <div class="dice-roll-container fame-dice-roll-container">
-          <div class="dice-roll">
-            <div>Hinchas</div>
-            <div id="winningsFanFactorTeam2"></div>
+        <div id="fameWinnerloserContainer">
+          <div class="dice-roll-container fame-dice-roll-container">
+            <div class="dice-roll">
+              <div>Hinchas</div>
+              <div id="winningsFanFactorTeam1"></div>
+            </div>
+            <div>&</div>
+            <div class="dice-roll">
+              <div>1D3</div>
+              <select name="" id="winningsFanFactorRollTeam1" onchange="updateFanFactorTeam1(this.value)">
+                <option value="0">N/A</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div>=</div>
+            <div id="winningsFanFactorResultTeam1"></div>
           </div>
-          <div>&</div>
-          <div class="dice-roll">
-            <div>1D3</div>
-            <select name="" id="winningsFanFactorRollTeam2" onchange="updateFanFactorTeam2(this.value)">
-              <option value="0">N/A</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
+          <div class="dice-roll-container fame-dice-roll-container">
+            <div class="dice-roll">
+              <div>Hinchas</div>
+              <div id="winningsFanFactorTeam2"></div>
+            </div>
+            <div>&</div>
+            <div class="dice-roll">
+              <div>1D3</div>
+              <select name="" id="winningsFanFactorRollTeam2" onchange="updateFanFactorTeam2(this.value)">
+                <option value="0">N/A</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div>=</div>
+            <div id="winningsFanFactorResultTeam2"></div>
           </div>
-          <div>=</div>
-          <div id="winningsFanFactorResultTeam2"></div>
         </div>
       </div>
       <div class="modal-controls">

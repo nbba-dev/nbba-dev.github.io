@@ -26,7 +26,7 @@ const initPlayListeners = function (externalGameState) {
       testEnableFameContinue()
     }
     window.updateFameTeam2 = function() {
-      dom.get('fanFactorTeam2').value = gameState.team2.fanFactor || 1
+      dom.get('fanFactorTeam2').value = gameState.team2.fanFactor || dom.get('fanFactorTeam2').value || 1
       const newFame = Number(dom.get('fanFactorTeam2').value) + Number(dom.get('fansRollTeam2').value)
       gameState.team2.fame = newFame
       dom.get('resultFansTeam2').innerHTML = `= ${newFame}`
@@ -152,21 +152,44 @@ const initPlayListeners = function (externalGameState) {
       'completedNewFanFactorBtnPls',
       'winningsFanFactorRollTeam1',
       'winningsFanFactorRollTeam2',
+      'fameTieContainer',
+      'fameWinnerloserContainer',
     ])
+
+    window.enteredInFanFactorModal = function() {
+      if (gameState.endedInTie) {
+        show(dom.get('fameTieContainer'))
+        hide(dom.get('fameWinnerloserContainer'))
+      } else {
+        show(dom.get('fameWinnerloserContainer'))
+        hide(dom.get('fameTieContainer'))
+      }
+      testEnableNewFanFactorContinue()
+    }
 
     window.updateFanFactorTeam1 = function(newValue) {
       if (newValue > 0) {
         let newFame = gameState.team1.fanFactor ?? 1
         const originalFanFactor = gameState.team1.fanFactor ?? 1
-        if (originalFanFactor < newValue) {
-          newFame = Number(originalFanFactor) + 1
-          dom.get('winningsFanFactorResultTeam1').innerHTML = `Fama +1`
-        } else if (originalFanFactor > newValue) {
-          newFame = Number(originalFanFactor) - 1
-          dom.get('winningsFanFactorResultTeam1').innerHTML = `Fama -1`
+        if (gameState.endedAndTeam1Wins) {
+          if (newValue > originalFanFactor) {
+            newFame = Number(originalFanFactor) + 1
+            dom.get('winningsFanFactorResultTeam1').innerHTML = `Fama +1`
+          } else {
+            dom.get('winningsFanFactorResultTeam1').innerHTML = `Se mantiene la misma Fama (porque el partido no fue suficientemente emocionante)`
+            newFame = Number(originalFanFactor)
+          }
+        } else if (gameState.endedAndTeam2Wins) {
+          if (newValue < originalFanFactor) {
+            newFame = Number(originalFanFactor) - 1
+            dom.get('winningsFanFactorResultTeam1').innerHTML = `Fama -1`
+          } else {
+            dom.get('winningsFanFactorResultTeam1').innerHTML = `Se mantiene la misma Fama (porque los espectadores os dieron una segunda oportunidad)`
+            newFame = Number(originalFanFactor)
+          }
         } else {
-          dom.get('winningsFanFactorResultTeam1').innerHTML = `Se mantiene la misma Fama`
-          newFame = Number(originalFanFactor)
+            dom.get('winningsFanFactorResultTeam1').innerHTML = `Se mantiene la misma Fama (porque hubo empate)`
+            newFame = Number(originalFanFactor)
         }
         gameState.team1.newFame = newFame
       } else {
@@ -180,15 +203,25 @@ const initPlayListeners = function (externalGameState) {
       if (newValue > 0) {
         let newFame = gameState.team2.fanFactor ?? 1
         const originalFanFactor = gameState.team2.fanFactor ?? 1
-        if (originalFanFactor < newValue) {
-          newFame = Number(originalFanFactor) + 1
-          dom.get('winningsFanFactorResultTeam2').innerHTML = `Fama +1`
-        } else if (originalFanFactor > newValue) {
-          newFame = Number(originalFanFactor) - 1
-          dom.get('winningsFanFactorResultTeam2').innerHTML = `Fama -1`
+        if (gameState.endedAndTeam2Wins) {
+          if (newValue > originalFanFactor) {
+            newFame = Number(originalFanFactor) + 1
+            dom.get('winningsFanFactorResultTeam2').innerHTML = `Fama +1`
+          } else {
+            dom.get('winningsFanFactorResultTeam2').innerHTML = `Se mantiene la misma Fama (porque el partido no fue suficientemente emocionante)`
+            newFame = Number(originalFanFactor)
+          }
+        } else if (gameState.endedAndTeam1Wins) {
+          if (newValue < originalFanFactor) {
+            newFame = Number(originalFanFactor) - 1
+            dom.get('winningsFanFactorResultTeam2').innerHTML = `Fama -1`
+          } else {
+            dom.get('winningsFanFactorResultTeam2').innerHTML = `Se mantiene la misma Fama (porque los espectadores os dieron una segunda oportunidad)`
+            newFame = Number(originalFanFactor)
+          }
         } else {
-          dom.get('winningsFanFactorResultTeam2').innerHTML = `Se mantiene la misma Fama`
-          newFame = Number(originalFanFactor)
+            dom.get('winningsFanFactorResultTeam2').innerHTML = `Se mantiene la misma Fama (porque hubo empate)`
+            newFame = Number(originalFanFactor)
         }
         gameState.team2.newFame = newFame
       } else {
@@ -200,7 +233,7 @@ const initPlayListeners = function (externalGameState) {
 
 
     const testEnableNewFanFactorContinue = function() {
-      if (dom.get('winningsFanFactorRollTeam1').value !== '0' && dom.get('winningsFanFactorRollTeam2').value !== '0') {
+      if (gameState.endedInTie || (dom.get('winningsFanFactorRollTeam1').value !== '0' && dom.get('winningsFanFactorRollTeam2').value !== '0')) {
         show(dom.get('completedNewFanFactorBtn'))
         hide(dom.get('completedNewFanFactorBtnPls'))
       } else {

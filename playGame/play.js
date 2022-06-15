@@ -114,6 +114,9 @@ let gameState = {
   temporalTouchdown: null,
   temporalInjury: null,
   temporalPass: null,
+  endedAndTeam1Wins: false,
+  endedAndTeam2Wins: false,
+  endedInTie: false,
 }
 
 let gameRecord = []
@@ -372,10 +375,13 @@ function finishGame() {
   gameState.endedGame = true
   show(dom.get('endgameOverlay'))
   if (gameState.team1.score > gameState.team2.score) {
+    gameState.endedAndTeam1Wins = true
     show(dom.get('endgameTeam1'))
   } else if (gameState.team1.score < gameState.team2.score) {
+    gameState.endedAndTeam2Wins = true
     show(dom.get('endgameTeam2'))
   } else {
+    gameState.endedInTie = true
     show(dom.get('endgameTeam1'))
     show(dom.get('endgameTeam2'))
   }
