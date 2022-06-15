@@ -90,6 +90,7 @@ body {
   justify-content: center;
   position: absolute;
   bottom: 0;
+  z-index: 40;
 }
 
 .pause-turn {

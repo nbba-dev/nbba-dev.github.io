@@ -4,6 +4,7 @@
 
 ### New Features
 - TODO - allow MVP roll and register that
+- Pause button over delay overlay, so that you can now pause the game even during a delay
 
 ### Bugfixes
 - Guided matches
@@ -57,4 +58,10 @@ Open live server from VSCode
 
 ## How to deploy...
 
-Just push new code to the master branch
+Just push new code to the master branch and wait a couple of minutes
+
+## Caveats
+
+In order to successfully login to the google sheets api in localhost, instead of navigating to `http://localhost:5501/`, navigate to `http://127.0.0.1:5501/`.
+
+Not sure about this last one, just recently added `localhost:5001` as a valid URL for the Oauth credentials

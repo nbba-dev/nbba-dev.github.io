@@ -267,6 +267,7 @@ window.keepGoing = function() {
   closeInjury()
   closePass()
   closePauseModal()
+  gameState.isPaused = false
 }
 
 function startTurn1() {
@@ -647,9 +648,11 @@ function triggerDelay() {
   return new Promise((resolve, reject) => {
     show(dom.get('delayContainer'))
     setTimeout(() => {
-      hide(dom.get('delayContainer'))
-      turn2Audio.play()
-      resolve()
+      if (!gameState.isPaused) {
+        hide(dom.get('delayContainer'))
+        turn2Audio.play()
+        resolve()
+      }
     }, Number(gameConfig.delay) * 1000)
   })
 }
@@ -803,6 +806,7 @@ window.completedSPP = function() {
 }
 
 window.pauseGame = function() {
+  gameState.isPaused = true
   pauseClock()
   openPauseModal()
 }
