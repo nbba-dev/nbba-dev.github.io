@@ -1,17 +1,26 @@
 # Changelog
 
+## 1.2.0 — Jun 2022
+
+### New Features
+- TODO - allow MVP roll and register that
+
+### Bugfixes
+- Guided matches
+  - TODO - Fix fan factor update when it is a tie
+
+---
+
 ## 1.1.0 — Feb 2022
 
 ### New Features
 - Go back one turn
 - Allow skipping fan factor update only on friendly games
-- TODO - allow MVP roll and register that
 
 ### Bugfixes
 - Guided matches
   - Correctly update initial fans, instead of continously increasing the fans number when modifying the roll
   - Skip pre-game now works
-  - TODO - Fix fan factor update when it is a tie
 
 ---
 
@@ -40,3 +49,8 @@
   - Post-game
     - Earnings
     - Fame update
+
+
+## How to run...
+
+Open live server from VSCode
