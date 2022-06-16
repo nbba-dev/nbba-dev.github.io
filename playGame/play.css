@@ -625,7 +625,7 @@ body {
 
 .endgameShowRecord {
   position: absolute;
-  bottom: 5%;
+  bottom: 0;
   z-index: 9999;
 }
 
@@ -636,7 +636,7 @@ body {
 }
 
 .subtle {
-  color: #666;
+  /* color: #666; */
   font-size: 1rem;
   margin-bottom: 1rem;
 }

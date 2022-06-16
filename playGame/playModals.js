@@ -26,6 +26,9 @@ const initPlayModals = function(externalGameState) {
     'nuffleSelect',
     'surrenderModal',
     'completedKickoffBtnPls',
+    'endgame-league-text1',
+    'endgame-league-text2',
+    'endgame-league-text3',
   ])
 
   const modals = [
@@ -140,6 +143,15 @@ const initPlayModals = function(externalGameState) {
   }
   window.openSppModal = function() {
     openModal(12)
+    if (isLeagueGame()) {
+      show(dom.get('endgame-league-text1'))
+      show(dom.get('endgame-league-text2'))
+      show(dom.get('endgame-league-text3'))
+    } else {
+      hide(dom.get('endgame-league-text1'))
+      hide(dom.get('endgame-league-text2'))
+      hide(dom.get('endgame-league-text3'))
+    }
   }
   window.openSurrenderModal = function() {
     openModal(13)
