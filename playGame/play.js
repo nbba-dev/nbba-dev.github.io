@@ -90,7 +90,7 @@ const dom = getDomNodesByIds([
 let gameConfig;
 let gameState = {
   hasStarted: false,
-  isPaused: false,
+  activeDelayTimeout: null,
   team1: {
     turn: 0,
     elapsedTime: 0,
@@ -270,7 +270,6 @@ window.keepGoing = function() {
   closeInjury()
   closePass()
   closePauseModal()
-  gameState.isPaused = false
 }
 
 function startTurn1() {
@@ -651,12 +650,11 @@ function getRawSeconds(duration) {
 function triggerDelay() {
   return new Promise((resolve, reject) => {
     show(dom.get('delayContainer'))
-    setTimeout(() => {
-      if (!gameState.isPaused) {
-        hide(dom.get('delayContainer'))
-        turn2Audio.play()
-        resolve()
-      }
+    gameState.activeDelayTimeout = setTimeout(() => {
+      gameState.activeDelayTimeout = null
+      hide(dom.get('delayContainer'))
+      turn2Audio.play()
+      resolve()
     }, Number(gameConfig.delay) * 1000)
   })
 }
@@ -810,8 +808,9 @@ window.completedSPP = function() {
 }
 
 window.pauseGame = function() {
-  gameState.isPaused = true
   pauseClock()
+  clearTimeout(gameState.activeDelayTimeout)
+  gameState.activeDelayTimeout = null
   openPauseModal()
 }
 
