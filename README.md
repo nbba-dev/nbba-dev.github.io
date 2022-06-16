@@ -1,9 +1,12 @@
 # Changelog
 
+## Future updates
+- Allow MVP roll and register that
+- Automatic tests
+
 ## 1.2.0 — Jun 2022
 
 ### New Features
-- TODO - allow MVP roll and register that
 - Rework fan factor update calculation to fit the actual rules of BB7s
 - Pause button over delay overlay, so that you can now pause the game even during a delay
 - Center background so that the field is always center no matter the screen resolution

@@ -584,9 +584,7 @@ async function requestWakeLock() {
       wakeLock = await navigator.wakeLock.request('screen');
       wakeLock.addEventListener('release', () => {
         wakeLock = null
-        console.log('Wake Lock was released');
       });
-      console.log('Wake Lock is active');
     } catch (err) {
       console.error(`${err.name}, ${err.message}`);
     }
@@ -601,7 +599,6 @@ let storedElapsedTime = 0;
 let now;
 
 function startClock() {
-  console.log('start clock')
   resetTurnover()
   triggerDelay().then(() => {
     startTime = performance.now()
@@ -610,13 +607,11 @@ function startClock() {
 }
 
 function pauseClock() {
-  console.log('paused')
   storedElapsedTime = (now - startTime) + storedElapsedTime;
   cancelAnimationFrame(repaintLoop)
 }
 
 function tickClock() {
-  console.log('tick')
   now = performance.now()
   const timeDiff = (now - startTime) + storedElapsedTime || 0;
   repaintLoop = requestAnimationFrame(tickClock)
