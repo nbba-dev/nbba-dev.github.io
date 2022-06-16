@@ -10,7 +10,7 @@
 
 ### Bugfixes
 - Guided matches
-  - TODO - Guided match does not work without skipping the intro
+  - Guided match does not work without skipping the intro
   - Couldn't select fan factor for team2
 - Go back one turn
   - Fix bug that ocurred when going back one turn and kept a clock ticking in the background

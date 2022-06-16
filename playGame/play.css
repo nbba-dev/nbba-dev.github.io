@@ -333,6 +333,7 @@ body {
   /*background: linear-gradient(to top, #F45C43 50%, #c71d31); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: url('/multimedia/Bloodbowl field.jpeg');
   background-size: cover;
+  background-position: center;
   z-index: 40;
 }
 

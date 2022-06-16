@@ -1,4 +1,5 @@
 import { getDomNodesByIds, hide, show } from '/shared/domUtils.js'
+import { isLeagueGame } from '/playGame/playUtils.js'
 
 const initPlayModals = function(externalGameState) {
   let gameState = externalGameState
@@ -24,6 +25,7 @@ const initPlayModals = function(externalGameState) {
     'kickoffSelect',
     'nuffleSelect',
     'surrenderModal',
+    'completedKickoffBtnPls',
   ])
 
   const modals = [
@@ -66,6 +68,13 @@ const initPlayModals = function(externalGameState) {
     openModal(3)
     dom.get('kickoffCompleted').onclick = completedKickoff
     show(dom.get('kickoffBackBtn'))
+    if (isLeagueGame()) {
+      hide(dom.get('kickoffCompleted'))
+      show(dom.get('completedKickoffBtnPls'))
+    } else {
+      show(dom.get('kickoffCompleted'))
+      hide(dom.get('completedKickoffBtnPls'))
+    }
   }
   window.openKickoffModalStandalone = function() {
     openModal(3)

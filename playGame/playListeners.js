@@ -172,7 +172,7 @@ const initPlayListeners = function (externalGameState) {
         let newFame = gameState.team1.fanFactor ?? 1
         const originalFanFactor = gameState.team1.fanFactor ?? 1
         if (gameState.endedAndTeam1Wins) {
-          if (newValue > originalFanFactor) {
+          if (newValue >= originalFanFactor) {
             newFame = Number(originalFanFactor) + 1
             dom.get('winningsFanFactorResultTeam1').innerHTML = `Fama +1`
           } else {
@@ -204,7 +204,7 @@ const initPlayListeners = function (externalGameState) {
         let newFame = gameState.team2.fanFactor ?? 1
         const originalFanFactor = gameState.team2.fanFactor ?? 1
         if (gameState.endedAndTeam2Wins) {
-          if (newValue > originalFanFactor) {
+          if (newValue >= originalFanFactor) {
             newFame = Number(originalFanFactor) + 1
             dom.get('winningsFanFactorResultTeam2').innerHTML = `Fama +1`
           } else {
@@ -233,7 +233,27 @@ const initPlayListeners = function (externalGameState) {
 
 
     const testEnableNewFanFactorContinue = function() {
-      if (gameState.endedInTie || (dom.get('winningsFanFactorRollTeam1').value !== '0' && dom.get('winningsFanFactorRollTeam2').value !== '0')) {
+      const winnerCannotWinMoreFans = (gameState.endedAndTeam2Wins && gameState.team2.fanFactor === 7) || (gameState.endedAndTeam1Wins && gameState.team1.fanFactor === 7)
+      const loserCannotloseMoreFans = (gameState.endedAndTeam2Wins && gameState.team1.fanFactor === 1) || (gameState.endedAndTeam1Wins && gameState.team2.fanFactor === 1)
+
+      if (winnerCannotWinMoreFans && gameState.endedAndTeam1Wins) {
+        dom.get('winningsFanFactorResultTeam1').innerHTML = `No se pueden ganar más fans`
+      } else if (winnerCannotWinMoreFans && gameState.endedAndTeam2Wins) {
+        dom.get('winningsFanFactorResultTeam2').innerHTML = `No se pueden ganar más fans`
+      }
+
+      if (loserCannotloseMoreFans && gameState.endedAndTeam1Wins) {
+        dom.get('winningsFanFactorResultTeam2').innerHTML = `No se pueden perder más fans`
+      } else if (loserCannotloseMoreFans && gameState.endedAndTeam2Wins) {
+        dom.get('winningsFanFactorResultTeam1').innerHTML = `No se pueden perder más fans`
+      }
+
+      const fansCantBeUpdated = loserCannotloseMoreFans && winnerCannotWinMoreFans
+      const team1Rolled = dom.get('winningsFanFactorRollTeam1').value !== '0' || (gameState.endedAndTeam1Wins && winnerCannotWinMoreFans) || (gameState.endedAndTeam2Wins && loserCannotloseMoreFans)
+      const team2Rolled = dom.get('winningsFanFactorRollTeam2').value !== '0' || (gameState.endedAndTeam2Wins && winnerCannotWinMoreFans) || (gameState.endedAndTeam1Wins && loserCannotloseMoreFans)
+      const rollsHaveBeenMade = team1Rolled && team2Rolled
+
+      if (fansCantBeUpdated || gameState.endedInTie || rollsHaveBeenMade) {
         show(dom.get('completedNewFanFactorBtn'))
         hide(dom.get('completedNewFanFactorBtnPls'))
       } else {
