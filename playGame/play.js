@@ -8,7 +8,6 @@ import { loadLeagueExcel, loadTeamsFromExcel, loadRoundsFromExcel, getTurnsBased
 import { recordGame } from '/playGame/gameRecordUtils.js';
 import { createImg, createButtonInnerHtml } from '/shared/nodeUtils.js';
 import { setTeamsAsOptionsForSelect, setPlayersAsOptionsForSelect } from '/playGame/playNodeUtils.js';
-import '../tests/play.tests.js'
 
 // state
 const dom = getDomNodesByIds([
