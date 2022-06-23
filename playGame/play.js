@@ -442,19 +442,23 @@ function setDefaultPlayers(team) {
 
 window.updateTouchdownPlayers = function(teamId) {
   const team = teamId == 1 ? gameState.team1 : gameState.team2
-  setPlayersAsOptionsForSelect(dom.get('touchdownPlayer'), team.players)
+  setPlayersAsOptionsForSelect(dom.get('touchdownPlayer'), team.players || getDefaultPlayers())
 }
 window.updateInjuryHurtPlayers = function(teamId) {
   const team = teamId == 1 ? gameState.team1 : gameState.team2
-  setPlayersAsOptionsForSelect(dom.get('injuryHurtPlayer'), team.players)
+  setPlayersAsOptionsForSelect(dom.get('injuryHurtPlayer'), team.players || getDefaultPlayers())
 }
 window.updateInjuryHurtingPlayers = function(teamId) {
   const team = teamId == 1 ? gameState.team1 : gameState.team2
-  setPlayersAsOptionsForSelect(dom.get('injuryHurtingPlayer'), team.players)
+  setPlayersAsOptionsForSelect(dom.get('injuryHurtingPlayer'), team.players || getDefaultPlayers())
 }
 window.updatePassPlayers = function(teamId) {
   const team = teamId == 1 ? gameState.team1 : gameState.team2
-  setPlayersAsOptionsForSelect(dom.get('passPlayer'), team.players)
+  setPlayersAsOptionsForSelect(dom.get('passPlayer'), team.players || getDefaultPlayers())
+}
+
+const getDefaultPlayers = function() {
+  return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 }
 
 function applyClockLogic(timeDiff) {

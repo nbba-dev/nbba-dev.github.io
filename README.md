@@ -13,6 +13,8 @@
 ### Bugfixes
 - Kickoff table
   - Renamed 1D3+3 for 1D3+1 in Sevens rules
+- New event on non-league & guided match
+  - When selecting a new team now player selection doesn't get emptied
 
 ## 1.2.0 — Jun 2022
 

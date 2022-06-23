@@ -12,7 +12,11 @@ const setTeamsAsOptionsForSelect = function(selectNode) {
 const setPlayersAsOptionsForSelect = function(selectNode, players) {
   removeChildren(selectNode)
   players.forEach((player) => {
-    selectNode.appendChild(createOption(`(${player.playerNumber}) ${player.playerName} - ${player.playerPosition}, ${player.playerValue}`, player.playerId))
+    if (player.playerId) {
+      selectNode.appendChild(createOption(`(${player.playerNumber}) ${player.playerName} - ${player.playerPosition}, ${player.playerValue}`, player.playerId))
+    } else {
+      selectNode.appendChild(createOption(`${player}`, player))
+    }
   })
 }
 
