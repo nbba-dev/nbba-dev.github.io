@@ -77,10 +77,11 @@
         <h3>Ajustes</h3>
       </div>
       <div class="modal-body">
-        <div class="modal-body-onlyButtons">
+        <div class="modal-body-onlyButtons-4">
           <button onclick="reset()">Nuevo partido</button>
           <button onclick="toggleFullscreen()">Activar / Desactivar<br>Pantalla Completa</button>
           <button onclick="goBackOneTurn()">Ir un turno atrás</button>
+          <button onclick="swapTeams()">Intercambiar equipos</button>
         </div>
       </div>
       <div class="modal-controls">
@@ -481,7 +482,7 @@
             <div>
               <div><strong>4 – DEFENSA SÓLIDA</strong></div>
               <br>
-              <div>1D3+3 jugadores Desmarcados del equipo pateador pueden ser retirados y desplegados de nuevo en casillas diferentes, siguiendo las reglas normales de despliegue.</div>
+              <div>1D3+1 jugadores Desmarcados del equipo pateador pueden ser retirados y desplegados de nuevo en casillas diferentes, siguiendo las reglas normales de despliegue.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="kickoffRow4" hidden>
@@ -528,7 +529,7 @@
             <div>
               <div><strong>10 – ¡PENETRACIÓN!</strong></div>
               <br>
-              <div>1D3+3 jugadores Desmarcados del equipo pateador se pueden activar de inmediato para realizar una acción de Movimiento. Uno de ellos puede realizar una acción de Penetración y otro una acción de Pase o Lanzar compañero. Si un jugador se Cae o es Derribado, no se pueden activar más jugadores y el evento termina inmediatamente.</div>
+              <div>1D3+1 jugadores Desmarcados del equipo pateador se pueden activar de inmediato para realizar una acción de Movimiento. Uno de ellos puede realizar una acción de Penetración y otro una acción de Pase o Lanzar compañero. Si un jugador se Cae o es Derribado, no se pueden activar más jugadores y el evento termina inmediatamente.</div>
             </div>
           </div>
           <div class="modalTable-rollForResultRow" id="kickoffRow10" hidden>
@@ -737,7 +738,7 @@
         <h2>Nuevo suceso</h2>
       </div>
       <div class="modal-body">
-        <div id="eventButtons" class="modal-body-onlyButtons">
+        <div id="eventButtons" class="modal-body-onlyButtons-3">
           <button onclick="openTouchdown()">¡Touchdown!</button>
           <button onclick="openInjury()">¡Herida!</button>
           <button onclick="openPass()">¡Pase!</button>

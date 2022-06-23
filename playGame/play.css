@@ -665,10 +665,17 @@ body {
   flex-direction: column;
 }
 
-.modal-body-onlyButtons {
+.modal-body-onlyButtons-3 {
   display: grid;
   height: 100%;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2rem;
+}
+
+.modal-body-onlyButtons-4 {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 2rem;
 }
 

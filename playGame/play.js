@@ -577,6 +577,21 @@ window.goBackOneTurn = function () {
   resetClock()
 }
 
+window.swapTeams = function () {
+  const tempTeam = gameState.team1
+  gameState.team1 = gameState.team2
+  gameState.team2 = tempTeam
+  updateTeam1()
+  updateTeam2()
+  /* Solo actualiza el nombre de los equipos arriba
+    Lo suyo sería que también actualizase los sucesos del partido
+
+    Hacer una función que actualice todos los campos necesarios cuando se realiza una actualización de gameState?
+  */
+  // setTouchdowns()
+}
+
+
 // Function that attempts to request a wake lock.
 async function requestWakeLock() {
   if (!wakeLock) {

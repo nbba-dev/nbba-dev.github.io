@@ -4,6 +4,16 @@
 - Allow MVP roll and register that
 - Automatic tests
 
+## 1.3.0 — Jun 2022
+
+### New Features
+- Swap teams
+  - A button has been added in the settings menu to swap the team names according to the table position
+
+### Bugfixes
+- Kickoff table
+  - Renamed 1D3+3 for 1D3+1 in Sevens rules
+
 ## 1.2.0 — Jun 2022
 
 ### New Features

@@ -3,7 +3,7 @@
 3 Tiempo muerto:
   Sí la ficha de turno del equipo pateador está en el turno 6, 7 u 8 de esa parte, ambos entrenadores mueven su ficha de turno un espacio hacia atrás. En cualquier otro caso, ambos entrenado-res mueven su ficha de turno un espacio hacia delante.
 4 Defensa sólida:
-  1D3+3 jugadores Desmarcados del equipo pateador pueden ser retirados y desplegados de nuevo en casillas diferentes, siguiendo las reglas normales de despliegue.
+  1D3+1 jugadores Desmarcados del equipo pateador pueden ser retirados y desplegados de nuevo en casillas diferentes, siguiendo las reglas normales de despliegue.
 5 Patada alta:
   Un jugador Desmarcado del equipo receptor puede ser movido cualquier número de casillas, sin importar su atributo MV, hasta ser colocado en la mísma casilla en la que va a caer el balón.
 6 Los hinchas animan:
@@ -13,9 +13,9 @@
 8 Clima cambiante:
   Haz una nueva tirada en la tabla de Clima y aplica ese resultado. Si esta tirada obtiene un resultado de "Clima perfec-to", el balón se escorará antes de caer al suelo, tal como se describe en la pág. 25.
 9 Anticipación:
-  El entrenador del equipo receptor puede mover 1D3+3 jugadores Desmarcados de su equipo una casilla en cualquier dirección.
+  El entrenador del equipo receptor puede mover 1D3+1 jugadores Desmarcados de su equipo una casilla en cualquier dirección.
 10 ¡Penetración!:
-  1D3+3 jugadores Desmarcados del equipo pateador se pueden activar de inmediato para realizar una acción de Movimiento. Uno de ellos puede realizar una acción de Penetración y otro una acción de Pase o Lanzar compañero. Si un jugador se Cae o es Derribado, no se pueden activar más jugadores y el evento termina inmediatamente.
+  1D3+1 jugadores Desmarcados del equipo pateador se pueden activar de inmediato para realizar una acción de Movimiento. Uno de ellos puede realizar una acción de Penetración y otro una acción de Pase o Lanzar compañero. Si un jugador se Cae o es Derribado, no se pueden activar más jugadores y el evento termina inmediatamente.
 11 Árbitro buscabroncas:
   Cada entrenador tira 1 D6 y suma su Factor de Hinchas al resultado. El entrenador que obtenga un resultado total más bajo elige aleatoriamente a un jugador de su equipo que esté en el campo. En caso de empate en la tirada del D6 + el Factor de Hinchas, ambos entrenadores eligen un jugador aleatorio de su equipo. Se tira 1D6 por cada jugador elegido. Con un 2+, el jugador en cuestión y el árbitro llegan a las manos, debido a lo cual el jugador es colocado Tumbado boca arriba y queda Aturdido. Con un 1, en cambio, el juga-dor es Expulsado inmediatamente, tal como se explica en la pág. 63.
 12 Invasión de campo:
