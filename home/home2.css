@@ -233,7 +233,7 @@ body {
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-height: 700px) {
   .home-container {
     justify-content: initial;
   }
@@ -242,3 +242,13 @@ body {
     margin: 0;
   }
 }
+/*
+@media (max-width: 500px) {
+  .home-container {
+    justify-content: space-between;
+  }
+
+  .home-button-container {
+    margin: 24px 24px 10vh 24px;
+  }
+} */
