@@ -121,9 +121,11 @@ function startHoverSmartphone(phone) {
 
 
 document.querySelector('#playGame').addEventListener('click', () => {
+  document.body.requestFullscreen()
   window.open('/gameSetup', '_self')
 })
 
 document.querySelector('#playLeagueGame').addEventListener('click', () => {
+  document.body.requestFullscreen()
   window.open('/leagueGameSetup', '_self')
 })

@@ -101,11 +101,27 @@ body {
 
 .home-button {
   padding: 16px;
-  margin: 16px;
+  margin: 8px;
   font-size: 1.5rem;
   cursor: pointer;
   border-radius: 8px;
   border: solid 1px black;
+  text-transform: uppercase;
+  border-width: 0;
+}
+
+.home-button-primary {
+  background: hsl(345deg 75% 53%);
+  border-color: white;
+  color: white;
+  border-bottom-width: 2px;
+}
+
+.home-button-secondary {
+  border-color: white;
+  background-color: #006bbb;
+  color: white;
+  border-bottom-width: 2px;
 }
 
 .nbba-desc {
@@ -202,13 +218,13 @@ body {
   }
 
   .home-button-container {
-    margin: 24px;
+    margin: 32px;
     width: auto;
   }
 
   .home-button {
     font-size: 1rem;
-    padding: 8px 16px;
+    padding: 12px 28px;
   }
 
   .home-container {

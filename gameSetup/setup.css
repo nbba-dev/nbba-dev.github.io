@@ -12,11 +12,8 @@ body {
 .page1 {
   display: flex;
   width: 100vw;
-  height: calc(100vh - 10rem);
-  overflow: auto;
   align-items: center;
-  position: absolute;
-  flex-direction: column;
+  justify-content: center;
   padding: 5rem 0;
 }
 
