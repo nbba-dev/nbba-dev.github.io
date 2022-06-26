@@ -84,8 +84,8 @@ body {
 .home-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -218,7 +218,7 @@ body {
   }
 
   .home-button-container {
-    margin: 32px;
+    margin-top: 12px;
     width: auto;
   }
 
@@ -230,5 +230,15 @@ body {
   .home-container {
     height: calc(100% - 64px);
     padding: 32px 0;
+  }
+}
+
+@media (max-width: 1000px) {
+  .home-container {
+    justify-content: initial;
+  }
+
+  .home-button-container {
+    margin: 0;
   }
 }
