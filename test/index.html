@@ -7,10 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <!-- <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="673474108161-v79r4fr56dbdjkavuta6k83uucdr9873.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script> -->
-
 </head>
 
 <body>
@@ -19,8 +15,13 @@
 
     <script>
         function lorem() {
-            fetch('https://bbappservice2.azurewebsites.net/', {
-                // mode: 'no-cors'
+            fetch('https://bbappservice2.azurewebsites.net/token', {
+                headers: {
+                    // 'nbba-token': localStorage.getItem('NBBA-APP-JWT'),
+                    'Nbba-token': 'ipsum',
+                    'Accept': 'application/json',
+
+                },
             })
                 .then((response) => {
                     response.json()
@@ -34,30 +35,42 @@
     </script>
 
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <div id="g_id_onload" data-client_id="673474108161-v79r4fr56dbdjkavuta6k83uucdr9873"
-        data-login_uri="https://nbba.es" data-auto_prompt="false">
-    </div>
-    <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with"
-        data-shape="rectangular" data-logo_alignment="left">
-    </div>
-
-    <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     <script>
-        function onSignIn(googleUser) {
-            // Useful data for your client-side scripts:
-            var profile = googleUser.getBasicProfile();
-            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-            console.log('Full Name: ' + profile.getName());
-            console.log('Given Name: ' + profile.getGivenName());
-            console.log('Family Name: ' + profile.getFamilyName());
-            console.log("Image URL: " + profile.getImageUrl());
-            console.log("Email: " + profile.getEmail());
+        function handleCredentialResponse(response) {
+            console.log("Encoded JWT ID token: " + response.credential);
 
-            // The ID token you need to pass to your backend:
-            var id_token = googleUser.getAuthResponse().id_token;
-            console.log("ID Token: " + id_token);
+            localStorage.setItem('NBBA-APP-JWT', response.credential)
+
+            // const responsePayload = decodeJwtResponse(response.credential);
+
+            // console.log("ID: " + responsePayload.sub);
+            // console.log('Full Name: ' + responsePayload.name);
+            // console.log('Given Name: ' + responsePayload.given_name);
+            // console.log('Family Name: ' + responsePayload.family_name);
+            // console.log("Image URL: " + responsePayload.picture);
+            // console.log("Email: " + responsePayload.email);
         }
-    </script> -->
+        window.onload = function () {
+            const token = localStorage.getItem('NBBA-APP-JWT')
+            if (!token) {
+                google.accounts.id.initialize({
+                    client_id: "673474108161-v79r4fr56dbdjkavuta6k83uucdr9873.apps.googleusercontent.com",
+                    callback: handleCredentialResponse
+                });
+                google.accounts.id.prompt((notification) => {
+                    if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                        // try next provider if OneTap is not displayed or skipped
+                        google.accounts.id.renderButton(
+                            document.getElementById("buttonDiv"),
+                            { theme: "outline", size: "large" }  // customization attributes
+                        );
+                    }
+                });
+            }
+        }
+    </script>
+    <div id="buttonDiv"></div>
+
 
 </body>
 
