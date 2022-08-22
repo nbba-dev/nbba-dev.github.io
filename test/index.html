@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <!-- <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="673474108161-v79r4fr56dbdjkavuta6k83uucdr9873.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+
 </head>
 
 <body>
@@ -18,7 +22,7 @@
             fetch('https://bbappservice2.azurewebsites.net/token', {
                 headers: {
                     // 'nbba-token': localStorage.getItem('NBBA-APP-JWT'),
-                    'Nbba-token': 'ipsum',
+                    'Nbba-token': localStorage.getItem('NBBA-APP-JWT'),
                     'Accept': 'application/json',
 
                 },
@@ -67,10 +71,74 @@
                     }
                 });
             }
+            // google.accounts.id.prompt(); // also display the One Tap dialog
         }
     </script>
     <div id="buttonDiv"></div>
 
+    <!-- <script>
+        /*
+ * Create form to request access token from Google's OAuth 2.0 server.
+ */
+        (function oauthSignIn() {
+            // Google's OAuth 2.0 endpoint for requesting an access token
+            var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+
+            // Create <form> element to submit parameters to OAuth 2.0 endpoint.
+            var form = document.createElement('form');
+            form.setAttribute('method', 'GET'); // Send as a GET request.
+            form.setAttribute('action', oauth2Endpoint);
+
+            // Parameters to pass to OAuth 2.0 endpoint.
+            var params = {
+                'client_id': '673474108161-v79r4fr56dbdjkavuta6k83uucdr9873.apps.googleusercontent.com',
+                'redirect_uri': 'https://nbba.es',
+                'response_type': 'token',
+                'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
+                'include_granted_scopes': 'true',
+                'state': 'pass-through value'
+            };
+
+            // Add form parameters as hidden input values.
+            for (var p in params) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', p);
+                input.setAttribute('value', params[p]);
+                form.appendChild(input);
+            }
+
+            // Add form to page and submit it to open the OAuth 2.0 endpoint.
+            document.body.appendChild(form);
+            form.submit();
+        })()
+    </script> -->
+
+    <!-- <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <div id="g_id_onload" data-client_id="673474108161-v79r4fr56dbdjkavuta6k83uucdr9873"
+        data-login_uri="https://bbappservice2.azurewebsites.net/token" data-auto_prompt="false">
+    </div>
+    <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with"
+        data-shape="rectangular" data-logo_alignment="left">
+    </div> -->
+
+    <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+        function onSignIn(googleUser) {
+            // Useful data for your client-side scripts:
+            var profile = googleUser.getBasicProfile();
+            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+            console.log('Full Name: ' + profile.getName());
+            console.log('Given Name: ' + profile.getGivenName());
+            console.log('Family Name: ' + profile.getFamilyName());
+            console.log("Image URL: " + profile.getImageUrl());
+            console.log("Email: " + profile.getEmail());
+
+            // The ID token you need to pass to your backend:
+            var id_token = googleUser.getAuthResponse().id_token;
+            console.log("ID Token: " + id_token);
+        }
+    </script> -->
 
 </body>
 
